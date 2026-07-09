@@ -1,0 +1,43 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"span"> {
+	tone?: "neutral" | "accent";
+}
+
+const { tone = "neutral", class: className, ...attrs } = Astro.props;
+const classes = ["badge", `badge--${tone}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<span class={classes} {...attrs}>
+	<slot />
+</span>
+
+<style>
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		width: fit-content;
+		border: 1px solid transparent;
+		border-radius: var(--radius-full);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+		font-weight: var(--font-weight-medium);
+		letter-spacing: 0;
+		line-height: var(--line-height-ui);
+		padding: var(--space-1) var(--space-3);
+	}
+
+	.badge--neutral {
+		background: var(--color-surface);
+		color: var(--color-text-muted);
+	}
+
+	.badge--accent {
+		background: rgb(255 255 255 / 0.04);
+		border-color: var(--color-border-subtle);
+		color: var(--color-text-secondary);
+	}
+</style>

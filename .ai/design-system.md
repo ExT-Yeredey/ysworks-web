@@ -1,16 +1,22 @@
 # Design System
 
+## Purpose
+
+This document summarizes the public design direction for YSWORKS Web.
+
+For detailed guidance, use `.ai/design-system-v1.md`.
+
 ## Direction
 
 The visual direction is dark, minimal, precise, and professional.
 
-The site should feel engineered rather than decorated. It may take inspiration from Vercel, Linear, Cloudflare, Stripe, Raycast, and Anthropic, while remaining distinct and restrained.
+The site should feel engineered rather than decorated. It may take inspiration from Vercel, Linear, Cloudflare, Stripe, Apple, Raycast, and Anthropic, while remaining distinct and restrained.
 
 ## Current Status
 
-This is an initial direction document, not a final design system.
+This is an early public design system foundation, not a final component library.
 
-No final color palette, typography scale, spacing scale, component library, or motion language has been approved yet.
+No final color palette, typography scale, component library, or motion language should be treated as permanent until tested in the actual website.
 
 ## Visual Principles
 
@@ -21,6 +27,8 @@ No final color palette, typography scale, spacing scale, component library, or m
 - Premium without being flashy.
 - Technical without exposing private systems.
 - Consistent across mobile and desktop.
+- Content-first.
+- Performance-conscious.
 
 ## Interface Principles
 
@@ -30,6 +38,7 @@ No final color palette, typography scale, spacing scale, component library, or m
 - Keep interactions predictable.
 - Prefer native semantics before custom controls.
 - Use motion only when it improves comprehension.
+- Prefer CSS over JavaScript for visual behavior.
 
 ## Components
 
@@ -40,6 +49,7 @@ Components should be:
 - Accessible.
 - Responsive.
 - Easy to delete or replace.
+- Decoupled from private systems.
 
 Do not create a large component system before the website needs one.
 
@@ -47,4 +57,10 @@ Do not create a large component system before the website needs one.
 
 Design must not depend on invented customers, invented products, invented metrics, or private implementation details.
 
-Public content should be durable, factual, and maintainable.
+Public content should be durable, factual, maintainable, and understandable without private context.
+
+## Trust Model
+
+YSWORKS should earn trust through engineering quality, consistency, accessibility, security, and clear documentation.
+
+Do not use fake proof, exaggerated claims, generic stock imagery, or artificial credibility signals.

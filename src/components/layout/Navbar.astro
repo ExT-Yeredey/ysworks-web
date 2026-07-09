@@ -1,0 +1,59 @@
+---
+import Container from "./Container.astro";
+---
+
+<header class="navbar">
+	<Container size="xl">
+		<nav class="navbar__inner" aria-label="Primary">
+			<a class="navbar__brand" href="/" aria-label="YSWORKS home">
+				<span class="navbar__mark" aria-hidden="true">YW</span>
+				<span class="navbar__name">YSWORKS</span>
+			</a>
+		</nav>
+	</Container>
+</header>
+
+<style>
+	.navbar {
+		border-bottom: 1px solid var(--color-border-subtle);
+		background: var(--color-bg-translucent);
+		backdrop-filter: blur(16px);
+	}
+
+	.navbar__inner {
+		display: flex;
+		align-items: center;
+		min-height: 4.25rem;
+	}
+
+	.navbar__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		border-radius: var(--radius-6);
+		color: var(--color-text-primary);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-ui);
+	}
+
+	.navbar__mark {
+		display: inline-grid;
+		place-items: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border: 1px solid var(--color-border-strong);
+		border-radius: var(--radius-6);
+		background: var(--color-surface);
+		color: var(--color-text-primary);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+		font-weight: var(--font-weight-semibold);
+		line-height: 1;
+	}
+
+	.navbar__name {
+		font-size: var(--font-size-14);
+		line-height: 1;
+		letter-spacing: 0;
+	}
+</style>

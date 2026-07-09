@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
+	spacing?: "sm" | "md" | "lg";
+}
+
+const { spacing = "md", class: className, ...attrs } = Astro.props;
+const classes = ["section", `section--${spacing}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<section class={classes} {...attrs}>
+	<slot />
+</section>
+
+<style>
+	.section {
+		padding-block: var(--space-16);
+	}
+
+	.section--sm {
+		padding-block: var(--space-12);
+	}
+
+	.section--md {
+		padding-block: var(--space-16);
+	}
+
+	.section--lg {
+		padding-block: var(--space-24);
+	}
+
+	@media (min-width: 768px) {
+		.section--lg {
+			padding-block: var(--space-32);
+		}
+	}
+</style>

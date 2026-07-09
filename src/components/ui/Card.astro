@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"article"> {
+	as?: "article" | "div" | "section";
+}
+
+const { as = "article", class: className, ...attrs } = Astro.props;
+const Element = as;
+const classes = ["card", className].filter(Boolean).join(" ");
+---
+
+<Element class={classes} {...attrs}>
+	<slot />
+</Element>
+
+<style>
+	.card {
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-8);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-subtle);
+		padding: var(--space-6);
+	}
+</style>

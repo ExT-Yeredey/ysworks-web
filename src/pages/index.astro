@@ -1,17 +1,52 @@
 ---
-
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import Container from "../components/layout/Container.astro";
+import Section from "../components/layout/Section.astro";
+import Badge from "../components/ui/Badge.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="YSWORKS" description="Engineering secure, scalable digital systems.">
+	<Navbar slot="header" />
+	<Section spacing="lg" aria-labelledby="intro-title">
+		<Container size="md">
+			<div class="intro">
+				<Badge tone="accent">Quiet Engineering</Badge>
+				<h1 id="intro-title">Engineering secure, scalable digital systems.</h1>
+			</div>
+		</Container>
+	</Section>
+	<Footer slot="footer" />
+</BaseLayout>
+
+<style>
+	.intro {
+		display: grid;
+		gap: var(--space-5);
+		max-width: 40rem;
+	}
+
+	.intro h1 {
+		font-size: var(--font-size-32);
+		line-height: var(--line-height-tight);
+		text-wrap: balance;
+	}
+
+	@media (min-width: 768px) {
+		.intro {
+			gap: var(--space-6);
+			max-width: 44rem;
+		}
+
+		.intro h1 {
+			font-size: var(--font-size-48);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.intro h1 {
+			font-size: var(--font-size-64);
+		}
+	}
+</style>

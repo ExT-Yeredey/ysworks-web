@@ -1,0 +1,57 @@
+---
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/inter/latin-700.css";
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+	canonical?: string;
+}
+
+const {
+	title = "YSWORKS",
+	description = "Engineering secure, scalable digital systems.",
+	canonical,
+} = Astro.props;
+
+const siteName = "YSWORKS";
+const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
+const canonicalUrl = canonical ?? Astro.url.href;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to content</a>
+		<div class="site-shell">
+			<slot name="header" />
+			<main id="main-content" class="site-main">
+				<slot />
+			</main>
+			<slot name="footer" />
+		</div>
+	</body>
+</html>

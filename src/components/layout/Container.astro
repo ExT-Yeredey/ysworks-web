@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	size?: "sm" | "md" | "lg" | "xl";
+}
+
+const { size = "lg", class: className, ...attrs } = Astro.props;
+const classes = ["container", `container--${size}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<div class={classes} {...attrs}>
+	<slot />
+</div>
+
+<style>
+	.container {
+		width: min(100% - (var(--space-5) * 2), var(--container-lg));
+		margin-inline: auto;
+	}
+
+	.container--sm {
+		max-width: var(--container-sm);
+	}
+
+	.container--md {
+		max-width: var(--container-md);
+	}
+
+	.container--lg {
+		max-width: var(--container-lg);
+	}
+
+	.container--xl {
+		max-width: var(--container-xl);
+	}
+
+	@media (min-width: 768px) {
+		.container {
+			width: min(100% - (var(--space-8) * 2), var(--container-lg));
+		}
+	}
+</style>
