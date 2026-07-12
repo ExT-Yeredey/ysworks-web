@@ -13,25 +13,29 @@ easy for the wrong visitor to self-filter.
 2. Visitor finds relevant service or content.
 3. Visitor sees trust principles.
 4. Visitor chooses a clear CTA.
-5. Visitor submits or sends inquiry.
-6. YSWORKS qualifies fit.
+5. Visitor explains the problem briefly.
+6. YSWORKS responds or schedules a discovery call when fit is plausible.
 
 ## CTAs
 
 Recommended CTAs:
 
+- Request a conversation.
 - Contact YSWORKS.
 - View Services.
-- Explore Work.
-- Read Journal.
-- Explore Labs.
 
 Avoid CTAs that promise transformation, instant results, or unsupported AI
 capability.
 
+Work, Journal, Labs, newsletter, downloads, and automated lead flows are
+secondary-phase paths. They are not required for the first launch.
+
 ## Forms
 
 A public form should be added only after privacy and abuse protection are ready.
+
+The first release may use a simpler safe contact method if the form backend is
+not ready.
 
 Requirements:
 
@@ -47,6 +51,8 @@ Requirements:
 ## Newsletter
 
 A newsletter may exist later if there is enough durable content.
+
+It is not a requirement for the first public release.
 
 It should be:
 
@@ -74,12 +80,16 @@ Downloads may be useful later:
 
 Do not gate content aggressively before trust exists.
 
+Downloads are optional and should wait until there is a useful public resource.
+
 ## Labs And Journal
 
 Labs and Journal should support lead generation indirectly by showing thinking,
 quality, and taste.
 
 They should not become a content farm.
+
+They should not block the first release.
 
 ## Conversion Quality
 

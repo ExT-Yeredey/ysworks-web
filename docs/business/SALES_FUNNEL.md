@@ -10,8 +10,8 @@ It does not define private CRM workflows or internal automation.
 
 ### Visitor
 
-The visitor lands on the website through search, direct referral, Journal, Labs,
-or GitHub.
+The visitor lands on the website through search, direct referral, GitHub, or
+later through Journal and Labs when those sections exist.
 
 Goal: understand what YSWORKS does.
 
@@ -19,7 +19,7 @@ Goal: understand what YSWORKS does.
 
 The visitor expresses interest through contact, email, or a future form.
 
-Goal: capture enough context to assess fit.
+Goal: capture a short problem description and enough context to assess fit.
 
 ### Discovery
 
@@ -34,6 +34,9 @@ YSWORKS clarifies:
 - public/private boundaries.
 
 Goal: decide whether the work is appropriate.
+
+Discovery can be lightweight for the first release. It does not require a CRM,
+newsletter, downloadable resource, or complex automation.
 
 ### Meeting
 

@@ -16,6 +16,9 @@ Publish case studies only when:
 - screenshots or diagrams are safe;
 - client identity can be disclosed or anonymized honestly.
 
+Do not present academic projects, experiments, or internal prototypes as
+commercial client work.
+
 ## Case Study Structure
 
 Recommended structure:
@@ -35,11 +38,18 @@ Products may appear in portfolio or product pages when they are public-ready.
 
 Do not present internal platforms as public products.
 
+Products owned by YSWORKS may appear first as Labs when they are exploratory and
+public-safe.
+
 ## Labs
 
 Labs can show experiments, prototypes, and technical explorations.
 
 Labs entries should state when something is exploratory.
+
+Canarias Tourism Platform belongs in Labs or a product page only when public
+material is approved. It must not be presented as launched, partnered, or
+commercially available before that is true.
 
 ## Own Projects
 
@@ -66,3 +76,7 @@ Use a Work page focused on:
 - what YSWORKS refuses to fake.
 
 Avoid “coming soon” cards as primary proof.
+
+YS AI OS should not appear as portfolio work. It may be represented only through
+public outcomes, practices, or capabilities that do not reveal private
+architecture.

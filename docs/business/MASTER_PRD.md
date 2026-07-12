@@ -14,17 +14,18 @@ the public website should eventually communicate and enable.
 - Communicate services clearly.
 - Build trust through quality, transparency, and restraint.
 - Provide a path to contact.
-- Publish public-safe writing and experiments.
-- Support future real portfolio, products, and case studies.
+- Prepare future public-safe writing and experiments without requiring them for
+  the first launch.
+- Support future real portfolio, products, and case studies only when approved.
 - Protect private systems and proprietary knowledge.
 
 ## Primary Users
 
 - Founders and startup operators.
-- Small and medium business owners.
-- Technical leaders.
+- Small and medium business owners with manual processes.
+- Technical leaders evaluating automation, web platforms, or product systems.
 - Product teams.
-- Institutions exploring digital systems.
+- Institutions only when scope and proposal are concrete.
 - Potential collaborators.
 - Future clients evaluating trust.
 
@@ -34,9 +35,9 @@ the public website should eventually communicate and enable.
 
 1. Lands on the homepage.
 2. Understands YSWORKS as an engineering studio.
-3. Reviews services or work principles.
+3. Reviews services.
 4. Checks trust signals.
-5. Contacts YSWORKS or explores Journal/Labs.
+5. Requests a conversation.
 
 ### Technical Evaluator
 
@@ -56,25 +57,25 @@ the public website should eventually communicate and enable.
 
 Primary conversion:
 
-- qualified contact inquiry.
+- request a conversation with a short explanation of the problem.
 
 Secondary conversions:
 
 - reading a service page;
-- reading Journal or Labs content;
-- returning to review public work;
-- joining a future newsletter;
-- downloading a future public resource.
+- understanding public/private boundaries;
+- returning later for Work, Labs, or Journal when those sections exist.
 
 ## CTA Strategy
 
 Use clear CTAs:
 
 - Contact YSWORKS.
+- Request a conversation.
 - View Services.
-- Explore Work.
-- Read Journal.
-- Explore Labs.
+
+The first release should route visitors to explain their problem and receive a
+response or discovery call. Work, Journal, Labs, newsletter, downloads, and
+automation-heavy flows are later-stage conversion paths.
 
 Avoid vague CTAs such as “Transform your business” or “Unlock AI.”
 
@@ -84,15 +85,15 @@ Initial structure:
 
 - Home.
 - Services.
-- Work.
-- Labs.
-- Journal.
 - About.
 - Contact.
 - Privacy.
 
 Future structure:
 
+- Work.
+- Labs.
+- Journal.
 - Service detail pages.
 - Real work detail pages.
 - Journal articles.
@@ -106,7 +107,7 @@ The website succeeds when:
 - visitors understand what YSWORKS does within one screen;
 - navigation contains no dead ends;
 - service pages are specific but public-safe;
-- contact path is clear;
+- contact path is clear and asks for a brief problem description;
 - SEO basics are correct;
 - accessibility and performance are strong;
 - no fake proof appears;

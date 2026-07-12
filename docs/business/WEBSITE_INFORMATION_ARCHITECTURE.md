@@ -22,17 +22,22 @@ links to routes that do not exist.
 
 ## Sitemap
 
-Initial public sitemap:
+First public release:
 
 ```text
 /
 /services
-/work
-/labs
-/journal
 /about
 /contact
 /privacy
+```
+
+Second phase:
+
+```text
+/work
+/labs
+/journal
 ```
 
 Future sitemap:
@@ -60,10 +65,11 @@ Priority content:
 
 - positioning;
 - services overview;
-- work principles or approved work;
-- Labs/Journal preview;
 - trust principles;
 - contact CTA.
+
+Work, Labs, and Journal previews should appear only after real public content
+exists.
 
 ### Services
 
@@ -78,17 +84,25 @@ studies exist.
 
 No fake clients, fake logos, fake screenshots, or fake outcomes.
 
+Work is a second-phase page. It is not required for the first public release.
+
 ### Labs
 
 Purpose: publish safe experiments and public explorations.
 
 Labs should not imply production availability.
 
+Labs is a second-phase page. It should not launch without a real public
+experiment or exploration.
+
 ### Journal
 
 Purpose: publish technical writing, product thinking, and public-safe notes.
 
 Writing should be durable, factual, and useful.
+
+Journal is a second-phase page. The first website release must not depend on a
+blog.
 
 ### About
 

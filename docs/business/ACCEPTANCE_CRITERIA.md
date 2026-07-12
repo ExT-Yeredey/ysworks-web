@@ -16,8 +16,8 @@ presence.
 ## Website Structure
 
 - [ ] Navigation links only to existing pages or sections.
-- [ ] Core pages exist: Home, Services, Work, Labs, Journal, About, Contact,
-  Privacy.
+- [ ] First-release pages exist: Home, Services, About, Contact, Privacy.
+- [ ] Work, Labs, and Journal are added only when real public content exists.
 - [ ] Footer includes useful navigation and legal links when available.
 - [ ] No placeholder proof is presented as credibility.
 
@@ -32,8 +32,8 @@ presence.
 
 ## UX
 
-- [ ] Primary CTA has a real action.
-- [ ] Contact path is clear.
+- [ ] Primary CTA requests a conversation.
+- [ ] Contact path asks for a brief problem description and sets expectations.
 - [ ] Mobile navigation is usable.
 - [ ] Heading hierarchy is valid.
 - [ ] Content is readable on mobile and desktop.
@@ -61,6 +61,8 @@ presence.
 - [ ] Portfolio avoids fake clients or fake results.
 - [ ] Labs and products are not presented as completed if exploratory.
 - [ ] YS AI OS remains private.
+- [ ] Canarias Tourism Platform is not presented as launched until public
+  material is approved.
 
 ## Form Readiness
 

@@ -15,8 +15,13 @@ security, and consistency.
 - Do not invent metrics.
 - Do not invent partnerships.
 - Do not publish fake testimonials.
+- Do not show logos without permission.
 - Do not show private technology.
+- Do not promise products that are not launched.
+- Do not publish internal documentation.
+- Do not reveal agents, prompts, credentials, or private architecture.
 - Do not imply work is complete when it is exploratory.
+- Do not use “AI-powered” without explaining the real user or business outcome.
 
 ## How To Generate Trust
 
@@ -40,6 +45,7 @@ Avoid:
 - fake scarcity;
 - stock proof;
 - AI hype;
+- “AI-powered” as a vague substitute for a concrete outcome;
 - unsupported claims;
 - hidden data collection;
 - broken links;

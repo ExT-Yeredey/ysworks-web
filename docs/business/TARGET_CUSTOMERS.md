@@ -2,79 +2,136 @@
 
 ## Purpose
 
-This document defines public customer categories without inventing clients or
-claiming market traction.
+This document defines public customer priorities without inventing clients,
+claiming market traction, or trying to sell to everyone.
 
-## Startups
+## Customer Priority Model
 
-### Problems
+### Ideal Customers
 
-- Need to ship product quickly without creating fragile foundations.
-- Need technical clarity before hiring or scaling.
-- Need credible public web presence.
-- Need AI or automation decisions without hype.
+YSWORKS should prioritize:
 
-### Needs
+- small and medium businesses with manual processes;
+- companies that need automation or integrations;
+- organizations that need a serious web platform;
+- founders or teams building a focused digital product;
+- technical teams that need a bounded audit or implementation plan.
 
-- MVP architecture.
-- Product engineering.
-- Technical strategy.
-- Web platform quality.
-- Clear documentation.
+### Possible Customers
 
-### Value
+YSWORKS may serve:
 
-YSWORKS can help startups create focused, maintainable systems and avoid early
-technical debt.
+- startups that need product foundations;
+- companies that need AI integration with clear boundaries;
+- teams that need security-aware web improvements;
+- organizations that need technical consulting before a build.
+
+### Non-Priority Customers
+
+YSWORKS should not prioritize:
+
+- broad enterprise transformation programs;
+- clients asking for vague AI without a real problem;
+- institutions without a concrete scope, budget, and decision process;
+- low-budget template website requests;
+- organizations that require fake urgency, spam, or inflated claims.
 
 ## Small And Medium Businesses
 
 ### Problems
 
 - Manual workflows slow down operations.
-- Existing web presence may not convert or inspire trust.
-- Tools may be disconnected.
-- Security and maintenance may be unclear.
+- Existing tools are disconnected.
+- Web presence does not create trust.
+- Security and maintenance are unclear.
 
 ### Needs
 
 - automation planning;
 - integrations;
 - website improvement;
-- operational tools;
-- clear support and documentation.
+- operational tooling;
+- clear documentation.
 
 ### Value
 
-YSWORKS can improve systems gradually without forcing unnecessary complexity.
+YSWORKS can reduce manual friction and improve public systems gradually without
+forcing unnecessary complexity.
 
-## Companies
+## Companies Needing Automation
 
 ### Problems
 
-- Existing systems may be hard to change.
-- Teams may need external engineering focus.
-- AI and automation may require careful governance.
-- Public web properties may lack performance or accessibility discipline.
+- Repetitive work consumes team time.
+- Tooling is inconsistent.
+- Existing workflows depend on manual follow-up.
+- Risk is unclear when automation fails.
 
 ### Needs
 
-- technical audits;
-- architecture review;
-- secure implementation;
-- developer experience;
-- integration support.
+- process mapping;
+- safe automation boundaries;
+- integration support;
+- maintainable implementation;
+- auditability.
 
 ### Value
 
-YSWORKS can support focused initiatives with clear documentation and controlled
-scope.
+YSWORKS can help define, build, and maintain controlled automation that keeps
+humans responsible for important decisions.
 
-## Institutions
+## Organizations Needing Web Platforms
 
 ### Problems
 
-- Public digital services need trust, accessibility, and clarity.
+- Website or platform performance is weak.
+- Accessibility, SEO, or content structure is poor.
+- The public experience does not reflect the quality of the organization.
+- Maintenance is difficult.
+
+### Needs
+
+- static-first architecture;
+- frontend implementation;
+- content structure;
+- SEO basics;
+- accessibility and performance review.
+
+### Value
+
+YSWORKS can build web foundations that are fast, clear, and maintainable.
+
+## Digital Product Projects
+
+### Problems
+
+- Product scope is unclear.
+- MVPs become too large.
+- Technical foundations are fragile.
+- AI and automation decisions lack boundaries.
+
+### Needs
+
+- product discovery;
+- architecture planning;
+- focused MVP delivery;
+- validation criteria;
+- maintainability.
+
+### Value
+
+YSWORKS can help shape and build narrow product foundations that can evolve.
+
+## Institutions
+
+### Priority
+
+Institutions are possible customers only when there is a concrete public digital
+service, platform, or content-governance need.
+
+### Problems
+
+- Public services need trust, accessibility, and clarity.
 - Data and content governance matter.
 - Public communication must avoid overpromising.
 
@@ -89,9 +146,9 @@ scope.
 ### Value
 
 YSWORKS can help institutions build public-safe systems with strong boundaries
-and documentation.
+and documentation when scope and decision ownership are clear.
 
-## Non-Target Customers
+## Customers To Avoid
 
 YSWORKS should avoid customers who require:
 

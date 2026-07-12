@@ -5,138 +5,291 @@
 This catalog defines public services YSWORKS can describe without exposing
 private systems or promising unfinished capabilities.
 
-Each service should be presented through service, outcome, and process.
+Each service must be publishable only when the website can explain the problem,
+deliverable outcome, scope, exclusions, delivery modality, and evidence required.
+Prices remain undecided.
+
+## Publishing Rule
+
+A service page can go public only when it has:
+
+- a clear customer problem;
+- a concrete deliverable;
+- public-safe scope;
+- explicit exclusions;
+- a supported delivery modality;
+- evidence that YSWORKS can responsibly offer it.
+
+Do not publish a service page because the category sounds valuable.
 
 ## AI Engineering
 
-### Service
+### Problem It Solves
 
-Design and implementation of AI-assisted product features.
+Teams want AI features but need them tied to real user outcomes, safe data
+boundaries, and observable limitations.
 
-### Outcome
+### Deliverable Outcome
 
-Useful AI behavior connected to a clear user or business outcome.
+A scoped AI-assisted feature, prototype, or implementation plan with documented
+limitations and evaluation criteria.
 
-### Process
+### Scope
 
-- define the product problem;
-- identify safe data boundaries;
-- design human review and fallback behavior;
-- implement measurable features;
-- document limitations.
+- product problem definition;
+- use-case selection;
+- data and privacy boundary review;
+- user experience for AI-assisted behavior;
+- implementation or prototype when approved;
+- evaluation notes and fallback behavior.
 
-Do not describe prompts, private agents, internal workflows, or proprietary
-architecture.
+### Not Included
+
+- private prompts or internal agent architecture;
+- unsupported claims of autonomy;
+- model guarantees;
+- broad AI transformation programs;
+- access to YS AI OS.
+
+### Modality
+
+- discovery;
+- project;
+- maintenance for shipped AI-assisted features;
+- support for evaluation and iteration.
+
+### Evidence Needed Before Publishing
+
+- public-safe example, demo, internal case, or technical note showing controlled
+  AI behavior and limitations.
 
 ## Intelligent Automation
 
-### Service
+### Problem It Solves
 
-Automation of repetitive workflows and operational tasks.
+Organizations lose time to repetitive manual processes, disconnected tools, and
+unclear handoffs.
 
-### Outcome
+### Deliverable Outcome
 
-Less manual work, fewer handoffs, and clearer operational flow.
+An automation plan, workflow implementation, integration, or operational support
+layer that reduces manual work without hiding risk.
 
-### Process
+### Scope
 
-- map the public business process;
-- identify safe automation boundaries;
-- define failure modes;
-- implement with auditability;
-- keep humans in control where risk exists.
+- process mapping;
+- automation opportunity review;
+- integration boundaries;
+- failure modes;
+- auditability requirements;
+- implementation when safe.
 
-Do not expose internal automation pipelines or private tools.
+### Not Included
+
+- private automation pipelines;
+- hidden autonomous behavior;
+- automation without human ownership;
+- unsafe handling of credentials or sensitive data.
+
+### Modality
+
+- discovery;
+- project;
+- maintenance;
+- support.
+
+### Evidence Needed Before Publishing
+
+- public-safe process example, checklist, or case showing manual-work reduction
+  without exposing private workflows.
 
 ## Web Platforms
 
-### Service
+### Problem It Solves
 
-Design and development of fast, accessible public websites and web platforms.
+Organizations need fast, accessible, maintainable websites or web platforms that
+can support trust and conversion.
 
-### Outcome
+### Deliverable Outcome
 
-Reliable web systems that are easy to maintain and deploy.
+A static-first website, web platform foundation, audit, or improvement plan.
 
-### Process
+### Scope
 
-- clarify content and user journeys;
-- define architecture;
-- build static-first where possible;
-- validate accessibility, SEO, and performance;
-- document operations.
+- information architecture;
+- frontend implementation;
+- performance and accessibility;
+- SEO fundamentals;
+- deployment readiness;
+- documentation.
+
+### Not Included
+
+- fake marketing content;
+- private business logic;
+- unsupported third-party integrations;
+- growth-hacking systems.
+
+### Modality
+
+- discovery;
+- project;
+- maintenance;
+- support.
+
+### Evidence Needed Before Publishing
+
+- the YSWORKS website itself, public audits, or public implementation notes.
 
 ## Product Engineering
 
-### Service
+### Problem It Solves
 
-Building product foundations, MVPs, and long-term product systems.
+Teams need product foundations that can evolve without becoming fragile.
 
-### Outcome
+### Deliverable Outcome
 
-Software that can evolve without becoming fragile.
+A scoped product foundation, MVP slice, architecture plan, or maintainability
+improvement.
 
-### Process
+### Scope
 
-- define product scope;
-- model users and workflows;
-- build small vertical slices;
-- validate with real usage;
-- improve continuously.
+- product scope;
+- user journeys;
+- system boundaries;
+- implementation plan;
+- iterative delivery;
+- documentation.
+
+### Not Included
+
+- vague product ownership;
+- speculative roadmaps;
+- unvalidated large builds;
+- claims of market success without proof.
+
+### Modality
+
+- discovery;
+- project;
+- maintenance;
+- support.
+
+### Evidence Needed Before Publishing
+
+- public-safe product specification, prototype, or shipped public product.
 
 ## Technical Consulting
 
-### Service
+### Problem It Solves
 
-Technical direction, audits, architecture reviews, and implementation planning.
+Teams need clarity before making technical decisions or investing in a build.
 
-### Outcome
+### Deliverable Outcome
 
-Clear technical decisions and reduced execution risk.
+An audit, architecture review, implementation plan, or decision document.
 
-### Process
+### Scope
 
-- inspect current systems;
-- identify constraints;
-- prioritize risks;
-- recommend phased improvements;
-- document decisions.
+- repository or website review;
+- architecture assessment;
+- risk prioritization;
+- phased recommendations;
+- documentation.
+
+### Not Included
+
+- open-ended execution without scope;
+- legal, financial, or compliance guarantees;
+- private-system disclosure.
+
+### Modality
+
+- discovery;
+- project;
+- support.
+
+### Evidence Needed Before Publishing
+
+- public audit format, sample decision document, or documented review method.
 
 ## AI Integration
 
-### Service
+### Problem It Solves
 
-Integration of AI capabilities into existing public products or workflows.
+Organizations want to add AI to existing products or workflows without creating
+unsafe data exposure or vague behavior.
 
-### Outcome
+### Deliverable Outcome
 
-AI support where it improves user experience, operations, or decision support.
+A controlled AI integration plan, prototype, or implementation connected to a
+specific public product or workflow need.
 
-### Process
+### Scope
 
-- define acceptable use cases;
-- protect sensitive data;
-- design evaluation criteria;
-- implement controlled integration;
-- monitor behavior and limitations.
+- use-case qualification;
+- data handling review;
+- integration design;
+- validation criteria;
+- user-facing behavior;
+- monitoring and limitation notes.
+
+### Not Included
+
+- exposing private agents;
+- hidden automation;
+- unrestricted access to customer data;
+- AI claims without evaluation.
+
+### Modality
+
+- discovery;
+- project;
+- maintenance;
+- support.
+
+### Evidence Needed Before Publishing
+
+- public-safe integration example or article explaining evaluation and boundary
+  design.
 
 ## Security Engineering
 
-### Service
+### Problem It Solves
 
-Security-aware design and implementation for public web and product systems.
+Public web and product systems need safer defaults, reduced exposure, and
+clearer operational responsibilities.
 
-### Outcome
+### Deliverable Outcome
 
-Reduced exposure, safer defaults, and better trust.
+A security review, hardening plan, implementation improvement, or public web
+security baseline.
 
-### Process
+### Scope
 
-- review public attack surface;
-- protect secrets and environment boundaries;
-- define headers and form protections;
-- validate input;
-- document operational responsibilities.
+- public attack surface review;
+- environment and secret handling review;
+- headers and form protections;
+- input validation requirements;
+- dependency and deployment risk notes.
+
+### Not Included
+
+- penetration testing unless separately approved;
+- compliance certification;
+- private security architecture publication;
+- guarantees of zero risk.
+
+### Modality
+
+- discovery;
+- project;
+- maintenance;
+- support.
+
+### Evidence Needed Before Publishing
+
+- public-safe checklist, security baseline, or documented hardening example.
 
 ## Service Boundaries
 
@@ -144,6 +297,7 @@ YSWORKS should not sell:
 
 - private system access;
 - autonomous agents as a finished public product;
+- broad “anything technology” consulting;
 - unsupported AI claims;
 - guaranteed results;
 - fake enterprise maturity;
