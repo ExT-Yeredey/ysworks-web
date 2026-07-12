@@ -53,7 +53,21 @@ src/
   types/        Shared TypeScript types
   utils/        Small utility functions
 public/         Static public files
+docs/business/ Business, brand, website, and commercial foundation
 ```
+
+## Documentation
+
+Business and website strategy documentation lives in
+[docs/business](docs/business/README.md).
+
+Use it as the canonical source for company positioning, public services, website
+information architecture, content strategy, SEO strategy, lead generation,
+portfolio rules, product integration, trust principles, roadmap, acceptance
+criteria, and open commercial decisions.
+
+The `.ai/` directory remains the public engineering knowledge base for this
+repository.
 
 ## Development
 

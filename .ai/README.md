@@ -29,6 +29,13 @@ For long-term decisions, read:
 - `decisions/ADR-003.md`
 - `decisions/ADR-004.md`
 
+For business, commercial, website architecture, service, content, SEO, lead
+generation, portfolio, and public product strategy, read:
+
+- `../docs/business/README.md`
+- `../docs/business/MASTER_PRD.md`
+- `../docs/business/OPEN_DECISIONS.md`
+
 ## Operating Rule
 
 Everything in this repository should be safe to publish.
