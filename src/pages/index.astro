@@ -1,52 +1,380 @@
 ---
-import Navbar from "../components/layout/Navbar.astro";
-import Footer from "../components/layout/Footer.astro";
 import Container from "../components/layout/Container.astro";
+import Footer from "../components/layout/Footer.astro";
+import Navbar from "../components/layout/Navbar.astro";
 import Section from "../components/layout/Section.astro";
 import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const services = [
+	{
+		title: "AI-assisted workflows",
+		description:
+			"Applied AI support for defined operational problems, with human review and clear boundaries.",
+	},
+	{
+		title: "Automation systems",
+		description:
+			"Structured automations that reduce repetitive work and keep outcomes understandable.",
+	},
+	{
+		title: "Maintainable web platforms",
+		description:
+			"Fast, accessible web foundations built for clarity, performance, and long-term ownership.",
+	},
+	{
+		title: "Technical product engineering",
+		description:
+			"Product implementation shaped around constraints, user needs, and reliable delivery.",
+	},
+	{
+		title: "Secure integrations",
+		description:
+			"Public-safe integrations designed with privacy, access control, and maintainability in mind.",
+	},
+	{
+		title: "Developer experience",
+		description:
+			"Tooling, documentation, and workflows that make systems easier to operate and improve.",
+	},
+];
+
+const principles = [
+	"Simplicity before abstraction.",
+	"Quality before speed theater.",
+	"Clarity before decoration.",
+	"Maintainability before novelty.",
+	"Long-term thinking before short-term polish.",
+];
+
+const processSteps = [
+	{
+		title: "Discover",
+		description:
+			"Understand the problem, constraints, risks, and useful outcome before proposing a system.",
+	},
+	{
+		title: "Design",
+		description:
+			"Define the product shape, technical path, public boundaries, and delivery plan.",
+	},
+	{
+		title: "Build",
+		description:
+			"Implement in small, reviewable steps with accessibility, performance, and security in mind.",
+	},
+	{
+		title: "Improve",
+		description:
+			"Refine the system through feedback, documentation, maintenance, and measured iteration.",
+	},
+];
+
+const trustPrinciples = [
+	"Real work only. No invented clients, metrics, or testimonials.",
+	"Public simplicity. Private systems and implementation details stay private.",
+	"Accessible, fast, and maintainable by default.",
+];
 ---
 
-<BaseLayout title="YSWORKS" description="Engineering secure, scalable digital systems.">
+<BaseLayout
+	title="YSWORKS"
+	description="Engineering digital products that are reliable, maintainable, and built with intention."
+>
 	<Navbar slot="header" />
-	<Section spacing="lg" aria-labelledby="intro-title">
-		<Container size="md">
-			<div class="intro">
-				<Badge tone="accent">Quiet Engineering</Badge>
-				<h1 id="intro-title">Engineering secure, scalable digital systems.</h1>
+
+	<Section spacing="lg" aria-labelledby="hero-title">
+		<Container size="lg">
+			<div class="hero">
+				<Badge tone="accent">Engineering systems built with intention.</Badge>
+				<h1 id="hero-title">
+					Reliable digital products for teams that need clarity, automation, and
+					maintainable systems.
+				</h1>
+				<p class="hero__copy">
+					YSWORKS is an engineering studio focused on applied AI, automation, web
+					platforms, and product systems that can be understood, operated, and improved.
+				</p>
+				<div class="hero__actions" aria-label="Primary actions">
+					<Button href="#contact" variant="primary">Start a conversation</Button>
+					<Button href="#services" variant="secondary">View services</Button>
+				</div>
 			</div>
 		</Container>
 	</Section>
+
+	<Section id="services" spacing="md" aria-labelledby="services-title">
+		<Container size="xl">
+			<div class="section-heading">
+				<Badge>Services</Badge>
+				<h2 id="services-title">Focused engineering support for durable systems.</h2>
+				<p>
+					The first public offering is intentionally narrow: solve clear problems, build
+					maintainable foundations, and avoid unsupported claims.
+				</p>
+			</div>
+			<div class="card-grid card-grid--three">
+				{
+					services.map((service) => (
+						<Card>
+							<h3>{service.title}</h3>
+							<p>{service.description}</p>
+						</Card>
+					))
+				}
+			</div>
+		</Container>
+	</Section>
+
+	<Section id="about" spacing="md" aria-labelledby="about-title">
+		<Container size="lg">
+			<div class="split">
+				<div class="section-heading section-heading--compact">
+					<Badge>Quiet Engineering</Badge>
+					<h2 id="about-title">Invisible complexity, visible simplicity.</h2>
+				</div>
+				<div class="rich-text">
+					<p>
+						Good systems should feel calm from the outside. The work behind them can be
+						complex, but the public experience should stay clear, fast, reliable, and easy
+						to reason about.
+					</p>
+					<ul class="principle-list">
+						{principles.map((principle) => <li>{principle}</li>)}
+					</ul>
+				</div>
+			</div>
+		</Container>
+	</Section>
+
+	<Section id="process" spacing="md" aria-labelledby="process-title">
+		<Container size="xl">
+			<div class="section-heading">
+				<Badge>Process</Badge>
+				<h2 id="process-title">A simple path from problem to durable system.</h2>
+			</div>
+			<ol class="process-list">
+				{
+					processSteps.map((step, index) => (
+						<li>
+							<Card as="div">
+								<span class="process-step">{String(index + 1).padStart(2, "0")}</span>
+								<h3>{step.title}</h3>
+								<p>{step.description}</p>
+							</Card>
+						</li>
+					))
+				}
+			</ol>
+		</Container>
+	</Section>
+
+	<Section id="trust" spacing="md" aria-labelledby="trust-title">
+		<Container size="lg">
+			<div class="trust-panel">
+				<div class="section-heading section-heading--compact">
+					<Badge>Trust</Badge>
+					<h2 id="trust-title">Trust is built through quality and restraint.</h2>
+				</div>
+				<ul class="trust-list">
+					{trustPrinciples.map((principle) => <li>{principle}</li>)}
+				</ul>
+			</div>
+		</Container>
+	</Section>
+
+	<Section id="contact" spacing="lg" aria-labelledby="contact-title">
+		<Container size="md">
+			<div class="cta">
+				<Badge>Contact</Badge>
+				<h2 id="contact-title">Tell us what you are building.</h2>
+				<p>
+					A public contact method is being finalized. The first release will ask for a
+					brief problem description and provide a clear path to a discovery conversation.
+				</p>
+			</div>
+		</Container>
+	</Section>
+
 	<Footer slot="footer" />
 </BaseLayout>
 
 <style>
-	.intro {
+	.hero {
 		display: grid;
-		gap: var(--space-5);
-		max-width: 40rem;
+		gap: var(--space-6);
+		max-width: 50rem;
 	}
 
-	.intro h1 {
+	.hero h1 {
 		font-size: var(--font-size-32);
 		line-height: var(--line-height-tight);
 		text-wrap: balance;
 	}
 
+	.hero__copy {
+		max-width: 40rem;
+		font-size: var(--font-size-18);
+	}
+
+	.hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+
+	#services,
+	#about,
+	#process,
+	#trust,
+	#contact {
+		scroll-margin-top: 7rem;
+	}
+
+	.section-heading {
+		display: grid;
+		gap: var(--space-4);
+		max-width: 44rem;
+		margin-bottom: var(--space-8);
+	}
+
+	.section-heading--compact {
+		margin-bottom: 0;
+	}
+
+	.section-heading h2,
+	.cta h2 {
+		font-size: var(--font-size-24);
+		line-height: var(--line-height-heading);
+		text-wrap: balance;
+	}
+
+	.card-grid {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.card-grid :global(.card) {
+		display: grid;
+		align-content: start;
+		gap: var(--space-3);
+		min-height: 100%;
+	}
+
+	.card-grid h3,
+	.process-list h3 {
+		font-size: var(--font-size-18);
+		line-height: var(--line-height-heading);
+	}
+
+	.split {
+		display: grid;
+		gap: var(--space-8);
+	}
+
+	.rich-text {
+		display: grid;
+		gap: var(--space-6);
+		max-width: 40rem;
+	}
+
+	.principle-list,
+	.trust-list {
+		display: grid;
+		gap: var(--space-3);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.principle-list li,
+	.trust-list li {
+		border-left: 1px solid var(--color-accent-border);
+		color: var(--color-text-secondary);
+		padding-left: var(--space-4);
+	}
+
+	.process-step {
+		color: var(--color-text-muted);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+		line-height: var(--line-height-ui);
+	}
+
+	.process-list {
+		display: grid;
+		gap: var(--space-4);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.process-list :global(.card) {
+		display: grid;
+		gap: var(--space-3);
+	}
+
+	.trust-panel,
+	.cta {
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-8);
+		background: var(--color-surface);
+	}
+
+	.trust-panel {
+		display: grid;
+		gap: var(--space-6);
+		padding: var(--space-6);
+	}
+
+	.cta {
+		display: grid;
+		justify-items: start;
+		gap: var(--space-5);
+		padding: var(--space-8);
+	}
+
 	@media (min-width: 768px) {
-		.intro {
-			gap: var(--space-6);
-			max-width: 44rem;
+		.hero h1 {
+			font-size: var(--font-size-48);
 		}
 
-		.intro h1 {
-			font-size: var(--font-size-48);
+		.section-heading h2,
+		.cta h2 {
+			font-size: var(--font-size-32);
+		}
+
+		.card-grid--three {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.split {
+			grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+		}
+
+		.process-list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.trust-panel,
+		.cta {
+			padding: var(--space-10);
 		}
 	}
 
 	@media (min-width: 1024px) {
-		.intro h1 {
+		.hero h1 {
 			font-size: var(--font-size-64);
+		}
+
+		.card-grid--three {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.process-list {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
 	}
 </style>

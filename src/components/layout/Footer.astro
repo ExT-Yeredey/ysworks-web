@@ -2,12 +2,35 @@
 import Container from "./Container.astro";
 
 const currentYear = new Date().getFullYear();
+const footerLinks = [
+	{ label: "Home", href: "/" },
+	{ label: "Services", href: "#services" },
+	{ label: "About", href: "#about" },
+	{ label: "Process", href: "#process" },
+	{ label: "Contact", href: "#contact" },
+];
 ---
 
 <footer class="footer">
 	<Container size="xl">
 		<div class="footer__inner">
-			<p class="footer__text">YSWORKS {currentYear}</p>
+			<div class="footer__identity">
+				<p class="footer__brand">YSWORKS</p>
+				<p class="footer__descriptor">Engineering studio for maintainable digital systems.</p>
+			</div>
+			<nav class="footer__nav" aria-label="Footer navigation">
+				{
+					footerLinks.map((link) => (
+						<a class="footer__link" href={link.href}>
+							{link.label}
+						</a>
+					))
+				}
+			</nav>
+			<div class="footer__meta">
+				<p class="footer__text">Privacy page pending</p>
+				<p class="footer__text">&copy; {currentYear} YSWORKS</p>
+			</div>
 		</div>
 	</Container>
 </footer>
@@ -18,15 +41,68 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.footer__inner {
-		display: flex;
+		display: grid;
 		align-items: center;
-		justify-content: center;
-		padding-block: var(--space-6);
+		gap: var(--space-6);
+		padding-block: var(--space-8);
+	}
+
+	.footer__identity,
+	.footer__meta {
+		display: grid;
+		gap: var(--space-2);
+	}
+
+	.footer__brand {
+		margin: 0;
+		color: var(--color-text-primary);
+		font-size: var(--font-size-14);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-ui);
+	}
+
+	.footer__descriptor {
+		max-width: 18rem;
+		margin: 0;
+		color: var(--color-text-muted);
+		font-size: var(--font-size-14);
+		line-height: var(--line-height-body);
+	}
+
+	.footer__nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2) var(--space-4);
+	}
+
+	.footer__link {
+		border-radius: var(--radius-6);
+		color: var(--color-text-muted);
+		font-size: var(--font-size-14);
+		font-weight: var(--font-weight-medium);
+		line-height: var(--line-height-ui);
+		transition: color var(--motion-duration-fast) var(--motion-ease-standard);
+	}
+
+	.footer__link:hover {
+		color: var(--color-text-primary);
 	}
 
 	.footer__text {
+		margin: 0;
 		color: var(--color-text-muted);
 		font-size: var(--font-size-14);
 		line-height: var(--line-height-ui);
+	}
+
+	@media (min-width: 860px) {
+		.footer__inner {
+			grid-template-columns: 1fr auto 1fr;
+		}
+
+		.footer__meta {
+			justify-self: end;
+			text-align: right;
+		}
 	}
 </style>
