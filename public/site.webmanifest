@@ -1,0 +1,17 @@
+{
+	"name": "YSWORKS",
+	"short_name": "YSWORKS",
+	"description": "Ingeniería tecnológica para sistemas útiles, seguros y mantenibles.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#07070a",
+	"theme_color": "#07070a",
+	"lang": "es",
+	"icons": [
+		{
+			"src": "/favicon.svg",
+			"sizes": "any",
+			"type": "image/svg+xml"
+		}
+	]
+}

@@ -8,44 +8,62 @@ import "../styles/global.css";
 interface Props {
 	title?: string;
 	description?: string;
-	canonical?: string;
+	canonicalPath?: string;
+	noindex?: boolean;
+	structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
 	title = "YSWORKS",
-	description = "Engineering secure, scalable digital systems.",
-	canonical,
+	description = "Ingeniería tecnológica para sistemas útiles, seguros y mantenibles.",
+	canonicalPath = Astro.url.pathname,
+	noindex = false,
+	structuredData,
 } = Astro.props;
 
 const siteName = "YSWORKS";
 const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
-const canonicalUrl = canonical ?? Astro.url.href;
+const canonicalUrl = new URL(
+	canonicalPath,
+	Astro.site ?? "https://www.ysworks.dev",
+);
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="es" data-theme="dark">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#07070a" />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<link rel="canonical" href={canonicalUrl} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="manifest" href="/site.webmanifest" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content={siteName} />
+		<meta property="og:locale" content="es_ES" />
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalUrl} />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:title" content={pageTitle} />
 		<meta name="twitter:description" content={description} />
+		{structuredData && (
+			<script
+				type="application/ld+json"
+				is:inline
+				set:html={JSON.stringify(structuredData)}
+			/>
+		)}
 
 		<title>{pageTitle}</title>
 	</head>
 	<body>
-		<a class="skip-link" href="#main-content">Skip to content</a>
+		<a class="skip-link" href="#main-content">Saltar al contenido</a>
 		<div class="site-shell">
 			<slot name="header" />
 			<main id="main-content" class="site-main">
@@ -53,5 +71,26 @@ const canonicalUrl = canonical ?? Astro.url.href;
 			</main>
 			<slot name="footer" />
 		</div>
+		<script>
+			const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			const revealItems = document.querySelectorAll<HTMLElement>("[data-reveal]");
+
+			if (!reduceMotion && "IntersectionObserver" in window && revealItems.length > 0) {
+				document.documentElement.dataset.revealReady = "true";
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								entry.target.setAttribute("data-revealed", "true");
+								observer.unobserve(entry.target);
+							}
+						}
+					},
+					{ rootMargin: "0px 0px -8%", threshold: 0.08 },
+				);
+
+				for (const item of revealItems) observer.observe(item);
+			}
+		</script>
 	</body>
 </html>

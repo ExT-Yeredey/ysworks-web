@@ -2,7 +2,12 @@
 
 Public website for YSWORKS.
 
-YSWORKS is an AI-native engineering studio focused on secure, scalable, and high-performance digital systems. This repository contains only the public website. It does not include private systems, internal documentation, automation, prompts, infrastructure, or proprietary implementation details.
+YSWORKS is a technology engineering company focused on useful, secure,
+maintainable digital systems. AI is one applied capability among software,
+automation, systems, hardware, and security; it is not the company's public
+identity. This repository contains only the public website. It does not include
+private systems, internal documentation, prompts, infrastructure, or proprietary
+implementation details.
 
 ## Project Overview
 
@@ -111,6 +116,18 @@ Preview the production build:
 ```sh
 pnpm preview
 ```
+
+## Public Routes
+
+- `/` — launch homepage.
+- `/services` — public service areas and boundaries.
+- `/about` — company approach and principles.
+- `/contact` — pre-launch contact guidance; no form or data submission.
+- `/privacy` — current static-site privacy posture.
+- `/404` — useful not-found experience.
+
+Future portal, status, documentation, labs, and journal surfaces are intentionally
+outside this launch foundation.
 
 ## Deployment
 

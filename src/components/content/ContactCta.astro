@@ -1,0 +1,83 @@
+---
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+
+interface Props {
+	title?: string;
+}
+
+const { title = "Hablemos de lo que necesitas resolver." } = Astro.props;
+---
+
+<Section spacing="lg" aria-labelledby="contact-cta-title">
+	<Container size="lg">
+		<div class="contact-cta" data-reveal>
+			<div class="contact-cta__copy">
+				<Badge>Próximo paso</Badge>
+				<h2 id="contact-cta-title">{title}</h2>
+				<p>
+					Cuéntanos el contexto, el problema y el resultado que buscas. Empezaremos por
+					entender si podemos aportar valor.
+				</p>
+			</div>
+			<Button href="/contact" variant="primary">Cuéntanos tu proyecto</Button>
+		</div>
+	</Container>
+</Section>
+
+<style>
+	.contact-cta {
+		position: relative;
+		display: grid;
+		align-items: end;
+		gap: var(--space-8);
+		overflow: hidden;
+		border: 1px solid var(--color-accent-border);
+		border-radius: var(--radius-16);
+		background:
+			linear-gradient(135deg, var(--color-accent-soft), transparent 58%),
+			var(--color-surface);
+		padding: var(--space-8);
+	}
+
+	.contact-cta::after {
+		position: absolute;
+		right: -5rem;
+		bottom: -8rem;
+		width: 18rem;
+		height: 18rem;
+		border: 1px solid var(--color-accent-border);
+		border-radius: 50%;
+		content: "";
+		pointer-events: none;
+	}
+
+	.contact-cta__copy {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		gap: var(--space-4);
+		max-width: 43rem;
+	}
+
+	h2 {
+		font-size: clamp(var(--font-size-28), 4vw, var(--font-size-48));
+		letter-spacing: -0.03em;
+		text-wrap: balance;
+	}
+
+	.contact-cta :global(.button) {
+		position: relative;
+		z-index: 1;
+		width: fit-content;
+	}
+
+	@media (min-width: 860px) {
+		.contact-cta {
+			grid-template-columns: 1fr auto;
+			padding: var(--space-12);
+		}
+	}
+</style>
