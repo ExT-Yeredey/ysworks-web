@@ -66,6 +66,11 @@ information architecture, content strategy, SEO strategy, lead generation,
 portfolio rules, product integration, trust principles, roadmap, acceptance
 criteria, and open commercial decisions.
 
+Public-safe platform architecture contracts live in
+[docs/architecture](docs/architecture/README.md). They define future exposure,
+edge-security, webhook, and production-readiness boundaries without documenting
+private infrastructure or deployment configuration.
+
 The `.ai/` directory remains the public engineering knowledge base for this
 repository.
 
