@@ -392,12 +392,22 @@ the browser never writes to a canonical source directly.
 - Revalidate identity, tenant, role, assignment, object version, and approval
   state at submission time.
 - Reject a decision for a stale or superseded version and show the newer version.
+- Creating or publishing a new object version immediately moves every pending
+  approval request for the previous version to `SUPERSEDED`. A completed approval
+  remains immutable historical evidence but never approves the new version; the
+  new version requires its own approval request and decision.
 - Require explicit confirmation that names the action and object version.
 - Use idempotency to prevent duplicate decisions.
 - A successful response follows durable recording of the decision.
 - Never edit or delete an approval. Corrections use a linked superseding event.
 - Operator, Support, and Founder roles cannot masquerade as a client decision.
 - High-impact approvals may require step-up authentication as a future policy.
+- An approval records a business decision only. It must never directly deploy,
+  merge, publish infrastructure, change DNS or Cloudflare, execute an n8n or YS
+  AI OS workflow, write to a canonical private source, release credentials, or
+  trigger another privileged operation. Any future downstream action requires a
+  separate server-side policy, authorization, command, idempotency key, audit
+  event, and human control where risk requires it.
 
 ### 8.4 Approval State Model
 
@@ -442,7 +452,8 @@ Every field still requires tenant, object, and field-level visibility checks.
 - prompts, agent configuration, YS AI OS internals, n8n workflows, automation
   routing, source schemas, or sync state details;
 - internal notes, private comments, staff-only actors, performance evaluations,
-  margins, rates not approved for display, or negotiation history;
+  internal costs, cost breakdowns, profitability, margins, rates not approved for
+  display, or negotiation history;
 - credentials, tokens, cookies, authorization headers, signed source URLs,
   secret names, or certificate material;
 - raw logs, stack traces, queries, debug output, correlation internals, queue
@@ -461,7 +472,7 @@ The names below are source categories, not confirmation of deployed systems.
 | Future source | Permitted server-side use | Browser prohibition |
 | --- | --- | --- |
 | PostgreSQL | Controlled adapter or projection input | No database connection, query, credentials, or canonical IDs |
-| GitHub | Selected project/deliverable metadata after mapping | No repository token, private URL, raw issue, branch, or internal comment access |
+| GitHub | Selected project/deliverable metadata after mapping | No repository token, direct private-repository access, private URL, raw issue, branch, or internal comment access |
 | Notion | Approved page fields transformed into portal records | No workspace access token, page ID, private block, or direct embed by default |
 | Google Drive | Approved document metadata and controlled file delivery | No Drive credentials, private folder traversal, or unrestricted source link |
 | YS AI OS | Explicitly approved outcome projection only | No panels, prompts, agents, tools, internal state, or direct connection |
@@ -481,6 +492,11 @@ The names below are source categories, not confirmation of deployed systems.
 
 Authentication is not implemented by this document. Every option still requires
 server-side tenant membership and authorization.
+
+Cloudflare Access, OTP, passkeys, and external identity providers establish an
+authenticated identity only. None is ever the portal's tenant, role, object, or
+field authorization system. The portal server must validate the identity token,
+derive active tenant membership, and authorize every request independently.
 
 ### 10.1 Comparison
 
