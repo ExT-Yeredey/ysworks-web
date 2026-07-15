@@ -10,6 +10,7 @@ named internal service is deployed.
 ## Canonical Document
 
 - [Secure Public Platform Foundation](SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
+- [Client Portal Foundation](CLIENT_PORTAL_FOUNDATION.md)
 
 ## Publication Rule
 
