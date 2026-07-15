@@ -53,13 +53,15 @@ administrative UI on the same hostname. Do not create wildcard DNS records.
 | --- | --- | --- | --- |
 | `ysworks.dev` | `PUBLIC` | Stable apex and brand entry point | Redirect permanently to the canonical `www` URL, preserving safe paths and query strings |
 | `www.ysworks.dev` | `PUBLIC` | Static-first website | Canonical web origin; no administrative or integration routes |
-| `hooks.ysworks.dev` | `PUBLIC` | Secure webhook and form ingress gateway | Only documented ingress routes; never route directly to automation tools |
-| `status.ysworks.dev` | `FUTURE` | Minimal public availability page | Promote to `PUBLIC` only when monitoring is independent and component names are public-safe |
+| `hooks.ysworks.dev` | `PUBLIC` | Secure webhook and form ingress gateway | Only explicitly registered provider routes; no root handler, catch-all, proxy, editor, or direct route to automation tools |
+| `portal.ysworks.dev` | `FUTURE`, target `PRIVATE` | Future authenticated client portal | Do not create until the product exists and strict per-client identity, authorization, data, cache, log, and operational isolation is validated |
+| `status.ysworks.dev` | `FUTURE` | Minimal public availability page | Promote to `PUBLIC` only when monitoring is independent and output cannot reveal architecture, IP addresses, origins, internal names, or private services |
 | `docs.ysworks.dev` | `FUTURE` | Public product or API documentation | Create only when durable public documentation exists; not for internal runbooks |
-| `api.ysworks.dev` | `FUTURE` | Deliberate public product API | No catch-all API; requires its own authentication, versioning, abuse, and lifecycle contract |
-| `assets.ysworks.dev` | `FUTURE` | Dedicated immutable asset origin | Prefer the website origin until scale or isolation provides a measured benefit |
-| `admin.ysworks.dev` | `PRIVATE` | Identity-aware entry point for approved administrative web tools | Optional abstraction only; Cloudflare Access, MFA, and least privilege are mandatory |
-| `preview.ysworks.dev` | `PRIVATE` | Human review of non-production builds | Access-protected; no indexing; no production data or secrets |
+
+This list is exhaustive for the current foundation. Do not reserve or publish
+additional product, API, asset, preview, or administration subdomains before a
+real product and a reviewed architecture require them. In particular, there is
+no public administration hostname.
 
 Internal services must use private naming outside public DNS. Service-specific
 hostnames such as database, cache, container, home-control, or workflow-editor
@@ -91,6 +93,7 @@ The product names below are policy examples, not an infrastructure inventory.
 | --- | --- | --- | --- |
 | Public website | `PUBLIC` | Allowed | Cloudflare edge and static hosting |
 | Secure webhook gateway | `PUBLIC` | Allowed only as a narrow ingress API | WAF, authentication, validation, replay defense, rate limits, asynchronous handoff |
+| Future client portal | `FUTURE` then `PRIVATE` | Never anonymous and never shared across clients without enforced tenant boundaries | Identity-aware access, per-client authorization and data isolation, no shared caches, redacted tenant-aware logs |
 | Public status page | `FUTURE` then `PUBLIC` | Allowed only when it reveals no private topology and is operationally independent | Cloudflare edge; read-only, minimal data |
 | GitHub public repository and profile | `PUBLIC` external SaaS | Allowed intentionally; never proxy GitHub through YSWORKS | GitHub authentication, branch protection, secret scanning, least privilege |
 | GitHub administration | `PRIVATE` external SaaS | Never anonymous | Strong GitHub authentication, MFA or passkey, least privilege |
@@ -102,6 +105,7 @@ The product names below are policy examples, not an infrastructure inventory.
 | Redis | `INTERNAL` | Never public | Private data network; no Internet-routable listener |
 | Home Assistant | `INTERNAL` | Never part of the YSWORKS public platform | Separate trust zone; remote access is a separate private architecture decision |
 | Homebridge | `INTERNAL` | Never part of the YSWORKS public platform | Separate trust zone; no public route |
+| YS AI OS internal panels | `INTERNAL` | Never public and never embedded in a public or client-facing host | LAN or approved Tailscale private overlay only; least privilege and MFA where supported |
 | Reverse-proxy administration API or dashboard | `INTERNAL` | Never public | Loopback or private management network; authentication is not a substitute for isolation |
 | Cloudflare Tunnel connector | `INTERNAL` egress | No inbound public listener | Outbound-only connection with narrowly scoped routes and credentials |
 
@@ -114,8 +118,26 @@ No exception process may make the following anonymously Internet-reachable:
 - an orchestration, workflow, or infrastructure editor;
 - a home-control service;
 - a reverse-proxy or tunnel administration interface;
+- any YS AI OS internal panel or control surface;
 - an origin address that bypasses Cloudflare;
 - a debug, metrics, health-detail, or log endpoint that exposes private state.
+
+Secrets, credentials, internal logs, and client identities, payloads, files, or
+other client information must never be published through a website, webhook
+response, status page, documentation site, repository, cache, or diagnostic
+endpoint.
+
+### 4.3 Administrative Access Boundary
+
+- Administrative interfaces remain reachable only from the local LAN or an
+  approved Tailscale private overlay. They have no public DNS record or public
+  ingress route.
+- Tailscale access does not make an interface public; device and user identity,
+  MFA, least privilege, revocation, and audit requirements still apply.
+- Cloudflare Access may protect an approved private application, but it does not
+  justify publishing infrastructure editors or control planes.
+- Administrative access must fail closed if the private overlay or identity
+  control is unavailable.
 
 An urgent support need does not override these prohibitions. Use a controlled,
 time-limited private access path with an audit trail.
@@ -182,6 +204,8 @@ account before relying on it.
 ### 6.2 Tunnel
 
 - Prefer named, remotely managed tunnels with outbound-only connectors.
+- A Tunnel connector initiates outbound connections and must not require or
+  authorize opening or forwarding inbound ports on the Internet router.
 - Block public inbound traffic to tunnel origins.
 - Use separate tunnels or credentials for materially different environments or
   trust zones; never share production credentials with development.
@@ -194,7 +218,8 @@ account before relying on it.
 - Monitor connector health without publishing internal details.
 
 Cloudflare documents that Tunnel uses outbound-only connections, allowing
-inbound traffic to the origin to be blocked.
+inbound traffic to the origin to be blocked. Any design that requires router
+port forwarding is outside this foundation and must be rejected.
 
 ### 6.3 WAF
 
@@ -334,12 +359,24 @@ Every integration must be registered before exposure with:
 - data classification, log-redaction rules, and retention;
 - failure destination, alert owner, disable switch, and decommission date.
 
-Unregistered routes return `404`. There is no catch-all forwarding route.
+Each provider receives one or more exact, separately registered routes. The
+hostname root, unknown paths, unregistered providers, and unregistered methods
+return `404` or `405` without forwarding. There is no catch-all, path-derived
+upstream, generic proxy, editor route, or route that accepts arbitrary workflow
+identifiers.
+
+No provider route may accept an event until signature, authenticated timestamp
+and freshness, replay or idempotency key, and versioned payload schema checks all
+succeed.
 
 ### 7.3 Signature Verification
 
 - Verify the provider's native signature over the exact raw request bytes before
   parsing or transforming the payload.
+- Require every provider contract to validate a signed or otherwise
+  cryptographically authenticated event timestamp and reject events outside its
+  documented freshness window. If a provider cannot supply authenticated
+  freshness, place it behind an mTLS or service-authenticated broker that does.
 - Prefer HMAC-SHA-256 or an asymmetric signature scheme documented by the
   provider. Reject weak or undocumented custom schemes.
 - Compare signatures in constant time.
@@ -357,8 +394,10 @@ new production integration.
 
 ### 7.4 Replay And Idempotency Protection
 
-- Require a signed timestamp for the generic contract and accept at most five
-  minutes of clock skew.
+- Require an authenticated timestamp for every provider contract. The generic
+  contract accepts at most five minutes of clock skew; provider-specific windows
+  may be narrower and must never exceed the provider's documented retry need
+  without explicit review.
 - Atomically reserve the signed event ID or nonce before enqueueing. Reject a
   duplicate reservation.
 - Keep replay keys for at least 10 minutes and business idempotency keys for at
@@ -452,6 +491,34 @@ dependency-failure tests before promotion. Provider-specific adapters terminate
 at the normalized event boundary; private consumers must not depend on raw
 vendor payloads.
 
+### 7.11 Future Client Portal Contract
+
+`portal.ysworks.dev` remains nonexistent until an approved client product is
+ready. Its target exposure class is `PRIVATE`, not anonymous `PUBLIC`.
+
+- Authenticate every user and bind the session to exactly one authorized client
+  context unless a separately reviewed support role requires otherwise.
+- Authorize every object and operation server-side using the authenticated client
+  context; never trust a client-supplied tenant identifier.
+- Isolate data storage, encryption context, object identifiers, queues, exports,
+  caches, logs, backups, search indexes, analytics, and rate limits by client.
+- Prevent cross-client enumeration through identifiers, timing, error messages,
+  pagination, search, URLs, attachments, or support tooling.
+- Use `private, no-store` for authenticated and client-specific responses unless
+  a reviewed tenant-keyed cache design proves isolation.
+- Test horizontal and vertical authorization, cross-client cache leakage, export
+  boundaries, support impersonation, account recovery, and client offboarding
+  before launch.
+- Keep infrastructure administration and YS AI OS panels outside the portal.
+
+### 7.12 Public Status Contract
+
+If promoted to `PUBLIC`, `status.ysworks.dev` reports only public customer impact,
+broad product availability, incident status, and approved maintenance windows.
+It must never expose architecture diagrams, IP addresses, origin details, host or
+container names, regions precise enough to reveal topology, private services,
+dependency versions, queue depth, logs, client names, or security-control state.
+
 ## 8. Production Security Principles
 
 These rules are mandatory:
@@ -483,8 +550,33 @@ These rules are mandatory:
     becomes permanent without reconciliation and review.
 17. Public status information describes customer impact, not private topology.
 18. Security controls are tested; a configured control is not assumed effective.
+19. Administrative interfaces remain on LAN or an approved Tailscale private
+    overlay and never receive public DNS or ingress.
+20. Client data and access are isolated per client at every storage, processing,
+    cache, log, export, backup, and authorization boundary.
 
-## 9. Public Platform Roadmap
+## 9. Free Plan Viability
+
+The initial foundation should use the current Cloudflare Free plan wherever its
+documented limits satisfy the risk and traffic profile. The application must
+enforce security controls that the edge plan cannot provide.
+
+| Capability | Free-plan baseline | Architecture consequence |
+| --- | --- | --- |
+| DNS, proxied HTTPS, and managed DDoS protection | Available for the public zone | Suitable for the apex and canonical static website |
+| Cloudflare Tunnel | Outbound-only connector model is suitable for the narrow gateway | No router port forwarding; gateway authentication remains mandatory |
+| WAF | Free Managed Ruleset only | Do not claim paid Cloudflare Managed or OWASP rulesets; keep validation in the gateway |
+| Rate limiting | One rule with Free-plan fields and 10-second periods | Reserve the edge rule for the highest-risk public route and enforce all route/provider quotas in the gateway |
+| Turnstile | Free plan supports production use within documented widget and hostname limits | Suitable for browser forms; never use it for machine webhooks |
+| Zero Trust and Access | Use only within the current account's documented seat and feature limits | Reconfirm limits before any private application; LAN/Tailscale remains the administration boundary |
+| Advanced bot, logging, WAF, and rate-limit features | Some require paid plans | Treat as future hardening, not a prerequisite or a control falsely claimed today |
+
+Free-plan availability is not a reason to weaken a mandatory control. If the
+free edge cannot enforce a requirement, implement it at the gateway or defer the
+public capability. Reassess plan limits before production and after material
+traffic, client, compliance, or availability changes.
+
+## 10. Public Platform Roadmap
 
 No phase authorizes production changes. Each phase produces reviewed artifacts
 and requires an explicit approval gate before the next phase.
@@ -573,7 +665,7 @@ Exit criteria:
 - the architecture document is updated from approved evidence without adding
   private operational details.
 
-## 10. Documentation Change Validation Contract
+## 11. Documentation Change Validation Contract
 
 For documentation-only changes to this public repository:
 
@@ -591,7 +683,7 @@ The reviewer must also verify that the document contains no deployable values,
 private topology, internal inventory confirmation, credentials, or workflow
 details.
 
-## 11. Open Decisions
+## 12. Open Decisions
 
 The following must be resolved before implementation:
 
@@ -609,7 +701,7 @@ The following must be resolved before implementation:
 
 Until resolved, the safest state is no new DNS record and no new public route.
 
-## 12. Authoritative References
+## 13. Authoritative References
 
 - [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/)
 - [Cloudflare Access policies](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/)
@@ -617,6 +709,8 @@ Until resolved, the safest state is no new DNS record and no new public route.
 - [Cloudflare Full (strict) TLS](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/)
 - [Cloudflare managed WAF rules](https://developers.cloudflare.com/waf/managed-rules/)
 - [Cloudflare rate limiting](https://developers.cloudflare.com/waf/rate-limiting-rules/)
+- [Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/)
+- [Cloudflare Turnstile plans](https://developers.cloudflare.com/turnstile/plans/)
 - [Cloudflare cache control](https://developers.cloudflare.com/cache/concepts/cache-control/)
 - [Caddy reverse proxy](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy)
 - [Traefik providers](https://doc.traefik.io/traefik/reference/install-configuration/providers/overview/)
