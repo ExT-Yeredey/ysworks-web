@@ -24,6 +24,9 @@ Detailed contracts remain authoritative within their domains:
   boundary for architecture documents.
 - [Business Foundation](business/README.md) contains supporting commercial and
   public-communication policy.
+- [Approved Design Authorities](design/README.md) maps the Founder-approved
+  Brand Book, User Experience Foundation, and Design System names and versions
+  to their governed repository sources.
 - The public engineering knowledge base in [`.ai`](../.ai/README.md) governs the
   public website repository where it does not conflict with this specification.
 
@@ -576,9 +579,11 @@ accurate status and without implying a client relationship.
 ### 5.1 Governing Sources
 
 This specification establishes design intent, not a component library or final
-token set. Detailed brand and interface direction remains in
-[Brand Positioning](business/BRAND_POSITIONING.md), the repository
-[Design System](../.ai/design-system.md), and the applicable product contract.
+token set. The [Approved Design Authorities](design/README.md) registry maps the
+Founder-approved YSWORKS Brand Book v1.0, User Experience Foundation v1.1, and
+YSWORKS Design System v1.1 to their canonical repository sources. Those sources,
+[Brand Positioning](business/BRAND_POSITIONING.md), and the applicable product
+contract govern detailed brand and interface direction within their scopes.
 Other design proposals are inputs, not authority. Fonts, colors, spacing,
 breakpoints, assets, and motion proposals do not become cross-ecosystem
 decisions until reviewed and accepted by the Founder or an ADR.
@@ -603,15 +608,18 @@ that imply access to private systems.
 
 Motion may explain change, establish hierarchy, confirm interaction, or guide
 attention. It must not delay access to content, create decorative spectacle, or
-serve as proof of technical capability. Content and binding actions remain
-usable without animation, and reduced-motion preferences are respected.
+serve as proof of technical capability.
 
-CSS is the current lowest-cost default for simple public-site motion. No
-JavaScript animation library is an accepted ecosystem standard. Anime.js is a
-candidate named by an earlier product direction, while the current repository
-contains Motion and does not contain Anime.js. The final library choice remains
-an Open Decision requiring repository, accessibility, performance, and design
-review.
+CSS remains appropriate for layout, hover and focus feedback, basic state
+transitions, and simple presentation. Anime.js is the only permitted JavaScript
+animation library for the Public Website. Motion and any additional JavaScript
+animation library are not permitted and must not be reintroduced.
+
+Anime.js is progressive enhancement only. Public content, navigation, controls,
+and binding actions remain visible, understandable, and usable when JavaScript
+is unavailable, delayed, blocked, or animation initialization fails. Every use
+must respect `prefers-reduced-motion` and remove, simplify, or bypass nonessential
+motion without removing information or functionality.
 
 ### 5.4 Responsive And Accessible Experience
 
@@ -668,11 +676,17 @@ official.
 
 ### 6.5 Animation Library
 
-No JavaScript animation library is currently official. Anime.js is a candidate,
-but it is not installed in the current repository and has no accepted ADR. The
-repository currently declares Motion as a dependency, while its design guidance
-prefers CSS and minimal JavaScript. Implementation must not add, replace, or
-standardize an animation library until the conflict in section 12 is resolved.
+Anime.js is the accepted and only permitted JavaScript animation library for the
+Public Website. This decision does not select Anime.js for the Client Portal, YS
+AI OS, the Automation Platform, or another YSWORKS system.
+
+CSS remains the correct mechanism for layout, hover, focus, basic state
+transitions, and simple presentation. JavaScript animation is justified only
+when it materially improves hierarchy, state communication, or comprehension.
+Anime.js usage must be progressively enhanced, must preserve a visible and
+usable baseline when JavaScript or initialization fails, and must respect
+`prefers-reduced-motion`. Motion is rejected for the Public Website and must
+remain removed from its dependency graph and implementation.
 
 ### 6.6 Cloudflare Pages
 
@@ -1028,15 +1042,20 @@ their referenced documents. `Accepted` means the direction is official;
 
 ### ADR-M004: Animation Governance
 
-- **Decision:** Keep CSS as the current default and adopt no official JavaScript
-  animation library until an accepted ADR reconciles the design guidance,
-  current Motion dependency, and Anime.js proposal.
-- **Reason:** A suggested tool and an installed dependency are evidence to
-  review, not sufficient authority for an ecosystem standard.
-- **Alternatives rejected:** Prematurely declaring Anime.js or Motion official,
-  animation-first page architecture, and multiple ungoverned libraries.
-- **Status:** Accepted as governance; the library choice remains Proposed and is
-  an Open Decision.
+- **Decision:** Use Anime.js as the only permitted JavaScript animation library
+  for the Public Website. Continue to use CSS for layout, hover, focus, basic
+  state transitions, and simple presentation. Require progressive enhancement,
+  a visible and usable no-animation baseline, initialization-failure safety, and
+  `prefers-reduced-motion` support. Motion must remain removed.
+- **Reason:** One narrowly scoped library prevents competing animation runtimes
+  while supporting interactions whose state communication or sequencing
+  benefits from JavaScript. The progressive-enhancement boundary preserves
+  accessibility, resilience, performance discipline, and static-first delivery.
+- **Alternatives rejected:** Motion, multiple JavaScript animation libraries,
+  animation-first page architecture, JavaScript-dependent access to content,
+  and treating CSS as unsuitable for simple presentation and state feedback.
+- **Status:** Accepted by Founder decision for the Public Website. Other YSWORKS
+  systems require their own scoped decision.
 
 ### ADR-M005: Canonical Domain And Minimal Public Surface
 
@@ -1218,17 +1237,15 @@ each decision is approved.
    “technology engineering company.” ADR-M001 settles the primary category as
    “technology engineering company”; “engineering studio” remains a legacy
    descriptive term, not the official category for new specifications.
-3. **Animation priority:** The design system prefers CSS and minimal JavaScript,
-   the current repository declares Motion, and an earlier direction proposed
-   Anime.js. No accepted ADR selects either JavaScript library. ADR-M004 keeps
-   CSS as the current default and leaves the library choice open.
-4. **Tailwind CSS authority:** Tailwind CSS is installed and directed by the
+3. **Tailwind CSS authority:** Tailwind CSS is installed and directed by the
    current repository coding standards, but no accepted ADR makes it the
    long-term Public Website or ecosystem standard. It remains a current
    repository constraint while its official scope is open.
 
-Founder decisions settle items 1 and 2. Items 3 and 4 remain genuine Open
-Decisions. None of these entries authorizes implementation changes.
+Founder decisions and accepted ADRs settle items 1 and 2. ADR-M004 settles the
+former animation-library conflict by selecting Anime.js for the Public Website;
+that decision is no longer open. Item 3 remains a genuine Open Decision. None
+of these entries authorizes implementation changes outside its accepted scope.
 
 ### 12.2 Company And Commercial
 
@@ -1244,8 +1261,6 @@ Decisions. None of these entries authorizes implementation changes.
 ### 12.3 Public Website And Brand
 
 - Final reviewed `Y + W` logo assets and social sharing image.
-- Whether Anime.js, Motion, or CSS-only motion becomes the accepted Public
-  Website animation standard.
 - Whether Tailwind CSS remains the long-term Public Website styling standard or
   only the current repository implementation choice.
 - Final reviewed typography, spacing, color, breakpoint, component, and motion
