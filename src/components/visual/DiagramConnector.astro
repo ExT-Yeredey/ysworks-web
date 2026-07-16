@@ -1,0 +1,55 @@
+---
+interface Props {
+	direction?: "horizontal" | "vertical";
+	label?: string;
+}
+
+const { direction = "horizontal", label } = Astro.props;
+---
+
+<div
+	class={`diagram-connector diagram-connector--${direction}`}
+	role={label ? "img" : undefined}
+	aria-label={label}
+	aria-hidden={label ? undefined : "true"}
+>
+	<span></span>
+	<svg aria-hidden="true" viewBox="0 0 8 8" width="8" height="8">
+		<path d="m1 1 3 3-3 3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+	</svg>
+</div>
+
+<style>
+	.diagram-connector {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: none;
+		color: var(--color-text-muted);
+	}
+
+	.diagram-connector--horizontal {
+		width: 2rem;
+	}
+
+	.diagram-connector--vertical {
+		width: 100%;
+		height: 2rem;
+		flex-direction: column;
+	}
+
+	.diagram-connector span {
+		width: 100%;
+		height: 1px;
+		background: var(--color-border-strong);
+	}
+
+	.diagram-connector--vertical span {
+		width: 1px;
+		height: 100%;
+	}
+
+	.diagram-connector--vertical svg {
+		transform: rotate(90deg);
+	}
+</style>

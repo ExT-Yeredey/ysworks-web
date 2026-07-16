@@ -1,0 +1,88 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	activation?: "automatic" | "manual";
+}
+
+const { activation = "automatic", class: className, ...attrs } = Astro.props;
+const classes = ["tabs", className].filter(Boolean).join(" ");
+---
+
+<ys-tabs data-activation={activation}>
+	<div class={classes} {...attrs}><slot /></div>
+</ys-tabs>
+
+<script>
+	import { animate } from "animejs";
+
+	class YsTabs extends HTMLElement {
+		connectedCallback() {
+			const tabs = Array.from(this.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+			const panels = Array.from(this.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+			if (tabs.length === 0 || panels.length === 0) return;
+			const automatic = this.dataset.activation !== "manual";
+			const reducedMotion = () =>
+				window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+			const activate = (tab: HTMLButtonElement, moveFocus = true) => {
+				const panelId = tab.getAttribute("aria-controls");
+				for (const candidate of tabs) {
+					const selected = candidate === tab;
+					candidate.setAttribute("aria-selected", String(selected));
+					candidate.tabIndex = selected ? 0 : -1;
+				}
+				for (const panel of panels) panel.hidden = panel.id !== panelId;
+				const panel = panels.find((candidate) => candidate.id === panelId);
+				if (panel && !reducedMotion()) {
+					animate(panel, {
+						opacity: [0, 1],
+						y: [6, 0],
+						duration: 180,
+						ease: "out(3)",
+					});
+				}
+				if (moveFocus) tab.focus();
+			};
+
+			const selected = tabs.find((tab) => tab.getAttribute("aria-selected") === "true") ?? tabs[0];
+			if (selected) activate(selected, false);
+
+			for (const tab of tabs) {
+				tab.addEventListener("click", () => activate(tab, false));
+				tab.addEventListener("keydown", (event) => {
+					const index = tabs.indexOf(tab);
+					let nextIndex: number | undefined;
+					if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+					if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
+					if (event.key === "Home") nextIndex = 0;
+					if (event.key === "End") nextIndex = tabs.length - 1;
+					if (event.key === "Enter" || event.key === " ") {
+						event.preventDefault();
+						activate(tab, false);
+						return;
+					}
+					if (nextIndex === undefined) return;
+					event.preventDefault();
+					const next = tabs[nextIndex];
+					if (!next) return;
+					if (automatic) activate(next);
+					else next.focus();
+				});
+			}
+		}
+	}
+
+	if (!customElements.get("ys-tabs")) customElements.define("ys-tabs", YsTabs);
+</script>
+
+<style>
+	ys-tabs {
+		display: block;
+	}
+
+	.tabs {
+		display: grid;
+		gap: var(--space-6);
+	}
+</style>

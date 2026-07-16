@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	label: string;
+}
+
+const { label, class: className, ...attrs } = Astro.props;
+const classes = ["tabs-list", className].filter(Boolean).join(" ");
+---
+
+<div class={classes} role="tablist" aria-label={label} {...attrs}><slot /></div>
+
+<style>
+	.tabs-list {
+		display: flex;
+		max-width: 100%;
+		gap: var(--space-1);
+		overflow-x: auto;
+		border-bottom: 1px solid var(--color-border-subtle);
+		scrollbar-width: thin;
+	}
+</style>

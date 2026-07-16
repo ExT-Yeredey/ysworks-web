@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"ol"> {
+	label?: string;
+}
+
+const { label, class: className, ...attrs } = Astro.props;
+const classes = ["timeline", className].filter(Boolean).join(" ");
+---
+
+<ol class={classes} aria-label={label} {...attrs}><slot /></ol>
+
+<style>
+	.timeline {
+		display: grid;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+</style>

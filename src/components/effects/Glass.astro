@@ -1,0 +1,52 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	as?: "div" | "section" | "aside";
+	blur?: "sm" | "md" | "lg";
+	bordered?: boolean;
+}
+
+const {
+	as = "div",
+	blur = "md",
+	bordered = true,
+	class: className,
+	...attrs
+} = Astro.props;
+const Element = as;
+const classes = [
+	"glass",
+	`glass--${blur}`,
+	bordered && "glass--bordered",
+	className,
+]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Element class={classes} {...attrs}><slot /></Element>
+
+<style>
+	.glass {
+		background: var(--color-bg-translucent);
+		-webkit-backdrop-filter: blur(var(--glass-blur));
+		backdrop-filter: blur(var(--glass-blur));
+	}
+
+	.glass--sm {
+		--glass-blur: 8px;
+	}
+
+	.glass--md {
+		--glass-blur: 16px;
+	}
+
+	.glass--lg {
+		--glass-blur: 24px;
+	}
+
+	.glass--bordered {
+		border: 1px solid var(--color-border-subtle);
+	}
+</style>

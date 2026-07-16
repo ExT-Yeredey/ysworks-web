@@ -58,6 +58,10 @@ Use:
 - Minimal motion.
 - Original visual assets.
 
+Primary 500, `#6D5EF7`, is the official YSWORKS brand color. The complete
+cross-product palette and usage contract is
+[YSWORKS Design Tokens v1.0](../docs/design/YSWORKS_DESIGN_TOKENS_V1.md).
+
 Avoid design choices that feel decorative before they feel useful.
 
 ## Emotional Goals

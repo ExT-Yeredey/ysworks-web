@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"blockquote"> {
+	attribution?: string;
+	roleLabel?: string;
+}
+
+const { attribution, roleLabel, class: className, ...attrs } = Astro.props;
+const classes = ["quote", className].filter(Boolean).join(" ");
+---
+
+<figure class={classes}>
+	<blockquote aria-label={roleLabel} {...attrs}>
+		<slot />
+	</blockquote>
+	{attribution && <figcaption>{attribution}</figcaption>}
+</figure>
+
+<style>
+	.quote {
+		display: grid;
+		gap: var(--space-4);
+		max-width: 46rem;
+		margin: 0;
+		border-left: 2px solid var(--color-accent-border);
+		padding-left: var(--space-6);
+	}
+
+	.quote blockquote {
+		margin: 0;
+		color: var(--color-text-primary);
+		font-size: clamp(var(--font-size-18), 3vw, var(--font-size-24));
+		font-weight: var(--font-weight-medium);
+		line-height: 1.5;
+		text-wrap: pretty;
+	}
+
+	.quote figcaption {
+		color: var(--color-text-muted);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+	}
+</style>

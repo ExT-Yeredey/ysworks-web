@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"h2"> {
+	as?: "h2" | "h3" | "h4";
+	size?: "sm" | "md" | "lg";
+}
+
+const { as = "h2", size = "md", class: className, ...attrs } = Astro.props;
+const Element = as;
+const classes = ["section-title", `section-title--${size}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Element class={classes} {...attrs}><slot /></Element>
+
+<style>
+	.section-title {
+		max-width: 24ch;
+		color: var(--color-text-primary);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: -0.035em;
+		line-height: var(--line-height-heading);
+		text-wrap: balance;
+	}
+
+	.section-title--sm {
+		font-size: var(--font-size-24);
+	}
+
+	.section-title--md {
+		font-size: clamp(var(--font-size-28), 4vw, var(--font-size-40));
+	}
+
+	.section-title--lg {
+		font-size: clamp(var(--font-size-32), 5vw, var(--font-size-48));
+	}
+</style>

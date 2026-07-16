@@ -67,11 +67,14 @@ Use:
 
 - strong typography;
 - neutral surfaces;
-- deep purple accent;
+- official YSWORKS Purple, Primary 500 `#6D5EF7`, used with restraint;
 - precise spacing;
 - subtle borders;
 - sparse motion;
 - original diagrams or interface visuals when available.
+
+The complete cross-product palette is governed by
+[YSWORKS Design Tokens v1.0](../design/YSWORKS_DESIGN_TOKENS_V1.md).
 
 Avoid:
 

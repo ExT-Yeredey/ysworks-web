@@ -1,0 +1,42 @@
+---
+import Card from "../ui/Card.astro";
+import MonoEyebrow from "../typography/MonoEyebrow.astro";
+import Paragraph from "../typography/Paragraph.astro";
+
+interface Props {
+	step: string;
+	title: string;
+	description: string;
+	headingLevel?: "h2" | "h3" | "h4";
+}
+
+const { step, title, description, headingLevel = "h3" } = Astro.props;
+const Heading = headingLevel;
+---
+
+<Card class="process-card" tone="transparent">
+	<MonoEyebrow tone="accent">{step}</MonoEyebrow>
+	<div class="process-card__content">
+		<Heading>{title}</Heading>
+		<Paragraph measure="none">{description}</Paragraph>
+	</div>
+</Card>
+
+<style>
+	:global(.card.process-card) {
+		display: grid;
+		align-content: start;
+		gap: var(--space-8);
+		height: 100%;
+		border-top-color: var(--color-accent-border);
+	}
+
+	.process-card__content {
+		display: grid;
+		gap: var(--space-3);
+	}
+
+	.process-card :is(h2, h3, h4) {
+		font-size: var(--font-size-24);
+	}
+</style>

@@ -1,0 +1,78 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"p"> {
+	as?: "p" | "div";
+	size?: "sm" | "md" | "lg";
+	tone?: "primary" | "secondary" | "muted";
+	measure?: "narrow" | "default" | "wide" | "none";
+}
+
+const {
+	as = "p",
+	size = "md",
+	tone = "secondary",
+	measure = "default",
+	class: className,
+	...attrs
+} = Astro.props;
+const Element = as;
+const classes = [
+	"paragraph",
+	`paragraph--${size}`,
+	`paragraph--${tone}`,
+	`paragraph--${measure}`,
+	className,
+]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Element class={classes} {...attrs}><slot /></Element>
+
+<style>
+	.paragraph {
+		line-height: var(--line-height-body);
+		text-wrap: pretty;
+	}
+
+	.paragraph--sm {
+		font-size: var(--font-size-14);
+	}
+
+	.paragraph--md {
+		font-size: var(--font-size-16);
+	}
+
+	.paragraph--lg {
+		font-size: var(--font-size-18);
+	}
+
+	.paragraph--primary {
+		color: var(--color-text-primary);
+	}
+
+	.paragraph--secondary {
+		color: var(--color-text-secondary);
+	}
+
+	.paragraph--muted {
+		color: var(--color-text-muted);
+	}
+
+	.paragraph--narrow {
+		max-width: 36rem;
+	}
+
+	.paragraph--default {
+		max-width: 46rem;
+	}
+
+	.paragraph--wide {
+		max-width: 60rem;
+	}
+
+	.paragraph--none {
+		max-width: none;
+	}
+</style>

@@ -84,13 +84,34 @@ Readable text matters more than visual density.
 
 ## 3. Color System
 
-Do not define a final palette yet.
+The Founder-approved [YSWORKS Design Tokens v1.0](../docs/design/YSWORKS_DESIGN_TOKENS_V1.md)
+are the permanent color foundation for every YSWORKS product and communication
+surface.
 
-The first version should define color roles and usage rules. Final values should be selected after visual direction and accessibility testing.
+Primary 500, `#6D5EF7`, is the official YSWORKS brand color. The primary scale
+is:
+
+- Primary 50: `#F4F2FF`.
+- Primary 100: `#E8E4FF`.
+- Primary 200: `#D2CAFF`.
+- Primary 300: `#B7A8FF`.
+- Primary 400: `#947EFF`.
+- Primary 500: `#6D5EF7`.
+- Primary 600: `#5A4DE6`.
+- Primary 700: `#493DD0`.
+- Primary 800: `#382FA8`.
+- Primary 900: `#261F73`.
+
+Hover uses `#7A6CFF`, active uses `#5A4DE6`, and visible focus uses
+`#8A7DFF`. Glow, soft-surface, and accent-border treatments use the opacity
+tokens in the governed contract. Implementations consume semantic roles rather
+than embedding raw values in components.
 
 ### Neutral Palette
 
-The neutral palette should carry most of the interface.
+The neutral palette should carry most of the interface. The official dark
+foundation is Background `#09090B`, Surface `#111114`, Surface Alt `#17171C`,
+Border `#24242A`, Text `#F5F5F7`, and Muted `#A1A1AA`.
 
 It should include:
 
@@ -108,7 +129,7 @@ The neutral system should support both dark-first presentation and strong readab
 
 ### Accent Palette
 
-Accent colors should be used sparingly.
+YSWORKS Purple should be used sparingly.
 
 Accent usage may include:
 

@@ -1,0 +1,52 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"h1"> {
+	as?: "h1" | "h2";
+	size?: "md" | "lg";
+	align?: "start" | "center";
+}
+
+const {
+	as = "h1",
+	size = "lg",
+	align = "start",
+	class: className,
+	...attrs
+} = Astro.props;
+const Element = as;
+const classes = [
+	"hero-title",
+	`hero-title--${size}`,
+	`hero-title--${align}`,
+	className,
+]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Element class={classes} {...attrs}><slot /></Element>
+
+<style>
+	.hero-title {
+		max-width: 18ch;
+		color: var(--color-text-primary);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: -0.045em;
+		line-height: var(--line-height-tight);
+		text-wrap: balance;
+	}
+
+	.hero-title--md {
+		font-size: clamp(var(--font-size-32), 6vw, var(--font-size-48));
+	}
+
+	.hero-title--lg {
+		font-size: clamp(var(--font-size-40), 8vw, var(--font-size-64));
+	}
+
+	.hero-title--center {
+		margin-inline: auto;
+		text-align: center;
+	}
+</style>

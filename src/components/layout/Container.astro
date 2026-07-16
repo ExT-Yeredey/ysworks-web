@@ -3,17 +3,19 @@ import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
 	size?: "sm" | "md" | "lg" | "xl";
+	as?: "div" | "section";
 }
 
-const { size = "lg", class: className, ...attrs } = Astro.props;
+const { size = "lg", as = "div", class: className, ...attrs } = Astro.props;
+const Element = as;
 const classes = ["container", `container--${size}`, className]
 	.filter(Boolean)
 	.join(" ");
 ---
 
-<div class={classes} {...attrs}>
+<Element class={classes} {...attrs}>
 	<slot />
-</div>
+</Element>
 
 <style>
 	.container {

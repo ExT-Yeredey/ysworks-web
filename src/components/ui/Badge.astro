@@ -2,11 +2,17 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"span"> {
-	tone?: "neutral" | "accent";
+	tone?: "neutral" | "accent" | "success" | "warning" | "error" | "info";
+	size?: "sm" | "md";
 }
 
-const { tone = "neutral", class: className, ...attrs } = Astro.props;
-const classes = ["badge", `badge--${tone}`, className]
+const {
+	tone = "neutral",
+	size = "md",
+	class: className,
+	...attrs
+} = Astro.props;
+const classes = ["badge", `badge--${tone}`, `badge--${size}`, className]
 	.filter(Boolean)
 	.join(" ");
 ---
@@ -30,14 +36,50 @@ const classes = ["badge", `badge--${tone}`, className]
 		padding: var(--space-1) var(--space-3);
 	}
 
+	.badge--sm {
+		padding-inline: var(--space-2);
+	}
+
+	.badge--md {
+		min-height: 1.625rem;
+	}
+
 	.badge--neutral {
 		background: var(--color-surface);
 		color: var(--color-text-muted);
 	}
 
 	.badge--accent {
-		background: rgb(255 255 255 / 0.04);
-		border-color: var(--color-border-subtle);
-		color: var(--color-text-secondary);
+		background: var(--color-accent-soft);
+		border-color: var(--color-accent-border);
+		color: var(--color-accent-strong);
+	}
+
+	.badge--success,
+	.badge--warning,
+	.badge--error,
+	.badge--info {
+		background: var(--color-semantic-soft);
+		border-color: currentColor;
+	}
+
+	.badge--success {
+		color: var(--color-success);
+		--color-semantic-soft: var(--color-success-soft);
+	}
+
+	.badge--warning {
+		color: var(--color-warning);
+		--color-semantic-soft: var(--color-warning-soft);
+	}
+
+	.badge--error {
+		color: var(--color-error);
+		--color-semantic-soft: var(--color-error-soft);
+	}
+
+	.badge--info {
+		color: var(--color-info);
+		--color-semantic-soft: var(--color-info-soft);
 	}
 </style>
