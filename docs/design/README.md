@@ -16,6 +16,7 @@ repository sources. It does not reproduce or reinterpret those sources.
 | YSWORKS Brand Book | 1.0 | [Brand Kit V1](../../.ai/brand-kit-v1.md) | [Branding](../../.ai/branding.md) and [Brand Positioning](../business/BRAND_POSITIONING.md) |
 | User Experience Foundation | 1.1 | [Site Architecture V1](../../.ai/site-architecture-v1.md) | UX, accessibility, responsive, and performance rules in [Design System V1](../../.ai/design-system-v1.md) and the applicable product specification |
 | YSWORKS Design System | 1.1 | [Design System V1](../../.ai/design-system-v1.md) | [Design System principles](../../.ai/design-system.md) |
+| YSWORKS Design Tokens | 1.0 | [Design Tokens v1.0](YSWORKS_DESIGN_TOKENS_V1.md) | Brand and interface color contract for every YSWORKS surface |
 
 The version identifiers in this registry identify the Founder-approved governed
 source sets. A historical filename or heading that ends in `v1` does not reduce
@@ -34,9 +35,9 @@ Specification and the approved business foundation when older architecture
 material describes future pages.
 
 The Design System governs visual roles, typography, spacing, component behavior,
-motion principles, accessibility, responsive behavior, and performance. Final
-implementation values still require the review gates stated by the Master
-Specification.
+motion principles, accessibility, responsive behavior, and performance. The
+Founder-approved Design Tokens v1.0 govern the final brand and dark-surface color
+values across the ecosystem.
 
 When these sources conflict, the authority hierarchy in the
 [YSWORKS Master Specification](../YSWORKS_MASTER_SPEC.md) applies. In particular,

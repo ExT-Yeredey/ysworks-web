@@ -1,0 +1,100 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"li"> {
+	title: string;
+	meta?: string;
+	status?: "complete" | "current" | "upcoming";
+}
+
+const {
+	title,
+	meta,
+	status = "upcoming",
+	class: className,
+	...attrs
+} = Astro.props;
+const classes = ["timeline-item", `timeline-item--${status}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<li class={classes} {...attrs}>
+	<div class="timeline-item__rail" aria-hidden="true"><span></span></div>
+	<div class="timeline-item__content">
+		{meta && <span class="timeline-item__meta">{meta}</span>}
+		<h3>{title}</h3>
+		<div class="timeline-item__body"><slot /></div>
+	</div>
+</li>
+
+<style>
+	.timeline-item {
+		display: grid;
+		grid-template-columns: 1rem minmax(0, 1fr);
+		gap: var(--space-4);
+		min-height: 6rem;
+	}
+
+	.timeline-item__rail {
+		position: relative;
+		display: flex;
+		justify-content: center;
+	}
+
+	.timeline-item__rail::after {
+		position: absolute;
+		top: 1rem;
+		bottom: 0;
+		width: 1px;
+		background: var(--color-border-subtle);
+		content: "";
+	}
+
+	.timeline-item:last-child .timeline-item__rail::after {
+		display: none;
+	}
+
+	.timeline-item__rail span {
+		position: relative;
+		z-index: 1;
+		width: 0.625rem;
+		height: 0.625rem;
+		margin-top: 0.35rem;
+		border: 2px solid var(--color-border-strong);
+		border-radius: var(--radius-full);
+		background: var(--color-bg);
+	}
+
+	.timeline-item--complete .timeline-item__rail span {
+		border-color: var(--color-success);
+		background: var(--color-success);
+	}
+
+	.timeline-item--current .timeline-item__rail span {
+		border-color: var(--color-accent-strong);
+		box-shadow: 0 0 0 4px var(--color-accent-soft);
+	}
+
+	.timeline-item__content {
+		display: grid;
+		align-content: start;
+		gap: var(--space-2);
+		padding-bottom: var(--space-8);
+	}
+
+	.timeline-item__meta {
+		color: var(--color-text-muted);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+	}
+
+	.timeline-item h3 {
+		font-size: var(--font-size-18);
+	}
+
+	.timeline-item__body {
+		color: var(--color-text-secondary);
+		font-size: var(--font-size-14);
+	}
+</style>

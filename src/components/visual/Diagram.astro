@@ -1,0 +1,56 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"figure"> {
+	caption?: string;
+	direction?: "row" | "column";
+}
+
+const { caption, direction = "row", class: className, ...attrs } = Astro.props;
+const classes = ["diagram", `diagram--${direction}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<figure class={classes} {...attrs}>
+	<div class="diagram__canvas"><slot /></div>
+	{caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+	.diagram {
+		display: grid;
+		gap: var(--space-4);
+		margin: 0;
+	}
+
+	.diagram__canvas {
+		display: flex;
+		align-items: stretch;
+		gap: var(--space-3);
+		overflow-x: auto;
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-12);
+		background:
+			linear-gradient(var(--color-grid) 1px, transparent 1px),
+			linear-gradient(90deg, var(--color-grid) 1px, transparent 1px),
+			var(--color-bg-elevated);
+		background-size: 2rem 2rem;
+		padding: var(--space-5);
+	}
+
+	.diagram--column .diagram__canvas {
+		flex-direction: column;
+	}
+
+	.diagram figcaption {
+		color: var(--color-text-muted);
+		font-size: var(--font-size-12);
+	}
+
+	@media (min-width: 768px) {
+		.diagram__canvas {
+			padding: var(--space-8);
+		}
+	}
+</style>

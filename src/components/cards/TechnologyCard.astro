@@ -1,0 +1,65 @@
+---
+import Card from "../ui/Card.astro";
+import MonoEyebrow from "../typography/MonoEyebrow.astro";
+import Paragraph from "../typography/Paragraph.astro";
+
+interface Props {
+	name: string;
+	description: string;
+	category?: string;
+	headingLevel?: "h2" | "h3" | "h4";
+}
+
+const { name, description, category, headingLevel = "h3" } = Astro.props;
+const Heading = headingLevel;
+---
+
+<Card class="technology-card" padding="sm">
+	<div class="technology-card__header">
+		<div class="technology-card__mark" aria-hidden="true"><slot name="icon" /></div>
+		<div>
+			{category && <MonoEyebrow>{category}</MonoEyebrow>}
+			<Heading>{name}</Heading>
+		</div>
+	</div>
+	<Paragraph size="sm" measure="none">{description}</Paragraph>
+</Card>
+
+<style>
+	:global(.card.technology-card) {
+		display: grid;
+		gap: var(--space-4);
+		height: 100%;
+	}
+
+	.technology-card__header {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+	}
+
+	.technology-card__header > div:last-child {
+		display: grid;
+		gap: var(--space-1);
+	}
+
+	.technology-card__mark {
+		display: grid;
+		place-items: center;
+		flex: none;
+		width: 2.25rem;
+		height: 2.25rem;
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-6);
+		background: var(--color-bg-elevated);
+		color: var(--color-text-secondary);
+	}
+
+	.technology-card__mark:empty {
+		display: none;
+	}
+
+	.technology-card :is(h2, h3, h4) {
+		font-size: var(--font-size-18);
+	}
+</style>

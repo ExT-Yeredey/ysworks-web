@@ -23,7 +23,9 @@ client information, internal workflows, or restricted operational material.
    publication boundary for architecture contracts.
 6. [Business Foundation](business/README.md) supports public positioning,
    services, content, and commercial policy.
-7. The repository [engineering knowledge base](../.ai/README.md) governs the
+7. [Approved Design Authorities](design/README.md), including YSWORKS Design
+   Tokens v1.0, govern brand, experience, and interface decisions.
+8. The repository [engineering knowledge base](../.ai/README.md) governs the
    public website implementation within its scope.
 
 The handbook is the highest-level human operating handbook. It does not override

@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"span"> {
+	as?: "span" | "p" | "div";
+	tone?: "muted" | "accent";
+}
+
+const { as = "span", tone = "muted", class: className, ...attrs } = Astro.props;
+const Element = as;
+const classes = ["mono-eyebrow", `mono-eyebrow--${tone}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Element class={classes} {...attrs}><slot /></Element>
+
+<style>
+	.mono-eyebrow {
+		display: block;
+		width: fit-content;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+		font-weight: var(--font-weight-medium);
+		letter-spacing: 0.08em;
+		line-height: var(--line-height-ui);
+		text-transform: uppercase;
+	}
+
+	.mono-eyebrow--muted {
+		color: var(--color-text-muted);
+	}
+
+	.mono-eyebrow--accent {
+		color: var(--color-accent-strong);
+	}
+</style>

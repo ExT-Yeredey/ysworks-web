@@ -1,0 +1,50 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	single?: boolean;
+}
+
+const { single = false, class: className, ...attrs } = Astro.props;
+const classes = ["accordion", className].filter(Boolean).join(" ");
+---
+
+<ys-accordion data-single={single ? "true" : "false"}>
+	<div class={classes} {...attrs}>
+		<slot />
+	</div>
+</ys-accordion>
+
+<script>
+	class YsAccordion extends HTMLElement {
+		connectedCallback() {
+			if (this.dataset.single !== "true") return;
+			const items = Array.from(this.querySelectorAll<HTMLDetailsElement>("details"));
+			const initiallyOpen = items.filter((item) => item.open);
+			for (const item of initiallyOpen.slice(1)) item.open = false;
+			for (const item of items) {
+				item.addEventListener("toggle", () => {
+					if (!item.open) return;
+					for (const other of this.querySelectorAll<HTMLDetailsElement>("details[open]")) {
+						if (other !== item) other.open = false;
+					}
+				});
+			}
+		}
+	}
+
+	if (!customElements.get("ys-accordion")) {
+		customElements.define("ys-accordion", YsAccordion);
+	}
+</script>
+
+<style>
+	ys-accordion {
+		display: block;
+	}
+
+	.accordion {
+		display: grid;
+		border-block: 1px solid var(--color-border-subtle);
+	}
+</style>

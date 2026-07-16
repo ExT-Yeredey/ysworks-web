@@ -14,9 +14,11 @@ The site should feel engineered rather than decorated. It may take inspiration f
 
 ## Current Status
 
-This is an early public design system foundation, not a final component library.
-
-No final color palette, typography scale, component library, or motion language should be treated as permanent until tested in the actual website.
+This is the approved public design-system foundation. Component behavior remains
+subject to implementation validation. The Founder-approved
+[YSWORKS Design Tokens v1.0](../docs/design/YSWORKS_DESIGN_TOKENS_V1.md) are the
+permanent color foundation; other token domains remain governed by their
+specific approved sources.
 
 ## Visual Principles
 

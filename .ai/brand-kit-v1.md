@@ -4,7 +4,9 @@
 
 This document records the selected brand kit direction for YSWORKS Web.
 
-It is a direction document only. It does not define final assets, production logo files, UI components, or implemented styles.
+It defines the approved brand direction. Production assets and components remain
+separate deliverables; official color values are governed by the repository
+Design Tokens v1.0 contract.
 
 ## Brand Concept
 
@@ -16,7 +18,8 @@ YSWORKS should communicate that complex engineering work can result in clear, st
 
 ## Logo Direction
 
-The logo direction is a `Y + W` monogram.
+The primary public signature is the `YSWORKS` wordmark. A compact mark, when a
+surface requires one, uses the `YS` initials and never `Y + W`.
 
 The mark should be:
 
@@ -38,11 +41,13 @@ Use:
 - A neutral base.
 - High-contrast text.
 - Restrained surfaces.
-- A deep purple accent.
+- The official YSWORKS Purple.
 
-The deep purple accent should be used selectively for emphasis, focus, and identity moments. It should not dominate the interface or become an exaggerated gradient system.
-
-Final color values are not defined in this document.
+Primary 500, `#6D5EF7`, is the official brand color. It should be used
+selectively for emphasis, focus, and identity moments. It should not dominate
+the interface or become an exaggerated gradient system. The complete scale,
+interaction colors, surfaces, and usage rules are defined in
+[YSWORKS Design Tokens v1.0](../docs/design/YSWORKS_DESIGN_TOKENS_V1.md).
 
 ## Typography
 

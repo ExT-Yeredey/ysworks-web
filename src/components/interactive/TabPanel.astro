@@ -1,0 +1,38 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	id: string;
+	labelledby: string;
+	selected?: boolean;
+}
+
+const {
+	id,
+	labelledby,
+	selected = false,
+	class: className,
+	...attrs
+} = Astro.props;
+const classes = ["tab-panel", className].filter(Boolean).join(" ");
+---
+
+<div
+	class={classes}
+	role="tabpanel"
+	id={id}
+	aria-labelledby={labelledby}
+	tabindex="0"
+	hidden={!selected}
+	{...attrs}
+><slot /></div>
+
+<style>
+	.tab-panel {
+		border-radius: var(--radius-6);
+	}
+
+	.tab-panel[hidden] {
+		display: none;
+	}
+</style>

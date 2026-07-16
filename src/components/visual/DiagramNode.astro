@@ -1,0 +1,82 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	title: string;
+	description?: string;
+	tone?: "default" | "accent" | "muted";
+}
+
+const {
+	title,
+	description,
+	tone = "default",
+	class: className,
+	...attrs
+} = Astro.props;
+const classes = ["diagram-node", `diagram-node--${tone}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<div class={classes} {...attrs}>
+	<div class="diagram-node__icon" aria-hidden="true"><slot name="icon" /></div>
+	<div class="diagram-node__content">
+		<strong>{title}</strong>
+		{description && <span>{description}</span>}
+	</div>
+</div>
+
+<style>
+	.diagram-node {
+		display: flex;
+		align-items: center;
+		flex: 1 0 12rem;
+		gap: var(--space-3);
+		min-width: 0;
+		border: 1px solid var(--color-border-strong);
+		border-radius: var(--radius-8);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-subtle);
+		padding: var(--space-4);
+	}
+
+	.diagram-node--accent {
+		border-color: var(--color-accent-border);
+		background: var(--color-accent-soft);
+	}
+
+	.diagram-node--muted {
+		border-color: var(--color-border-subtle);
+		background: var(--color-bg-elevated);
+	}
+
+	.diagram-node__icon {
+		display: grid;
+		place-items: center;
+		flex: none;
+		color: var(--color-accent-strong);
+	}
+
+	.diagram-node__icon:empty {
+		display: none;
+	}
+
+	.diagram-node__content {
+		display: grid;
+		gap: var(--space-1);
+		min-width: 0;
+	}
+
+	.diagram-node strong {
+		color: var(--color-text-primary);
+		font-size: var(--font-size-14);
+		line-height: var(--line-height-ui);
+	}
+
+	.diagram-node span {
+		color: var(--color-text-muted);
+		font-size: var(--font-size-12);
+		line-height: var(--line-height-ui);
+	}
+</style>

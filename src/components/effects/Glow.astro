@@ -1,0 +1,66 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	as?: "div" | "section" | "span";
+	position?: "top" | "center" | "bottom";
+	intensity?: "subtle" | "medium";
+}
+
+const {
+	as = "div",
+	position = "center",
+	intensity = "subtle",
+	class: className,
+	...attrs
+} = Astro.props;
+const Element = as;
+const classes = ["glow", `glow--${position}`, `glow--${intensity}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Element class={classes} {...attrs}><slot /></Element>
+
+<style>
+	.glow {
+		position: relative;
+		isolation: isolate;
+	}
+
+	.glow::before {
+		position: absolute;
+		z-index: -1;
+		width: min(70vw, 34rem);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: var(--color-accent-glow);
+		content: "";
+		filter: blur(110px);
+		inset-inline-start: 50%;
+		opacity: var(--glow-opacity);
+		pointer-events: none;
+		transform: translateX(-50%);
+	}
+
+	.glow--subtle {
+		--glow-opacity: 0.7;
+	}
+
+	.glow--medium {
+		--glow-opacity: 1;
+	}
+
+	.glow--top::before {
+		top: -45%;
+	}
+
+	.glow--center::before {
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.glow--bottom::before {
+		bottom: -45%;
+	}
+</style>

@@ -1,0 +1,104 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button"> {
+	lightLabel?: string;
+	darkLabel?: string;
+}
+
+const {
+	lightLabel = "Use light theme",
+	darkLabel = "Use dark theme",
+	class: className,
+	...attrs
+} = Astro.props;
+const classes = ["theme-toggle", className].filter(Boolean).join(" ");
+---
+
+<ys-theme-toggle data-light-label={lightLabel} data-dark-label={darkLabel}>
+	<button class={classes} type="button" aria-label={lightLabel} {...attrs}>
+		<svg class="theme-toggle__sun" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+			<circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor"></circle>
+			<path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M13 3l-1.4 1.4M4.4 11.6 3 13" stroke="currentColor" stroke-linecap="round"></path>
+		</svg>
+		<svg class="theme-toggle__moon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+			<path d="M13.5 10.3A5.8 5.8 0 0 1 5.7 2.5 5.8 5.8 0 1 0 13.5 10.3Z" fill="none" stroke="currentColor" stroke-linejoin="round"></path>
+		</svg>
+	</button>
+</ys-theme-toggle>
+
+<script>
+	type Theme = "dark" | "light";
+
+	class YsThemeToggle extends HTMLElement {
+		connectedCallback() {
+			const button = this.querySelector<HTMLButtonElement>("button");
+			if (!button) return;
+			const lightLabel = this.dataset.lightLabel ?? "Use light theme";
+			const darkLabel = this.dataset.darkLabel ?? "Use dark theme";
+			let storedTheme: string | null = null;
+			try {
+				storedTheme = localStorage.getItem("ysworks-theme");
+			} catch {
+				storedTheme = null;
+			}
+			if (storedTheme === "light" || storedTheme === "dark") {
+				document.documentElement.dataset.theme = storedTheme;
+			}
+			const currentTheme = (): Theme =>
+				document.documentElement.dataset.theme === "light" ? "light" : "dark";
+			const sync = () => {
+				const theme = currentTheme();
+				button.setAttribute("aria-label", theme === "dark" ? lightLabel : darkLabel);
+				button.setAttribute("aria-pressed", String(theme === "light"));
+			};
+			button.addEventListener("click", () => {
+				const theme: Theme = currentTheme() === "dark" ? "light" : "dark";
+				document.documentElement.dataset.theme = theme;
+				try {
+					localStorage.setItem("ysworks-theme", theme);
+				} catch {
+					// The selected theme still applies for the current document.
+				}
+				sync();
+			});
+			sync();
+		}
+	}
+
+	if (!customElements.get("ys-theme-toggle")) {
+		customElements.define("ys-theme-toggle", YsThemeToggle);
+	}
+</script>
+
+<style>
+	ys-theme-toggle {
+		display: inline-flex;
+	}
+
+	.theme-toggle {
+		display: inline-grid;
+		place-items: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-6);
+		background: var(--color-surface);
+		color: var(--color-text-secondary);
+		cursor: pointer;
+	}
+
+	.theme-toggle:hover {
+		border-color: var(--color-border-strong);
+		color: var(--color-text-primary);
+	}
+
+	.theme-toggle__moon,
+	:global([data-theme="light"]) .theme-toggle__sun {
+		display: none;
+	}
+
+	:global([data-theme="light"]) .theme-toggle__moon {
+		display: block;
+	}
+</style>

@@ -1,0 +1,63 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"details"> {
+	title: string;
+	open?: boolean;
+}
+
+const { title, open = false, class: className, ...attrs } = Astro.props;
+const classes = ["accordion-item", className].filter(Boolean).join(" ");
+---
+
+<details class={classes} open={open} {...attrs}>
+	<summary>
+		<span>{title}</span>
+		<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+			<path d="M3 8h10M8 3v10" fill="none" stroke="currentColor" stroke-linecap="round"></path>
+		</svg>
+	</summary>
+	<div class="accordion-item__content"><slot /></div>
+</details>
+
+<style>
+	.accordion-item {
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.accordion-item:last-child {
+		border-bottom: 0;
+	}
+
+	.accordion-item summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-6);
+		min-height: 3.75rem;
+		cursor: pointer;
+		color: var(--color-text-primary);
+		font-size: var(--font-size-16);
+		font-weight: var(--font-weight-medium);
+		list-style: none;
+	}
+
+	.accordion-item summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.accordion-item summary svg {
+		flex: none;
+		color: var(--color-text-muted);
+	}
+
+	.accordion-item[open] summary svg path:last-child {
+		display: none;
+	}
+
+	.accordion-item__content {
+		max-width: 46rem;
+		padding: 0 var(--space-8) var(--space-6) 0;
+		color: var(--color-text-secondary);
+	}
+</style>

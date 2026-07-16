@@ -1,0 +1,66 @@
+---
+import Card from "../ui/Card.astro";
+import Paragraph from "../typography/Paragraph.astro";
+import SectionTitle from "../typography/SectionTitle.astro";
+
+interface Props {
+	title: string;
+	description: string;
+	align?: "start" | "center";
+	headingLevel?: "h2" | "h3" | "h4";
+}
+
+const {
+	title,
+	description,
+	align = "start",
+	headingLevel = "h2",
+} = Astro.props;
+---
+
+<Card class={`cta-card cta-card--${align}`} padding="lg" tone="elevated">
+	<div class="cta-card__content">
+		<SectionTitle as={headingLevel} size="md">{title}</SectionTitle>
+		<Paragraph size="lg" measure="default">{description}</Paragraph>
+	</div>
+	<div class="cta-card__actions">
+		<slot name="actions" />
+	</div>
+</Card>
+
+<style>
+	:global(.card.cta-card) {
+		position: relative;
+		display: grid;
+		gap: var(--space-8);
+		overflow: hidden;
+		border-color: var(--color-accent-border);
+		background:
+			radial-gradient(circle at 85% 10%, var(--color-accent-soft), transparent 40%),
+			var(--color-surface-elevated);
+	}
+
+	.cta-card__content {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.cta-card__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+
+	:global(.card.cta-card--center),
+	.cta-card--center .cta-card__content {
+		justify-items: center;
+		text-align: center;
+	}
+
+	@media (min-width: 768px) {
+		:global(.card.cta-card--start) {
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
+		}
+	}
+</style>

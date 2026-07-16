@@ -1,0 +1,67 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"span"> {
+	tone?: "neutral" | "info" | "success" | "warning" | "error";
+	live?: "off" | "polite";
+}
+
+const {
+	tone = "neutral",
+	live = "off",
+	class: className,
+	...attrs
+} = Astro.props;
+const classes = ["status-pill", `status-pill--${tone}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<span class={classes} aria-live={live} {...attrs}>
+	<span class="status-pill__dot" aria-hidden="true"></span>
+	<slot />
+</span>
+
+<style>
+	.status-pill {
+		display: inline-flex;
+		align-items: center;
+		width: fit-content;
+		gap: var(--space-2);
+		min-height: 1.75rem;
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-full);
+		background: var(--color-surface);
+		color: var(--color-text-secondary);
+		font-size: var(--font-size-12);
+		font-weight: var(--font-weight-medium);
+		padding-inline: var(--space-3);
+	}
+
+	.status-pill__dot {
+		width: 0.45rem;
+		height: 0.45rem;
+		border-radius: var(--radius-full);
+		background: currentColor;
+	}
+
+	.status-pill--neutral {
+		color: var(--color-text-muted);
+	}
+
+	.status-pill--info {
+		color: var(--color-info);
+	}
+
+	.status-pill--success {
+		color: var(--color-success);
+	}
+
+	.status-pill--warning {
+		color: var(--color-warning);
+	}
+
+	.status-pill--error {
+		color: var(--color-error);
+	}
+</style>

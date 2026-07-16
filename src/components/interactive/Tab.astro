@@ -1,0 +1,61 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button"> {
+	id: string;
+	controls: string;
+	selected?: boolean;
+}
+
+const {
+	id,
+	controls,
+	selected = false,
+	class: className,
+	...attrs
+} = Astro.props;
+const classes = ["tab", className].filter(Boolean).join(" ");
+---
+
+<button
+	class={classes}
+	type="button"
+	role="tab"
+	id={id}
+	aria-controls={controls}
+	aria-selected={selected ? "true" : "false"}
+	tabindex={selected ? 0 : -1}
+	{...attrs}
+><slot /></button>
+
+<style>
+	.tab {
+		position: relative;
+		flex: none;
+		min-height: 2.75rem;
+		border: 0;
+		background: transparent;
+		color: var(--color-text-muted);
+		cursor: pointer;
+		font-size: var(--font-size-14);
+		font-weight: var(--font-weight-medium);
+		padding-inline: var(--space-3);
+	}
+
+	.tab::after {
+		position: absolute;
+		inset: auto var(--space-3) -1px;
+		height: 2px;
+		background: transparent;
+		content: "";
+	}
+
+	.tab:hover,
+	.tab[aria-selected="true"] {
+		color: var(--color-text-primary);
+	}
+
+	.tab[aria-selected="true"]::after {
+		background: var(--color-accent-strong);
+	}
+</style>

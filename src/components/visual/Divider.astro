@@ -1,0 +1,38 @@
+---
+interface Props {
+	orientation?: "horizontal" | "vertical";
+	strong?: boolean;
+	label?: string;
+}
+
+const { orientation = "horizontal", strong = false, label } = Astro.props;
+---
+
+<div
+	class:list={["divider", `divider--${orientation}`, strong && "divider--strong"]}
+	role="separator"
+	aria-orientation={orientation}
+	aria-label={label}
+></div>
+
+<style>
+	.divider {
+		flex: none;
+		background: var(--color-border-subtle);
+	}
+
+	.divider--strong {
+		background: var(--color-border-strong);
+	}
+
+	.divider--horizontal {
+		width: 100%;
+		height: 1px;
+	}
+
+	.divider--vertical {
+		width: 1px;
+		min-height: 1.5rem;
+		align-self: stretch;
+	}
+</style>

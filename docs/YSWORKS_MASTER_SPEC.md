@@ -578,15 +578,18 @@ accurate status and without implying a client relationship.
 
 ### 5.1 Governing Sources
 
-This specification establishes design intent, not a component library or final
-token set. The [Approved Design Authorities](design/README.md) registry maps the
+This specification establishes design intent, not a component library. Final
+token domains remain governed by their approved contracts. The
+[Approved Design Authorities](design/README.md) registry maps the
 Founder-approved YSWORKS Brand Book v1.0, User Experience Foundation v1.1, and
 YSWORKS Design System v1.1 to their canonical repository sources. Those sources,
 [Brand Positioning](business/BRAND_POSITIONING.md), and the applicable product
 contract govern detailed brand and interface direction within their scopes.
-Other design proposals are inputs, not authority. Fonts, colors, spacing,
-breakpoints, assets, and motion proposals do not become cross-ecosystem
-decisions until reviewed and accepted by the Founder or an ADR.
+Other design proposals are inputs, not authority. The Founder-approved
+[YSWORKS Design Tokens v1.0](design/YSWORKS_DESIGN_TOKENS_V1.md) establish the
+cross-ecosystem color foundation. Fonts, spacing, breakpoints, assets, and
+motion proposals do not become cross-ecosystem decisions until reviewed and
+accepted by the Founder or an ADR.
 
 ### 5.2 Official Direction
 
@@ -598,7 +601,10 @@ consistency, and performance rather than effects.
 Typography must create a clear semantic hierarchy and remain readable across
 supported viewports. Spacing must be systematic and content-led. Neither the
 Master Specification nor an unreviewed design proposal fixes a font family,
-type scale, spacing unit, palette, breakpoint, or final mark.
+type scale, spacing unit, breakpoint, or final mark. The official color contract
+is YSWORKS Design Tokens v1.0: Primary 500 `#6D5EF7` is the brand color and the
+governed primary scale, interaction states, and dark surfaces apply to every
+YSWORKS product and communication surface.
 
 Avoid neon AI imagery, robots, circuit boards, generic stock technology scenes,
 fake offices, fake teams, exaggerated gradients, gamer aesthetics, and visuals
@@ -1033,7 +1039,9 @@ their referenced documents. `Accepted` means the direction is official;
 ### ADR-M003: Engineering-First Brand
 
 - **Decision:** Use a dark-first, restrained, accessible, engineering-first
-  design language and factual voice.
+  design language and factual voice. Adopt YSWORKS Design Tokens v1.0 as the
+  cross-ecosystem color contract, with Primary 500 `#6D5EF7` as the official
+  brand color.
 - **Reason:** Trust must come from clarity and execution rather than spectacle or
   unsupported proof.
 - **Alternatives rejected:** Marketing-first branding, AI-hype positioning,
@@ -1260,11 +1268,13 @@ of these entries authorizes implementation changes outside its accepted scope.
 
 ### 12.3 Public Website And Brand
 
-- Final reviewed `Y + W` logo assets and social sharing image.
+- Final reviewed `YS` compact-mark assets and social sharing image; the public
+  wordmark remains `YSWORKS`.
 - Whether Tailwind CSS remains the long-term Public Website styling standard or
   only the current repository implementation choice.
-- Final reviewed typography, spacing, color, breakpoint, component, and motion
-  tokens; unreviewed design recommendations do not settle them.
+- Final reviewed typography, spacing, breakpoint, component, and motion tokens;
+  unreviewed design recommendations do not settle them. Color is settled by
+  YSWORKS Design Tokens v1.0.
 - Final production privacy notice before collection, forms, analytics,
   newsletter, or downloads.
 - Whether privacy-aware analytics, newsletter, Journal, Labs, or downloads are
