@@ -1,0 +1,121 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import EditorialContact from "../content/EditorialContact.astro";
+import PageIntro from "../content/PageIntro.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Badge from "../ui/Badge.astro";
+import PublicPageShell from "./PublicPageShell.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+const { locale } = Astro.props;
+const content =
+	locale === "es"
+		? {
+				title: "Sobre YSWORKS",
+				description:
+					"El enfoque de YSWORKS: ingeniería tecnológica clara, segura, mantenible y conectada a resultados útiles.",
+				eyebrow: "Sobre YSWORKS",
+				heading: "Complejidad invisible. Simplicidad visible.",
+				intro:
+					"YSWORKS es una empresa de ingeniería tecnológica y sistemas digitales. Diseñamos soluciones útiles con calma, precisión y una mirada completa sobre producto, operación y seguridad.",
+				approachLabel: "Ingeniería serena",
+				approachTitle: "La calidad debe sentirse en el uso diario.",
+				approach: [
+					"Un buen sistema puede tener mucha ingeniería detrás y seguir siendo claro por fuera. Ordenamos esa complejidad para que equipos y clientes puedan avanzar con confianza.",
+					"La inteligencia artificial forma parte de nuestra capacidad técnica cuando existe un caso útil y controlable. No define por sí sola a la empresa ni sustituye el criterio, la responsabilidad o la revisión humana.",
+				],
+				principlesLabel: "Principios",
+				principlesTitle: "Cómo tomamos decisiones.",
+				principles: [
+					[
+						"01",
+						"Claridad antes que espectáculo",
+						"Explicamos el problema, los límites y las decisiones sin convertir la complejidad en marketing.",
+					],
+					[
+						"02",
+						"Mantenimiento antes que novedad",
+						"Elegimos bases que puedan comprenderse, operarse y mejorar después de la primera entrega.",
+					],
+					[
+						"03",
+						"Seguridad desde el diseño",
+						"Reducimos exposición y tratamos accesos, datos y dependencias como decisiones de producto.",
+					],
+					[
+						"04",
+						"Evidencia antes que promesas",
+						"No inventamos resultados, credenciales ni capacidades. La confianza se construye con trabajo verificable.",
+					],
+				],
+				fitTitle: "Una colaboración honesta empieza por el encaje.",
+				fit: "Somos una buena opción cuando el problema necesita criterio técnico, límites claros y una solución que deberá mantenerse. Si una necesidad exige una capacidad especializada fuera del alcance acordado, lo diremos antes de avanzar.",
+			}
+		: {
+				title: "About YSWORKS",
+				description:
+					"The YSWORKS approach: clear, secure and maintainable technology engineering connected to useful outcomes.",
+				eyebrow: "About YSWORKS",
+				heading: "Invisible complexity. Visible simplicity.",
+				intro:
+					"YSWORKS is a technology-engineering and digital-systems company. We design useful solutions with calm precision and a complete view of product, operations and security.",
+				approachLabel: "Quiet Engineering",
+				approachTitle: "Quality should be felt in daily use.",
+				approach: [
+					"A good system can contain significant engineering and remain clear on the outside. We organise that complexity so teams and clients can move forward with confidence.",
+					"Artificial intelligence is part of our technical capability when there is a useful, controllable case. It does not define the company or replace judgment, accountability or human review.",
+				],
+				principlesLabel: "Principles",
+				principlesTitle: "How we make decisions.",
+				principles: [
+					[
+						"01",
+						"Clarity before spectacle",
+						"We explain the problem, boundaries and decisions without turning complexity into marketing.",
+					],
+					[
+						"02",
+						"Maintenance before novelty",
+						"We choose foundations that can be understood, operated and improved after the first delivery.",
+					],
+					[
+						"03",
+						"Security by design",
+						"We reduce exposure and treat access, data and dependencies as product decisions.",
+					],
+					[
+						"04",
+						"Evidence before promises",
+						"We do not invent outcomes, credentials or capabilities. Trust is built through verifiable work.",
+					],
+				],
+				fitTitle: "An honest collaboration begins with fit.",
+				fit: "We are a good fit when a problem needs technical judgment, clear boundaries and a solution that must remain maintainable. If a need requires specialist capability outside the agreed scope, we will say so before proceeding.",
+			};
+---
+
+<PublicPageShell locale={locale} page="about" title={content.title} description={content.description}>
+	<PageIntro eyebrow={content.eyebrow} title={content.heading} description={content.intro} />
+	<Section spacing="sm" aria-labelledby="approach-title"><Container size="lg"><div class="approach"><div><Badge>{content.approachLabel}</Badge><h2 id="approach-title">{content.approachTitle}</h2></div><div class="approach__copy">{content.approach.map((paragraph) => <p>{paragraph}</p>)}</div></div></Container></Section>
+	<Section spacing="md" aria-labelledby="principles-title"><Container size="xl"><div class="section-heading"><Badge>{content.principlesLabel}</Badge><h2 id="principles-title">{content.principlesTitle}</h2></div><div class="principles">{content.principles.map(([number, title, description]) => <article><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></Container></Section>
+	<Section spacing="sm" aria-labelledby="fit-title"><Container size="lg"><div class="fit"><h2 id="fit-title">{content.fitTitle}</h2><p>{content.fit}</p></div></Container></Section>
+	<EditorialContact locale={locale} />
+</PublicPageShell>
+
+<style>
+	.approach { display: grid; gap: var(--space-8); }
+	.approach > div:first-child, .approach__copy { display: grid; align-content: start; gap: var(--space-5); }
+	.approach h2 { max-width: 20ch; font-size: clamp(var(--font-size-28), 4vw, var(--font-size-40)); text-wrap: balance; }
+	.approach__copy p, .fit p { font-size: var(--font-size-18); }
+	.principles { display: grid; border-top: 1px solid var(--color-border-subtle); }
+	.principles article { display: grid; align-content: start; gap: var(--space-3); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-8); }
+	.principles span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.principles h3 { font-size: var(--font-size-18); }
+	.fit { display: grid; gap: var(--space-5); border-left: 1px solid var(--color-accent-border); padding-left: var(--space-6); }
+	.fit h2 { max-width: 23ch; font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32)); text-wrap: balance; }
+	.fit p { max-width: 48rem; }
+	@media (min-width: 50rem) { .approach { grid-template-columns: minmax(0, 0.9fr) minmax(26rem, 1.1fr); gap: var(--space-16); } .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .principles article { padding: var(--space-8); } .principles article:nth-child(odd) { border-right: 1px solid var(--color-border-subtle); } }
+</style>

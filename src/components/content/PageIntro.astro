@@ -11,8 +11,8 @@ interface Props {
 const { eyebrow, title, description } = Astro.props;
 ---
 
-<header class="page-intro" data-reveal>
-	<Container size="lg">
+<header class="page-intro">
+	<Container size="xl">
 		<div class="page-intro__content">
 			<Badge tone="accent">{eyebrow}</Badge>
 			<h1>{title}</h1>
@@ -23,7 +23,10 @@ const { eyebrow, title, description } = Astro.props;
 
 <style>
 	.page-intro {
+		position: relative;
+		border-bottom: 1px solid var(--color-border-subtle);
 		padding-block: var(--space-24) var(--space-16);
+		background: linear-gradient(180deg, var(--color-accent-soft), transparent 68%);
 	}
 
 	.page-intro__content {
@@ -48,6 +51,23 @@ const { eyebrow, title, description } = Astro.props;
 	@media (min-width: 768px) {
 		.page-intro {
 			padding-block: var(--space-32) var(--space-24);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.page-intro__content {
+			grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+			column-gap: var(--space-16);
+			max-width: none;
+		}
+
+		.page-intro__content :global(.badge) {
+			grid-column: 1 / -1;
+		}
+
+		.page-intro__content p {
+			align-self: end;
+			padding-bottom: var(--space-2);
 		}
 	}
 </style>

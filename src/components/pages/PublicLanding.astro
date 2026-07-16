@@ -1,0 +1,594 @@
+---
+import CtaCard from "../cards/CtaCard.astro";
+import ServiceCard from "../cards/ServiceCard.astro";
+import Faq from "../content/Faq.astro";
+import Process from "../content/Process.astro";
+import Icon from "../icons/Icon.astro";
+import CopyButton from "../interactive/CopyButton.astro";
+import Container from "../layout/Container.astro";
+import Footer from "../layout/Footer.astro";
+import Grid from "../layout/Grid.astro";
+import Navbar from "../layout/Navbar.astro";
+import Section from "../layout/Section.astro";
+import HeroTitle from "../typography/HeroTitle.astro";
+import MonoEyebrow from "../typography/MonoEyebrow.astro";
+import Paragraph from "../typography/Paragraph.astro";
+import SectionTitle from "../typography/SectionTitle.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import { landingContent, type LandingLocale } from "../../data/landing";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+
+const { locale } = Astro.props;
+const content = landingContent[locale];
+const alternateLanguage = locale === "es" ? "en" : "es";
+const contactHref = locale === "es" ? "/contact" : "/en/contact/";
+const servicesHref = locale === "es" ? "/services" : "/en/services/";
+const localeLink = {
+	label: content.navigation.localeShort,
+	href: content.alternatePath,
+	language: alternateLanguage as LandingLocale,
+	ariaLabel: content.accessibility.localeLabel,
+};
+const alternatePaths = {
+	es: "/",
+	en: "/en/",
+	"x-default": "/",
+};
+const structuredData = [
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: "YSWORKS",
+		url: "https://www.ysworks.dev",
+		email: "contact@ysworks.dev",
+		description: content.seo.description,
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: "YSWORKS",
+		url: new URL(content.canonicalPath, "https://www.ysworks.dev").toString(),
+		inLanguage: content.language,
+	},
+];
+---
+
+<BaseLayout
+	title="YSWORKS"
+	description={content.seo.description}
+	canonicalPath={content.canonicalPath}
+	language={content.language}
+	alternatePaths={alternatePaths}
+	skipLinkLabel={content.accessibility.skipLink}
+	structuredData={structuredData}
+>
+	<Navbar
+		slot="header"
+		items={content.navigation.items}
+		brandHref={content.canonicalPath}
+		currentPath={content.canonicalPath}
+		ctaLabel={content.navigation.cta}
+		ctaHref={contactHref}
+		navigationLabel={content.accessibility.navigation}
+		menuLabel={content.accessibility.menu}
+		closeLabel={content.accessibility.close}
+		homeLabel={content.accessibility.home}
+		localeLink={localeLink}
+		lightThemeLabel={content.accessibility.lightTheme}
+		darkThemeLabel={content.accessibility.darkTheme}
+		systemThemeLabel={content.accessibility.systemTheme}
+	/>
+
+	<section class="landing-hero" aria-labelledby="hero-title">
+		<Container size="xl">
+			<div class="landing-hero__layout">
+				<div class="landing-hero__content">
+					<Badge tone="accent">{content.hero.eyebrow}</Badge>
+					<HeroTitle id="hero-title">
+						{content.hero.title}
+					</HeroTitle>
+					<Paragraph size="lg" measure="wide">
+						{content.hero.description}
+					</Paragraph>
+					<div class="landing-hero__actions">
+						<Button href={contactHref} variant="primary">{content.hero.primaryCta}</Button>
+						<Button href={servicesHref} variant="secondary">{content.hero.secondaryCta}</Button>
+					</div>
+				</div>
+
+				<figure class="signature" aria-labelledby="signature-caption">
+					<div class="signature__mark" aria-hidden="true">YS</div>
+					<div class="signature__flow">
+						{
+							content.hero.diagram.map((node, index) => (
+								<div class:list={["signature__node", { "signature__node--accent": index === 1 }]}>
+									<Icon name={node.icon} size={20} />
+									<span>{node.title}</span>
+									<small>{node.description}</small>
+								</div>
+							))
+						}
+					</div>
+					<figcaption id="signature-caption">{content.hero.diagramCaption}</figcaption>
+				</figure>
+			</div>
+		</Container>
+	</section>
+
+	<Section id="services" spacing="lg" aria-labelledby="services-title">
+		<Container size="xl">
+			<header class="landing-heading">
+				<MonoEyebrow>{content.services.eyebrow}</MonoEyebrow>
+				<SectionTitle id="services-title" size="lg">{content.services.title}</SectionTitle>
+				<Paragraph size="lg">{content.services.description}</Paragraph>
+			</header>
+			<Grid columns={3} gap="md">
+				{
+					content.services.items.map((service) => (
+						<div>
+							<ServiceCard
+								title={service.title}
+								description={service.description}
+								eyebrow={service.number}
+							>
+								<Icon slot="icon" name={service.icon} size={20} />
+							</ServiceCard>
+						</div>
+					))
+				}
+			</Grid>
+		</Container>
+	</Section>
+
+	<div class="landing-section" id="process">
+		<Container size="xl">
+			<div>
+				<Process
+					id="delivery-process"
+					eyebrow={content.process.eyebrow}
+					title={content.process.title}
+					description={content.process.description}
+					steps={content.process.steps}
+				/>
+			</div>
+		</Container>
+	</div>
+
+	<Section id="technology" spacing="lg" tone="muted" aria-labelledby="technology-title">
+		<Container size="xl">
+			<header class="landing-heading">
+				<MonoEyebrow>{content.technology.eyebrow}</MonoEyebrow>
+				<SectionTitle id="technology-title" size="lg">{content.technology.title}</SectionTitle>
+				<Paragraph size="lg">{content.technology.description}</Paragraph>
+			</header>
+			<div class="technology-map">
+				{
+					content.technology.items.map((item, index) => (
+						<article class="technology-map__node">
+							<div><Icon name={item.icon} size={20} /><span>{String(index + 1).padStart(2, "0")}</span></div>
+							<small>{item.category}</small>
+							<h3>{item.name}</h3>
+							<p>{item.description}</p>
+						</article>
+					))
+				}
+			</div>
+		</Container>
+	</Section>
+
+	<div class="landing-section trust-section">
+		<Container size="lg">
+			<div class="trust-section__layout">
+				<div class="trust-section__copy">
+					<MonoEyebrow>{content.trust.eyebrow}</MonoEyebrow>
+					<SectionTitle size="lg">{content.trust.title}</SectionTitle>
+					<Paragraph size="lg">{content.trust.body}</Paragraph>
+				</div>
+				<ul>
+					{content.trust.points.map((point, index) => <li><span>{String(index + 1).padStart(2, "0")}</span>{point}</li>)}
+				</ul>
+			</div>
+		</Container>
+	</div>
+
+	<div class="landing-section" id="faq">
+		<Container size="xl">
+			<div>
+				<Faq
+					id="common-questions"
+					eyebrow={content.faq.eyebrow}
+					title={content.faq.title}
+					description={content.faq.description}
+					items={content.faq.items}
+				/>
+			</div>
+		</Container>
+	</div>
+
+	<Section id="contact" spacing="lg" aria-label={content.contact.eyebrow}>
+		<Container size="lg">
+			<MonoEyebrow class="contact-eyebrow">{content.contact.eyebrow}</MonoEyebrow>
+			<CtaCard
+				title={content.contact.title}
+				description={content.contact.description}
+			>
+				<div slot="actions" class="contact-actions">
+					<Button
+						href="mailto:contact@ysworks.dev"
+						variant="primary"
+					>
+						<Icon name="mail" size={16} />
+						{content.contact.emailLabel}
+					</Button>
+					<CopyButton
+						value="contact@ysworks.dev"
+						label={content.contact.copyLabel}
+						copiedLabel={content.contact.copiedLabel}
+						errorLabel={content.contact.copyErrorLabel}
+					/>
+				</div>
+			</CtaCard>
+			<a class="contact-email" href="mailto:contact@ysworks.dev">contact@ysworks.dev</a>
+		</Container>
+	</Section>
+
+	<Footer
+		slot="footer"
+		description={content.footer.description}
+		items={content.navigation.items}
+		legalItems={[{ label: content.footer.privacy, href: locale === "es" ? "/privacy" : "/en/privacy/" }]}
+		navigationLabel={content.accessibility.footerNavigation}
+		statement={content.footer.statement}
+		localeLink={localeLink}
+	/>
+</BaseLayout>
+
+<style>
+	.landing-hero {
+		position: relative;
+		isolation: isolate;
+		border-bottom: 1px solid var(--color-border-subtle);
+		padding-block: var(--space-16) var(--space-24);
+		background:
+			linear-gradient(var(--color-grid) 1px, transparent 1px),
+			linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+		background-size: 3rem 3rem;
+	}
+
+	.landing-hero::after {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background:
+			radial-gradient(ellipse at 78% 42%, var(--color-accent-soft), transparent 34rem),
+			linear-gradient(180deg, transparent 72%, var(--color-bg) 100%);
+		content: "";
+		pointer-events: none;
+	}
+
+	.landing-hero__layout {
+		display: grid;
+		align-items: center;
+		gap: var(--space-12);
+		min-height: min(43rem, calc(100svh - 4.25rem));
+	}
+
+	.landing-hero__content,
+	.landing-heading {
+		display: grid;
+		gap: var(--space-5);
+	}
+
+	.landing-hero__content {
+		max-width: 52rem;
+		padding-block: var(--space-4);
+	}
+
+	.landing-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		padding-top: var(--space-2);
+	}
+
+	.signature {
+		position: relative;
+		display: grid;
+		gap: var(--space-5);
+		overflow: hidden;
+		min-width: 0;
+		margin: 0;
+		border: 1px solid var(--color-border-strong);
+		border-radius: var(--radius-16);
+		background:
+			linear-gradient(155deg, var(--color-accent-soft), transparent 38%),
+			var(--color-bg-translucent);
+		box-shadow:
+			inset 0 1px 0 rgb(255 255 255 / 0.035),
+			0 1.5rem 4.5rem rgb(0 0 0 / 0.16);
+		padding: var(--space-6);
+	}
+
+	.signature::after {
+		position: absolute;
+		top: 0;
+		right: 12%;
+		left: 12%;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--color-accent-border), transparent);
+		content: "";
+	}
+
+	.signature__mark {
+		display: grid;
+		place-items: center;
+		width: 3rem;
+		height: 3rem;
+		border: 1px solid var(--color-accent-border);
+		border-radius: var(--radius-8);
+		background: var(--color-accent-soft);
+		color: var(--color-accent-strong);
+		font-family: var(--font-mono);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: 0.08em;
+	}
+
+	.signature__flow {
+		position: relative;
+		display: grid;
+		gap: var(--space-4);
+		padding-left: var(--space-3);
+	}
+
+	.signature__flow::before {
+		position: absolute;
+		top: var(--space-5);
+		bottom: var(--space-5);
+		left: 0;
+		width: 1px;
+		background: linear-gradient(180deg, var(--color-border-subtle), var(--color-accent-border), var(--color-border-subtle));
+		content: "";
+	}
+
+	.signature__node {
+		position: relative;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--space-1) var(--space-3);
+		min-width: 0;
+		min-height: 4.5rem;
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-8);
+		background: var(--color-surface);
+		padding: var(--space-4);
+	}
+
+	.signature__node::before {
+		position: absolute;
+		top: 50%;
+		left: calc(var(--space-3) * -1);
+		width: var(--space-3);
+		height: 1px;
+		background: var(--color-border-strong);
+		content: "";
+	}
+
+	.signature__node :global(svg) {
+		grid-row: 1 / 3;
+		color: var(--color-accent-strong);
+	}
+
+	.signature__node span {
+		color: var(--color-text-primary);
+		font-weight: var(--font-weight-medium);
+	}
+
+	.signature__node small,
+	.signature figcaption {
+		color: var(--color-text-muted);
+		font-size: var(--font-size-12);
+	}
+
+	.signature__node--accent {
+		border-color: var(--color-accent-border);
+		background: var(--color-accent-soft);
+	}
+
+	.landing-heading {
+		max-width: 48rem;
+		margin-bottom: var(--space-12);
+	}
+
+	.landing-section {
+		scroll-margin-top: 5rem;
+		padding-block: var(--space-24);
+	}
+
+	.technology-map {
+		display: grid;
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-12);
+		background: var(--color-bg-elevated);
+		box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.025);
+	}
+
+	.technology-map__node {
+		display: grid;
+		align-content: start;
+		gap: var(--space-3);
+		min-width: 0;
+		padding: var(--space-6);
+	}
+
+	.technology-map__node + .technology-map__node {
+		border-top: 1px solid var(--color-border-subtle);
+	}
+
+	.technology-map__node > div {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: var(--color-accent-strong);
+	}
+
+	.technology-map__node small,
+	.technology-map__node > div span {
+		color: var(--color-text-muted);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+		text-transform: uppercase;
+	}
+
+	.technology-map__node h3 {
+		font-size: var(--font-size-18);
+	}
+
+	.trust-section {
+		border-block: 1px solid var(--color-border-subtle);
+		background: linear-gradient(90deg, transparent, var(--color-accent-soft), transparent);
+	}
+
+	.trust-section__layout,
+	.trust-section__copy {
+		display: grid;
+		gap: var(--space-5);
+	}
+
+	.trust-section__layout > ul {
+		display: grid;
+		gap: 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.trust-section__layout li {
+		display: grid;
+		grid-template-columns: 2rem 1fr;
+		gap: var(--space-3);
+		border-top: 1px solid var(--color-border-subtle);
+		color: var(--color-text-secondary);
+		padding-block: var(--space-4);
+	}
+
+	.trust-section__layout li span {
+		color: var(--color-accent-strong);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+	}
+
+	#services,
+	#technology,
+	#contact {
+		scroll-margin-top: 5rem;
+	}
+
+	.contact-eyebrow {
+		margin-bottom: var(--space-4);
+	}
+
+	.contact-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+
+	.contact-email {
+		display: block;
+		width: fit-content;
+		margin-top: var(--space-5);
+		color: var(--color-accent-strong);
+		font-family: var(--font-mono);
+		font-size: clamp(var(--font-size-16), 3vw, var(--font-size-24));
+	}
+
+	@media (min-width: 48rem) {
+		.technology-map {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.technology-map__node:nth-child(2) {
+			border-top: 0;
+		}
+
+		.technology-map__node:nth-child(even) {
+			border-left: 1px solid var(--color-border-subtle);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.landing-hero {
+			padding-block: var(--space-24);
+		}
+
+		.landing-hero__layout {
+			grid-template-columns: minmax(0, 1.05fr) minmax(25rem, 0.95fr);
+			gap: var(--space-12);
+		}
+
+		.landing-heading {
+			grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+			column-gap: var(--space-16);
+			max-width: none;
+		}
+
+		.landing-heading :global(.mono-eyebrow) {
+			grid-column: 1 / -1;
+		}
+
+		.landing-heading :global(.paragraph) {
+			align-self: end;
+		}
+
+		.technology-map {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		.technology-map__node + .technology-map__node {
+			border-top: 0;
+			border-left: 1px solid var(--color-border-subtle);
+		}
+
+		.technology-map__node {
+			padding: var(--space-8) var(--space-6);
+		}
+
+		.trust-section__layout {
+			grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
+			gap: var(--space-16);
+			align-items: start;
+		}
+	}
+
+	@media (min-width: 80rem) {
+		.landing-hero__layout {
+			grid-template-columns: minmax(0, 1.08fr) minmax(27rem, 0.92fr);
+			gap: var(--space-16);
+		}
+	}
+
+	@media (min-width: 48rem) {
+		.landing-section {
+			padding-block: calc(var(--space-24) + var(--space-4));
+		}
+	}
+
+	@media (max-width: 36rem) {
+		.landing-hero {
+			padding-block: var(--space-12) var(--space-16);
+		}
+
+		.landing-hero__actions :global(.button) {
+			width: 100%;
+		}
+
+		.landing-section {
+			padding-block: var(--space-16);
+		}
+	}
+</style>

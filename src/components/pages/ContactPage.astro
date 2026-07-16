@@ -1,0 +1,98 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import PageIntro from "../content/PageIntro.astro";
+import CopyButton from "../interactive/CopyButton.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import PublicPageShell from "./PublicPageShell.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+const { locale } = Astro.props;
+const content =
+	locale === "es"
+		? {
+				title: "Contacto",
+				description:
+					"Explica a YSWORKS el proyecto o problema tecnológico que necesitas resolver mediante el canal público contact@ysworks.dev.",
+				eyebrow: "Contacto",
+				heading: "Empecemos por entender el problema.",
+				intro:
+					"Una buena conversación técnica no necesita una especificación perfecta. Necesita contexto suficiente para evaluar el encaje y definir el siguiente paso.",
+				channel: "Canal principal",
+				channelTitle: "Escríbenos directamente.",
+				channelBody:
+					"No hay un formulario activo ni se simulan envíos desde esta página. Tu aplicación de correo gestionará el mensaje.",
+				emailAction: "Escribir a contact@ysworks.dev",
+				copy: "Copiar correo",
+				copied: "Correo copiado",
+				copyError: "No se pudo copiar",
+				brief: "Para preparar la conversación",
+				briefTitle: "Cuatro datos útiles.",
+				items: [
+					"Qué problema quieres resolver o qué proceso necesita mejorar.",
+					"Quién usa hoy el sistema y qué fricción encuentra.",
+					"Qué resultado sería útil y qué restricciones debemos conocer.",
+					"Si existe una fecha relevante, un sistema previo o una dependencia externa.",
+				],
+				future: "Formulario futuro",
+				futureTitle: "Una estructura breve y protegida.",
+				futureBody:
+					"Una fase posterior podrá incorporar un formulario con validación en servidor, minimización de datos y Cloudflare Turnstile. Hasta entonces, esta página no recopila ni transmite formularios.",
+			}
+		: {
+				title: "Contact",
+				description:
+					"Tell YSWORKS about the project or technology problem you need to solve through the public contact@ysworks.dev channel.",
+				eyebrow: "Contact",
+				heading: "Let us start by understanding the problem.",
+				intro:
+					"A useful technical conversation does not require a perfect specification. It needs enough context to assess fit and define the next step.",
+				channel: "Primary channel",
+				channelTitle: "Email us directly.",
+				channelBody:
+					"There is no active form and this page does not simulate submissions. Your email application will handle the message.",
+				emailAction: "Email contact@ysworks.dev",
+				copy: "Copy email",
+				copied: "Email copied",
+				copyError: "Could not copy",
+				brief: "To prepare the conversation",
+				briefTitle: "Four useful details.",
+				items: [
+					"The problem you want to solve or the process that needs improvement.",
+					"Who uses the system today and what friction they encounter.",
+					"The useful outcome and any constraints we should understand.",
+					"Any relevant date, existing system or external dependency.",
+				],
+				future: "Future form",
+				futureTitle: "A brief, protected structure.",
+				futureBody:
+					"A later phase may add a form with server-side validation, data minimisation and Cloudflare Turnstile. Until then, this page does not collect or transmit form submissions.",
+			};
+---
+
+<PublicPageShell locale={locale} page="contact" title={content.title} description={content.description}>
+	<PageIntro eyebrow={content.eyebrow} title={content.heading} description={content.intro} />
+	<Section spacing="sm" aria-labelledby="channel-title"><Container size="lg"><div class="contact-grid">
+		<section class="contact-channel" aria-labelledby="channel-title"><Badge>{content.channel}</Badge><h2 id="channel-title">{content.channelTitle}</h2><a class="contact-email" href="mailto:contact@ysworks.dev">contact@ysworks.dev</a><p>{content.channelBody}</p><div class="contact-actions"><Button href="mailto:contact@ysworks.dev" variant="primary">{content.emailAction}</Button><CopyButton value="contact@ysworks.dev" label={content.copy} copiedLabel={content.copied} errorLabel={content.copyError} /></div></section>
+		<section class="contact-brief" aria-labelledby="brief-title"><p class="eyebrow">{content.brief}</p><h2 id="brief-title">{content.briefTitle}</h2><ol>{content.items.map((item, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>)}</ol></section>
+	</div></Container></Section>
+	<Section spacing="md" aria-labelledby="future-form-title"><Container size="md"><div class="future-form"><div><p class="eyebrow">{content.future}</p><h2 id="future-form-title">{content.futureTitle}</h2></div><p>{content.futureBody}</p></div></Container></Section>
+</PublicPageShell>
+
+<style>
+	.contact-grid { display: grid; gap: var(--space-6); }
+	.contact-channel, .contact-brief { display: grid; align-content: start; gap: var(--space-5); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-16); background: var(--color-surface); padding: var(--space-8); }
+	.contact-channel h2, .contact-brief h2, .future-form h2 { font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32)); text-wrap: balance; }
+	.contact-email { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: clamp(var(--font-size-16), 3vw, var(--font-size-24)); overflow-wrap: anywhere; }
+	.contact-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+	.contact-brief ol { display: grid; margin: 0; padding: 0; list-style: none; }
+	.contact-brief li { display: grid; grid-template-columns: 2rem 1fr; gap: var(--space-3); border-top: 1px solid var(--color-border-subtle); padding-block: var(--space-4); }
+	.contact-brief li > span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.future-form { display: grid; gap: var(--space-6); border-left: 1px solid var(--color-accent-border); padding-left: var(--space-6); }
+	.future-form > div { display: grid; gap: var(--space-3); }
+	@media (min-width: 53rem) { .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .future-form { grid-template-columns: minmax(0, 0.8fr) minmax(22rem, 1.2fr); gap: var(--space-12); } }
+</style>

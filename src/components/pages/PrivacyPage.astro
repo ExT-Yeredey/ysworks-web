@@ -1,0 +1,106 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import PageIntro from "../content/PageIntro.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import PublicPageShell from "./PublicPageShell.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+const { locale } = Astro.props;
+const content =
+	locale === "es"
+		? {
+				title: "Privacidad",
+				description:
+					"Información sobre el comportamiento actual de privacidad de la web pública estática de YSWORKS.",
+				eyebrow: "Privacidad",
+				heading: "Información clara sobre esta web pública.",
+				intro:
+					"Esta página describe únicamente el comportamiento actual del sitio y se actualizará antes de incorporar nuevas funciones que traten datos personales.",
+				details: "Detalles de privacidad",
+				review:
+					"Última revisión: julio de 2026. Este texto no sustituye la información legal que corresponda al entorno de producción definitivo.",
+				sections: [
+					[
+						"Estado actual",
+						"Esta web pública es estática. No incluye cuentas, área de clientes, formularios, boletines, pagos, analítica ni contenido personalizado.",
+					],
+					[
+						"Contacto",
+						"La página muestra contact@ysworks.dev como canal principal. Los enlaces de correo abren la aplicación elegida por el visitante; la web no recibe, transmite ni almacena el mensaje.",
+					],
+					[
+						"Datos técnicos de entrega",
+						"Cuando el sitio se publique, el proveedor de alojamiento y red podrá procesar los datos técnicos necesarios para entregar y proteger la web, como dirección IP, fecha, recurso solicitado y señales de seguridad.",
+					],
+					[
+						"Preferencia de tema",
+						"La web guarda únicamente la elección de tema —claro, oscuro o sistema— en el almacenamiento local del navegador. Esta preferencia no se utiliza para seguimiento, publicidad ni identificación.",
+					],
+					[
+						"Servicios de terceros",
+						"No hay analítica, píxeles publicitarios, vídeos incrustados, mapas, chat ni widgets sociales. No existe todavía un formulario ni una integración con Cloudflare Turnstile.",
+					],
+					[
+						"Cambios futuros",
+						"Antes de añadir formularios, analítica u otra función que trate datos, esta información se actualizará con finalidad, base jurídica, destinatarios, retención, derechos y un canal verificable.",
+					],
+				],
+			}
+		: {
+				title: "Privacy",
+				description:
+					"Information about the current privacy behaviour of the static YSWORKS public website.",
+				eyebrow: "Privacy",
+				heading: "Clear information about this public website.",
+				intro:
+					"This page describes only the site's current behaviour and will be updated before new features process personal data.",
+				details: "Privacy details",
+				review:
+					"Last reviewed: July 2026. This text does not replace the legal information required for the final production environment.",
+				sections: [
+					[
+						"Current state",
+						"This public website is static. It does not include accounts, a client area, forms, newsletters, payments, analytics or personalised content.",
+					],
+					[
+						"Contact",
+						"The page displays contact@ysworks.dev as the primary channel. Email links open the visitor's chosen application; the website does not receive, transmit or store the message.",
+					],
+					[
+						"Technical delivery data",
+						"When the site is published, the hosting and network provider may process technical data required to deliver and protect it, such as IP address, date, requested resource and security signals.",
+					],
+					[
+						"Theme preference",
+						"The website stores only the selected theme —light, dark or system— in browser local storage. This preference is not used for tracking, advertising or identification.",
+					],
+					[
+						"Third-party services",
+						"There are no analytics, advertising pixels, embedded videos, maps, chat or social widgets. There is not yet a form or Cloudflare Turnstile integration.",
+					],
+					[
+						"Future changes",
+						"Before adding forms, analytics or another feature that processes data, this information will be updated with purpose, legal basis, recipients, retention, rights and a verifiable channel.",
+					],
+				],
+			};
+---
+
+<PublicPageShell locale={locale} page="privacy" title={content.title} description={content.description}>
+	<PageIntro eyebrow={content.eyebrow} title={content.heading} description={content.intro} />
+	<Section spacing="sm" aria-labelledby="privacy-content-title"><Container size="lg"><h2 id="privacy-content-title" class="visually-hidden">{content.details}</h2><div class="privacy-list">{content.sections.map(([title, body], index) => <section aria-labelledby={`privacy-${locale}-${index}`}><span>{String(index + 1).padStart(2, "0")}</span><div><h2 id={`privacy-${locale}-${index}`}>{title}</h2><p>{body}</p></div></section>)}</div><p class="privacy-note">{content.review}</p></Container></Section>
+</PublicPageShell>
+
+<style>
+	.privacy-list { border-top: 1px solid var(--color-border-subtle); }
+	.privacy-list section { display: grid; grid-template-columns: 2rem 1fr; gap: var(--space-4); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-8); }
+	.privacy-list section > span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.privacy-list section > div { display: grid; gap: var(--space-3); }
+	.privacy-list h2 { font-size: var(--font-size-18); }
+	.privacy-list p, .privacy-note { max-width: 48rem; }
+	.privacy-note { margin-top: var(--space-8); color: var(--color-text-muted); font-size: var(--font-size-14); }
+	@media (min-width: 44rem) { .privacy-list section { grid-template-columns: 4rem minmax(0, 1fr); padding-block: var(--space-10); } }
+</style>

@@ -3,7 +3,10 @@ import Container from "../components/layout/Container.astro";
 import Footer from "../components/layout/Footer.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Button from "../components/ui/Button.astro";
+import { landingContent } from "../data/landing";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const content = landingContent.es;
 ---
 
 <BaseLayout
@@ -12,10 +15,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	canonicalPath="/404"
 	noindex
 >
-	<Navbar slot="header" />
+	<Navbar
+		slot="header"
+		items={content.navigation.items}
+		ctaLabel={content.navigation.cta}
+		ctaHref="/contact"
+		localeLink={{
+			label: content.navigation.localeShort,
+			href: "/en/",
+			language: "en",
+			ariaLabel: content.accessibility.localeLabel,
+		}}
+		lightThemeLabel={content.accessibility.lightTheme}
+		darkThemeLabel={content.accessibility.darkTheme}
+		systemThemeLabel={content.accessibility.systemTheme}
+	/>
 	<section class="not-found" aria-labelledby="not-found-title">
 		<Container size="md">
-			<div class="not-found__content" data-reveal>
+			<div class="not-found__content">
 				<p class="not-found__code">404 / ruta no encontrada</p>
 				<h1 id="not-found-title">Esta página no forma parte del sistema.</h1>
 				<p>
@@ -29,7 +46,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			</div>
 		</Container>
 	</section>
-	<Footer slot="footer" />
+	<Footer
+		slot="footer"
+		description={content.footer.description}
+		items={content.navigation.items}
+		legalItems={[{ label: content.footer.privacy, href: "/privacy" }]}
+		statement={content.footer.statement}
+	/>
 </BaseLayout>
 
 <style>

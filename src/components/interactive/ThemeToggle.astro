@@ -4,18 +4,24 @@ import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"button"> {
 	lightLabel?: string;
 	darkLabel?: string;
+	systemLabel?: string;
 }
 
 const {
 	lightLabel = "Use light theme",
 	darkLabel = "Use dark theme",
+	systemLabel = "Use system theme",
 	class: className,
 	...attrs
 } = Astro.props;
 const classes = ["theme-toggle", className].filter(Boolean).join(" ");
 ---
 
-<ys-theme-toggle data-light-label={lightLabel} data-dark-label={darkLabel}>
+<ys-theme-toggle
+	data-light-label={lightLabel}
+	data-dark-label={darkLabel}
+	data-system-label={systemLabel}
+>
 	<button class={classes} type="button" aria-label={lightLabel} {...attrs}>
 		<svg class="theme-toggle__sun" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
 			<circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor"></circle>
@@ -24,11 +30,16 @@ const classes = ["theme-toggle", className].filter(Boolean).join(" ");
 		<svg class="theme-toggle__moon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
 			<path d="M13.5 10.3A5.8 5.8 0 0 1 5.7 2.5 5.8 5.8 0 1 0 13.5 10.3Z" fill="none" stroke="currentColor" stroke-linejoin="round"></path>
 		</svg>
+		<svg class="theme-toggle__system" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+			<rect x="1.5" y="2.5" width="13" height="9" rx="1.5" fill="none" stroke="currentColor"></rect>
+			<path d="M5.5 14h5M8 11.5V14" fill="none" stroke="currentColor" stroke-linecap="round"></path>
+		</svg>
 	</button>
 </ys-theme-toggle>
 
 <script>
 	type Theme = "dark" | "light";
+	type ThemePreference = Theme | "system";
 
 	class YsThemeToggle extends HTMLElement {
 		connectedCallback() {
@@ -36,32 +47,42 @@ const classes = ["theme-toggle", className].filter(Boolean).join(" ");
 			if (!button) return;
 			const lightLabel = this.dataset.lightLabel ?? "Use light theme";
 			const darkLabel = this.dataset.darkLabel ?? "Use dark theme";
-			let storedTheme: string | null = null;
-			try {
-				storedTheme = localStorage.getItem("ysworks-theme");
-			} catch {
-				storedTheme = null;
-			}
-			if (storedTheme === "light" || storedTheme === "dark") {
-				document.documentElement.dataset.theme = storedTheme;
-			}
-			const currentTheme = (): Theme =>
-				document.documentElement.dataset.theme === "light" ? "light" : "dark";
-			const sync = () => {
-				const theme = currentTheme();
-				button.setAttribute("aria-label", theme === "dark" ? lightLabel : darkLabel);
-				button.setAttribute("aria-pressed", String(theme === "light"));
+			const systemLabel = this.dataset.systemLabel ?? "Use system theme";
+			const media = window.matchMedia("(prefers-color-scheme: light)");
+			const currentPreference = (): ThemePreference => {
+				const value = document.documentElement.dataset.themePreference;
+				return value === "light" || value === "dark" ? value : "system";
 			};
-			button.addEventListener("click", () => {
-				const theme: Theme = currentTheme() === "dark" ? "light" : "dark";
-				document.documentElement.dataset.theme = theme;
+			const nextPreference = (): ThemePreference => {
+				const current = currentPreference();
+				if (current === "system") return "light";
+				if (current === "light") return "dark";
+				return "system";
+			};
+			const apply = (preference: ThemePreference) => {
+				const resolved: Theme = preference === "system" ? (media.matches ? "light" : "dark") : preference;
+				document.documentElement.dataset.themePreference = preference;
+				document.documentElement.dataset.theme = resolved;
 				try {
-					localStorage.setItem("ysworks-theme", theme);
+					localStorage.setItem("ysworks-theme", preference);
 				} catch {
 					// The selected theme still applies for the current document.
 				}
-				sync();
+			};
+			const sync = () => {
+				const next = nextPreference();
+				const label = next === "light" ? lightLabel : next === "dark" ? darkLabel : systemLabel;
+				button.setAttribute("aria-label", label);
+				button.dataset.themePreference = currentPreference();
+			};
+			button.addEventListener("click", () => {
+				apply(nextPreference());
+				document.dispatchEvent(new CustomEvent("ysworks-theme-change"));
 			});
+			media.addEventListener("change", () => {
+				if (currentPreference() === "system") apply("system");
+			});
+			document.addEventListener("ysworks-theme-change", sync);
 			sync();
 		}
 	}
@@ -93,12 +114,18 @@ const classes = ["theme-toggle", className].filter(Boolean).join(" ");
 		color: var(--color-text-primary);
 	}
 
-	.theme-toggle__moon,
-	:global([data-theme="light"]) .theme-toggle__sun {
+	.theme-toggle__sun,
+	.theme-toggle__moon {
 		display: none;
 	}
 
-	:global([data-theme="light"]) .theme-toggle__moon {
+	.theme-toggle[data-theme-preference="light"] .theme-toggle__sun,
+	.theme-toggle[data-theme-preference="dark"] .theme-toggle__moon {
 		display: block;
+	}
+
+	.theme-toggle[data-theme-preference="light"] .theme-toggle__system,
+	.theme-toggle[data-theme-preference="dark"] .theme-toggle__system {
+		display: none;
 	}
 </style>

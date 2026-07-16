@@ -1,0 +1,200 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import EditorialContact from "../content/EditorialContact.astro";
+import PageIntro from "../content/PageIntro.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Badge from "../ui/Badge.astro";
+import PublicPageShell from "./PublicPageShell.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+const { locale } = Astro.props;
+const content =
+	locale === "es"
+		? {
+				title: "Servicios tecnológicos",
+				description:
+					"Automatización, desarrollo web, sistemas inteligentes, infraestructura, ciberseguridad práctica y soporte técnico de YSWORKS.",
+				eyebrow: "Servicios",
+				heading: "Ingeniería conectada de principio a fin.",
+				intro:
+					"Combinamos producto, software, automatización, sistemas y seguridad para resolver problemas definidos sin convertir la tecnología en un fin en sí mismo.",
+				areasLabel: "Áreas de servicio",
+				includes: "Qué puede incluir",
+				boundary: "Límite claro",
+				areas: [
+					[
+						"01",
+						"Automatización y sistemas inteligentes",
+						"Convertimos tareas repetitivas y puntos de fricción en flujos controlados. La IA se incorpora solo cuando mejora un resultado concreto.",
+						[
+							"Análisis y rediseño de procesos",
+							"Automatizaciones e integraciones supervisables",
+							"Asistencia inteligente con revisión humana",
+							"Validación, trazabilidad y documentación",
+						],
+						"No prometemos autonomía total ni automatizamos decisiones sensibles sin responsables y controles definidos.",
+					],
+					[
+						"02",
+						"Desarrollo web y plataformas",
+						"Diseñamos y construimos sitios, herramientas y plataformas con una base rápida, accesible y preparada para mantenimiento.",
+						[
+							"Arquitectura de información y experiencia de usuario",
+							"Sitios corporativos y plataformas web",
+							"Interfaces para operaciones y productos",
+							"Rendimiento, accesibilidad y SEO técnico",
+						],
+						"El alcance responde al problema y al ciclo de vida esperado; evitamos complejidad sin una necesidad verificable.",
+					],
+					[
+						"03",
+						"Infraestructura, sistemas y hardware",
+						"Ordenamos la base técnica que sostiene el trabajo diario, desde equipos y redes hasta servicios y continuidad operativa.",
+						[
+							"Diseño y revisión de entornos técnicos",
+							"Selección e integración de hardware profesional",
+							"Documentación y criterios de operación",
+							"Mantenimiento y evolución planificada",
+						],
+						"El trabajo físico se concentra principalmente en Madrid y Lanzarote. Nunca publicamos arquitectura privada.",
+					],
+					[
+						"04",
+						"Ciberseguridad práctica",
+						"Reforzamos productos y operaciones con menor exposición, mejores configuraciones y límites comprensibles.",
+						[
+							"Revisión de superficie pública y configuraciones",
+							"Controles de acceso y gestión de secretos",
+							"Protección de formularios e integraciones",
+							"Plan de mejoras documentado",
+						],
+						"No presentamos este servicio como pentesting acreditado, respuesta forense ni operación ofensiva avanzada.",
+					],
+					[
+						"05",
+						"Consultoría, soporte y evolución",
+						"Aportamos criterio técnico para entender sistemas existentes, resolver bloqueos y decidir qué mejorar primero.",
+						[
+							"Diagnóstico técnico y priorización",
+							"Acompañamiento de producto y tecnología",
+							"Essential Care, Growth Care y Continuous Operations",
+							"Documentación y transferencia de conocimiento",
+						],
+						"Cada nivel de soporte es adaptable; responsabilidades, disponibilidad y criterios de éxito se acuerdan para cada sistema.",
+					],
+				],
+			}
+		: {
+				title: "Technology services",
+				description:
+					"Automation, web development, intelligent systems, infrastructure, practical cybersecurity and technical support from YSWORKS.",
+				eyebrow: "Services",
+				heading: "Connected engineering from start to finish.",
+				intro:
+					"We combine product thinking, software, automation, systems and security to solve defined problems without making technology an end in itself.",
+				areasLabel: "Service areas",
+				includes: "What it may include",
+				boundary: "Clear boundary",
+				areas: [
+					[
+						"01",
+						"Automation and intelligent systems",
+						"We turn repetitive tasks and operational friction into controlled workflows. AI is introduced only when it improves a concrete outcome.",
+						[
+							"Process analysis and redesign",
+							"Observable automation and integrations",
+							"Intelligent assistance with human review",
+							"Validation, traceability and documentation",
+						],
+						"We do not promise complete autonomy or automate sensitive decisions without named owners and controls.",
+					],
+					[
+						"02",
+						"Web development and platforms",
+						"We design and build sites, tools and platforms on a fast, accessible and maintainable foundation.",
+						[
+							"Information architecture and user experience",
+							"Corporate sites and web platforms",
+							"Interfaces for operations and products",
+							"Performance, accessibility and technical SEO",
+						],
+						"Scope follows the problem and expected lifecycle; we avoid complexity without a verifiable need.",
+					],
+					[
+						"03",
+						"Infrastructure, systems and hardware",
+						"We organise the technical foundation behind daily work, from equipment and networks to services and operational continuity.",
+						[
+							"Technical environment design and review",
+							"Professional hardware selection and integration",
+							"Documentation and operating criteria",
+							"Planned maintenance and evolution",
+						],
+						"Physical work is focused primarily on Madrid and Lanzarote. We never publish private architecture.",
+					],
+					[
+						"04",
+						"Practical cybersecurity",
+						"We strengthen products and operations through reduced exposure, better configuration and understandable boundaries.",
+						[
+							"Public surface and configuration review",
+							"Access controls and secret management",
+							"Form and integration protection",
+							"Documented improvement plan",
+						],
+						"We do not present this service as accredited pentesting, forensic response or advanced offensive work.",
+					],
+					[
+						"05",
+						"Consulting, support and evolution",
+						"We provide technical judgment to understand existing systems, remove blockers and decide what to improve first.",
+						[
+							"Technical diagnosis and prioritisation",
+							"Product and technology guidance",
+							"Essential Care, Growth Care and Continuous Operations",
+							"Documentation and knowledge transfer",
+						],
+						"Each support level is adaptable; responsibilities, availability and success criteria are agreed for each system.",
+					],
+				],
+			};
+---
+
+<PublicPageShell locale={locale} page="services" title={content.title} description={content.description}>
+	<PageIntro eyebrow={content.eyebrow} title={content.heading} description={content.intro} />
+	<Section spacing="sm" aria-labelledby="areas-title">
+		<Container size="xl">
+			<h2 id="areas-title" class="visually-hidden">{content.areasLabel}</h2>
+			<div class="areas">
+				{content.areas.map(([number, title, intro, items, boundary]) => (
+					<article class="area">
+						<div class="area__heading"><span>{number}</span><h2>{title}</h2><p>{intro}</p></div>
+						<div class="area__details">
+							<div><p class="eyebrow">{content.includes}</p><ul>{(items as string[]).map((item) => <li>{item}</li>)}</ul></div>
+							<div class="area__boundary"><Badge>{content.boundary}</Badge><p>{boundary}</p></div>
+						</div>
+					</article>
+				))}
+			</div>
+		</Container>
+	</Section>
+	<EditorialContact locale={locale} />
+</PublicPageShell>
+
+<style>
+	.areas { border-top: 1px solid var(--color-border-subtle); }
+	.area { display: grid; gap: var(--space-8); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-12); }
+	.area__heading, .area__details, .area__details > div:first-child { display: grid; align-content: start; gap: var(--space-4); }
+	.area__heading > span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.area h2 { max-width: 22ch; font-size: clamp(var(--font-size-24), 3vw, var(--font-size-32)); text-wrap: balance; }
+	.area__heading > p { max-width: 43rem; font-size: var(--font-size-18); }
+	.area__details { gap: var(--space-6); }
+	.area ul { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+	.area li { position: relative; color: var(--color-text-secondary); padding-left: var(--space-5); }
+	.area li::before { position: absolute; top: 0.75em; left: 0; width: 0.35rem; height: 1px; background: var(--color-accent-strong); content: ""; }
+	.area__boundary { border: 1px solid var(--color-border-subtle); border-radius: var(--radius-12); background: var(--color-surface); padding: var(--space-5); }
+	@media (min-width: 56rem) { .area { grid-template-columns: minmax(0, 1fr) minmax(25rem, 0.9fr); gap: var(--space-16); padding-block: var(--space-16); } }
+</style>

@@ -1,0 +1,80 @@
+---
+import { landingContent, type LandingLocale } from "../../data/landing";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../layout/Footer.astro";
+import Navbar from "../layout/Navbar.astro";
+
+export type PublicPage = "home" | "services" | "about" | "contact" | "privacy";
+
+interface Props {
+	locale: LandingLocale;
+	page: PublicPage;
+	title: string;
+	description: string;
+	noindex?: boolean;
+}
+
+const { locale, page, title, description, noindex = false } = Astro.props;
+const content = landingContent[locale];
+const otherLocale: LandingLocale = locale === "es" ? "en" : "es";
+const paths: Record<LandingLocale, Record<PublicPage, string>> = {
+	es: {
+		home: "/",
+		services: "/services",
+		about: "/about",
+		contact: "/contact",
+		privacy: "/privacy",
+	},
+	en: {
+		home: "/en/",
+		services: "/en/services/",
+		about: "/en/about/",
+		contact: "/en/contact/",
+		privacy: "/en/privacy/",
+	},
+};
+const canonicalPath = paths[locale][page];
+const localeLink = {
+	label: content.navigation.localeShort,
+	href: paths[otherLocale][page],
+	language: otherLocale,
+	ariaLabel: content.accessibility.localeLabel,
+};
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	canonicalPath={canonicalPath}
+	language={locale}
+	alternatePaths={{ es: paths.es[page], en: paths.en[page], "x-default": paths.es[page] }}
+	skipLinkLabel={content.accessibility.skipLink}
+	noindex={noindex}
+>
+	<Navbar
+		slot="header"
+		items={content.navigation.items}
+		brandHref={paths[locale].home}
+		currentPath={canonicalPath}
+		ctaLabel={content.navigation.cta}
+		ctaHref={paths[locale].contact}
+		navigationLabel={content.accessibility.navigation}
+		menuLabel={content.accessibility.menu}
+		closeLabel={content.accessibility.close}
+		homeLabel={content.accessibility.home}
+		localeLink={localeLink}
+		lightThemeLabel={content.accessibility.lightTheme}
+		darkThemeLabel={content.accessibility.darkTheme}
+		systemThemeLabel={content.accessibility.systemTheme}
+	/>
+	<slot />
+	<Footer
+		slot="footer"
+		description={content.footer.description}
+		items={content.navigation.items}
+		legalItems={[{ label: content.footer.privacy, href: paths[locale].privacy }]}
+		navigationLabel={content.accessibility.footerNavigation}
+		statement={content.footer.statement}
+		localeLink={localeLink}
+	/>
+</BaseLayout>

@@ -70,9 +70,32 @@ const headingId = `${id}-title`;
 		min-width: 0;
 	}
 
+	.process__steps > li:last-child :global(.card) {
+		border-color: var(--color-accent-border);
+		background:
+			linear-gradient(145deg, var(--color-accent-soft), transparent 70%),
+			var(--color-surface);
+	}
+
 	@media (max-width: 64rem) {
 		.process__steps {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.process__header {
+			grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+			column-gap: var(--space-16);
+			max-width: none;
+		}
+
+		.process__header :global(.mono-eyebrow) {
+			grid-column: 1 / -1;
+		}
+
+		.process__header :global(.paragraph) {
+			align-self: end;
 		}
 	}
 
