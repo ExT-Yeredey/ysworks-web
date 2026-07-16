@@ -11,9 +11,12 @@
 	--font-size-16: 1rem;
 	--font-size-18: 1.125rem;
 	--font-size-24: 1.5rem;
+	--font-size-28: 1.75rem;
 	--font-size-32: 2rem;
+	--font-size-40: 2.5rem;
 	--font-size-48: 3rem;
 	--font-size-64: 4rem;
+	--font-size-72: 4.5rem;
 
 	--line-height-tight: 1.1;
 	--line-height-heading: 1.18;
@@ -41,6 +44,8 @@
 	--radius-4: 0.25rem;
 	--radius-6: 0.375rem;
 	--radius-8: 0.5rem;
+	--radius-12: 0.75rem;
+	--radius-16: 1rem;
 	--radius-full: 999px;
 
 	--shadow-subtle: 0 1px 2px rgb(0 0 0 / 0.18);
@@ -55,5 +60,5 @@
 	--container-sm: 42rem;
 	--container-md: 60rem;
 	--container-lg: 72rem;
-	--container-xl: 80rem;
+	--container-xl: 84rem;
 }

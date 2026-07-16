@@ -1,0 +1,93 @@
+---
+import PageIntro from "../components/content/PageIntro.astro";
+import Container from "../components/layout/Container.astro";
+import Footer from "../components/layout/Footer.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Section from "../components/layout/Section.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const sections = [
+	{
+		title: "Estado actual",
+		content:
+			"Esta es una web pública estática en fase previa al lanzamiento. No incluye cuentas, área de clientes, formularios, boletines, pagos, analítica ni contenido personalizado.",
+	},
+	{
+		title: "Datos enviados por visitantes",
+		content:
+			"La web no ofrece actualmente un mecanismo para enviar datos personales a YSWORKS. La página de contacto explica el canal previsto, pero no transmite ni almacena información.",
+	},
+	{
+		title: "Datos técnicos de entrega",
+		content:
+			"Cuando el sitio se publique, el proveedor de alojamiento y red podrá procesar datos técnicos necesarios para entregar y proteger la web, como dirección IP, fecha, recurso solicitado y señales de seguridad. La configuración final se documentará antes del lanzamiento.",
+	},
+	{
+		title: "Cookies y almacenamiento local",
+		content:
+			"La implementación actual no instala cookies propias ni utiliza almacenamiento local con fines de seguimiento, personalización o publicidad.",
+	},
+	{
+		title: "Servicios de terceros",
+		content:
+			"No hay analítica, píxeles publicitarios, vídeos incrustados, mapas, chat ni widgets sociales. Los metadatos públicos del sitio no implican transferencia de datos desde el navegador a esos servicios.",
+	},
+	{
+		title: "Cambios futuros",
+		content:
+			"Antes de añadir formularios, analítica u otra función que trate datos, esta información se actualizará con finalidad, base jurídica, destinatarios, retención, derechos y un canal de privacidad verificable.",
+	},
+];
+---
+
+<BaseLayout
+	title="Privacidad"
+	description="Información de privacidad de la web pública estática de YSWORKS antes de su lanzamiento."
+	canonicalPath="/privacy"
+>
+	<Navbar slot="header" />
+	<PageIntro
+		eyebrow="Privacidad"
+		title="Información clara sobre una web todavía estática."
+		description="Esta página describe únicamente el comportamiento actual del sitio. Se actualizará antes de incorporar cualquier función que trate datos personales."
+	/>
+
+	<Section spacing="sm" aria-labelledby="privacy-content-title">
+		<Container size="lg">
+			<h2 id="privacy-content-title" class="visually-hidden">Detalles de privacidad</h2>
+			<div class="privacy-list">
+				{
+					sections.map((section, index) => (
+						<section data-reveal aria-labelledby={`privacy-${index}`}>
+							<span>{String(index + 1).padStart(2, "0")}</span>
+							<div>
+								<h2 id={`privacy-${index}`}>{section.title}</h2>
+								<p>{section.content}</p>
+							</div>
+						</section>
+					))
+				}
+			</div>
+			<p class="privacy-note" data-reveal>
+				Última revisión: julio de 2026. Este texto no sustituye la información legal que
+				corresponda al entorno de producción definitivo.
+			</p>
+		</Container>
+	</Section>
+
+	<Footer slot="footer" />
+</BaseLayout>
+
+<style>
+	.privacy-list { border-top: 1px solid var(--color-border-subtle); }
+	.privacy-list section { display: grid; grid-template-columns: 2rem 1fr; gap: var(--space-4); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-8); }
+	.privacy-list section > span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.privacy-list section > div { display: grid; gap: var(--space-3); }
+	.privacy-list h2 { font-size: var(--font-size-18); }
+	.privacy-list p { max-width: 48rem; }
+	.privacy-note { max-width: 48rem; margin-top: var(--space-8); color: var(--color-text-muted); font-size: var(--font-size-14); }
+
+	@media (min-width: 700px) {
+		.privacy-list section { grid-template-columns: 4rem minmax(0, 1fr); padding-block: var(--space-10); }
+	}
+</style>
