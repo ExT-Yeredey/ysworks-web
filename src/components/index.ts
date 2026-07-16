@@ -3,11 +3,14 @@ export { default as ProcessCard } from "./cards/ProcessCard.astro";
 export { default as ServiceCard } from "./cards/ServiceCard.astro";
 export { default as TechnologyCard } from "./cards/TechnologyCard.astro";
 
+export { default as Faq } from "./content/Faq.astro";
+export { default as Process } from "./content/Process.astro";
+
 export { default as Border } from "./effects/Border.astro";
 export { default as Glass } from "./effects/Glass.astro";
 export { default as Glow } from "./effects/Glow.astro";
 export { default as Noise } from "./effects/Noise.astro";
-
+export { default as Icon } from "./icons/Icon.astro";
 export { default as Accordion } from "./interactive/Accordion.astro";
 export { default as AccordionItem } from "./interactive/AccordionItem.astro";
 export { default as CopyButton } from "./interactive/CopyButton.astro";

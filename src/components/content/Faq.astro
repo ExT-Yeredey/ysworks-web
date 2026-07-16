@@ -1,0 +1,64 @@
+---
+import Accordion from "../interactive/Accordion.astro";
+import AccordionItem from "../interactive/AccordionItem.astro";
+import MonoEyebrow from "../typography/MonoEyebrow.astro";
+import Paragraph from "../typography/Paragraph.astro";
+import SectionTitle from "../typography/SectionTitle.astro";
+
+export interface FaqEntry {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	id?: string;
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	items: FaqEntry[];
+	single?: boolean;
+}
+
+const {
+	id = "faq",
+	eyebrow,
+	title,
+	description,
+	items,
+	single = true,
+} = Astro.props;
+const headingId = `${id}-title`;
+---
+
+<section class="faq" id={id} aria-labelledby={headingId}>
+	<header class="faq__header">
+		{eyebrow && <MonoEyebrow>{eyebrow}</MonoEyebrow>}
+		<SectionTitle id={headingId}>{title}</SectionTitle>
+		{description && <Paragraph size="lg">{description}</Paragraph>}
+	</header>
+
+	<Accordion single={single}>
+		{items.map((item) => <AccordionItem title={item.question}>{item.answer}</AccordionItem>)}
+	</Accordion>
+</section>
+
+<style>
+	.faq {
+		display: grid;
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+		gap: var(--space-12);
+		align-items: start;
+	}
+
+	.faq__header {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	@media (max-width: 48rem) {
+		.faq {
+			grid-template-columns: 1fr;
+			gap: var(--space-8);
+		}
+	}
+</style>
