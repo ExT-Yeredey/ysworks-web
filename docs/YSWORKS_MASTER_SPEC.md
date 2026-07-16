@@ -33,6 +33,23 @@ this specification. If two approved documents conflict and this specification
 does not explicitly settle the conflict, the matter remains an Open Decision.
 Implementation must use the less-exposing state until the conflict is resolved.
 
+The authority hierarchy is:
+
+1. An explicit Founder decision governs company direction and resolves an
+   otherwise unresolved documentation conflict. It must be recorded in the
+   appropriate specification or decision record before implementation.
+2. An accepted ADR overrides descriptive prose for the decision and scope that
+   the ADR governs. It does not override an unrelated domain contract.
+3. This Master Specification is the highest-level product, company, ecosystem,
+   vocabulary, and cross-system specification.
+4. Detailed security, public-platform, portal, business, and repository
+   documents remain authoritative inside their stated domains and may impose
+   stricter constraints.
+
+No lower-level document, implementation choice, dependency, or design proposal
+silently creates an ecosystem decision. Genuine conflicts remain Open Decisions
+unless the Founder or an accepted ADR resolves them.
+
 System names in this document define product categories and policy boundaries.
 They are not confirmation of deployment, topology, inventory, addresses, ports,
 credentials, vendors beyond approved decisions, or production readiness.
@@ -100,7 +117,8 @@ YSWORKS is:
 - a technology engineering company;
 - a designer and builder of digital systems;
 - a provider of software, web, automation, security, infrastructure,
-  consulting, training, and maintenance services;
+  consulting, and maintenance services, with training as a supporting
+  capability when required by an approved engagement;
 - a long-term technical partner when an ongoing relationship is appropriate;
 - an organization that uses AI as a controlled capability, not as a substitute
   for product judgment or responsibility;
@@ -113,6 +131,7 @@ YSWORKS is not:
 - a traditional marketing agency;
 - a template website shop;
 - a generic chatbot provider;
+- a seller of custom AI agents as its main product;
 - a no-code automation reseller;
 - an “AI-powered everything” company;
 - a vendor of autonomous decisions without accountable human ownership;
@@ -183,8 +202,9 @@ AI-assisted engineering practices without naming internal mechanisms.
 ### 2.5 Automation Platform
 
 The Automation Platform is the private orchestration capability used to run
-approved operational automations and integrations. n8n is the official workflow
-orchestration technology within this category.
+approved operational automations and integrations. n8n is the selected private
+workflow-orchestration technology within this category; the category does not
+confirm a deployment or production connection.
 
 The platform and its editor remain internal. Public providers send events only
 to the narrow Secure Webhook Gateway defined by the public-platform contract.
@@ -267,7 +287,25 @@ Each engagement is studied and budgeted according to scope, complexity, timing,
 integrations, support, and maintenance. The primary public call to action asks
 the prospective customer to explain the project.
 
-### 3.2 AI Systems
+### 3.2 Launch Service Portfolio
+
+The launch service categories are:
+
+- AI Systems, limited to controlled intelligent business capabilities with a
+  defined outcome and accountable human ownership;
+- Automation;
+- Software Development;
+- Web Development;
+- practical Cybersecurity;
+- Infrastructure, Systems, and Professional Hardware;
+- Consulting; and
+- Maintenance and ongoing support.
+
+Training is a supporting delivery capability, not an independent launch service
+category. Any separately marketed training service is a future decision.
+Additional categories remain future services until explicitly approved.
+
+### 3.3 AI Systems
 
 **Purpose:** Design controlled AI-assisted capabilities tied to a specific user
 or operational outcome.
@@ -283,7 +321,7 @@ notes, or an approved AI-assisted feature.
 This category excludes access to YS AI OS, private prompts, private agents,
 unsupported autonomy, model guarantees, and broad transformation claims.
 
-### 3.3 Automation
+### 3.4 Automation
 
 **Purpose:** Reduce repetitive work and improve handoffs through controlled,
 observable automation.
@@ -299,7 +337,7 @@ This category excludes hidden autonomous behavior, public access to private
 workflow editors, automation without ownership, and unsafe credential or data
 handling.
 
-### 3.4 Software Development
+### 3.5 Software Development
 
 **Purpose:** Design and build maintainable digital products, applications, and
 system foundations.
@@ -314,7 +352,7 @@ integration boundary, testing criteria, or maintainability improvement.
 This category excludes speculative large builds, undefined product ownership,
 and claims of market success without evidence.
 
-### 3.5 Web Development
+### 3.6 Web Development
 
 **Purpose:** Create fast, accessible, secure, and maintainable public websites
 and web platforms.
@@ -331,7 +369,7 @@ package, or maintenance documentation.
 This category does not make YSWORKS a template website shop. The website is one
 part of a governed digital system.
 
-### 3.6 Cybersecurity
+### 3.7 Cybersecurity
 
 **Purpose:** Reduce avoidable exposure and improve the security posture of
 public digital systems and approved operations.
@@ -345,11 +383,13 @@ configuration review, threat-model summary, access-control review, secret and
 environment review, form or webhook protection requirements, dependency risk
 notes, or hardening plan.
 
-Penetration testing, forensics, incident response, compliance certification, and
-offensive security are not implied. They require separate capability approval
-and scope. No service guarantees zero risk.
+The launch service does not include accredited or advanced penetration testing,
+offensive security, forensics, incident response, or compliance certification.
+No public copy may imply those capabilities without a future Founder decision,
+qualified delivery capability, evidence, and a separately approved service
+contract. No service guarantees zero risk.
 
-### 3.7 Infrastructure
+### 3.8 Infrastructure
 
 **Purpose:** Establish a reliable and supportable operational foundation for
 approved digital systems.
@@ -366,7 +406,13 @@ maintenance baseline.
 This category never includes public exposure of control planes, private
 topology, credentials, or unsupported availability guarantees.
 
-### 3.8 Consulting
+Physical and professional-hardware work is a real launch capability. On-site
+delivery is primarily available in Madrid and Lanzarote. Discovery, consulting,
+architecture, software, configuration planning, and support may be delivered
+remotely more broadly when the engagement is suitable. Exact travel, on-site,
+support, and geographic commitments belong to the proposal and contract.
+
+### 3.9 Consulting
 
 **Purpose:** Give decision-makers clear technical direction before or during an
 investment.
@@ -381,7 +427,7 @@ or independent technical review.
 This category excludes open-ended execution without scope and legal, financial,
 or compliance guarantees.
 
-### 3.9 Training
+### 3.10 Training
 
 **Purpose:** Help an organization understand, operate, and maintain an approved
 system or engineering practice.
@@ -394,9 +440,10 @@ security-awareness session, maintenance playbook, recorded walkthrough when
 approved, or competency checklist.
 
 Training is practical and tied to an approved scope. It is not certification,
-generic motivational content, or disclosure of private YSWORKS methods.
+generic motivational content, disclosure of private YSWORKS methods, or an
+independent launch category.
 
-### 3.10 Maintenance
+### 3.11 Maintenance
 
 **Purpose:** Keep an approved system secure, current, understandable, and useful
 after delivery.
@@ -421,7 +468,7 @@ These names describe adaptable levels of responsibility, not rigid packages.
 They have no public prices and do not override a client-specific scope,
 availability, support, or maintenance agreement.
 
-### 3.11 Future Services
+### 3.12 Future Services
 
 Future service categories may be introduced only after capability, customer
 problem, safety, evidence, delivery ownership, exclusions, and support have been
@@ -526,79 +573,57 @@ accurate status and without implying a client relationship.
 
 ## 5. Design Language
 
-### 5.1 Identity
+### 5.1 Governing Sources
+
+This specification establishes design intent, not a component library or final
+token set. Detailed brand and interface direction remains in
+[Brand Positioning](business/BRAND_POSITIONING.md), the repository
+[Design System](../.ai/design-system.md), and the applicable product contract.
+Other design proposals are inputs, not authority. Fonts, colors, spacing,
+breakpoints, assets, and motion proposals do not become cross-ecosystem
+decisions until reviewed and accepted by the Founder or an ADR.
+
+### 5.2 Official Direction
 
 The official visual language is minimal, premium through restraint, technical,
-modern, and fast. It is dark-first, responsive-first, and accessibility-first.
-It communicates maturity through hierarchy and consistency rather than effects.
+modern, and fast. It is dark-mode-first, responsive-first, and
+accessibility-first. It communicates maturity through hierarchy, legibility,
+consistency, and performance rather than effects.
 
-The identity uses a neutral foundation, high-contrast text, restrained surfaces,
-subtle borders, and a selective deep-purple accent. The `Y + W` monogram remains
-the approved mark direction, not a final asset approval.
-
-### 5.2 Typography
-
-Inter is the primary interface and reading typeface. Geist Mono is the preferred
-technical accent. Monospace is limited to metadata, system labels, code-like
-references, and places where it improves comprehension.
-
-Typography uses a clear semantic hierarchy, short headings, readable line
-lengths, and body sizes suitable for mobile and desktop. Display type must not
-become theatrical or obscure the information structure.
-
-### 5.3 Spacing
-
-Spacing follows a consistent 4-pixel-derived scale. Small increments control UI
-density; larger increments create page rhythm and section separation. Premium
-quality comes from proportion and consistency, not excessive empty space.
-
-Content width is bounded for readability. Layout breakpoints respond to content
-needs rather than named devices.
-
-### 5.4 Surfaces, Color, And Depth
-
-Neutral surfaces carry most interfaces. Accent and semantic colors have distinct
-roles and never communicate meaning alone. Borders and contrast are preferred
-to heavy shadows. Radius, glow, gradient, and elevation remain restrained.
+Typography must create a clear semantic hierarchy and remain readable across
+supported viewports. Spacing must be systematic and content-led. Neither the
+Master Specification nor an unreviewed design proposal fixes a font family,
+type scale, spacing unit, palette, breakpoint, or final mark.
 
 Avoid neon AI imagery, robots, circuit boards, generic stock technology scenes,
 fake offices, fake teams, exaggerated gradients, gamer aesthetics, and visuals
 that imply access to private systems.
 
-### 5.5 Animation Philosophy
+### 5.3 Animation Philosophy
 
-Motion explains change, establishes hierarchy, confirms interaction, or guides
-attention. It is never continuous decoration, proof of technical capability, or
-a delay before content.
+Motion may explain change, establish hierarchy, confirm interaction, or guide
+attention. It must not delay access to content, create decorative spectacle, or
+serve as proof of technical capability. Content and binding actions remain
+usable without animation, and reduced-motion preferences are respected.
 
-Anime.js is the official JavaScript animation library when an approved
-interaction requires coordinated motion that semantic HTML and CSS cannot
-express sufficiently. CSS remains the default for simple transitions, hover,
-focus, layout, and reduced-motion-safe state changes. Anime.js must not turn a
-static page into a client-rendered application.
+CSS is the current lowest-cost default for simple public-site motion. No
+JavaScript animation library is an accepted ecosystem standard. Anime.js is a
+candidate named by an earlier product direction, while the current repository
+contains Motion and does not contain Anime.js. The final library choice remains
+an Open Decision requiring repository, accessibility, performance, and design
+review.
 
-Approved motion characteristics:
-
-- short, purposeful durations;
-- transform and opacity before layout-changing properties;
-- stable initial layout with no content shift;
-- content visible and usable if JavaScript fails;
-- no infinite decorative loops;
-- no animation that delays navigation, reading, or binding decisions;
-- explicit support for `prefers-reduced-motion`;
-- page-scoped loading so unused animation code is not delivered;
-- keyboard, screen-reader, and focus behavior preserved.
-
-### 5.6 Responsive And Accessible Experience
+### 5.4 Responsive And Accessible Experience
 
 Every public and client-facing surface begins with the smallest supported
 viewport and progressively uses available space. Navigation, content order,
 tables, forms, dialogs, and binding actions must remain understandable without
 horizontal page scrolling.
 
-WCAG 2.2 AA is the minimum target for client-facing products. Semantic HTML,
-keyboard access, visible focus, reflow, zoom, contrast, touch targets, labels,
-status announcements, and reduced motion are part of the design contract.
+The applicable product contract defines its detailed accessibility target.
+Semantic structure, keyboard access, visible focus, reflow, zoom, contrast,
+touch targets, labels, status communication, and reduced motion are mandatory
+design concerns.
 
 ## 6. Technology Stack
 
@@ -621,26 +646,33 @@ their products.
 
 ### 6.3 TypeScript
 
-TypeScript is the default language for public web application logic, shared
-contracts, and approved JavaScript-based services. Strict typing, explicit
-interfaces, small boundaries, and public-safe serialized data are required.
+TypeScript is part of the current Public Website repository and its strict
+engineering baseline. It is preferred for that repository's application logic
+and contracts. This repository fact does not select TypeScript for the Client
+Portal, YS AI OS, Automation Platform, or every future service.
 
 TypeScript does not encode authorization by itself and does not replace runtime
-validation at a trust boundary.
+validation at a trust boundary. Any cross-ecosystem language standard requires
+a separate accepted decision.
 
 ### 6.4 Tailwind CSS
 
-Tailwind CSS is the official utility-first styling system for the Public Website
-and an approved option for future web interfaces. It must implement the design
-language through readable tokens and reusable patterns without obscuring
-semantic structure or accessibility.
+Tailwind CSS is installed in the current Public Website repository and its
+repository coding standards direct current website work to use it. That makes it
+a current implementation constraint, not an accepted cross-ecosystem technology
+decision and not an automatic choice for future interfaces.
 
-### 6.5 Anime.js
+Its long-term Public Website status must be reconciled with the reviewed design
+system and recorded in an accepted ADR before this Master Specification calls it
+official.
 
-Anime.js is the official library for coordinated client-side animation. It is
-used only when animation has a defined interaction or comprehension benefit and
-CSS is insufficient. Its use remains progressive, reduced-motion-aware,
-page-scoped, and subject to performance review.
+### 6.5 Animation Library
+
+No JavaScript animation library is currently official. Anime.js is a candidate,
+but it is not installed in the current repository and has no accepted ADR. The
+repository currently declares Motion as a dependency, while its design guidance
+prefers CSS and minimal JavaScript. Implementation must not add, replace, or
+standardize an animation library until the conflict in section 12 is resolved.
 
 ### 6.6 Cloudflare Pages
 
@@ -667,20 +699,22 @@ administration, or YS AI OS panels.
 
 ### 6.9 Docker
 
-Docker is the official internal container packaging and runtime technology for
-approved private services where containers are appropriate. Its daemon, API,
-socket, management interface, and control plane are never public and are never
-mounted into an Internet-facing component.
+Docker is the selected internal container packaging and runtime technology when
+an approved private service requires containers. This role does not confirm a
+deployment or inventory. Its daemon, API, socket, management interface, and
+control plane are never public and are never mounted into an Internet-facing
+component.
 
 Docker is not required for the static Public Website and this decision does not
 authorize a container deployment.
 
 ### 6.10 n8n
 
-n8n is the official private workflow-orchestration technology for the Automation
-Platform. Its editor, management API, workflow definitions, execution endpoints,
-and logs remain internal. Public webhooks terminate at the Secure Webhook Gateway
-and reach n8n only through an approved normalized asynchronous boundary.
+n8n is the selected private workflow-orchestration technology for the Automation
+Platform. This role does not confirm a deployment or production connection. Its
+editor, management API, workflow definitions, execution endpoints, and logs
+remain internal. Public webhooks terminate at the Secure Webhook Gateway and
+reach n8n only through an approved normalized asynchronous boundary.
 
 ### 6.11 GitHub
 
@@ -970,10 +1004,12 @@ their referenced documents. `Accepted` means the direction is official;
 
 ### ADR-M002: Static-First Public Website
 
-- **Decision:** Use Astro, TypeScript, Tailwind CSS, and Cloudflare Pages for the
-  static-first Public Website.
+- **Decision:** Use Astro and Cloudflare Pages for the static-first Public
+  Website. Treat TypeScript and Tailwind CSS as current repository technologies,
+  not cross-ecosystem standards.
 - **Reason:** This minimizes runtime complexity and supports performance,
-  accessibility, security, content structure, and maintainability.
+  accessibility, security, content structure, and maintainability while keeping
+  the accepted decision aligned with the ADRs that actually govern it.
 - **Alternatives rejected:** Plain unstructured HTML for the full site, a
   client-rendered React application, Next.js as the default, and self-hosting the
   static website.
@@ -990,16 +1026,17 @@ their referenced documents. `Accepted` means the direction is official;
   product-dashboard theater, neon technology aesthetics, and fake social proof.
 - **Status:** Accepted. See [ADR-003](../.ai/decisions/ADR-003.md).
 
-### ADR-M004: Anime.js For Coordinated Motion
+### ADR-M004: Animation Governance
 
-- **Decision:** Use Anime.js as the official JavaScript animation library when
-  coordinated motion has an approved user benefit and CSS is insufficient.
-- **Reason:** One governed library creates consistent motion while preserving CSS
-  as the lowest-cost default.
-- **Alternatives rejected:** Multiple animation libraries, animation-first page
-  architecture, and custom JavaScript animation engines.
-- **Status:** Accepted with performance, progressive-enhancement, accessibility,
-  and reduced-motion constraints.
+- **Decision:** Keep CSS as the current default and adopt no official JavaScript
+  animation library until an accepted ADR reconciles the design guidance,
+  current Motion dependency, and Anime.js proposal.
+- **Reason:** A suggested tool and an installed dependency are evidence to
+  review, not sufficient authority for an ecosystem standard.
+- **Alternatives rejected:** Prematurely declaring Anime.js or Motion official,
+  animation-first page architecture, and multiple ungoverned libraries.
+- **Status:** Accepted as governance; the library choice remains Proposed and is
+  an Open Decision.
 
 ### ADR-M005: Canonical Domain And Minimal Public Surface
 
@@ -1147,6 +1184,21 @@ their referenced documents. `Accepted` means the direction is official;
   fallbacks.
 - **Status:** Accepted for future Public Website implementation.
 
+### ADR-M018: Launch Service Portfolio
+
+- **Decision:** Launch with controlled AI Systems, Automation, Software
+  Development, Web Development, practical Cybersecurity, Infrastructure,
+  Systems and Professional Hardware, Consulting, and Maintenance. Treat
+  Training only as a supporting delivery capability.
+- **Reason:** These categories reflect approved, supportable capabilities while
+  preventing a suggested or future capability from becoming a public offer by
+  implication.
+- **Alternatives rejected:** Training as an independent launch category,
+  advanced or accredited offensive-security claims, custom AI agents as the
+  primary product, and an unrestricted technology catalog.
+- **Status:** Accepted. On-site physical and hardware delivery is primarily in
+  Madrid and Lanzarote; suitable remote work may be delivered more broadly.
+
 ## 12. Open Decisions
 
 Open Decisions are real governance gates, not placeholders or permission to
@@ -1167,17 +1219,19 @@ each decision is approved.
    “technology engineering company”; “engineering studio” remains a legacy
    descriptive term, not the official category for new specifications.
 3. **Animation priority:** The design system prefers CSS and minimal JavaScript,
-   while this specification names Anime.js as the official animation library.
-   ADR-M004 settles the relationship: CSS is the default; Anime.js is the only
-   approved JavaScript animation library when coordinated motion is justified.
+   the current repository declares Motion, and an earlier direction proposed
+   Anime.js. No accepted ADR selects either JavaScript library. ADR-M004 keeps
+   CSS as the current default and leaves the library choice open.
+4. **Tailwind CSS authority:** Tailwind CSS is installed and directed by the
+   current repository coding standards, but no accepted ADR makes it the
+   long-term Public Website or ecosystem standard. It remains a current
+   repository constraint while its official scope is open.
 
-These conflicts are resolved at the master level but remain recorded until the
-supporting documents are updated. They do not authorize implementation changes.
+Founder decisions settle items 1 and 2. Items 3 and 4 remain genuine Open
+Decisions. None of these entries authorizes implementation changes.
 
 ### 12.2 Company And Commercial
 
-- Which service categories are activated first after evidence and delivery
-  ownership review.
 - Which real work, owned products, open-source work, or technical demonstrations
   may become public proof.
 - Final legal company, contracting, jurisdiction, privacy-controller, and
@@ -1190,6 +1244,12 @@ supporting documents are updated. They do not authorize implementation changes.
 ### 12.3 Public Website And Brand
 
 - Final reviewed `Y + W` logo assets and social sharing image.
+- Whether Anime.js, Motion, or CSS-only motion becomes the accepted Public
+  Website animation standard.
+- Whether Tailwind CSS remains the long-term Public Website styling standard or
+  only the current repository implementation choice.
+- Final reviewed typography, spacing, color, breakpoint, component, and motion
+  tokens; unreviewed design recommendations do not settle them.
 - Final production privacy notice before collection, forms, analytics,
   newsletter, or downloads.
 - Whether privacy-aware analytics, newsletter, Journal, Labs, or downloads are
@@ -1237,8 +1297,8 @@ defined ownership, validation, failure, audit, and security boundaries.
 ### Automation Platform
 
 The private YSWORKS capability for approved workflow orchestration and
-integrations. n8n is its official orchestration technology; its control surfaces
-remain internal.
+integrations. n8n is its selected private orchestration technology; this does
+not confirm a deployment, and its control surfaces remain internal.
 
 ### Client
 
