@@ -16,9 +16,12 @@ Read these documents before substantial work:
 
 For design and content work, also read:
 
+- `../docs/design/README.md` for the Founder-approved authority and version map
 - `design-system.md`
 - `design-system-v1.md`
+- `brand-kit-v1.md`
 - `branding.md`
+- `site-architecture-v1.md`
 - `writing-style.md`
 - `glossary.md`
 
