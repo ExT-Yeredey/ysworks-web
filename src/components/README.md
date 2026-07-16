@@ -15,7 +15,11 @@ library entry point.
 - Buttons: `Button` with `primary`, `secondary`, `ghost`, and `text` variants.
 - Cards: `ServiceCard`, `ProcessCard`, `TechnologyCard`, `CtaCard`, and the
   composable `Card` primitive.
+- Content patterns: `Faq` and `Process` compose accessible primitives without
+  embedding business content.
 - Typography: `HeroTitle`, `SectionTitle`, `Paragraph`, `MonoEyebrow`, `Quote`.
+- Icons: `Icon` provides the approved interface for decorative and labelled
+  interface symbols.
 - Interactive: `Accordion`, `Tabs`, `Modal`, `CopyButton`, `ThemeToggle`.
 - Visual: `Diagram`, `DiagramNode`, `DiagramConnector`, `Timeline`, `Badge`,
   `StatusPill`, `Divider`.
@@ -38,6 +42,8 @@ Compound components must be composed with their required children:
   `id`. Modal close controls use `data-modal-close`.
 - Provide localized labels for navigation, modal controls, copying, themes, and
   tab lists.
+- Decorative icons omit a label and remain hidden from assistive technology;
+  meaningful standalone icons require a localized `label`.
 - Do not put secrets or restricted values in `CopyButton`.
 - Use status text with `Badge` or `StatusPill`; color never carries meaning
   alone.

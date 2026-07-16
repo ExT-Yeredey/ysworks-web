@@ -1,0 +1,88 @@
+---
+import ProcessCard from "../cards/ProcessCard.astro";
+import MonoEyebrow from "../typography/MonoEyebrow.astro";
+import Paragraph from "../typography/Paragraph.astro";
+import SectionTitle from "../typography/SectionTitle.astro";
+
+export interface ProcessStep {
+	step: string;
+	title: string;
+	description: string;
+}
+
+interface Props {
+	id?: string;
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	steps: ProcessStep[];
+}
+
+const { id = "process", eyebrow, title, description, steps } = Astro.props;
+const headingId = `${id}-title`;
+---
+
+<section class="process" id={id} aria-labelledby={headingId}>
+	<header class="process__header">
+		{eyebrow && <MonoEyebrow>{eyebrow}</MonoEyebrow>}
+		<SectionTitle id={headingId}>{title}</SectionTitle>
+		{description && <Paragraph size="lg">{description}</Paragraph>}
+	</header>
+
+	<ol class="process__steps">
+		{
+			steps.map((item) => (
+				<li>
+					<ProcessCard
+						step={item.step}
+						title={item.title}
+						description={item.description}
+						headingLevel="h3"
+					/>
+				</li>
+			))
+		}
+	</ol>
+</section>
+
+<style>
+	.process {
+		display: grid;
+		gap: var(--space-12);
+	}
+
+	.process__header {
+		display: grid;
+		gap: var(--space-4);
+		max-width: 48rem;
+	}
+
+	.process__steps {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--space-4);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.process__steps > li {
+		min-width: 0;
+	}
+
+	@media (max-width: 64rem) {
+		.process__steps {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 36rem) {
+		.process {
+			gap: var(--space-8);
+		}
+
+		.process__steps {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
