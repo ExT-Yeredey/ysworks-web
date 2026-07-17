@@ -9,6 +9,8 @@
 This statement explains the work YSWORKS can responsibly scope. The accepted
 launch portfolio and exclusions remain governed by
 [Master Specification section 3](../YSWORKS_MASTER_SPEC.md#3-services).
+Its constitutional basis is the Company Bible
+(*I.I.2–4; I.III.2; I.IV; I.XIII.3; I.XVII.20*).
 
 ## Core Capability
 

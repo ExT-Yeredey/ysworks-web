@@ -41,24 +41,32 @@ this specification. If two approved documents conflict and this specification
 does not explicitly settle the conflict, the matter remains an Open Decision.
 Implementation must use the less-exposing state until the conflict is resolved.
 
-The authority hierarchy is:
+The authority hierarchy, derived from the Company Bible (*I.XII.1*), is:
 
 1. An explicit Founder decision governs company direction and resolves an
    otherwise unresolved documentation conflict. It must be recorded in the
    appropriate specification or decision record before implementation.
-2. An accepted ADR overrides descriptive prose for the decision and scope that
-   the ADR governs. It does not override an unrelated domain contract.
-3. The Company Bible governs constitutional company narrative.
-4. This Master Specification is the highest-level product, ecosystem,
+2. Applicable law and binding contracts prevail where relevant.
+3. An accepted ADR prevails over descriptive prose only for the explicit
+   technical decision and scope that the ADR governs. It does not override an
+   unrelated domain contract or company-wide constitutional authority.
+4. The Company Bible governs company-wide narrative and behaviour.
+5. This Master Specification is the highest-level product, ecosystem,
    vocabulary, and cross-system architecture specification.
-5. The Founder Handbook governs company behaviour.
-6. Detailed security, public-platform, portal, company, business, and repository
+6. The Founder Handbook governs company behaviour.
+7. The Operating Manual governs company operations when an approved version is
+   present.
+8. Detailed security, public-platform, portal, company, business, and repository
    documents remain authoritative inside their stated domains and may impose
    stricter constraints.
+9. Brand, user-experience, design-system, and motion documents govern their
+   stated subordinate scopes.
+10. Implementation documentation governs only its stated implementation scope.
 
 No lower-level document, implementation choice, dependency, or design proposal
 silently creates an ecosystem decision. Genuine conflicts remain Open Decisions
-unless the Founder or an accepted ADR resolves them.
+unless the Founder resolves them or an accepted ADR resolves the matter inside
+its explicit technical scope.
 
 System names in this document define product categories and policy boundaries.
 They are not confirmation of deployment, topology, inventory, addresses, ports,
@@ -68,22 +76,22 @@ credentials, vendors beyond approved decisions, or production readiness.
 
 ### 1.1 Mission
 
-The official mission is defined in
-[Company Bible section 03](COMPANY_BIBLE.md#03-mission). In architecture, it
+The official mission is defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.I.2; I.II.1*). In architecture, it
 requires every system to serve a defined organisational outcome, retain
 accountable ownership, and remain supportable within its approved boundary.
 
 ### 1.2 Vision
 
-The official long-term vision is defined in
-[Company Bible section 04](COMPANY_BIBLE.md#04-vision). Ecosystem growth must
+The official long-term vision is defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.II.2–3*). Ecosystem growth must
 not weaken quality, security, maintainability, accessibility, public honesty, or
 human accountability.
 
 ### 1.3 Core Principles
 
-The constitutional values and foundational principles are defined in
-[Company Bible sections 09 and 10](COMPANY_BIBLE.md#09-company-values).
+The constitutional values and foundational principles are defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.III*).
 Architecture applies them through explicit ownership, minimum exposure,
 evidence-based decisions, accessible and maintainable systems, documented
 boundaries, and accountable human control.
@@ -180,16 +188,18 @@ may be added only with Cloudflare Turnstile, a honeypot, server-side validation,
 rate limiting, minimal collection, privacy notice, generic responses, and no
 private routing disclosure.
 
-### 2.3 Client Portal
+### 2.3 Client Workspace
 
-The Client Portal is a future authenticated product at `portal.ysworks.dev` with
-target exposure class `PRIVATE`. It gives each client an authorized, sanitized
-view of its projects, progress, deliverables, approvals, documents, meetings,
-support, and future billing information.
+The Client Workspace is the future authenticated client-facing product at
+`portal.ysworks.dev`, with target exposure class `PRIVATE`. “Client Portal” is
+the technical architecture and security term for its authenticated delivery
+boundary. The Workspace gives each client an authorised, sanitised view of its
+projects, progress, deliverables, approvals, documents, meetings, support, and
+future billing information.
 
-The portal is not an administration panel, source-system browser, workflow
-editor, file-system browser, or real-time view into private operations. It
-remains nonexistent until the gates in the
+The Client Workspace is not an administration panel, source-system browser,
+workflow editor, file-system browser, or real-time view into private
+operations. It remains nonexistent until the gates in the
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) are met.
 
 ### 2.4 YS AI OS
@@ -198,11 +208,13 @@ YS AI OS is the private internal operating and intelligence platform of
 YSWORKS. Its purpose is to support internal quality, reasoning, documentation,
 coordination, and delivery.
 
-YS AI OS is never a public website feature, portfolio item, client portal
+YS AI OS is never a public website feature, portfolio item, Client Workspace
 surface, or implied client entitlement. Its architecture, prompts, agents,
-tools, models, workflows, state, security design, business logic, and roadmap
-remain private. Public communication may describe approved outcomes or general
-AI-assisted engineering practices without naming internal mechanisms.
+tools, models, workflows, topology, telemetry, internal records, state, security
+design, business logic, and roadmap remain private. It has no public logo or
+independent public brand. Public communication may describe approved outcomes
+or general AI-assisted engineering practices without naming internal
+mechanisms.
 
 ### 2.5 Automation Platform
 
@@ -251,7 +263,7 @@ material, source inventories, contracts, internal commercial information, and
 restricted technical details.
 
 Internal Documentation is not stored in the public website repository and is
-not exposed through the Public Website, Client Portal, public documentation,
+not exposed through the Public Website, Client Workspace, public documentation,
 status surfaces, or public search. An approved public summary must be rewritten
 for its audience; internal material is never published by simple redaction or
 pass-through.
@@ -261,9 +273,9 @@ pass-through.
 - The Public Website may publish approved descriptions of services, public
   products, and company principles. It has no direct connection to private
   platforms.
-- The Client Portal consumes purpose-built server-side projections from approved
-  private sources. It never exposes or queries those sources directly from the
-  browser.
+- The Client Workspace consumes purpose-built server-side projections through
+  the Client Portal technical boundary. It never exposes or queries approved
+  private sources directly from the browser.
 - YS AI OS may support internal work but does not control portal authorization,
   act as public proof, or appear in client-facing interfaces.
 - The Automation Platform may process normalized events and produce approved
@@ -975,7 +987,7 @@ contact path, privacy foundation, accessibility, performance, SEO, and approved
 public proof. Add forms, analytics, journal, labs, portfolio, or public products
 only after their separate readiness conditions are met.
 
-### 10.2 Client Portal
+### 10.2 Client Workspace
 
 Progress through foundation, synthetic static prototype, authentication,
 read-only projection, approvals, documents, future billing, and production
@@ -1242,8 +1254,9 @@ their referenced documents. `Accepted` means the direction is official;
   ecosystem: white Y, YSWORKS Purple W, primary lockup with the YSWORKS
   wordmark, and monogram-only use for compact product marks. YS AI OS remains in
   the same visual family without becoming a public product.
-- **Reason:** One scalable identity connects the Public Website, Client Portal,
-  internal products, and future surfaces without fragmenting the company brand.
+- **Reason:** One scalable identity connects the Public Website, Client
+  Workspace, private internal systems, and future surfaces without fragmenting
+  the company brand.
 - **Alternatives rejected:** The former YS compact mark, unrelated product
   brands, direct use of a generated raster as a production logo, and improvised
   vector geometry without review.
@@ -1263,16 +1276,13 @@ each decision is approved.
    current repository coding standards, but no accepted ADR makes it the
    long-term Public Website or ecosystem standard. It remains a current
    repository constraint while its official scope is open.
-2. **Client-facing product name:** The Company Bible uses “Client Workspace” for
-   the conceptual executive-first experience. The current detailed architecture
-   uses “Client Portal” and `portal.ysworks.dev`. No implementation may assume a
-   public rename until the Founder approves the final product name and the
-   affected contracts are updated.
 
 ADR-M015 and the supporting Business Foundation now consistently prohibit case
 placeholders. ADR-M001 and the Company Bible consistently define YSWORKS as a
 technology engineering company. ADR-M004 settles the animation-library
-decision. Those matters are no longer documentation conflicts.
+decision. “Client Workspace” is the client-facing product name, while “Client
+Portal” remains the technical architecture and security term. Those matters are
+no longer documentation conflicts.
 
 ### 12.2 Company And Commercial
 
@@ -1420,8 +1430,9 @@ bypass.
 
 ### Portal
 
-The future authenticated Client Portal that presents tenant-isolated, sanitized
-project information. It is not an infrastructure or workflow administration
+The technical architecture and security term for the authenticated delivery
+boundary of the Client Workspace. It presents tenant-isolated, sanitised
+project information and is not an infrastructure or workflow administration
 interface.
 
 ### Product
@@ -1472,9 +1483,10 @@ definitions remain internal.
 
 ### Workspace
 
-A named collaboration or knowledge context for an approved audience. A
-Workspace may organize people and material, but it is never an authorization
-control by itself and must not be confused with a portal Tenant.
+The client-facing product name for the future authenticated YSWORKS experience.
+Within that product, a Workspace may organise people and material, but it is
+never an authorisation control by itself and must not be confused with a portal
+Tenant.
 
 ### YS AI OS
 

@@ -5,8 +5,9 @@
 
 ## Authority
 
-The [Company Bible](../docs/COMPANY_BIBLE.md) defines design, motion, user
-experience, and brand philosophy. The
+The [Company Bible](../docs/COMPANY_BIBLE.md) defines company personality and
+the governing design, motion, and user-experience philosophy
+(*I.VIII; I.XIV–XV*). The
 [Approved Design Authorities](../docs/design/README.md) map the Founder-approved
 Brand Book, UX Foundation, Design System, and Design Tokens to their canonical
 sources.

@@ -19,8 +19,9 @@ service capability. The
 [Master Specification](../YSWORKS_MASTER_SPEC.md) governs ecosystem
 architecture and accepted decisions.
 
-YSWORKS is a technology engineering company. “Engineering studio” is a legacy
-descriptor and is not the official company category.
+The official company definition and category are stated only in the Company
+Bible (*I.I.1*). “Engineering studio” remains a legacy descriptor rather than a
+replacement category.
 
 ## Maintenance Rule
 

@@ -11,34 +11,38 @@ client information, internal workflows, or restricted operational material.
 
 ## Authority Map
 
-1. [Company Bible](COMPANY_BIBLE.md) defines company identity, purpose,
-   philosophy, principles, and long-term narrative.
-2. [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) defines product,
+1. Explicit Founder decisions are the highest internal authority.
+2. Applicable law and binding contracts prevail where relevant.
+3. Accepted ADRs prevail only within their explicit technical scope.
+4. [Company Bible](COMPANY_BIBLE.md) is the highest company-wide narrative and
+   behavioural constitution.
+5. [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) defines product,
    ecosystem, vocabulary, accepted decisions, and cross-system architecture.
-3. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behavior, judgment,
+6. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behaviour, judgement,
    delivery discipline, and human–AI collaboration.
-4. [Company Documentation](company/README.md) applies those authorities to
-   company, commercial, delivery, support, and quality standards.
-5. [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
+7. Detailed domain foundations and policies remain authoritative within their
+   stated scope. In particular:
+   - [Company Documentation](company/README.md) applies company authority to
+     commercial, delivery, support, and quality standards.
+   - [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
    governs public exposure and public-platform security.
-6. [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
-   client-facing portal architecture and tenant isolation.
-7. [Public Platform Architecture Index](architecture/README.md) defines the
+   - [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md)
+     governs the technical architecture and tenant isolation of the
+     client-facing Client Workspace.
+8. [Public Platform Architecture Index](architecture/README.md) defines the
    publication boundary for architecture contracts.
-8. [Business Foundation](business/README.md) supports public positioning,
+9. [Business Foundation](business/README.md) supports public positioning,
    services, content, and commercial policy.
-9. [Approved Design Authorities](design/README.md), including YSWORKS Design
+10. [Approved Design Authorities](design/README.md), including YSWORKS Design
    Tokens v1.0, govern brand, experience, and interface decisions.
-10. The repository [production design-system contracts](../design-system/README.md)
+11. The repository [production design-system contracts](../design-system/README.md)
    govern consistent implementation of those approved design decisions.
-11. The repository [engineering knowledge base](../.ai/README.md) governs the
+12. The repository [engineering knowledge base](../.ai/README.md) governs the
    public website implementation within its scope.
 
-Explicit Founder decisions remain highest. Accepted ADRs govern their stated
-decisions. The Company Bible is the constitutional narrative, the Master
-Specification is the highest architecture specification, and the Founder
-Handbook is the highest human operating handbook. Detailed domain contracts may
-add stricter requirements.
+The constitutional hierarchy is governed by the
+[Company Bible, Volume I, Book XII, Article 1](COMPANY_BIBLE.md). No document
+silently resolves a conflict; genuine conflicts must be reported and governed.
 
 ## Reading Order
 

@@ -7,15 +7,18 @@
 
 ## Authority
 
-The [Company Bible](../COMPANY_BIBLE.md) defines company identity, purpose,
-philosophy, and enduring principles. The
+The [Company Bible](../COMPANY_BIBLE.md) is the company-wide narrative and
+behavioural constitution. These documents cite it using constitutional
+references in the form *I.Book.Article*. Its authority hierarchy is defined at
+*I.XII.1*. The
 [Master Specification](../YSWORKS_MASTER_SPEC.md) governs ecosystem architecture
 and accepted cross-system decisions. The
 [Founder Handbook](../FOUNDER_HANDBOOK.md) governs behaviour.
 
 Documents in this folder apply those authorities to repeatable company work.
-They do not override accepted ADRs, detailed security or portal contracts,
-contracts, applicable law, or explicit Founder decisions.
+They do not override explicit Founder decisions, applicable law, binding
+contracts, accepted ADRs within their technical scope, or stricter detailed
+domain contracts. Conflicts are reported rather than silently resolved.
 
 ## Index
 

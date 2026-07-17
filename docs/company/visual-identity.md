@@ -10,6 +10,8 @@ This document defines the safe use and future construction requirements of the
 YSWORKS identity. It references, and does not duplicate, the
 [Brand Book](brand-book.md), [Design Tokens](../design/YSWORKS_DESIGN_TOKENS_V1.md),
 and [Production Design System](../../design-system/README.md).
+Its constitutional basis is the
+[Company Bible](../COMPANY_BIBLE.md) (*I.VII.2; I.VIII.2; I.XV.2*).
 
 ## Official Direction
 

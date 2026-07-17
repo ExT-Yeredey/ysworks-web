@@ -8,7 +8,7 @@
 
 This process turns an agreed outcome into verified, documented, and
 maintainable delivery. It applies the
-[Company Bible client lifecycle](../COMPANY_BIBLE.md#22-client-experience) and
+[Company Bible](../COMPANY_BIBLE.md) (*I.IV.1–6; I.IX.2; I.XIII.3*) and
 the [Founder Handbook engineering lifecycle](../FOUNDER_HANDBOOK.md#9-engineering-lifecycle).
 
 ## 1. Confirm Understanding

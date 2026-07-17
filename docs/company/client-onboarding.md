@@ -7,9 +7,10 @@
 ## Purpose
 
 Onboarding turns an approved commercial decision into a safe, understandable,
-and operable engagement. It follows the client lifecycle in the
-[Company Bible](../COMPANY_BIBLE.md#22-client-experience) and does not replace a
-contract, privacy notice, security procedure, or project plan.
+and operable engagement. It applies the
+[Company Bible](../COMPANY_BIBLE.md) (*I.III.2,6; I.V.2; I.VI.2–3; I.XV.3*)
+and does not replace a contract, privacy notice, security procedure, or project
+plan.
 
 ## Entry Conditions
 

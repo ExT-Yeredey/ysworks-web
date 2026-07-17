@@ -9,6 +9,8 @@
 Quality is demonstrated fitness for the approved purpose and operating
 conditions. It is not visual polish, automated-check success, or the absence of
 reported defects.
+The constitutional basis is the
+[Company Bible](../COMPANY_BIBLE.md) (*I.III.1; I.IX.1–3; I.XIV.3–4*).
 
 ## Quality Principles
 

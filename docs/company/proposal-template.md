@@ -10,6 +10,8 @@ Complete every applicable section for one prospective engagement. Remove
 inapplicable guidance before issue. Do not invent proof, capability, timing, or
 commercial terms. A proposal is not an authorisation to start work until the
 required agreement, approval, and payment conditions are satisfied.
+This template applies the [Company Bible](../COMPANY_BIBLE.md)
+(*I.III.2; I.IV.1–2,6; I.VIII.2; I.IX.2*).
 
 ## 1. Document Control
 

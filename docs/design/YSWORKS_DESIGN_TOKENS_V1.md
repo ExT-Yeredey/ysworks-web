@@ -7,8 +7,8 @@
 ## 1. Purpose
 
 This contract is the permanent color-token foundation for the Public Website,
-Client Portal, YS AI OS, internal dashboards, mobile applications, future SaaS
-products, documentation, PDFs, and presentations. Products consume these
+Client Workspace, YS AI OS, internal dashboards, mobile applications, future
+SaaS products, documentation, PDFs, and presentations. Products consume these
 primitives through semantic aliases appropriate to their medium; they do not
 create competing brand palettes.
 

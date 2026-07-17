@@ -8,7 +8,7 @@
 
 Communication must improve understanding, preserve trust, and leave an
 appropriate record. This policy applies the voice and writing principles in the
-[Company Bible](../COMPANY_BIBLE.md) to company work.
+[Company Bible](../COMPANY_BIBLE.md) (*I.VIII.1–3; I.XV.2–3*) to company work.
 
 ## Principles
 

@@ -13,6 +13,8 @@ or standard rate through this repository.
 This template is not accounting, tax, or legal advice. Final quotation terms
 require review for the contracting entity, jurisdiction, currency, taxes, and
 client.
+It applies the [Company Bible](../COMPANY_BIBLE.md)
+(*I.VIII.2; I.XV.2–3*) without creating public prices or commercial authority.
 
 ## 1. Document Control
 

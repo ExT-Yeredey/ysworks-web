@@ -13,9 +13,11 @@ repeat decisions settled by the Founder or accepted ADRs.
 | Decision | Required resolution |
 | --- | --- |
 | Production privacy notice | Final controller, jurisdiction, lawful basis, rights, retention, processor, and contact text before collecting personal data |
+| Legal and contracting basis | Final legal entity, governing jurisdictions, contract forms, and professional legal review |
+| Commercial terms | Deposit, staged payment, refund, cancellation, urgent-work, and recurring-service rules |
+| Service levels | Whether any response, resolution, availability, recovery, or support commitment is offered and under which agreement |
 | Logo asset set | Founder-approved vector construction, optical testing, lock-ups, clear space, favicon, application icon, social assets, exports, and source-master governance |
 | Contact form | Runtime, privacy, Turnstile, server validation, abuse controls, retention, and safe routing before any real form exists |
-| Client Workspace name | Whether “Client Workspace” becomes the final product name or remains the Company Bible concept while “Client Portal” remains the architecture term |
 
 ## Open But Not Blocking The Current Public Website
 
@@ -42,6 +44,8 @@ The following are no longer open:
 - Anime.js is the only permitted JavaScript animation library for the Public
   Website.
 - YS AI OS remains private and has no independent public commercial identity.
+- “Client Workspace” is the client-facing product name. “Client Portal” is the
+  technical architecture and security term.
 
 ## Rule
 

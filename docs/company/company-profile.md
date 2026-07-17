@@ -8,27 +8,19 @@
 
 This profile provides a concise, public-safe description of YSWORKS. The
 [Company Bible](../COMPANY_BIBLE.md) remains the constitutional narrative and
-must be used when greater context is required.
+must be used when greater context is required (*I.I.1–5; I.II.1–3; I.III.6*).
 
 ## Company
 
-YSWORKS is a technology engineering company. It designs, builds, secures,
-documents, and maintains useful digital systems for organisations that need
-clearer operations and dependable technical foundations.
-
-The company works across software, web engineering, automation, controlled AI
-systems, practical cybersecurity, infrastructure, professional hardware,
-integration, consulting, and continuing maintenance.
+The constitutional company definition, product, purpose, and slogan are
+governed by the Company Bible (*I.I.1–5*). This profile applies that definition
+to public-safe capability and delivery information.
 
 ## Working Principle
 
-Every engagement begins with understanding the business need. Technology is
-selected only after the intended outcome, users, constraints, risk, ownership,
-and evidence are understood.
-
-The company applies the
-[central operating principle](../COMPANY_BIBLE.md#07-central-operating-principle)
-to every engagement.
+The governing principle for every engagement is defined by the Company Bible
+(*I.III.6*). Delivery must preserve that principle without restating or
+weakening it.
 
 ## Delivery Model
 

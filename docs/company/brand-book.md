@@ -11,7 +11,8 @@ constitutional narrative to the approved brand authorities and defines how
 brand decisions are governed.
 
 Company identity, personality, voice, writing, design, and motion begin in the
-[Company Bible](../COMPANY_BIBLE.md). Detailed public positioning remains in
+[Company Bible](../COMPANY_BIBLE.md) (*I.I.1–5; I.VIII; I.XIV–XV*). Detailed
+public positioning remains in
 [Brand Positioning](../business/BRAND_POSITIONING.md). The canonical approved
 brand source is [Brand Kit V1](../../.ai/brand-kit-v1.md), as mapped by the
 [Approved Design Authorities](../design/README.md).
@@ -20,8 +21,7 @@ brand source is [Brand Kit V1](../../.ai/brand-kit-v1.md), as mapped by the
 
 - Company category: technology engineering company.
 - Brand idea: Quiet Engineering.
-- Official slogan: governed by
-  [Company Bible section 08](../COMPANY_BIBLE.md#08-official-slogan).
+- Official slogan: governed by the Company Bible (*I.I.5*).
 - Character: calm, precise, independent, technical, trustworthy, and premium
   through restraint.
 - Communication: professional, honest, direct, specific, and free of hype.
@@ -38,7 +38,9 @@ The official identity direction is the geometric YW monogram:
 - monogram-only use for compact approved applications; and
 - one related visual family across YSWORKS products.
 
-YS AI OS has no independent public brand or commercial identity.
+YS AI OS is private internal infrastructure. It has no public logo, independent
+public brand, or commercial identity, and its topology, prompts, agents,
+telemetry, and internal records remain private (*I.VII.2*).
 
 The generated raster reference is not a production asset. Final vectors,
 lock-ups, clear-space rules, optical adjustments, favicon, app icon, social

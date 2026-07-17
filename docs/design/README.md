@@ -24,8 +24,9 @@ the approved version recorded here.
 
 ## Precedence
 
-The [Company Bible](../COMPANY_BIBLE.md) governs brand philosophy and company
-personality. The Founder-provided Brand Kit remains authoritative for identity
+The [Company Bible](../COMPANY_BIBLE.md) governs company personality, voice,
+design, motion, and experience philosophy (*I.VIII; I.XIV–XV*). The
+Founder-provided Brand Kit remains authoritative for identity
 direction; the Company Brand Book is its governed company-documentation entry
 point. Branding and Brand Positioning provide supporting context but may not
 weaken it.
@@ -50,11 +51,13 @@ accepted ADR-M004 governs the Public Website animation-library decision.
 
 ## Product separation
 
-The Public Website, Client Portal, and YS AI OS are separate products sharing a
-governed visual family:
+The Public Website, Client Workspace, and YS AI OS are separate systems sharing
+a governed visual family:
 
 - the Public Website is anonymous, editorial, and conversion-oriented;
-- the Client Portal is a future authenticated, tenant-isolated product;
+- the Client Workspace is the future authenticated, tenant-isolated
+  client-facing product; its technical architecture and security boundary is
+  named Client Portal; and
 - YS AI OS is a private operating system and never a public interface.
 
 Shared tokens and brand principles do not permit shared authentication,

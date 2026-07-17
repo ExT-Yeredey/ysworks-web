@@ -20,11 +20,13 @@ client-facing portal architecture. The
 [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
 and its referenced security contracts remain authoritative for security.
 
-An accepted ADR governs the decision in its stated scope. A detailed domain
-contract may impose stricter requirements than this handbook. An explicit
-Founder decision resolves an otherwise unresolved documentation conflict and
-must be recorded before implementation. Until a conflict is resolved, use the
-more conservative, less-exposing behavior.
+The authority hierarchy is governed by the Company Bible (*I.XII.1*): explicit
+Founder decisions are the highest internal authority; applicable law and
+binding contracts prevail where relevant; and an accepted ADR prevails only
+within its explicit technical scope. A detailed domain contract may impose
+stricter requirements within its scope. Conflicts must be reported rather than
+silently resolved. Until resolution, use the more conservative, less-exposing
+behaviour.
 
 This handbook is public-safe. It does not disclose internal workflows, private
 platform design, credentials, client information, commercial internals, or
@@ -51,8 +53,8 @@ advice.
 
 ## 2. Vision
 
-The official vision is defined in
-[Company Bible section 04](COMPANY_BIBLE.md#04-vision). This
+The official vision is defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.II.2–3*). This
 handbook does not restate it.
 
 Operationally, the vision requires YSWORKS to prefer durable trust over visible
@@ -63,8 +65,8 @@ the vision.
 
 ## 3. Mission
 
-The official mission is defined in
-[Company Bible section 03](COMPANY_BIBLE.md#03-mission). This
+The official mission is defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.I.2; I.II.1*). This
 handbook translates it into conduct:
 
 - understand the real problem before selecting a solution;
@@ -76,8 +78,8 @@ handbook translates it into conduct:
 
 ## 4. Core Values
 
-The official company principles are defined in
-[Company Bible sections 09 and 10](COMPANY_BIBLE.md#09-company-values).
+The official company principles are defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.III*).
 They are applied through the following behaviors:
 
 - **Truth:** distinguish facts, assumptions, forecasts, and unknowns.

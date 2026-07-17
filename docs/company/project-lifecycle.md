@@ -9,6 +9,8 @@
 The lifecycle makes state, ownership, evidence, and transition conditions
 explicit. It does not prescribe a single project-management tool or delivery
 method.
+It applies the [Company Bible](../COMPANY_BIBLE.md)
+(*I.III.6; I.IX.2; I.XVI*).
 
 ## Lifecycle States
 

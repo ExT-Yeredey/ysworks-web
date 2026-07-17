@@ -9,6 +9,8 @@
 Support provides a clear, safe route for questions, incidents, defects, and
 service requests. It does not create hidden availability, unrestricted access,
 or responsibility outside the agreement.
+The constitutional basis is the
+[Company Bible](../COMPANY_BIBLE.md) (*I.VI.2; I.VIII.1–3; I.XV.1–3*).
 
 ## Support Boundary
 

@@ -9,6 +9,8 @@
 Maintenance keeps an agreed system secure, current, understandable, supported,
 or improving within explicit boundaries. It is not an implied warranty,
 unlimited support, or a substitute for client ownership.
+The constitutional basis is the
+[Company Bible](../COMPANY_BIBLE.md) (*I.III.5–6; I.IV.5; I.XVI.1–3*).
 
 ## Principles
 

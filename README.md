@@ -6,9 +6,11 @@ YSWORKS is a technology engineering company focused on useful, secure,
 maintainable digital systems. AI is one applied capability among software,
 automation, systems, hardware, and security; it is not the company's public
 identity. This repository contains the Public Website and a non-indexed,
-inactive visual foundation for the future Client Portal. It does not contain
-authentication, client data, backend access, private systems, prompts,
-infrastructure, or proprietary implementation details.
+inactive visual foundation for the future Client Workspace. “Client Portal” is
+reserved for that product's technical architecture and security boundary. This
+repository does not contain authentication, client data, backend access,
+private systems, prompts, infrastructure, or proprietary implementation
+details.
 
 ## Project Overview
 
@@ -68,10 +70,11 @@ design-system/ Production UI standards and implementation contracts
 
 Start with the [documentation index](docs/README.md).
 
-The [Company Bible](docs/COMPANY_BIBLE.md) is the highest-level constitutional
-narrative. The [company documentation](docs/company/README.md) applies it to
-profile, capability, brand, onboarding, proposals, quotations, maintenance,
-support, delivery, communication, lifecycle, and quality.
+The [Company Bible](docs/COMPANY_BIBLE.md) is the company-wide narrative and
+behavioural constitution. The
+[company documentation](docs/company/README.md) applies it to profile,
+capability, brand, onboarding, proposals, quotations, maintenance, support,
+delivery, communication, lifecycle, and quality.
 
 Supporting business and website strategy lives in
 [docs/business](docs/business/README.md).
