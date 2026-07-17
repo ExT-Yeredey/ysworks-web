@@ -5,101 +5,251 @@ interface Props extends HTMLAttributes<"button"> {
 	lightLabel?: string;
 	darkLabel?: string;
 	systemLabel?: string;
+	lightOptionLabel?: string;
+	darkOptionLabel?: string;
+	systemOptionLabel?: string;
+	menuLabel?: string;
+	menuId?: string;
+	mobile?: boolean;
 }
 
 const {
 	lightLabel = "Use light theme",
 	darkLabel = "Use dark theme",
 	systemLabel = "Use system theme",
+	lightOptionLabel = "Light",
+	darkOptionLabel = "Dark",
+	systemOptionLabel = "System",
+	menuLabel = "Theme",
+	menuId = "theme-menu",
+	mobile = false,
 	class: className,
 	...attrs
 } = Astro.props;
-const classes = ["theme-toggle", className].filter(Boolean).join(" ");
+const classes = ["theme-selector__invoker", className]
+	.filter(Boolean)
+	.join(" ");
 ---
 
-<ys-theme-toggle
+<ys-theme-selector
+	class:list={["theme-selector", { "theme-selector--mobile": mobile }]}
 	data-light-label={lightLabel}
 	data-dark-label={darkLabel}
 	data-system-label={systemLabel}
 >
-	<button class={classes} type="button" aria-label={lightLabel} {...attrs}>
-		<svg class="theme-toggle__sun" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
-			<circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor"></circle>
-			<path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M13 3l-1.4 1.4M4.4 11.6 3 13" stroke="currentColor" stroke-linecap="round"></path>
-		</svg>
-		<svg class="theme-toggle__moon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
-			<path d="M13.5 10.3A5.8 5.8 0 0 1 5.7 2.5 5.8 5.8 0 1 0 13.5 10.3Z" fill="none" stroke="currentColor" stroke-linejoin="round"></path>
-		</svg>
-		<svg class="theme-toggle__system" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
-			<rect x="1.5" y="2.5" width="13" height="9" rx="1.5" fill="none" stroke="currentColor"></rect>
-			<path d="M5.5 14h5M8 11.5V14" fill="none" stroke="currentColor" stroke-linecap="round"></path>
-		</svg>
+	<button
+		class={classes}
+		type="button"
+		aria-label={menuLabel}
+		aria-haspopup="menu"
+		aria-expanded="false"
+		aria-controls={menuId}
+		data-theme-invoker
+		{...attrs}
+	>
+		<span class="theme-selector__icons" aria-hidden="true">
+			<svg class="theme-selector__sun" viewBox="0 0 16 16" width="16" height="16">
+				<circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor"></circle>
+				<path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M13 3l-1.4 1.4M4.4 11.6 3 13" stroke="currentColor" stroke-linecap="round"></path>
+			</svg>
+			<svg class="theme-selector__moon" viewBox="0 0 16 16" width="16" height="16">
+				<path d="M13.5 10.3A5.8 5.8 0 0 1 5.7 2.5 5.8 5.8 0 1 0 13.5 10.3Z" fill="none" stroke="currentColor" stroke-linejoin="round"></path>
+			</svg>
+			<svg class="theme-selector__system" viewBox="0 0 16 16" width="16" height="16">
+				<rect x="1.5" y="2.5" width="13" height="9" rx="1.5" fill="none" stroke="currentColor"></rect>
+				<path d="M5.5 14h5M8 11.5V14" fill="none" stroke="currentColor" stroke-linecap="round"></path>
+			</svg>
+		</span>
+		<span class="theme-selector__mobile-label">{menuLabel}</span>
 	</button>
-</ys-theme-toggle>
+	<div class="theme-selector__menu" id={menuId} role="menu" aria-label={menuLabel} hidden data-theme-menu>
+		<button type="button" role="menuitemradio" data-theme-option="system">
+			<span>{systemOptionLabel}</span><span class="theme-selector__check" aria-hidden="true">✓</span>
+		</button>
+		<button type="button" role="menuitemradio" data-theme-option="dark">
+			<span>{darkOptionLabel}</span><span class="theme-selector__check" aria-hidden="true">✓</span>
+		</button>
+		<button type="button" role="menuitemradio" data-theme-option="light">
+			<span>{lightOptionLabel}</span><span class="theme-selector__check" aria-hidden="true">✓</span>
+		</button>
+	</div>
+</ys-theme-selector>
 
 <script>
+	import { animate } from "animejs";
+	import {
+		motion,
+		prefersReducedMotion,
+		registerOpenLayer,
+		unregisterOpenLayer,
+	} from "../../lib/motion";
+
 	type Theme = "dark" | "light";
 	type ThemePreference = Theme | "system";
 
-	class YsThemeToggle extends HTMLElement {
+	class YsThemeSelector extends HTMLElement {
+		private controller?: AbortController;
+		private menu?: HTMLElement;
+		private themeTimer = 0;
+
 		connectedCallback() {
-			const button = this.querySelector<HTMLButtonElement>("button");
-			if (!button) return;
-			const lightLabel = this.dataset.lightLabel ?? "Use light theme";
-			const darkLabel = this.dataset.darkLabel ?? "Use dark theme";
-			const systemLabel = this.dataset.systemLabel ?? "Use system theme";
+			this.controller?.abort();
+			this.controller = new AbortController();
+			const { signal } = this.controller;
+			const invoker = this.querySelector<HTMLButtonElement>("[data-theme-invoker]");
+			const menu = this.querySelector<HTMLElement>("[data-theme-menu]");
+			const options = Array.from(this.querySelectorAll<HTMLButtonElement>("[data-theme-option]"));
+			if (!invoker || !menu || options.length === 0) return;
+			this.menu = menu;
+
 			const media = window.matchMedia("(prefers-color-scheme: light)");
+			let menuAnimation: ReturnType<typeof animate> | undefined;
 			const currentPreference = (): ThemePreference => {
 				const value = document.documentElement.dataset.themePreference;
 				return value === "light" || value === "dark" ? value : "system";
 			};
-			const nextPreference = (): ThemePreference => {
-				const current = currentPreference();
-				if (current === "system") return "light";
-				if (current === "light") return "dark";
-				return "system";
+			const resolvedTheme = (preference: ThemePreference): Theme =>
+				preference === "system" ? (media.matches ? "light" : "dark") : preference;
+
+			const sync = () => {
+				const preference = currentPreference();
+				const resolved = resolvedTheme(preference);
+				invoker.dataset.themePreference = preference;
+				invoker.dataset.resolvedTheme = resolved;
+				const activeLabel =
+					preference === "light"
+						? this.dataset.lightLabel
+						: preference === "dark"
+							? this.dataset.darkLabel
+							: this.dataset.systemLabel;
+				invoker.setAttribute("aria-label", activeLabel ?? "Theme");
+				for (const option of options) {
+					const selected = option.dataset.themeOption === preference;
+					option.setAttribute("aria-checked", selected ? "true" : "false");
+					option.tabIndex = selected ? 0 : -1;
+				}
 			};
+
 			const apply = (preference: ThemePreference) => {
-				const resolved: Theme = preference === "system" ? (media.matches ? "light" : "dark") : preference;
-				document.documentElement.dataset.themePreference = preference;
-				document.documentElement.dataset.theme = resolved;
+				const root = document.documentElement;
+				root.dataset.themeTransition = prefersReducedMotion() ? "false" : "true";
+				root.dataset.themePreference = preference;
+				root.dataset.theme = resolvedTheme(preference);
 				try {
 					localStorage.setItem("ysworks-theme", preference);
 				} catch {
-					// The selected theme still applies for the current document.
+					// The selected theme remains valid for this document when storage is blocked.
+				}
+				window.clearTimeout(this.themeTimer);
+				this.themeTimer = window.setTimeout(() => delete root.dataset.themeTransition, motion.duration.base);
+				document.dispatchEvent(new CustomEvent("ysworks-theme-change"));
+			};
+
+			const finishClose = (returnFocus: boolean) => {
+				menu.hidden = true;
+				menu.removeAttribute("style");
+				invoker.setAttribute("aria-expanded", "false");
+				unregisterOpenLayer(menu);
+				if (returnFocus) invoker.focus();
+			};
+
+			const close = (returnFocus = true) => {
+				if (menu.hidden) return;
+				menuAnimation?.cancel();
+				if (prefersReducedMotion()) {
+					finishClose(returnFocus);
+					return;
+				}
+				menuAnimation = animate(menu, {
+					opacity: 0,
+					scale: 0.98,
+					duration: motion.interaction.themeClose,
+					ease: motion.ease.inQuad,
+					onComplete: () => finishClose(returnFocus),
+				});
+			};
+
+			const open = (focusMenu = false) => {
+				if (!menu.hidden) return;
+				menu.hidden = false;
+				invoker.setAttribute("aria-expanded", "true");
+				registerOpenLayer(menu, () => close(true));
+				menuAnimation?.cancel();
+				if (!prefersReducedMotion()) {
+					menuAnimation = animate(menu, {
+						opacity: [0, 1],
+						scale: [0.96, 1],
+						duration: motion.interaction.themeOpen,
+						ease: motion.ease.outQuart,
+					});
+				}
+				if (focusMenu) {
+					(options.find((option) => option.getAttribute("aria-checked") === "true") ?? options[0])?.focus();
 				}
 			};
-			const sync = () => {
-				const next = nextPreference();
-				const label = next === "light" ? lightLabel : next === "dark" ? darkLabel : systemLabel;
-				button.setAttribute("aria-label", label);
-				button.dataset.themePreference = currentPreference();
-			};
-			button.addEventListener("click", () => {
-				apply(nextPreference());
-				document.dispatchEvent(new CustomEvent("ysworks-theme-change"));
-			});
+
+			invoker.addEventListener("click", () => (menu.hidden ? open(false) : close(true)), { signal });
+			invoker.addEventListener("keydown", (event) => {
+				if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+				event.preventDefault();
+				open(true);
+			}, { signal });
+
+			menu.addEventListener("keydown", (event) => {
+				const current = options.indexOf(document.activeElement as HTMLButtonElement);
+				if (event.key === "Home" || event.key === "End") {
+					event.preventDefault();
+				options[event.key === "Home" ? 0 : options.length - 1]?.focus();
+					return;
+				}
+				if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+				event.preventDefault();
+				const direction = event.key === "ArrowDown" ? 1 : -1;
+				options[(current + direction + options.length) % options.length]?.focus();
+			}, { signal });
+
+			for (const option of options) {
+				option.addEventListener("click", () => {
+					const preference = option.dataset.themeOption as ThemePreference;
+					apply(preference);
+					close(true);
+				}, { signal });
+			}
+			this.addEventListener("ysworks-layer-close", () => close(false), { signal });
+
+			document.addEventListener("pointerdown", (event) => {
+				if (!menu.hidden && !this.contains(event.target as Node)) close(false);
+			}, { signal });
+			document.addEventListener("ysworks-theme-change", sync, { signal });
 			media.addEventListener("change", () => {
 				if (currentPreference() === "system") apply("system");
-			});
-			document.addEventListener("ysworks-theme-change", sync);
+			}, { signal });
 			sync();
+		}
+
+		disconnectedCallback() {
+			this.controller?.abort();
+			window.clearTimeout(this.themeTimer);
+			if (this.menu) unregisterOpenLayer(this.menu);
 		}
 	}
 
-	if (!customElements.get("ys-theme-toggle")) {
-		customElements.define("ys-theme-toggle", YsThemeToggle);
+	if (!customElements.get("ys-theme-selector")) {
+		customElements.define("ys-theme-selector", YsThemeSelector);
 	}
 </script>
 
 <style>
-	ys-theme-toggle {
+	.theme-selector {
+		position: relative;
 		display: inline-flex;
 	}
 
-	.theme-toggle {
-		display: inline-grid;
-		place-items: center;
+	.theme-selector__invoker {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-3);
 		width: 2.5rem;
 		height: 2.5rem;
 		border: 1px solid var(--color-border-subtle);
@@ -109,23 +259,114 @@ const classes = ["theme-toggle", className].filter(Boolean).join(" ");
 		cursor: pointer;
 	}
 
-	.theme-toggle:hover {
+	.theme-selector__invoker:hover,
+	.theme-selector__invoker[aria-expanded="true"] {
 		border-color: var(--color-border-strong);
 		color: var(--color-text-primary);
 	}
 
-	.theme-toggle__sun,
-	.theme-toggle__moon {
+	.theme-selector__icons {
+		position: relative;
+		display: grid;
+		place-items: center;
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.theme-selector__icons svg {
+		position: absolute;
+		grid-area: 1 / 1;
+		opacity: 0;
+		transform: scale(0.86);
+		transition:
+			opacity var(--motion-duration-fast) var(--motion-ease-in-out-quad),
+			transform var(--motion-duration-fast) var(--motion-ease-out-quart);
+	}
+
+	.theme-selector__invoker[data-theme-preference="system"] .theme-selector__system,
+	.theme-selector__invoker[data-theme-preference="light"] .theme-selector__sun,
+	.theme-selector__invoker[data-theme-preference="dark"] .theme-selector__moon {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.theme-selector__mobile-label {
 		display: none;
 	}
 
-	.theme-toggle[data-theme-preference="light"] .theme-toggle__sun,
-	.theme-toggle[data-theme-preference="dark"] .theme-toggle__moon {
-		display: block;
+	.theme-selector__menu {
+		position: absolute;
+		top: calc(100% + var(--space-2));
+		right: 0;
+		z-index: 80;
+		display: grid;
+		min-width: 10rem;
+		transform-origin: top right;
+		border: 1px solid var(--color-border-strong);
+		border-radius: var(--radius-8);
+		background: var(--color-bg-elevated);
+		box-shadow: var(--shadow-overlay);
+		padding: var(--space-1);
 	}
 
-	.theme-toggle[data-theme-preference="light"] .theme-toggle__system,
-	.theme-toggle[data-theme-preference="dark"] .theme-toggle__system {
+	.theme-selector__menu[hidden] {
 		display: none;
+	}
+
+	.theme-selector__menu button {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		min-height: 2.5rem;
+		border: 0;
+		border-radius: var(--radius-6);
+		background: transparent;
+		color: var(--color-text-secondary);
+		cursor: pointer;
+		font-size: var(--font-size-14);
+		padding-inline: var(--space-3);
+		text-align: left;
+	}
+
+	.theme-selector__menu button:hover,
+	.theme-selector__menu button:focus-visible,
+	.theme-selector__menu button[aria-checked="true"] {
+		background: var(--color-accent-soft);
+		color: var(--color-text-primary);
+	}
+
+	.theme-selector__check {
+		color: var(--color-accent-strong);
+		opacity: 0;
+	}
+
+	.theme-selector__menu button[aria-checked="true"] .theme-selector__check {
+		opacity: 1;
+	}
+
+	.theme-selector--mobile,
+	.theme-selector--mobile .theme-selector__invoker {
+		width: 100%;
+	}
+
+	.theme-selector--mobile .theme-selector__invoker {
+		justify-content: flex-start;
+		min-height: 3rem;
+		padding-inline: var(--space-3);
+	}
+
+	.theme-selector--mobile .theme-selector__mobile-label {
+		display: inline;
+	}
+
+	.theme-selector--mobile .theme-selector__menu {
+		top: calc(100% + var(--space-2));
+		left: 0;
+		width: 100%;
+	}
+
+	.theme-selector--mobile .theme-selector__menu button {
+		min-height: 3rem;
 	}
 </style>

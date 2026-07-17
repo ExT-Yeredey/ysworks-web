@@ -65,5 +65,6 @@ responsible for layout, focus, hover, and simple state presentation.
 ## Themes
 
 All components consume semantic tokens from `src/styles/theme.css` and support
-both `[data-theme="dark"]` and `[data-theme="light"]`. `ThemeToggle` persists a
-user choice locally; an application may provide its own approved theme control.
+both `[data-theme="dark"]` and `[data-theme="light"]`. `ThemeToggle` provides an
+accessible System/Dark/Light menu, stores the explicit preference locally, and
+resolves System against the operating-system preference with a dark fallback.

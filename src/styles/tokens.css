@@ -77,11 +77,24 @@
 	--shadow-subtle: 0 1px 2px rgb(0 0 0 / 0.18);
 	--shadow-overlay: 0 18px 60px rgb(0 0 0 / 0.32);
 
-	--motion-duration-fast: 120ms;
-	--motion-duration-base: 180ms;
-	--motion-duration-slow: 260ms;
-	--motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
-	--motion-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+	/* Motion Direction v1 — shared with src/lib/motion.ts. */
+	--motion-duration-fast: 150ms;
+	--motion-duration-base: 300ms;
+	--motion-duration-slow: 600ms;
+	--motion-duration-overture: 1000ms;
+	--motion-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--motion-ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	--motion-ease-in-quad: cubic-bezier(0.11, 0, 0.5, 0);
+	--motion-ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+	--motion-ease-standard: var(--motion-ease-in-out-quad);
+	--motion-ease-emphasized: var(--motion-ease-out-expo);
+	--motion-stagger-mobile: 40ms;
+	--motion-stagger-normal: 60ms;
+	--motion-stagger-emphasis: 80ms;
+	--motion-travel-1: 8px;
+	--motion-travel-2: 12px;
+	--motion-travel-3: 16px;
+	--motion-travel-max: 24px;
 
 	--container-sm: 42rem;
 	--container-md: 60rem;

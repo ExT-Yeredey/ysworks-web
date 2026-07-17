@@ -57,17 +57,28 @@ const classes = ["modal", `modal--${size}`, className]
 
 <script>
 	import { animate } from "animejs";
+	import {
+		motion,
+		prefersReducedMotion,
+		registerOpenLayer,
+		unregisterOpenLayer,
+	} from "../../lib/motion";
 
 	class YsModal extends HTMLElement {
+		private controller?: AbortController;
+		private dialog?: HTMLDialogElement;
+
 		connectedCallback() {
+			this.controller?.abort();
+			this.controller = new AbortController();
+			const { signal } = this.controller;
 			const dialog = this.querySelector<HTMLDialogElement>("dialog");
 			const surface = dialog?.querySelector<HTMLElement>(".modal__surface");
 			const id = this.dataset.modalId;
 			if (!dialog || !surface || !id) return;
+			this.dialog = dialog;
 			let previousFocus: HTMLElement | null = null;
 			let closing = false;
-			const reducedMotion = () =>
-				window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 			const finishClose = () => {
 				dialog.close();
@@ -75,22 +86,23 @@ const classes = ["modal", `modal--${size}`, className]
 				dialog.removeAttribute("style");
 				surface.removeAttribute("style");
 				previousFocus?.focus();
+				unregisterOpenLayer(dialog);
 			};
 
 			const close = () => {
 				if (!dialog.open || closing) return;
 				closing = true;
-				if (reducedMotion()) {
+				if (prefersReducedMotion()) {
 					finishClose();
 					return;
 				}
-				animate(dialog, { opacity: 0, duration: 140, ease: "in(2)" });
+				animate(dialog, { opacity: 0, duration: motion.duration.fast, ease: motion.ease.inQuad });
 				animate(surface, {
 					opacity: 0,
-					y: 8,
+					y: motion.travel.xs,
 					scale: 0.985,
-					duration: 170,
-					ease: "in(3)",
+					duration: motion.duration.base,
+					ease: motion.ease.inQuad,
 					onComplete: finishClose,
 				});
 			};
@@ -99,14 +111,15 @@ const classes = ["modal", `modal--${size}`, className]
 				if (dialog.open) return;
 				previousFocus = document.activeElement as HTMLElement;
 				dialog.showModal();
-				if (!reducedMotion()) {
-					animate(dialog, { opacity: [0, 1], duration: 180, ease: "out(2)" });
+				registerOpenLayer(dialog, close);
+				if (!prefersReducedMotion()) {
+					animate(dialog, { opacity: [0, 1], duration: motion.duration.base, ease: motion.ease.outQuart });
 					animate(surface, {
 						opacity: [0, 1],
-						y: [10, 0],
+						y: [motion.travel.sm, 0],
 						scale: [0.985, 1],
-						duration: 220,
-						ease: "out(4)",
+						duration: motion.duration.base,
+						ease: motion.ease.outQuart,
 					});
 				}
 			};
@@ -116,17 +129,22 @@ const classes = ["modal", `modal--${size}`, className]
 				if (!(target instanceof Element)) return;
 				const trigger = target.closest<HTMLElement>("[data-modal-open]");
 				if (trigger?.dataset.modalOpen === id) open();
-			});
+			}, { signal });
 			for (const control of dialog.querySelectorAll<HTMLElement>("[data-modal-close]")) {
-				control.addEventListener("click", close);
+				control.addEventListener("click", close, { signal });
 			}
 			dialog.addEventListener("cancel", (event) => {
 				event.preventDefault();
 				close();
-			});
+			}, { signal });
 			dialog.addEventListener("click", (event) => {
 				if (event.target === dialog) close();
-			});
+			}, { signal });
+		}
+
+		disconnectedCallback() {
+			this.controller?.abort();
+			if (this.dialog) unregisterOpenLayer(this.dialog);
 		}
 	}
 

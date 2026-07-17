@@ -23,7 +23,12 @@ const {
 const Heading = headingLevel;
 ---
 
-<Card class="service-card" interactive={Boolean(href)}>
+<Card
+	class="service-card"
+	interactive={Boolean(href)}
+	tabindex={href ? undefined : 0}
+	data-service-card
+>
 	<div class="service-card__icon" aria-hidden="true"><slot name="icon" /></div>
 	<div class="service-card__content">
 		{eyebrow && <MonoEyebrow>{eyebrow}</MonoEyebrow>}
@@ -39,6 +44,19 @@ const Heading = headingLevel;
 		align-content: start;
 		gap: var(--space-6);
 		height: 100%;
+	}
+
+	:global(.card.service-card:hover),
+	:global(.card.service-card:focus-visible),
+	:global(.card.service-card[data-active]) {
+		transform: translateY(-2px);
+		border-color: var(--color-border-strong);
+	}
+
+	:global(.card.service-card:hover .mono-eyebrow),
+	:global(.card.service-card:focus-visible .mono-eyebrow),
+	:global(.card.service-card[data-active] .mono-eyebrow) {
+		color: var(--color-accent-strong);
 	}
 
 	.service-card__icon {

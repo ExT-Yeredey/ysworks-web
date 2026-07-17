@@ -25,55 +25,96 @@ const classes = ["copy-button", className].filter(Boolean).join(" ");
 	data-copied-label={copiedLabel}
 	data-error-label={errorLabel}
 >
-	<button class={classes} type="button" {...attrs}>
-		<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16">
+	<button class={classes} type="button" aria-label={label} {...attrs}>
+		<span class="copy-button__icons" aria-hidden="true">
+		<svg class="copy-button__copy-icon" viewBox="0 0 16 16" width="16" height="16">
 			<rect x="5" y="5" width="8" height="8" rx="1" fill="none" stroke="currentColor"></rect>
 			<path d="M3 11H2.5A1.5 1.5 0 0 1 1 9.5v-7A1.5 1.5 0 0 1 2.5 1h7A1.5 1.5 0 0 1 11 2.5V3" fill="none" stroke="currentColor"></path>
 		</svg>
-		<span data-copy-label>{label}</span>
+		<svg class="copy-button__check-icon" viewBox="0 0 16 16" width="16" height="16">
+			<path d="m3 8 3 3 7-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+		</span>
+		<span class="copy-button__labels" aria-hidden="true">
+			<span>{label}</span>
+			<span>{copiedLabel}</span>
+			<span>{errorLabel}</span>
+		</span>
 		<span class="visually-hidden" aria-live="polite" data-copy-status></span>
 	</button>
 </ys-copy-button>
 
 <script>
 	import { animate } from "animejs";
+	import {
+		motion,
+		observeOnce,
+		prefersReducedMotion,
+		runOncePerSession,
+	} from "../../lib/motion";
 
 	class YsCopyButton extends HTMLElement {
+		private stopObserving?: () => void;
+
 		connectedCallback() {
 			const button = this.querySelector<HTMLButtonElement>("button");
-			const label = this.querySelector<HTMLElement>("[data-copy-label]");
 			const status = this.querySelector<HTMLElement>("[data-copy-status]");
-			const icon = this.querySelector<SVGElement>("svg");
-			if (!button || !label || !status || !icon) return;
+			const icon = this.querySelector<SVGElement>(".copy-button__check-icon");
+			if (!button || !status || !icon) return;
 			let resetTimer: number | undefined;
 			const defaultLabel = this.dataset.label ?? "Copy";
 			const copiedLabel = this.dataset.copiedLabel ?? "Copied";
 			const errorLabel = this.dataset.errorLabel ?? "Copy failed";
 			const value = this.dataset.value ?? "";
+			const scope = this.closest<HTMLElement>("section") ?? this.parentElement;
+			const email = scope?.querySelector<HTMLElement>(".contact-email, .editorial-contact__email");
+			if (scope && email) {
+				this.stopObserving = observeOnce(scope, () => {
+					runOncePerSession(`ysworks:motion:contact:${window.location.pathname}:v1`, () => {
+						if (prefersReducedMotion()) return;
+						animate(email, {
+							"--contact-underline": [0, 1],
+							duration: motion.duration.slow,
+							ease: motion.ease.outQuart,
+						});
+					});
+				});
+			}
 
 			button.addEventListener("click", async () => {
 				window.clearTimeout(resetTimer);
 				try {
 					await navigator.clipboard.writeText(value);
 					button.dataset.state = "copied";
-					label.textContent = copiedLabel;
+					button.setAttribute("aria-label", copiedLabel);
 					status.textContent = copiedLabel;
-					if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-						animate(icon, { scale: [0.8, 1], rotate: ["-8deg", "0deg"], duration: 220, ease: "out(4)" });
+					if (!prefersReducedMotion()) {
+						animate(icon, { scale: [0.8, 1], rotate: ["-8deg", "0deg"], duration: motion.duration.base, ease: motion.ease.outQuart });
+						if (email) {
+							animate(email, {
+								color: ["var(--color-text-primary)", "var(--color-accent-strong)"],
+								duration: motion.duration.base,
+								ease: motion.ease.inOutQuad,
+							});
+						}
 					}
 					this.dispatchEvent(new CustomEvent("copy", { bubbles: true }));
 				} catch {
 					button.dataset.state = "error";
-					label.textContent = errorLabel;
+					button.setAttribute("aria-label", errorLabel);
 					status.textContent = errorLabel;
 					this.dispatchEvent(new CustomEvent("copyerror", { bubbles: true }));
 				}
 				resetTimer = window.setTimeout(() => {
 					delete button.dataset.state;
-					label.textContent = defaultLabel;
+					button.setAttribute("aria-label", defaultLabel);
 					status.textContent = "";
-				}, 1800);
+				}, motion.interaction.copyReset);
 			});
+		}
+
+		disconnectedCallback() {
+			this.stopObserving?.();
 		}
 	}
 
@@ -101,6 +142,42 @@ const classes = ["copy-button", className].filter(Boolean).join(" ");
 		font-size: var(--font-size-14);
 		font-weight: var(--font-weight-medium);
 		padding-inline: var(--space-3);
+	}
+
+	.copy-button__icons,
+	.copy-button__labels {
+		position: relative;
+		display: grid;
+		place-items: center;
+	}
+
+	.copy-button__icons {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.copy-button__icons svg,
+	.copy-button__labels span {
+		grid-area: 1 / 1;
+		transition: opacity var(--motion-duration-fast) var(--motion-ease-in-out-quad);
+	}
+
+	.copy-button__check-icon,
+	.copy-button__labels span:nth-child(n + 2) {
+		opacity: 0;
+	}
+
+	.copy-button[data-state="copied"] .copy-button__copy-icon,
+	.copy-button[data-state="copied"] .copy-button__labels span:first-child,
+	.copy-button[data-state="error"] .copy-button__copy-icon,
+	.copy-button[data-state="error"] .copy-button__labels span:first-child {
+		opacity: 0;
+	}
+
+	.copy-button[data-state="copied"] .copy-button__check-icon,
+	.copy-button[data-state="copied"] .copy-button__labels span:nth-child(2),
+	.copy-button[data-state="error"] .copy-button__labels span:nth-child(3) {
+		opacity: 1;
 	}
 
 	.copy-button:hover {

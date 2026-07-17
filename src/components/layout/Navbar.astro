@@ -24,6 +24,10 @@ interface Props {
 	lightThemeLabel?: string;
 	darkThemeLabel?: string;
 	systemThemeLabel?: string;
+	themeMenuLabel?: string;
+	lightThemeOption?: string;
+	darkThemeOption?: string;
+	systemThemeOption?: string;
 }
 
 const {
@@ -42,6 +46,10 @@ const {
 	lightThemeLabel = "Usar tema claro",
 	darkThemeLabel = "Usar tema oscuro",
 	systemThemeLabel = "Usar tema del sistema",
+	themeMenuLabel = "Tema",
+	lightThemeOption = "Claro",
+	darkThemeOption = "Oscuro",
+	systemThemeOption = "Sistema",
 } = Astro.props;
 
 const isActive = (href: string) => {
@@ -59,6 +67,7 @@ const isActive = (href: string) => {
 			</a>
 
 			<div class="navbar__desktop">
+				<div class="navbar__links-wrap">
 				<ul class="navbar__links">
 					{
 						items.map((item) => (
@@ -74,6 +83,8 @@ const isActive = (href: string) => {
 						))
 					}
 				</ul>
+				<span class="navbar__indicator" aria-hidden="true" data-nav-indicator></span>
+				</div>
 				<div class="navbar__actions">
 					{
 						localeLink && (
@@ -89,9 +100,14 @@ const isActive = (href: string) => {
 						)
 					}
 					<ThemeToggle
+						menuId="desktop-theme-menu"
+						menuLabel={themeMenuLabel}
 						lightLabel={lightThemeLabel}
 						darkLabel={darkThemeLabel}
 						systemLabel={systemThemeLabel}
+						lightOptionLabel={lightThemeOption}
+						darkOptionLabel={darkThemeOption}
+						systemOptionLabel={systemThemeOption}
 					/>
 					<slot name="actions">
 						<Button href={ctaHref} variant="primary" size="sm">{ctaLabel}</Button>
@@ -129,9 +145,15 @@ const isActive = (href: string) => {
 				<span class="eyebrow">{navigationLabel}</span>
 				<div class="mobile-nav__controls">
 					<ThemeToggle
+						menuId="mobile-theme-menu"
+						menuLabel={themeMenuLabel}
+						mobile
 						lightLabel={lightThemeLabel}
 						darkLabel={darkThemeLabel}
 						systemLabel={systemThemeLabel}
+						lightOptionLabel={lightThemeOption}
+						darkOptionLabel={darkThemeOption}
+						systemOptionLabel={systemThemeOption}
 					/>
 					<button class="mobile-nav__close" type="button" data-menu-close>
 						{closeLabel}
@@ -170,20 +192,33 @@ const isActive = (href: string) => {
 
 <script>
 	import { animate, stagger } from "animejs";
+	import {
+		motion,
+		prefersReducedMotion,
+		registerOpenLayer,
+		scheduleFrame,
+		unregisterOpenLayer,
+	} from "../../lib/motion";
 
 	class YsNavbar extends HTMLElement {
+		private controller?: AbortController;
+
 		connectedCallback() {
+			this.controller?.abort();
+			this.controller = new AbortController();
+			const { signal } = this.controller;
 			const toggle = this.querySelector<HTMLButtonElement>("[data-menu-toggle]");
 			const menu = this.querySelector<HTMLElement>("[data-mobile-menu]");
 			const panel = menu?.querySelector<HTMLElement>(".mobile-nav__panel");
 			const backdrop = menu?.querySelector<HTMLElement>(".mobile-nav__backdrop");
+			const desktopLinks = Array.from(this.querySelectorAll<HTMLAnchorElement>(".navbar__link"));
+			const indicator = this.querySelector<HTMLElement>("[data-nav-indicator]");
 			if (!toggle || !menu || !panel || !backdrop) return;
 
 			document.documentElement.dataset.menuReady = "true";
 			let previousFocus: HTMLElement | null = null;
 			let closing = false;
-			const reducedMotion = () =>
-				window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			const reducedMotion = prefersReducedMotion;
 			const focusable = () =>
 				Array.from(
 					panel.querySelectorAll<HTMLElement>(
@@ -200,23 +235,27 @@ const isActive = (href: string) => {
 					item.removeAttribute("style");
 				}
 				if (restoreFocus) previousFocus?.focus();
+				unregisterOpenLayer(menu);
 			};
 
 			const closeMenu = (immediate = false) => {
 				if (menu.hidden || closing) return;
 				closing = true;
+				for (const selector of menu.querySelectorAll<HTMLElement>("ys-theme-selector")) {
+					selector.dispatchEvent(new CustomEvent("ysworks-layer-close"));
+				}
 				toggle.setAttribute("aria-expanded", "false");
 				document.body.removeAttribute("data-scroll-lock");
 				if (immediate || reducedMotion()) {
 					finishClose(!immediate);
 					return;
 				}
-				animate(backdrop, { opacity: 0, duration: 150, ease: "in(2)" });
+				animate(backdrop, { opacity: 0, duration: motion.duration.fast, ease: motion.ease.inQuad });
 				animate(panel, {
 					x: "100%",
 					opacity: 0.98,
-					duration: 210,
-					ease: "in(3)",
+					duration: motion.duration.base,
+					ease: motion.ease.inQuad,
 					onComplete: () => finishClose(),
 				});
 			};
@@ -226,36 +265,32 @@ const isActive = (href: string) => {
 				menu.hidden = false;
 				toggle.setAttribute("aria-expanded", "true");
 				document.body.dataset.scrollLock = "true";
+				registerOpenLayer(menu, () => closeMenu());
 				const items = menu.querySelectorAll<HTMLElement>(".mobile-nav__links li");
 				if (!reducedMotion()) {
-					animate(backdrop, { opacity: [0, 1], duration: 180, ease: "out(2)" });
-					animate(panel, { x: ["100%", 0], duration: 240, ease: "out(4)" });
+					animate(backdrop, { opacity: [0, 1], duration: motion.duration.base, ease: motion.ease.outQuart });
+					animate(panel, { x: ["100%", 0], duration: motion.duration.base, ease: motion.ease.outQuart });
 					animate(items, {
 						opacity: [0, 1],
-						x: [12, 0],
-						delay: stagger(32, { start: 45 }),
-						duration: 210,
-						ease: "out(3)",
+						x: [motion.travel.sm, 0],
+						delay: stagger(motion.stagger.mobile, { start: motion.stagger.mobile }),
+						duration: motion.duration.base,
+						ease: motion.ease.outQuart,
 					});
 				}
 				window.requestAnimationFrame(() => focusable()[0]?.focus());
 			};
 
-			toggle.addEventListener("click", () => (menu.hidden ? openMenu() : closeMenu()));
+			toggle.addEventListener("click", () => (menu.hidden ? openMenu() : closeMenu()), { signal });
 			for (const control of menu.querySelectorAll<HTMLElement>("[data-menu-close]")) {
-				control.addEventListener("click", () => closeMenu());
+				control.addEventListener("click", () => closeMenu(), { signal });
 			}
 			for (const link of menu.querySelectorAll<HTMLAnchorElement>("a")) {
-				link.addEventListener("click", () => closeMenu());
+				link.addEventListener("click", () => closeMenu(), { signal });
 			}
 
 			document.addEventListener("keydown", (event) => {
 				if (menu.hidden) return;
-				if (event.key === "Escape") {
-					event.preventDefault();
-					closeMenu();
-					return;
-				}
 				if (event.key !== "Tab") return;
 				const items = focusable();
 				const first = items[0];
@@ -267,11 +302,54 @@ const isActive = (href: string) => {
 					event.preventDefault();
 					first?.focus();
 				}
-			});
+			}, { signal });
 
-			window.addEventListener("resize", () => {
-				if (window.innerWidth >= 860 && !menu.hidden) closeMenu(true);
-			});
+			const updateNavigation = () => {
+				this.toggleAttribute("data-condensed", window.scrollY >= motion.choreography.navigationCondense);
+				if (window.innerWidth >= motion.breakpoint.navigationDesktop && !menu.hidden) closeMenu(true);
+			};
+			const scheduleNavigationUpdate = scheduleFrame(updateNavigation);
+			window.addEventListener("scroll", scheduleNavigationUpdate, { passive: true, signal });
+			window.addEventListener("resize", scheduleNavigationUpdate, { signal });
+			updateNavigation();
+
+			if (indicator) {
+				const indicatorTrack = indicator.parentElement;
+				let indicatorAnimation: ReturnType<typeof animate> | undefined;
+				const active = () => desktopLinks.find((link) => link.getAttribute("aria-current") === "page");
+				const moveIndicator = (link?: HTMLAnchorElement, draw = false) => {
+					indicatorAnimation?.cancel();
+					if (!link) {
+						indicator.style.opacity = "0";
+						return;
+					}
+					if (!indicatorTrack) return;
+					const linkRect = link.getBoundingClientRect();
+					const trackRect = indicatorTrack.getBoundingClientRect();
+					indicator.style.opacity = "1";
+					indicatorAnimation = animate(indicator, {
+						x: linkRect.left - trackRect.left,
+						width: linkRect.width,
+						scaleX: draw ? [0, 1] : 1,
+						duration: motion.duration.base,
+						ease: motion.ease.outQuart,
+					});
+				};
+				for (const link of desktopLinks) {
+					link.addEventListener("pointerenter", () => moveIndicator(link), { signal });
+					link.addEventListener("focus", () => moveIndicator(link), { signal });
+					link.addEventListener("pointerleave", () => moveIndicator(active()), { signal });
+					link.addEventListener("blur", () => moveIndicator(active()), { signal });
+				}
+				window.addEventListener("resize", () => moveIndicator(active()), { signal });
+				moveIndicator(active(), true);
+			}
+		}
+
+		disconnectedCallback() {
+			this.controller?.abort();
+			const menu = this.querySelector<HTMLElement>("[data-mobile-menu]");
+			if (menu) unregisterOpenLayer(menu);
 		}
 	}
 
@@ -284,7 +362,17 @@ const isActive = (href: string) => {
 		top: 0;
 		z-index: 50;
 		display: block;
-		border-bottom: 1px solid var(--color-border-subtle);
+		border-bottom: 1px solid transparent;
+		background: transparent;
+		transition:
+			background-color var(--motion-duration-base) var(--motion-ease-in-out-quad),
+			border-color var(--motion-duration-base) var(--motion-ease-in-out-quad),
+			backdrop-filter var(--motion-duration-base) var(--motion-ease-in-out-quad);
+		view-transition-name: ys-navbar;
+	}
+
+	.navbar[data-condensed] {
+		border-bottom-color: var(--color-border-subtle);
 		background: var(--color-bg-translucent);
 		backdrop-filter: blur(18px);
 	}
@@ -333,7 +421,13 @@ const isActive = (href: string) => {
 		list-style: none;
 	}
 
+	.navbar__links-wrap {
+		position: relative;
+		display: flex;
+	}
+
 	.navbar__link {
+		position: relative;
 		display: inline-flex;
 		align-items: center;
 		min-height: 2rem;
@@ -345,6 +439,17 @@ const isActive = (href: string) => {
 		transition:
 			background-color var(--motion-duration-fast) var(--motion-ease-standard),
 			color var(--motion-duration-fast) var(--motion-ease-standard);
+	}
+
+	.navbar__indicator {
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		height: 1px;
+		transform-origin: left;
+		background: var(--color-accent);
+		opacity: 0;
+		pointer-events: none;
 	}
 
 	.navbar__link:hover,
@@ -438,6 +543,7 @@ const isActive = (href: string) => {
 	}
 
 	.mobile-nav__controls {
+		align-items: flex-start;
 		gap: var(--space-2);
 	}
 

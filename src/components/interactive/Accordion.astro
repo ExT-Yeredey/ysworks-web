@@ -16,18 +16,151 @@ const classes = ["accordion", className].filter(Boolean).join(" ");
 </ys-accordion>
 
 <script>
+	import { animate } from "animejs";
+	import { motion, prefersReducedMotion } from "../../lib/motion";
+
 	class YsAccordion extends HTMLElement {
 		connectedCallback() {
-			if (this.dataset.single !== "true") return;
 			const items = Array.from(this.querySelectorAll<HTMLDetailsElement>("details"));
 			const initiallyOpen = items.filter((item) => item.open);
-			for (const item of initiallyOpen.slice(1)) item.open = false;
-			for (const item of items) {
-				item.addEventListener("toggle", () => {
-					if (!item.open) return;
-					for (const other of this.querySelectorAll<HTMLDetailsElement>("details[open]")) {
-						if (other !== item) other.open = false;
+			if (this.dataset.single === "true") {
+				for (const item of initiallyOpen.slice(1)) item.open = false;
+			}
+			const animations = new Map<HTMLDetailsElement, Array<ReturnType<typeof animate>>>();
+			const timers = new Map<HTMLDetailsElement, number>();
+
+			const cancelItem = (item: HTMLDetailsElement) => {
+				for (const animation of animations.get(item) ?? []) animation.cancel();
+				animations.delete(item);
+				window.clearTimeout(timers.get(item));
+				timers.delete(item);
+			};
+
+			const finish = (item: HTMLDetailsElement, expanded: boolean) => {
+				const region = item.querySelector<HTMLElement>(".accordion-item__region");
+				const content = item.querySelector<HTMLElement>(".accordion-item__content");
+				if (!region || !content) return;
+				item.open = expanded;
+				delete item.dataset.opening;
+				delete item.dataset.closing;
+				item.querySelector("summary")?.setAttribute("aria-expanded", String(expanded));
+				region.removeAttribute("style");
+				content.removeAttribute("style");
+				animations.delete(item);
+			};
+
+			const setExpanded = (item: HTMLDetailsElement, expanded: boolean, delay = 0) => {
+				const region = item.querySelector<HTMLElement>(".accordion-item__region");
+				const content = item.querySelector<HTMLElement>(".accordion-item__content");
+				const marker = item.querySelector<HTMLElement>(".accordion-item__marker");
+				if (!region || !content || !marker) return;
+				cancelItem(item);
+				delete item.dataset.pending;
+
+				const run = () => {
+					delete item.dataset.pending;
+					if (prefersReducedMotion()) {
+						finish(item, expanded);
+						marker.style.transform = expanded ? "scaleY(1)" : "scaleY(0)";
+						return;
 					}
+
+					const active: Array<ReturnType<typeof animate>> = [];
+					if (expanded) {
+						item.open = true;
+						item.dataset.opening = "true";
+						delete item.dataset.closing;
+						item.querySelector("summary")?.setAttribute("aria-expanded", "true");
+						region.style.height = "0px";
+						content.style.opacity = "0";
+						content.style.transform = `translateY(${motion.interaction.faqAnswerTravel}px)`;
+						const targetHeight = region.scrollHeight;
+						active.push(
+							animate(region, {
+								height: [0, targetHeight],
+								duration: motion.interaction.faqOpen,
+								ease: motion.ease.outQuart,
+								onComplete: () => finish(item, true),
+							}),
+							animate(content, {
+								opacity: [0, 1],
+								y: [motion.interaction.faqAnswerTravel, 0],
+								delay: motion.interaction.faqAnswerDelay,
+								duration: motion.interaction.faqClose,
+								ease: motion.ease.outQuart,
+							}),
+							animate(marker, {
+								scaleY: [0, 1],
+								duration: motion.interaction.faqOpen,
+								ease: motion.ease.outQuart,
+							}),
+						);
+					} else {
+						delete item.dataset.opening;
+						item.dataset.closing = "true";
+						item.querySelector("summary")?.setAttribute("aria-expanded", "false");
+						region.style.height = `${region.getBoundingClientRect().height}px`;
+						active.push(
+							animate(content, {
+								opacity: 0,
+								duration: motion.interaction.faqFade,
+								ease: motion.ease.inQuad,
+							}),
+							animate(region, {
+								height: 0,
+								duration: motion.interaction.faqClose,
+								ease: motion.ease.inQuad,
+								onComplete: () => finish(item, false),
+							}),
+							animate(marker, {
+								scaleY: 0,
+								duration: motion.interaction.faqClose,
+								ease: motion.ease.inQuad,
+							}),
+						);
+					}
+					animations.set(item, active);
+				};
+
+				if (delay > 0) {
+					item.dataset.pending = expanded ? "open" : "close";
+					timers.set(item, window.setTimeout(run, delay));
+				}
+				else run();
+			};
+
+			for (const item of items) {
+				const summary = item.querySelector<HTMLElement>("summary");
+				if (!summary) continue;
+				summary.setAttribute("aria-expanded", String(item.open));
+				summary.addEventListener("click", (event) => {
+					event.preventDefault();
+					const willOpen =
+						item.dataset.pending !== "open" &&
+						(!item.open || item.dataset.closing === "true");
+					let coordinated = false;
+					if (willOpen && this.dataset.single === "true") {
+						for (const other of items) {
+							if (other !== item && other.open) {
+								coordinated = true;
+								setExpanded(other, false);
+							}
+						}
+					}
+					setExpanded(
+						item,
+						willOpen,
+						willOpen && coordinated ? motion.interaction.faqCoordination : 0,
+					);
+				});
+				summary.addEventListener("keydown", (event) => {
+					if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+					event.preventDefault();
+					const index = items.indexOf(item);
+					const direction = event.key === "ArrowDown" ? 1 : -1;
+					items[(index + direction + items.length) % items.length]
+						?.querySelector<HTMLElement>("summary")
+						?.focus();
 				});
 			}
 		}

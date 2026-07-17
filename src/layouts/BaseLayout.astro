@@ -3,6 +3,7 @@ import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-500.css";
 import "@fontsource/inter/latin-600.css";
 import "@fontsource/inter/latin-700.css";
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 interface Props {
@@ -82,6 +83,7 @@ const alternateEntries = Object.entries(alternatePaths ?? {});
 				try {
 					const saved = localStorage.getItem("ysworks-theme");
 					if (saved === "light" || saved === "dark" || saved === "system") preference = saved;
+					else localStorage.setItem("ysworks-theme", "system");
 				} catch {
 					// System preference and the dark fallback remain available when storage is blocked.
 				}
@@ -92,6 +94,7 @@ const alternateEntries = Object.entries(alternatePaths ?? {});
 				document.documentElement.dataset.theme = preference === "system" ? systemTheme : preference;
 			})();
 		</script>
+		<ClientRouter />
 
 		<title>{pageTitle}</title>
 	</head>

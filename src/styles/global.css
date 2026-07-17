@@ -75,13 +75,68 @@ canvas {
 	color: var(--color-text-primary);
 }
 
-:focus {
-	outline: none;
+:focus-visible {
+	outline: 2px solid
+		color-mix(in srgb, var(--focus-ring-color) 70%, transparent);
+	outline-offset: 2px;
 }
 
-:focus-visible {
-	outline: 2px solid var(--focus-ring-color);
-	outline-offset: 3px;
+:where(button, a, summary, [tabindex]):active {
+	transform: scale(0.98);
+	transition-duration: 100ms;
+}
+
+html[data-theme-transition="true"]
+	:where(
+		body,
+		.navbar,
+		.mobile-nav__panel,
+		.card,
+		.section,
+		.signature,
+		.technology-map,
+		.accordion-item,
+		button,
+		a
+	) {
+	transition:
+		background-color var(--motion-duration-base) var(--motion-ease-in-out-quad),
+		border-color var(--motion-duration-base) var(--motion-ease-in-out-quad),
+		color var(--motion-duration-base) var(--motion-ease-in-out-quad);
+}
+
+::view-transition-old(root) {
+	animation: ys-page-out var(--motion-duration-fast) var(--motion-ease-in-quad)
+		both;
+}
+
+::view-transition-new(root) {
+	animation: ys-page-in var(--motion-duration-base) var(--motion-ease-out-quart)
+		both;
+}
+
+::view-transition-group(ys-navbar),
+::view-transition-old(ys-navbar),
+::view-transition-new(ys-navbar) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
+@keyframes ys-page-out {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes ys-page-in {
+	from {
+		opacity: 0;
+		transform: translateY(var(--motion-travel-1));
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 h1,
@@ -179,6 +234,23 @@ p {
 	border: 0;
 }
 
+:where(.contact-email, .editorial-contact__email) {
+	--contact-underline: 1;
+	position: relative;
+}
+
+:where(.contact-email, .editorial-contact__email)::after {
+	position: absolute;
+	right: 0;
+	bottom: -0.2rem;
+	left: 0;
+	height: 1px;
+	transform: scaleX(var(--contact-underline));
+	transform-origin: left;
+	background: var(--color-accent);
+	content: "";
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
@@ -187,5 +259,10 @@ p {
 		transition-duration: 0.01ms;
 		animation-duration: 0.01ms;
 		animation-iteration-count: 1;
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation: none;
 	}
 }

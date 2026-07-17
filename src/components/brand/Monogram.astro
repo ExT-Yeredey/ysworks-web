@@ -1,0 +1,50 @@
+---
+interface Props {
+	size?: "sm" | "md";
+	label?: string;
+}
+
+const { size = "md", label } = Astro.props;
+---
+
+<span class:list={["monogram", `monogram--${size}`]} role={label ? "img" : undefined} aria-label={label} aria-hidden={label ? undefined : "true"}>
+	<span class="monogram__letters">YS</span>
+	<svg class="monogram__trace" viewBox="0 0 48 48" aria-hidden="true">
+		<rect x="1" y="1" width="46" height="46" rx="8"></rect>
+	</svg>
+</span>
+
+<style>
+	.monogram {
+		position: relative;
+		display: inline-grid;
+		place-items: center;
+		flex: none;
+		border: 1px solid var(--color-accent-border);
+		border-radius: var(--radius-8);
+		background: var(--color-accent-soft);
+		color: var(--color-accent-strong);
+		font-family: var(--font-mono);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: 0.08em;
+	}
+
+	.monogram--sm { width: 2.5rem; height: 2.5rem; font-size: var(--font-size-12); }
+	.monogram--md { width: 3rem; height: 3rem; font-size: var(--font-size-14); }
+
+	.monogram__trace {
+		position: absolute;
+		inset: -1px;
+		width: calc(100% + 2px);
+		height: calc(100% + 2px);
+		color: var(--color-accent);
+		pointer-events: none;
+	}
+
+	.monogram__trace rect {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.5;
+		vector-effect: non-scaling-stroke;
+	}
+</style>

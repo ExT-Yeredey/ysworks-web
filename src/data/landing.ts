@@ -27,6 +27,10 @@ interface LandingContent {
 		lightTheme: string;
 		darkTheme: string;
 		systemTheme: string;
+		themeMenu: string;
+		lightOption: string;
+		darkOption: string;
+		systemOption: string;
 		localeLabel: string;
 		footerNavigation: string;
 	};
@@ -117,6 +121,10 @@ const es: LandingContent = {
 		lightTheme: "Usar tema claro",
 		darkTheme: "Usar tema oscuro",
 		systemTheme: "Usar tema del sistema",
+		themeMenu: "Tema",
+		lightOption: "Claro",
+		darkOption: "Oscuro",
+		systemOption: "Sistema",
 		localeLabel: "View this page in English",
 		footerNavigation: "Navegación del pie",
 	},
@@ -358,6 +366,10 @@ const en: LandingContent = {
 		lightTheme: "Use light theme",
 		darkTheme: "Use dark theme",
 		systemTheme: "Use system theme",
+		themeMenu: "Theme",
+		lightOption: "Light",
+		darkOption: "Dark",
+		systemOption: "System",
 		localeLabel: "Ver esta página en español",
 		footerNavigation: "Footer navigation",
 	},

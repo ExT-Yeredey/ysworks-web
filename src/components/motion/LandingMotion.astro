@@ -1,0 +1,336 @@
+<ys-landing-motion></ys-landing-motion>
+
+<script>
+	import { animate, createTimeline, stagger } from "animejs";
+	import {
+		isMobileMotion,
+		motion,
+		observeOnce,
+		observeVisibility,
+		prefersReducedMotion,
+		runOncePerSession,
+		scheduleFrame,
+	} from "../../lib/motion";
+
+	class YsLandingMotion extends HTMLElement {
+	private controller?: AbortController;
+	private cleanups: Array<() => void> = [];
+
+	connectedCallback() {
+	this.controller?.abort();
+	for (const cleanup of this.cleanups) cleanup();
+	this.cleanups = [];
+	this.controller = new AbortController();
+	const { signal } = this.controller;
+	const landing = this.closest<HTMLElement>("[data-landing]");
+	if (landing) {
+		const sessionKey = (name: string) => `ysworks:motion:${name}:v1`;
+		const observe = (element: Element, callback: (entry: IntersectionObserverEntry) => void) => {
+			const stop = observeOnce(element, callback);
+			this.cleanups.push(stop);
+		};
+		const settle = (targets: Element[] | NodeListOf<Element>, options: { delay?: number; travel?: number; duration?: number } = {}) => {
+			if (prefersReducedMotion()) return;
+			animate(targets, {
+				opacity: [0.72, 1],
+				y: [options.travel ?? motion.travel.md, 0],
+				delay: stagger(options.delay ?? motion.stagger.normal),
+				duration: options.duration ?? motion.duration.slow,
+				ease: motion.ease.outExpo,
+			});
+		};
+
+		const heroItems = landing.querySelectorAll<Element>("[data-hero-sequence] > *");
+		runOncePerSession(sessionKey("hero"), () => {
+			settle(heroItems, { delay: motion.stagger.emphasis, travel: motion.travel.sm });
+		});
+
+		const services = landing.querySelector<HTMLElement>("[data-services-grid]");
+		if (services) {
+			observe(services, () => {
+				runOncePerSession(sessionKey("services"), () => {
+					const items = Array.from(services.querySelectorAll<HTMLElement>("[data-service-item]")).slice(0, 6);
+					settle(items, {
+						delay: isMobileMotion() ? motion.stagger.mobile : motion.stagger.normal,
+						travel: motion.travel.md,
+						duration: motion.choreography.serviceEntrance,
+					});
+				});
+			});
+
+			const cards = Array.from(services.querySelectorAll<HTMLElement>("[data-service-card]"));
+			const iconAnimations = new WeakMap<SVGPathElement, ReturnType<typeof animate>>();
+			const activate = (card: HTMLElement) => {
+				for (const other of cards) other.toggleAttribute("data-active", other === card);
+				const paths = card.querySelectorAll<SVGPathElement>(".service-card__icon path");
+				for (const path of paths) {
+					const length = path.getTotalLength?.() ?? 0;
+					if (!length || prefersReducedMotion()) continue;
+					iconAnimations.get(path)?.cancel();
+					path.style.strokeDasharray = `${length}`;
+					const animation = animate(path, {
+						strokeDashoffset: [length, 0],
+						duration: motion.duration.base,
+						ease: motion.ease.outQuart,
+						onComplete: () => {
+							path.style.strokeDasharray = "";
+							path.style.strokeDashoffset = "";
+						},
+					});
+					iconAnimations.set(path, animation);
+				}
+			};
+			for (const card of cards) {
+				card.addEventListener("pointerenter", () => activate(card));
+				card.addEventListener("focus", () => activate(card));
+				card.addEventListener("pointerleave", () => card.removeAttribute("data-active"));
+				card.addEventListener("blur", () => card.removeAttribute("data-active"));
+			}
+		}
+
+		const technology = landing.querySelector<HTMLElement>("[data-technology]");
+		if (technology) {
+			observe(technology, () => {
+				runOncePerSession(sessionKey("technology"), () => {
+					const dividers = technology.querySelectorAll<Element>("[data-technology-divider]");
+					const bodies = technology.querySelectorAll<Element>("[data-technology-body]");
+					const labels = technology.querySelectorAll<Element>("[data-technology-label]");
+					if (!prefersReducedMotion()) {
+						animate(dividers, {
+							scaleY: isMobileMotion() ? 1 : [0, 1],
+							scaleX: isMobileMotion() ? [0, 1] : 1,
+							delay: stagger(motion.stagger.emphasis),
+							duration: motion.choreography.technologyDivider,
+							ease: motion.ease.outQuart,
+						});
+						settle(bodies, {
+							delay: motion.stagger.emphasis,
+							travel: motion.travel.xs,
+							duration: motion.choreography.technologyDivider,
+						});
+						animate(labels, {
+							opacity: [0.55, 1],
+							delay: stagger(motion.stagger.emphasis, {
+								start: motion.choreography.technologyDivider,
+							}),
+							duration: motion.duration.base,
+							ease: motion.ease.outQuart,
+						});
+					}
+				});
+			});
+		}
+
+		const trust = landing.querySelector<HTMLElement>("[data-human-criteria]");
+		if (trust) {
+			observe(trust, () => {
+				runOncePerSession(sessionKey("human-criteria"), () => {
+					if (prefersReducedMotion()) return;
+					const heading = trust.querySelectorAll<Element>("[data-human-heading] > *");
+					const rows = trust.querySelectorAll<Element>("[data-human-row]");
+					settle(heading, { delay: motion.stagger.emphasis, travel: motion.travel.xs, duration: motion.duration.slow });
+					settle(rows, { delay: motion.stagger.emphasis, travel: motion.travel.xs, duration: motion.duration.slow });
+					animate(rows, {
+						"--human-line": [0, 1],
+						delay: stagger(motion.stagger.emphasis),
+						duration: motion.duration.slow,
+						ease: motion.ease.outQuart,
+					});
+					for (const row of rows) {
+						const index = row.querySelector<HTMLElement>("span");
+						if (!index) continue;
+						animate(index, {
+							color: ["var(--color-accent-strong)", "var(--color-text-muted)"],
+							duration: motion.duration.slow,
+							ease: motion.ease.inOutQuad,
+						});
+					}
+				});
+			});
+		}
+
+			const signature = landing.querySelector<HTMLElement>("[data-signature]");
+		if (signature) {
+			const nodes = Array.from(signature.querySelectorAll<HTMLElement>("[data-signature-node]"));
+			const progress = signature.querySelector<SVGPathElement>("[data-signature-progress]");
+			const pulse = signature.querySelector<SVGPathElement>("[data-signature-pulse]");
+			const trace = signature.querySelector<SVGRectElement>(".monogram__trace rect");
+			if (progress && pulse && trace && nodes.length === 3) {
+				const pathLength = progress.getTotalLength();
+				progress.style.strokeDasharray = `${pathLength}`;
+				progress.style.strokeDashoffset = "0";
+				pulse.style.strokeDasharray = `${motion.choreography.pulseDash} ${pathLength}`;
+				const setActive = (index: number) => {
+					for (const [nodeIndex, node] of nodes.entries()) {
+						node.toggleAttribute("data-active", nodeIndex === index);
+					}
+				};
+				setActive(1);
+
+				if (!prefersReducedMotion()) {
+					observe(signature, () => {
+						runOncePerSession(sessionKey("signature-overture"), () => {
+							const traceLength = trace.getTotalLength();
+							const overtureDuration = isMobileMotion()
+								? motion.choreography.signatureMobileOverture
+								: motion.duration.overture;
+							trace.style.strokeDasharray = `${traceLength}`;
+							animate(trace, {
+								strokeDashoffset: [traceLength, 0],
+								duration: motion.duration.base,
+								ease: motion.ease.outQuart,
+							});
+							animate(progress, {
+								strokeDashoffset: [pathLength, 0],
+								opacity: [0, 0.8],
+								duration: overtureDuration,
+								ease: motion.ease.inOutQuad,
+								onComplete: () => {
+									animate(progress, {
+										opacity: 0,
+										duration: motion.duration.base,
+										ease: motion.ease.inOutQuad,
+									});
+								},
+							});
+							settle(nodes, {
+								delay: isMobileMotion() ? motion.stagger.mobile : motion.stagger.emphasis,
+								travel: motion.travel.xs,
+								duration: motion.duration.base,
+							});
+							const activation = createTimeline();
+							for (const [index] of nodes.entries()) {
+								activation.call(
+									() => setActive(index),
+									(overtureDuration / nodes.length) * index,
+								);
+							}
+						});
+					});
+				}
+
+				if (!prefersReducedMotion()) {
+					const scrub = createTimeline({ autoplay: false, duration: motion.duration.overture });
+					scrub.add(progress, { strokeDashoffset: [pathLength, 0], ease: motion.ease.inOutQuad });
+					const updateScrub = () => {
+						if (isMobileMotion() || prefersReducedMotion()) {
+							progress.style.strokeDashoffset = "0";
+							progress.style.opacity = "0";
+							setActive(1);
+							return;
+						}
+						const rect = signature.getBoundingClientRect();
+						const viewport = window.innerHeight;
+						const raw = (viewport - rect.top) / (viewport + rect.height);
+						const progressValue = Math.min(1, Math.max(0, raw));
+						progress.style.opacity = "0.8";
+						scrub.seek(scrub.duration * progressValue);
+						setActive(Math.min(2, Math.floor(progressValue * 3)));
+					};
+					const scheduleScrub = scheduleFrame(updateScrub);
+					window.addEventListener("scroll", scheduleScrub, { passive: true, signal });
+					window.addEventListener("resize", scheduleScrub, { signal });
+					updateScrub();
+				}
+
+				let pointerInside = false;
+				const updateProximity = scheduleFrame(() => {
+					const pointerX = Number(signature.dataset.pointerX);
+					const pointerY = Number(signature.dataset.pointerY);
+					let nearest: HTMLElement | undefined;
+					let distance = Number.POSITIVE_INFINITY;
+					for (const node of nodes) {
+						const rect = node.getBoundingClientRect();
+						const nextDistance = Math.hypot(pointerX - (rect.left + rect.width / 2), pointerY - (rect.top + rect.height / 2));
+						if (nextDistance < distance) {
+							distance = nextDistance;
+							nearest = node;
+						}
+					}
+					for (const node of nodes) node.toggleAttribute("data-proximity", node === nearest && distance <= motion.ambient.pointerRadius);
+				});
+
+				signature.addEventListener("pointermove", (event) => {
+					if (event.pointerType === "touch") return;
+					signature.dataset.pointerX = String(event.clientX);
+					signature.dataset.pointerY = String(event.clientY);
+					updateProximity();
+				});
+				signature.addEventListener("pointerenter", () => { pointerInside = true; });
+				signature.addEventListener("pointerleave", () => {
+					pointerInside = false;
+					for (const node of nodes) node.removeAttribute("data-proximity");
+				});
+				for (const node of nodes) {
+					node.addEventListener("click", () => {
+						for (const other of nodes) {
+							other.removeAttribute("data-tapped");
+							other.setAttribute("aria-pressed", "false");
+						}
+						node.toggleAttribute("data-tapped", true);
+						node.setAttribute("aria-pressed", "true");
+						window.setTimeout(() => {
+							node.removeAttribute("data-tapped");
+							node.setAttribute("aria-pressed", "false");
+						}, motion.interaction.nodeHighlight);
+					});
+				}
+
+				let pulseTimer = 0;
+				let pulseAnimation: ReturnType<typeof animate> | undefined;
+				let signatureVisible = false;
+				const schedulePulse = () => {
+					window.clearTimeout(pulseTimer);
+					if (prefersReducedMotion() || document.hidden || pointerInside || !signatureVisible) return;
+					const period = isMobileMotion() ? motion.ambient.mobilePeriod : motion.ambient.desktopPeriod;
+					pulseTimer = window.setTimeout(() => {
+						pulseAnimation?.cancel();
+						pulseAnimation = animate(pulse, {
+							strokeDashoffset: [0, -pathLength],
+							duration: motion.ambient.pulseDuration,
+							ease: "linear",
+							onComplete: schedulePulse,
+						});
+					}, period);
+				};
+				signature.addEventListener("pointerenter", () => {
+					window.clearTimeout(pulseTimer);
+					pulseAnimation?.cancel();
+				});
+				signature.addEventListener("pointerleave", schedulePulse);
+				document.addEventListener("visibilitychange", () => {
+					if (document.hidden) {
+						window.clearTimeout(pulseTimer);
+						pulseAnimation?.cancel();
+					} else schedulePulse();
+				}, { signal });
+				const stopVisibility = observeVisibility(signature, (entry) => {
+					signatureVisible = entry.isIntersecting;
+					if (signatureVisible) schedulePulse();
+					else {
+						window.clearTimeout(pulseTimer);
+						pulseAnimation?.cancel();
+					}
+				});
+				this.cleanups.push(stopVisibility);
+				this.cleanups.push(() => {
+					window.clearTimeout(pulseTimer);
+					pulseAnimation?.cancel();
+				});
+				schedulePulse();
+			}
+			}
+		}
+	}
+
+	disconnectedCallback() {
+		this.controller?.abort();
+		for (const cleanup of this.cleanups) cleanup();
+		this.cleanups = [];
+	}
+	}
+
+	if (!customElements.get("ys-landing-motion")) {
+		customElements.define("ys-landing-motion", YsLandingMotion);
+	}
+</script>
