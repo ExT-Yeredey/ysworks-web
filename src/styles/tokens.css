@@ -36,6 +36,8 @@
 	--font-size-14: 0.875rem;
 	--font-size-16: 1rem;
 	--font-size-18: 1.125rem;
+	--font-size-20: 1.25rem;
+	--font-size-22: 1.375rem;
 	--font-size-24: 1.5rem;
 	--font-size-28: 1.75rem;
 	--font-size-32: 2rem;
@@ -76,15 +78,80 @@
 
 	--shadow-subtle: 0 1px 2px rgb(0 0 0 / 0.18);
 	--shadow-overlay: 0 18px 60px rgb(0 0 0 / 0.32);
+	--shadow-inset: inset 0 1px 0 rgb(255 255 255 / 0.025);
+	--shadow-surface: var(--shadow-inset), var(--shadow-subtle);
+	--shadow-raised: var(--shadow-inset), var(--shadow-overlay);
 
-	--motion-duration-fast: 120ms;
-	--motion-duration-base: 180ms;
-	--motion-duration-slow: 260ms;
-	--motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
-	--motion-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+	/* Semantic component and layout roles. */
+	--text-eyebrow: var(--font-size-12);
+	--text-ui: var(--font-size-14);
+	--text-body: var(--font-size-16);
+	--text-lead: var(--font-size-18);
+	--text-title-sm: var(--font-size-24);
+	--text-title-compact: clamp(var(--font-size-24), 4vw, var(--font-size-32));
+	--text-title-md: clamp(var(--font-size-28), 4vw, var(--font-size-40));
+	--text-title-lg: clamp(var(--font-size-40), 7vw, var(--font-size-72));
+	--measure-body: 42rem;
+	--measure-lead: 46rem;
+	--measure-heading: 22ch;
+
+	--control-height-sm: 2rem;
+	--control-height-md: 2.5rem;
+	--control-height-lg: 3rem;
+	--control-radius: var(--radius-6);
+	--compact-radius: var(--radius-8);
+	--surface-radius: var(--radius-12);
+	--feature-radius: var(--radius-16);
+	--surface-padding-sm: var(--space-4);
+	--surface-padding-md: var(--space-6);
+	--surface-padding-lg: var(--space-8);
+	--layout-gutter: var(--space-5);
+	--layout-header-height: 4.25rem;
+	--layout-footer-space: var(--space-12);
+	--section-space-sm: var(--space-12);
+	--section-space-md: var(--space-16);
+	--section-space-lg: var(--space-24);
+	--content-gap-sm: var(--space-3);
+	--content-gap-md: var(--space-5);
+	--content-gap-lg: var(--space-8);
+	--grid-gap-sm: var(--space-3);
+	--grid-gap-md: var(--space-6);
+	--grid-gap-lg: var(--space-8);
+
+	/* Motion Direction v1 — shared with src/lib/motion.ts. */
+	--motion-duration-fast: 150ms;
+	--motion-duration-base: 300ms;
+	--motion-duration-slow: 600ms;
+	--motion-duration-overture: 1000ms;
+	--motion-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--motion-ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	--motion-ease-in-quad: cubic-bezier(0.11, 0, 0.5, 0);
+	--motion-ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+	--motion-ease-standard: var(--motion-ease-in-out-quad);
+	--motion-ease-emphasized: var(--motion-ease-out-expo);
+	--motion-stagger-mobile: 40ms;
+	--motion-stagger-normal: 60ms;
+	--motion-stagger-emphasis: 80ms;
+	--motion-travel-1: 8px;
+	--motion-travel-2: 12px;
+	--motion-travel-3: 16px;
+	--motion-travel-max: 24px;
+	--motion-lift-control: -1px;
+	--motion-lift-surface: -2px;
+	--motion-shift-inline: 2px;
 
 	--container-sm: 42rem;
 	--container-md: 60rem;
 	--container-lg: 72rem;
 	--container-xl: 84rem;
+}
+
+@media (min-width: 768px) {
+	:root {
+		--layout-gutter: var(--space-8);
+		--layout-footer-space: var(--space-16);
+		--section-space-sm: var(--space-16);
+		--section-space-md: var(--space-24);
+		--section-space-lg: calc(var(--space-24) + var(--space-4));
+	}
 }

@@ -25,7 +25,9 @@ client information, internal workflows, or restricted operational material.
    services, content, and commercial policy.
 7. [Approved Design Authorities](design/README.md), including YSWORKS Design
    Tokens v1.0, govern brand, experience, and interface decisions.
-8. The repository [engineering knowledge base](../.ai/README.md) governs the
+8. The repository [production design-system contracts](../design-system/tokens.md)
+   govern consistent implementation of those approved design decisions.
+9. The repository [engineering knowledge base](../.ai/README.md) governs the
    public website implementation within its scope.
 
 The handbook is the highest-level human operating handbook. It does not override

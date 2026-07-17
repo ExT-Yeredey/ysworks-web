@@ -1,221 +1,120 @@
-# Site Architecture V1
+# User Experience Foundation v1.1
 
-## Purpose
+## Status and scope
 
-This document defines the public website architecture for YSWORKS Web before building the homepage.
+This governed source defines the experience foundation for YSWORKS Public
+Website v2 and the bounded visual preparation of the future Client Portal. It
+does not authorize production deployment, authentication, backend access,
+Cloudflare or DNS changes.
 
-It describes public navigation, page intent, content boundaries, and future-safe structure. It does not describe private systems, internal workflows, YS AI OS architecture, prompts, agents, automation pipelines, infrastructure, or business logic.
+The complete route and content contract is maintained in
+[Website Information Architecture](../docs/business/WEBSITE_INFORMATION_ARCHITECTURE.md).
 
-## Primary Navigation
+## Product separation
 
-Recommended primary navigation:
+The ecosystem contains three distinct products:
 
-- Work.
-- Services.
-- Labs.
-- Journal.
-- About.
-- Contact.
+1. the anonymous Public Website;
+2. the future authenticated Client Portal;
+3. the private YS AI OS.
 
-Navigation should be short, stable, and easy to scan. Labels should describe public website destinations, not internal systems.
+Users must never be led to believe that a public preview is an authenticated
+portal or that YS AI OS is a customer product. Shared visual language does not
+merge information, identity, authorization, or trust boundaries.
 
-## Sitemap
+## Public navigation
 
-Initial public sitemap:
+The stable navigation is Home, Services, Process, About, Contact, language, and
+theme. It contains no primary marketing button. Content provides contextual
+conversion paths.
 
-```text
-/
-/work
-/services
-/labs
-/journal
-/about
-/contact
-```
+A Client Area slot is reserved internally but remains invisible until a real
+login exists with approved authentication, server-side tenant authorization,
+session handling, client isolation, and security review.
 
-Future pages may be added only when there is real public content to support them.
-
-## Purpose of Each Page
+## Public journeys
 
 ### Home
 
-Purpose: communicate what YSWORKS is, what kind of public work it does, and how to continue exploring.
-
-The homepage should establish trust through clarity, performance, accessibility, and restraint. It should not try to explain private systems.
-
-### Work
-
-Purpose: present public work only when real, approved, and safe to publish.
-
-Do not create fake case studies, fake clients, fake metrics, fake screenshots, or invented outcomes. If no approved public work exists, the page can explain the type of work YSWORKS does at a high level without naming clients or exposing private methods.
+Home is an executive overview. It establishes the company position, summarizes
+the editorial sequence, and provides one clear continuation from every major
+section. It does not attempt to explain every service or internal capability.
 
 ### Services
 
-Purpose: describe public service categories.
+Services supports deliberate comparison. Every service states the problem,
+approach, typical outputs, related technologies, and a path to Contact. Public
+technology names illustrate relevant capability without exposing private
+architecture.
 
-The page may describe outcomes such as secure web systems, automation strategy, platform engineering, integration work, performance improvement, and technical consulting at a high level.
+### Process
 
-It must not describe private workflows, internal system design, proprietary implementation details, or confidential business logic.
-
-### Labs
-
-Purpose: provide a public place for experiments, prototypes, technical notes, and exploratory ideas that are safe to publish.
-
-Labs should show curiosity and engineering taste without revealing private systems or implying production commitments.
-
-### Journal
-
-Purpose: publish public writing, technical notes, engineering observations, and design-system thinking.
-
-Journal content should be factual, durable, and public-safe. Avoid hype, invented authority, and private implementation details.
+Process explains how decisions progress through Discovery, Architecture,
+Implementation, Validation, Delivery, and Continuous Improvement. Structure and
+evidence carry the story; decorative timelines are not required.
 
 ### About
 
-Purpose: explain YSWORKS at a high level.
-
-The page may cover values, public focus, engineering principles, and working style. It must not expose internal operating systems, private architecture, confidential roadmap, or proprietary processes.
+About establishes engineering philosophy, human supervision, transparency,
+long-term thinking, quality, and Founder accountability without becoming a
+personal-brand page.
 
 ### Contact
 
-Purpose: provide a clear public path for inquiries.
+Contact should feel like the first engineering meeting. It sets out ways to
+collaborate, project fit, useful initial context, confidentiality limits, and
+realistic next steps. Email remains the only active submission channel until a
+protected form boundary exists.
 
-The page should collect minimal information and set expectations plainly. It should not expose private email addresses directly if avoidable.
+## Client Portal preview rules
 
-## User Journey
+Non-indexed visual route previews may demonstrate hierarchy and responsive
+composition. They must:
 
-Primary user journey:
+- state that the portal is unavailable;
+- contain no sign-in simulation, session, client record, metric, invoice,
+  message, document, or business placeholder;
+- remain absent from Public Website navigation;
+- provide no connection to PostgreSQL, GitHub, Notion, Drive, n8n, YS AI OS, or
+  another private source;
+- avoid implying that a public path is the production portal boundary.
 
-1. Visitor lands on the homepage.
-2. Visitor understands the public positioning quickly.
-3. Visitor chooses one of three paths:
-   - Review public work or work categories.
-   - Understand services.
-   - Contact YSWORKS.
-4. Visitor can optionally explore Labs, Journal, or About for more context.
+## Bilingual and responsive behavior
 
-The journey should be calm and direct. The website should not force users through marketing funnels or excessive interactions.
+Spanish remains canonical at root paths and English uses `/en/`. Equivalent
+routes preserve context when changing language. Navigation, footer, controls,
+empty states, privacy text, and error recovery are authored naturally in both
+languages.
 
-## Homepage Section Order
+All experiences are designed from 375px upward, reflow without horizontal page
+scroll, preserve readable measure, and use touch targets appropriate to their
+context.
 
-Recommended homepage structure:
+## Accessibility
 
-1. Hero.
-2. Public positioning statement.
-3. Service categories.
-4. Selected public work or work principles.
-5. Labs or technical notes preview.
-6. Trust principles.
-7. Contact call to action.
+WCAG 2.2 AA is the product baseline. Semantic landmarks, heading order, visible
+focus, keyboard access, useful names, state parity, contrast, zoom, reflow, and
+reduced motion are required. JavaScript failure must not hide content or remove
+essential navigation.
 
-If there is no approved public work, replace selected work with a concise explanation of work principles. Do not fabricate proof.
+## Motion
 
-## Footer Structure
+Motion follows the approved hierarchy:
 
-Recommended footer content:
+1. CSS for simple presentation and states;
+2. WAAPI for simple imperative global interactions;
+3. IntersectionObserver for visibility;
+4. requestAnimationFrame only for genuine scroll synchronization;
+5. Anime.js v4 for approved coordinated Public Website choreography.
 
-- YSWORKS wordmark or text mark.
-- Primary navigation links.
-- Optional secondary links:
-  - GitHub.
-  - Journal.
-  - Contact.
-- Legal links when available:
-  - Privacy.
-  - Terms.
-- Copyright or simple year mark.
+No additional animation library is permitted. Motion is progressive, restrained,
+interruptible, and dynamically responds to `prefers-reduced-motion`. This
+Public Website stack is not automatically the Client Portal or YS AI OS motion
+architecture.
 
-The footer should remain quiet. It should not become a secondary homepage or contain unsupported claims.
+## Public-safety rules
 
-## Public-Safe Content Rules
-
-All public content must be:
-
-- True.
-- Maintainable.
-- Clear.
-- Free of private implementation details.
-- Safe if indexed by a search engine.
-- Understandable without private context.
-
-Do not publish:
-
-- Fake clients.
-- Fake case studies.
-- Fake testimonials.
-- Fake metrics.
-- Fake screenshots.
-- Invented partnerships.
-- Unsupported awards or certifications.
-- Private system diagrams.
-- Internal tool names.
-- Internal workflow details.
-
-## What Belongs in Labs
-
-Labs may include:
-
-- Public experiments.
-- Interface studies.
-- Design-system explorations.
-- Public technical notes.
-- Small prototypes.
-- Performance experiments.
-- Accessibility experiments.
-- Public diagrams that explain general concepts.
-
-Labs must remain clearly exploratory. Labs content should not imply a product roadmap, client work, private platform access, or production availability unless explicitly true and approved.
-
-## What Must Stay Out of the Public Site
-
-The public site must not expose:
-
-- YS AI OS internals.
-- Internal architecture.
-- AI agents.
-- Prompts.
-- MCP servers.
-- Automation workflows.
-- n8n workflows.
-- Raspberry infrastructure.
-- Internal documentation.
-- Automation pipelines.
-- Business logic.
-- Private security architecture.
-- Proprietary engineering processes.
-- Future confidential roadmap.
-- Implementation details of internal systems.
-
-Artificial intelligence may be mentioned only as a public high-level capability or context. Clients buy outcomes, not models, prompts, agents, or workflows.
-
-## Future Contact Form Notes
-
-A future contact form should be implemented only when the repository is ready for public input handling.
-
-Recommended requirements:
-
-- Use Cloudflare Turnstile for abuse protection.
-- Include a honeypot field.
-- Add rate limiting at the public edge or API layer.
-- Validate all input server-side.
-- Collect only necessary information.
-- Avoid direct exposure of private email if possible.
-- Do not expose internal routing, automation, or workflow details.
-- Return generic success and error messages.
-- Keep logs minimal and privacy-aware.
-
-Any contact form backend should be treated as a public API boundary. It must not expose private systems or become a proxy to internal operations.
-
-## Implementation Notes
-
-Build pages only when there is real public content.
-
-Prefer static Astro pages. Add client-side JavaScript only when the interaction requires it. Keep public APIs limited to website-specific needs.
-
-Every page should pass the same bar:
-
-- Fast.
-- Accessible.
-- Public-safe.
-- Easy to maintain.
-- Honest.
-- Minimal.
+Do not publish fake clients, cases, testimonials, metrics, screenshots,
+partnerships, prices, outcomes, or certifications. Do not expose YS AI OS,
+internal dashboards, prompts, agents, workflows, infrastructure, secrets, logs,
+private costs, business logic, client data, or private security architecture.

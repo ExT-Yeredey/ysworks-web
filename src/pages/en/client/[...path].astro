@@ -1,0 +1,31 @@
+---
+import ClientPlaceholderPage, {
+	type ClientRoute,
+} from "../../../components/pages/ClientPlaceholderPage.astro";
+
+export function getStaticPaths() {
+	const routes: ClientRoute[] = [
+		"client",
+		"dashboard",
+		"projects",
+		"tasks",
+		"files",
+		"chat",
+		"company",
+		"invoices",
+		"settings",
+	];
+	return routes.map((page) => ({
+		params: { path: page === "client" ? undefined : page },
+		props: { page },
+	}));
+}
+
+interface Props {
+	page: ClientRoute;
+}
+
+const { page } = Astro.props;
+---
+
+<ClientPlaceholderPage locale="en" page={page} />

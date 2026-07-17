@@ -23,7 +23,12 @@ const {
 const Heading = headingLevel;
 ---
 
-<Card class="service-card" interactive={Boolean(href)}>
+<Card
+	class="service-card"
+	interactive={Boolean(href)}
+	fill
+	data-service-card
+>
 	<div class="service-card__icon" aria-hidden="true"><slot name="icon" /></div>
 	<div class="service-card__content">
 		{eyebrow && <MonoEyebrow>{eyebrow}</MonoEyebrow>}
@@ -38,16 +43,28 @@ const Heading = headingLevel;
 		display: grid;
 		align-content: start;
 		gap: var(--space-6);
-		height: 100%;
+	}
+
+	:global(.card.service-card:hover),
+	:global(.card.service-card:focus-visible),
+	:global(.card.service-card[data-active]) {
+		transform: translateY(var(--motion-lift-surface));
+		border-color: var(--color-border-strong);
+	}
+
+	:global(.card.service-card:hover .mono-eyebrow),
+	:global(.card.service-card:focus-visible .mono-eyebrow),
+	:global(.card.service-card[data-active] .mono-eyebrow) {
+		color: var(--color-accent-strong);
 	}
 
 	.service-card__icon {
 		display: grid;
 		place-items: center;
-		width: 2.5rem;
-		height: 2.5rem;
+		width: var(--control-height-md);
+		height: var(--control-height-md);
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-6);
+		border-radius: var(--control-radius);
 		background: var(--color-bg-elevated);
 		color: var(--color-accent-strong);
 	}
@@ -62,7 +79,7 @@ const Heading = headingLevel;
 	}
 
 	.service-card :is(h2, h3, h4) {
-		font-size: var(--font-size-24);
+		font-size: var(--text-title-sm);
 	}
 
 	.service-card :is(h2, h3, h4) a {
@@ -72,7 +89,7 @@ const Heading = headingLevel;
 	.service-card__action {
 		align-self: end;
 		color: var(--color-accent-strong);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		font-weight: var(--font-weight-medium);
 	}
 </style>

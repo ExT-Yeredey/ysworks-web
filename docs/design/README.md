@@ -27,6 +27,9 @@ the approved version recorded here.
 The Founder-provided Brand Book source is authoritative for brand identity and
 visual direction. The Brand Kit is its canonical repository representation;
 Branding and Brand Positioning provide supporting context but may not weaken it.
+The approved geometric YW monogram direction is recorded there. Final vector
+geometry remains a bounded brand-asset task; generated raster material is never
+a production asset.
 
 The User Experience Foundation governs public journeys, information hierarchy,
 responsive behavior, accessibility, interaction cost, and progressive
@@ -42,3 +45,15 @@ values across the ecosystem.
 When these sources conflict, the authority hierarchy in the
 [YSWORKS Master Specification](../YSWORKS_MASTER_SPEC.md) applies. In particular,
 accepted ADR-M004 governs the Public Website animation-library decision.
+
+## Product separation
+
+The Public Website, Client Portal, and YS AI OS are separate products sharing a
+governed visual family:
+
+- the Public Website is anonymous, editorial, and conversion-oriented;
+- the Client Portal is a future authenticated, tenant-isolated product;
+- YS AI OS is a private operating system and never a public interface.
+
+Shared tokens and brand principles do not permit shared authentication,
+authorization, data access, navigation, or runtime boundaries.

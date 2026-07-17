@@ -1,0 +1,53 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import CtaCard from "../cards/CtaCard.astro";
+import CopyButton from "../interactive/CopyButton.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Button from "../ui/Button.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+
+const { locale } = Astro.props;
+const copy =
+	locale === "es"
+		? {
+				title: "Cuéntanos qué necesita funcionar mejor.",
+				description:
+					"Comparte el contexto, el problema y el resultado que buscas. Empezaremos por entender si podemos aportar una solución adecuada.",
+				email: "Escribir a contact@ysworks.dev",
+				copy: "Copiar correo",
+				copied: "Correo copiado",
+				error: "No se pudo copiar",
+			}
+		: {
+				title: "Tell us what needs to work better.",
+				description:
+					"Share the context, the problem and the outcome you need. We will begin by understanding whether we can provide the right solution.",
+				email: "Email contact@ysworks.dev",
+				copy: "Copy email",
+				copied: "Email copied",
+				error: "Could not copy",
+			};
+---
+
+<Section spacing="lg" aria-label={copy.title}>
+	<Container size="lg">
+		<CtaCard title={copy.title} description={copy.description}>
+			<div slot="actions" class="editorial-contact__actions">
+				<Button href="mailto:contact@ysworks.dev" variant="primary">{copy.email}</Button>
+				<CopyButton value="contact@ysworks.dev" label={copy.copy} copiedLabel={copy.copied} errorLabel={copy.error} />
+			</div>
+		</CtaCard>
+	</Container>
+</Section>
+
+<style>
+	.editorial-contact__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+</style>

@@ -1,0 +1,184 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import Faq from "../content/Faq.astro";
+import PageIntro from "../content/PageIntro.astro";
+import CopyButton from "../interactive/CopyButton.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import PublicPageShell from "./PublicPageShell.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+const { locale } = Astro.props;
+const content =
+	locale === "es"
+		? {
+				title: "Contacto",
+				description:
+					"Explica a YSWORKS el proyecto o problema tecnológico que necesitas resolver mediante el canal público contact@ysworks.dev.",
+				eyebrow: "Contacto",
+				heading: "Empecemos por entender el problema.",
+				intro:
+					"Una buena conversación técnica no necesita una especificación perfecta. Necesita contexto suficiente para evaluar el encaje y definir el siguiente paso.",
+				channel: "Canal principal",
+				channelTitle: "Escríbenos directamente.",
+				channelBody:
+					"No hay un formulario activo ni se simulan envíos desde esta página. Tu aplicación de correo gestionará el mensaje.",
+				emailAction: "Escribir a contact@ysworks.dev",
+				copy: "Copiar correo",
+				copied: "Correo copiado",
+				copyError: "No se pudo copiar",
+				brief: "Para preparar la conversación",
+				briefTitle: "Cuatro datos útiles.",
+				items: [
+					"Qué problema quieres resolver o qué proceso necesita mejorar.",
+					"Quién usa hoy el sistema y qué fricción encuentra.",
+					"Qué resultado sería útil y qué restricciones debemos conocer.",
+					"Si existe una fecha relevante, un sistema previo o una dependencia externa.",
+				],
+				collaboration: "Formas de colaborar",
+				collaborationTitle: "Una entrada adecuada para cada necesidad.",
+				ways: [
+					[
+						"Nuevo proyecto",
+						"Definir y construir un sistema, integración o experiencia desde una necesidad concreta.",
+					],
+					[
+						"Revisión técnica",
+						"Entender un sistema existente, sus riesgos y las decisiones prioritarias.",
+					],
+					[
+						"Continuidad",
+						"Mantener y evolucionar una solución con responsabilidades acordadas.",
+					],
+				],
+				response: "Qué ocurre después",
+				responseBody:
+					"Revisamos personalmente cada consulta. La primera respuesta busca confirmar recepción, aclarar información esencial y proponer una conversación cuando existe encaje. No prometemos una solución antes de comprender el contexto.",
+				fit: "Encaje del proyecto",
+				fitBody:
+					"Trabajamos mejor con problemas definidos, responsables disponibles y voluntad de mantener el sistema después de entregarlo. Si el alcance requiere una especialidad que no ofrecemos, lo indicaremos con claridad.",
+				faqTitle: "Antes de escribir",
+				faqDescription: "Respuestas breves sobre el primer contacto.",
+				faq: [
+					{
+						question: "¿Necesito una especificación completa?",
+						answer:
+							"No. El contexto, el problema y el resultado esperado son suficientes para iniciar la evaluación.",
+					},
+					{
+						question: "¿Cuánto tarda una respuesta?",
+						answer:
+							"No publicamos un plazo automático que no podamos garantizar. Cada consulta se revisa y se responde con el siguiente paso realista.",
+					},
+					{
+						question: "¿Puedo enviar información confidencial?",
+						answer:
+							"No envíes secretos, credenciales ni datos sensibles en el primer correo. Acordaremos un canal apropiado si el proyecto necesita compartir información privada.",
+					},
+				],
+			}
+		: {
+				title: "Contact",
+				description:
+					"Tell YSWORKS about the project or technology problem you need to solve through the public contact@ysworks.dev channel.",
+				eyebrow: "Contact",
+				heading: "Let us start by understanding the problem.",
+				intro:
+					"A useful technical conversation does not require a perfect specification. It needs enough context to assess fit and define the next step.",
+				channel: "Primary channel",
+				channelTitle: "Email us directly.",
+				channelBody:
+					"There is no active form and this page does not simulate submissions. Your email application will handle the message.",
+				emailAction: "Email contact@ysworks.dev",
+				copy: "Copy email",
+				copied: "Email copied",
+				copyError: "Could not copy",
+				brief: "To prepare the conversation",
+				briefTitle: "Four useful details.",
+				items: [
+					"The problem you want to solve or the process that needs improvement.",
+					"Who uses the system today and what friction they encounter.",
+					"The useful outcome and any constraints we should understand.",
+					"Any relevant date, existing system or external dependency.",
+				],
+				collaboration: "Ways to work together",
+				collaborationTitle: "A suitable entry point for each need.",
+				ways: [
+					[
+						"New project",
+						"Define and build a system, integration or experience from a concrete need.",
+					],
+					[
+						"Technical review",
+						"Understand an existing system, its risks and the decisions that matter first.",
+					],
+					[
+						"Continuity",
+						"Maintain and evolve a solution with agreed responsibilities.",
+					],
+				],
+				response: "What happens next",
+				responseBody:
+					"We personally review every enquiry. The first response confirms receipt, clarifies essential information and proposes a conversation when there is a fit. We do not promise a solution before understanding the context.",
+				fit: "Project fit",
+				fitBody:
+					"We work best with defined problems, available owners and a willingness to maintain the system after delivery. If the scope requires a specialist capability we do not provide, we will say so clearly.",
+				faqTitle: "Before you write",
+				faqDescription: "Brief answers about the first contact.",
+				faq: [
+					{
+						question: "Do I need a complete specification?",
+						answer:
+							"No. Context, the problem and the expected outcome are enough to begin the assessment.",
+					},
+					{
+						question: "How quickly will you respond?",
+						answer:
+							"We do not publish an automated timeframe we cannot guarantee. Each enquiry is reviewed and answered with a realistic next step.",
+					},
+					{
+						question: "Can I send confidential information?",
+						answer:
+							"Do not send secrets, credentials or sensitive data in the first email. We will agree an appropriate channel if the project requires private information.",
+					},
+				],
+			};
+---
+
+<PublicPageShell locale={locale} page="contact" title={content.title} description={content.description}>
+	<PageIntro eyebrow={content.eyebrow} title={content.heading} description={content.intro} />
+	<Section spacing="sm" aria-labelledby="channel-title"><Container size="lg"><div class="contact-grid">
+		<section class="contact-channel" aria-labelledby="channel-title"><Badge>{content.channel}</Badge><h2 id="channel-title">{content.channelTitle}</h2><a class="contact-email" href="mailto:contact@ysworks.dev">contact@ysworks.dev</a><p>{content.channelBody}</p><div class="contact-actions"><Button href="mailto:contact@ysworks.dev" variant="primary">{content.emailAction}</Button><CopyButton value="contact@ysworks.dev" label={content.copy} copiedLabel={content.copied} errorLabel={content.copyError} /></div></section>
+		<section class="contact-brief" aria-labelledby="brief-title"><p class="eyebrow">{content.brief}</p><h2 id="brief-title">{content.briefTitle}</h2><ol>{content.items.map((item, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>)}</ol></section>
+	</div></Container></Section>
+	<Section spacing="md" aria-labelledby="collaboration-title"><Container size="xl"><div class="section-heading"><Badge>{content.collaboration}</Badge><h2 id="collaboration-title">{content.collaborationTitle}</h2></div><div class="collaboration">{content.ways.map(([title, description]) => <article><h3>{title}</h3><p>{description}</p></article>)}</div></Container></Section>
+	<Section spacing="md" tone="muted" aria-label={content.response}><Container size="lg"><div class="expectations"><article><p class="eyebrow">{content.response}</p><p>{content.responseBody}</p></article><article><p class="eyebrow">{content.fit}</p><p>{content.fitBody}</p></article></div></Container></Section>
+	<Section spacing="md"><Container size="lg"><Faq id="contact-questions" eyebrow={content.eyebrow} title={content.faqTitle} description={content.faqDescription} items={content.faq} /></Container></Section>
+</PublicPageShell>
+
+<style>
+	.contact-grid { display: grid; gap: var(--space-6); }
+	.contact-channel, .contact-brief { display: grid; align-content: start; gap: var(--content-gap-md); border: 1px solid var(--color-border-subtle); border-radius: var(--feature-radius); background: var(--color-surface); box-shadow: var(--shadow-surface); padding: var(--surface-padding-lg); }
+	.contact-channel h2, .contact-brief h2 { font-size: var(--text-title-compact); text-wrap: balance; }
+	.contact-email { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: clamp(var(--font-size-16), 3vw, var(--font-size-24)); overflow-wrap: anywhere; }
+	.contact-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+	.contact-brief ol { display: grid; margin: 0; padding: 0; list-style: none; }
+	.contact-brief li { display: grid; grid-template-columns: 2rem 1fr; gap: var(--space-3); border-top: 1px solid var(--color-border-subtle); padding-block: var(--space-4); }
+	.contact-brief li > span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.collaboration { display: grid; border-top: 1px solid var(--color-border-subtle); }
+	.collaboration article { display: grid; gap: var(--space-3); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-8); }
+	.collaboration h3 { font-size: var(--font-size-20); }
+	.expectations { display: grid; gap: var(--space-8); }
+	.expectations article { display: grid; align-content: start; gap: var(--space-4); border-left: 1px solid var(--color-accent-border); padding-left: var(--space-5); }
+	.expectations article p:last-child { font-size: var(--text-lead); }
+	@media (min-width: 53rem) {
+		.contact-grid, .expectations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.collaboration { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+		.collaboration article { padding: var(--space-8); }
+		.collaboration article + article { border-left: 1px solid var(--color-border-subtle); }
+	}
+</style>

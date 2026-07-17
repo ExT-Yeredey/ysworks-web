@@ -1,6 +1,7 @@
 ---
 import Badge from "../ui/Badge.astro";
 import Container from "../layout/Container.astro";
+import Stack from "../layout/Stack.astro";
 
 interface Props {
 	eyebrow: string;
@@ -11,43 +12,57 @@ interface Props {
 const { eyebrow, title, description } = Astro.props;
 ---
 
-<header class="page-intro" data-reveal>
-	<Container size="lg">
-		<div class="page-intro__content">
+<header class="page-intro">
+	<Container size="xl">
+		<Stack class="page-intro__content" gap="md">
 			<Badge tone="accent">{eyebrow}</Badge>
 			<h1>{title}</h1>
 			<p>{description}</p>
-		</div>
+		</Stack>
 	</Container>
 </header>
 
 <style>
 	.page-intro {
-		padding-block: var(--space-24) var(--space-16);
+		position: relative;
+		border-bottom: 1px solid var(--color-border-subtle);
+		padding-block: var(--section-space-lg) var(--section-space-md);
+		background: linear-gradient(180deg, var(--color-accent-soft), transparent 68%);
 	}
 
 	.page-intro__content {
 		display: grid;
-		gap: var(--space-5);
+		gap: var(--content-gap-md);
 		max-width: 54rem;
 	}
 
 	h1 {
-		font-size: clamp(var(--font-size-40), 7vw, var(--font-size-72));
+		font-size: var(--text-title-lg);
 		line-height: var(--line-height-tight);
 		letter-spacing: -0.04em;
 		text-wrap: balance;
 	}
 
 	p {
-		max-width: 46rem;
+		max-width: var(--measure-lead);
 		font-size: clamp(var(--font-size-18), 2.5vw, var(--font-size-22));
 		text-wrap: pretty;
 	}
 
-	@media (min-width: 768px) {
-		.page-intro {
-			padding-block: var(--space-32) var(--space-24);
+	@media (min-width: 64rem) {
+		.page-intro__content {
+			grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+			column-gap: var(--space-16);
+			max-width: none;
+		}
+
+		.page-intro__content :global(.badge) {
+			grid-column: 1 / -1;
+		}
+
+		.page-intro__content p {
+			align-self: end;
+			padding-bottom: var(--space-2);
 		}
 	}
 </style>

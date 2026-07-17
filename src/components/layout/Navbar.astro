@@ -1,6 +1,5 @@
 ---
-import { navigation } from "../../data/site";
-import Button from "../ui/Button.astro";
+import ThemeToggle from "../interactive/ThemeToggle.astro";
 import Container from "./Container.astro";
 
 export interface NavItem {
@@ -13,33 +12,45 @@ interface Props {
 	brandLabel?: string;
 	brandHref?: string;
 	currentPath?: string;
-	ctaLabel?: string;
-	ctaHref?: string;
 	navigationLabel?: string;
 	menuLabel?: string;
 	closeLabel?: string;
 	homeLabel?: string;
 	menuId?: string;
+	localeLink?: NavItem & { language: "es" | "en"; ariaLabel: string };
+	lightThemeLabel?: string;
+	darkThemeLabel?: string;
+	themeMenuLabel?: string;
+	lightThemeOption?: string;
+	darkThemeOption?: string;
+	clientArea?: NavItem;
 }
 
 const {
-	items = navigation,
+	items = [],
 	brandLabel = "YSWORKS",
 	brandHref = "/",
 	currentPath = Astro.url.pathname,
-	ctaLabel = "Hablemos de tu proyecto",
-	ctaHref = "/contact",
 	navigationLabel = "Navegación principal",
 	menuLabel = "Menú",
 	closeLabel = "Cerrar",
 	homeLabel = `${brandLabel}, inicio`,
 	menuId = "mobile-navigation",
+	localeLink,
+	lightThemeLabel = "Usar tema claro",
+	darkThemeLabel = "Usar tema oscuro",
+	themeMenuLabel = "Tema",
+	lightThemeOption = "Claro",
+	darkThemeOption = "Oscuro",
+	clientArea,
 } = Astro.props;
 
 const isActive = (href: string) => {
 	if (href.includes("#")) return false;
 	const path = href.split("#")[0] || "/";
-	return path === "/" ? currentPath === "/" : currentPath.startsWith(path);
+	return path === "/" || path === "/en/"
+		? currentPath === path
+		: currentPath.startsWith(path);
 };
 ---
 
@@ -47,11 +58,11 @@ const isActive = (href: string) => {
 	<Container size="xl">
 		<nav class="navbar__inner" aria-label={navigationLabel}>
 			<a class="navbar__brand" href={brandHref} aria-label={homeLabel}>
-				<span class="navbar__mark" aria-hidden="true">YW</span>
 				<span class="navbar__name">{brandLabel}</span>
 			</a>
 
 			<div class="navbar__desktop">
+				<div class="navbar__links-wrap">
 				<ul class="navbar__links">
 					{
 						items.map((item) => (
@@ -67,23 +78,46 @@ const isActive = (href: string) => {
 						))
 					}
 				</ul>
+				<span class="navbar__indicator" aria-hidden="true" data-nav-indicator></span>
+				</div>
 				<div class="navbar__actions">
-					<slot name="actions">
-						<Button href={ctaHref} variant="primary" size="sm">{ctaLabel}</Button>
-					</slot>
+					{
+						localeLink && (
+							<a
+								class="navbar__locale"
+								href={localeLink.href}
+								lang={localeLink.language}
+								hreflang={localeLink.language}
+								aria-label={localeLink.ariaLabel}
+							>
+								{localeLink.label}
+							</a>
+						)
+					}
+					<ThemeToggle
+						menuId="desktop-theme-menu"
+						menuLabel={themeMenuLabel}
+						lightLabel={lightThemeLabel}
+						darkLabel={darkThemeLabel}
+						lightOptionLabel={lightThemeOption}
+						darkOptionLabel={darkThemeOption}
+					/>
+					{clientArea && <a class="navbar__client-area" href={clientArea.href}>{clientArea.label}</a>}
 				</div>
 			</div>
 
-			<button
-				class="navbar__toggle"
-				type="button"
-				aria-expanded="false"
-				aria-controls={menuId}
-				data-menu-toggle
-			>
-				<span>{menuLabel}</span>
-				<span class="navbar__toggle-icon" aria-hidden="true"><i></i><i></i></span>
-			</button>
+			<div class="navbar__compact">
+				<button
+					class="navbar__toggle"
+					type="button"
+					aria-expanded="false"
+					aria-controls={menuId}
+					data-menu-toggle
+				>
+					<span>{menuLabel}</span>
+					<span class="navbar__toggle-icon" aria-hidden="true"><i></i><i></i></span>
+				</button>
+			</div>
 		</nav>
 	</Container>
 
@@ -97,9 +131,20 @@ const isActive = (href: string) => {
 		<div class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label={navigationLabel}>
 			<div class="mobile-nav__top">
 				<span class="eyebrow">{navigationLabel}</span>
-				<button class="mobile-nav__close" type="button" data-menu-close>
-					{closeLabel}
-				</button>
+				<div class="mobile-nav__controls">
+					<ThemeToggle
+						menuId="mobile-theme-menu"
+						menuLabel={themeMenuLabel}
+						mobile
+						lightLabel={lightThemeLabel}
+						darkLabel={darkThemeLabel}
+						lightOptionLabel={lightThemeOption}
+						darkOptionLabel={darkThemeOption}
+					/>
+					<button class="mobile-nav__close" type="button" data-menu-close>
+						{closeLabel}
+					</button>
+				</div>
 			</div>
 			<ul class="mobile-nav__links">
 				{
@@ -113,27 +158,57 @@ const isActive = (href: string) => {
 					))
 				}
 			</ul>
-			<Button href={ctaHref} variant="primary">{ctaLabel}</Button>
+			{
+				localeLink && (
+					<a
+						class="mobile-nav__locale"
+						href={localeLink.href}
+						lang={localeLink.language}
+						hreflang={localeLink.language}
+						aria-label={localeLink.ariaLabel}
+					>
+						{localeLink.label}
+					</a>
+				)
+			}
+			{clientArea && <a class="mobile-nav__client-area" href={clientArea.href}>{clientArea.label}</a>}
 		</div>
 	</div>
 </ys-navbar>
 
 <script>
-	import { animate, stagger } from "animejs";
+	import {
+		motion,
+		prefersReducedMotion,
+		registerOpenLayer,
+		scheduleFrame,
+		unregisterOpenLayer,
+	} from "../../lib/motion";
 
 	class YsNavbar extends HTMLElement {
+		private controller?: AbortController;
+
 		connectedCallback() {
+			this.controller?.abort();
+			this.controller = new AbortController();
+			const { signal } = this.controller;
 			const toggle = this.querySelector<HTMLButtonElement>("[data-menu-toggle]");
 			const menu = this.querySelector<HTMLElement>("[data-mobile-menu]");
 			const panel = menu?.querySelector<HTMLElement>(".mobile-nav__panel");
 			const backdrop = menu?.querySelector<HTMLElement>(".mobile-nav__backdrop");
+			const desktopLinks = Array.from(this.querySelectorAll<HTMLAnchorElement>(".navbar__link"));
+			const indicator = this.querySelector<HTMLElement>("[data-nav-indicator]");
 			if (!toggle || !menu || !panel || !backdrop) return;
 
 			document.documentElement.dataset.menuReady = "true";
 			let previousFocus: HTMLElement | null = null;
 			let closing = false;
-			const reducedMotion = () =>
-				window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			let menuAnimations: Animation[] = [];
+			const reducedMotion = prefersReducedMotion;
+			const cancelMenuAnimations = () => {
+				for (const animation of menuAnimations) animation.cancel();
+				menuAnimations = [];
+			};
 			const focusable = () =>
 				Array.from(
 					panel.querySelectorAll<HTMLElement>(
@@ -141,7 +216,8 @@ const isActive = (href: string) => {
 					),
 				);
 
-			const finishClose = () => {
+			const finishClose = (restoreFocus = true) => {
+				cancelMenuAnimations();
 				menu.hidden = true;
 				closing = false;
 				panel.removeAttribute("style");
@@ -149,26 +225,36 @@ const isActive = (href: string) => {
 				for (const item of menu.querySelectorAll<HTMLElement>(".mobile-nav__links li")) {
 					item.removeAttribute("style");
 				}
-				previousFocus?.focus();
+				if (restoreFocus) previousFocus?.focus();
+				unregisterOpenLayer(menu);
 			};
 
-			const closeMenu = () => {
+			const closeMenu = (immediate = false) => {
 				if (menu.hidden || closing) return;
 				closing = true;
+				for (const selector of menu.querySelectorAll<HTMLElement>("ys-theme-selector")) {
+					selector.dispatchEvent(new CustomEvent("ysworks-layer-close"));
+				}
 				toggle.setAttribute("aria-expanded", "false");
 				document.body.removeAttribute("data-scroll-lock");
-				if (reducedMotion()) {
-					finishClose();
+				if (immediate || reducedMotion()) {
+					finishClose(!immediate);
 					return;
 				}
-				animate(backdrop, { opacity: 0, duration: 150, ease: "in(2)" });
-				animate(panel, {
-					x: "100%",
-					opacity: 0.98,
-					duration: 210,
-					ease: "in(3)",
-					onComplete: finishClose,
+				cancelMenuAnimations();
+				const backdropAnimation = backdrop.animate([{ opacity: 1 }, { opacity: 0 }], {
+					duration: motion.duration.fast,
+					easing: motion.waapiEase.inQuad,
 				});
+				const panelAnimation = panel.animate(
+					[
+						{ transform: "translateX(0)", opacity: 1 },
+						{ transform: "translateX(100%)", opacity: 0.98 },
+					],
+					{ duration: motion.duration.base, easing: motion.waapiEase.inQuad },
+				);
+				menuAnimations = [backdropAnimation, panelAnimation];
+				panelAnimation.addEventListener("finish", () => finishClose(), { once: true });
 			};
 
 			const openMenu = () => {
@@ -176,36 +262,47 @@ const isActive = (href: string) => {
 				menu.hidden = false;
 				toggle.setAttribute("aria-expanded", "true");
 				document.body.dataset.scrollLock = "true";
+				registerOpenLayer(menu, () => closeMenu());
 				const items = menu.querySelectorAll<HTMLElement>(".mobile-nav__links li");
 				if (!reducedMotion()) {
-					animate(backdrop, { opacity: [0, 1], duration: 180, ease: "out(2)" });
-					animate(panel, { x: ["100%", 0], duration: 240, ease: "out(4)" });
-					animate(items, {
-						opacity: [0, 1],
-						x: [12, 0],
-						delay: stagger(32, { start: 45 }),
-						duration: 210,
-						ease: "out(3)",
-					});
+					cancelMenuAnimations();
+					menuAnimations = [
+						backdrop.animate([{ opacity: 0 }, { opacity: 1 }], {
+							duration: motion.duration.base,
+							easing: motion.waapiEase.outQuart,
+						}),
+						panel.animate(
+							[{ transform: "translateX(100%)" }, { transform: "translateX(0)" }],
+							{ duration: motion.duration.base, easing: motion.waapiEase.outQuart },
+						),
+						...Array.from(items).map((item, index) =>
+							item.animate(
+								[
+									{ opacity: 0, transform: `translateX(${motion.travel.sm}px)` },
+									{ opacity: 1, transform: "translateX(0)" },
+								],
+								{
+									delay: motion.stagger.mobile * (index + 1),
+									duration: motion.duration.base,
+									easing: motion.waapiEase.outQuart,
+								},
+							),
+						),
+					];
 				}
 				window.requestAnimationFrame(() => focusable()[0]?.focus());
 			};
 
-			toggle.addEventListener("click", () => (menu.hidden ? openMenu() : closeMenu()));
+			toggle.addEventListener("click", () => (menu.hidden ? openMenu() : closeMenu()), { signal });
 			for (const control of menu.querySelectorAll<HTMLElement>("[data-menu-close]")) {
-				control.addEventListener("click", closeMenu);
+				control.addEventListener("click", () => closeMenu(), { signal });
 			}
 			for (const link of menu.querySelectorAll<HTMLAnchorElement>("a")) {
-				link.addEventListener("click", closeMenu);
+				link.addEventListener("click", () => closeMenu(), { signal });
 			}
 
 			document.addEventListener("keydown", (event) => {
 				if (menu.hidden) return;
-				if (event.key === "Escape") {
-					event.preventDefault();
-					closeMenu();
-					return;
-				}
 				if (event.key !== "Tab") return;
 				const items = focusable();
 				const first = items[0];
@@ -217,11 +314,53 @@ const isActive = (href: string) => {
 					event.preventDefault();
 					first?.focus();
 				}
-			});
+			}, { signal });
 
-			window.addEventListener("resize", () => {
-				if (window.innerWidth >= 860 && !menu.hidden) closeMenu();
-			});
+			const updateNavigation = () => {
+				this.toggleAttribute("data-condensed", window.scrollY >= motion.choreography.navigationCondense);
+				if (window.innerWidth >= motion.breakpoint.navigationDesktop && !menu.hidden) closeMenu(true);
+			};
+			const scheduleNavigationUpdate = scheduleFrame(updateNavigation);
+			window.addEventListener("scroll", scheduleNavigationUpdate, { passive: true, signal });
+			window.addEventListener("resize", scheduleNavigationUpdate, { signal });
+			updateNavigation();
+
+			if (indicator) {
+				const indicatorTrack = indicator.parentElement;
+				const active = () => desktopLinks.find((link) => link.getAttribute("aria-current") === "page");
+				const moveIndicator = (link?: HTMLAnchorElement, draw = false) => {
+					if (!link) {
+						indicator.style.opacity = "0";
+						return;
+					}
+					if (!indicatorTrack) return;
+					const linkRect = link.getBoundingClientRect();
+					const trackRect = indicatorTrack.getBoundingClientRect();
+					indicator.style.opacity = "1";
+					indicator.style.setProperty("--indicator-x", `${linkRect.left - trackRect.left}px`);
+					indicator.style.setProperty("--indicator-width", `${linkRect.width}px`);
+					if (draw && !reducedMotion()) {
+						indicator.animate([{ scale: "0 1" }, { scale: "1 1" }], {
+							duration: motion.duration.base,
+							easing: motion.waapiEase.outQuart,
+						});
+					}
+				};
+				for (const link of desktopLinks) {
+					link.addEventListener("pointerenter", () => moveIndicator(link), { signal });
+					link.addEventListener("focus", () => moveIndicator(link), { signal });
+					link.addEventListener("pointerleave", () => moveIndicator(active()), { signal });
+					link.addEventListener("blur", () => moveIndicator(active()), { signal });
+				}
+				window.addEventListener("resize", () => moveIndicator(active()), { signal });
+				moveIndicator(active(), true);
+			}
+		}
+
+		disconnectedCallback() {
+			this.controller?.abort();
+			const menu = this.querySelector<HTMLElement>("[data-mobile-menu]");
+			if (menu) unregisterOpenLayer(menu);
 		}
 	}
 
@@ -234,7 +373,17 @@ const isActive = (href: string) => {
 		top: 0;
 		z-index: 50;
 		display: block;
-		border-bottom: 1px solid var(--color-border-subtle);
+		border-bottom: 1px solid transparent;
+		background: transparent;
+		transition:
+			background-color var(--motion-duration-base) var(--motion-ease-in-out-quad),
+			border-color var(--motion-duration-base) var(--motion-ease-in-out-quad),
+			backdrop-filter var(--motion-duration-base) var(--motion-ease-in-out-quad);
+		view-transition-name: ys-navbar;
+	}
+
+	.navbar[data-condensed] {
+		border-bottom-color: var(--color-border-subtle);
 		background: var(--color-bg-translucent);
 		backdrop-filter: blur(18px);
 	}
@@ -244,8 +393,8 @@ const isActive = (href: string) => {
 	.navbar__links,
 	.navbar__actions,
 	.navbar__brand,
-	.navbar__toggle,
 	.mobile-nav__top,
+	.mobile-nav__controls,
 	.mobile-nav__links a {
 		display: flex;
 		align-items: center;
@@ -254,32 +403,19 @@ const isActive = (href: string) => {
 	.navbar__inner {
 		justify-content: space-between;
 		gap: var(--space-4);
-		min-height: 4.25rem;
+		min-height: var(--layout-header-height);
 	}
 
 	.navbar__brand {
 		flex: none;
-		gap: var(--space-2);
-		border-radius: var(--radius-6);
+		border-radius: var(--control-radius);
 		font-weight: var(--font-weight-semibold);
 		line-height: var(--line-height-ui);
 	}
 
-	.navbar__mark {
-		display: inline-grid;
-		place-items: center;
-		width: 2.25rem;
-		height: 2.25rem;
-		border: 1px solid var(--color-border-strong);
-		border-radius: var(--radius-6);
-		background: var(--color-surface);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-12);
-	}
-
 	.navbar__name {
-		font-size: var(--font-size-14);
-		letter-spacing: 0.04em;
+		font-size: var(--font-size-16);
+		letter-spacing: 0.08em;
 	}
 
 	.navbar__desktop {
@@ -296,18 +432,40 @@ const isActive = (href: string) => {
 		list-style: none;
 	}
 
+	.navbar__links-wrap {
+		position: relative;
+		display: flex;
+	}
+
 	.navbar__link {
+		position: relative;
 		display: inline-flex;
 		align-items: center;
 		min-height: 2rem;
 		border-radius: var(--radius-6);
 		color: var(--color-text-muted);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		font-weight: var(--font-weight-medium);
 		padding-inline: var(--space-3);
 		transition:
 			background-color var(--motion-duration-fast) var(--motion-ease-standard),
 			color var(--motion-duration-fast) var(--motion-ease-standard);
+	}
+
+	.navbar__indicator {
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		width: var(--indicator-width, 0);
+		height: 1px;
+		transform: translateX(var(--indicator-x, 0));
+		transform-origin: left;
+		background: var(--color-accent);
+		opacity: 0;
+		pointer-events: none;
+		transition:
+			width var(--motion-duration-base) var(--motion-ease-out-quart),
+			transform var(--motion-duration-base) var(--motion-ease-out-quart);
 	}
 
 	.navbar__link:hover,
@@ -316,21 +474,52 @@ const isActive = (href: string) => {
 		color: var(--color-text-primary);
 	}
 
+	.navbar__locale,
+	.mobile-nav__locale,
+	.navbar__client-area,
+	.mobile-nav__client-area {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--control-height-md);
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--control-radius);
+		color: var(--color-text-secondary);
+		font-family: var(--font-mono);
+		font-size: var(--text-eyebrow);
+		font-weight: var(--font-weight-medium);
+		padding-inline: var(--space-3);
+	}
+
+	.navbar__locale:hover,
+	.mobile-nav__locale:hover,
+	.navbar__client-area:hover,
+	.mobile-nav__client-area:hover {
+		border-color: var(--color-border-strong);
+		color: var(--color-text-primary);
+	}
+
 	.navbar__toggle {
 		display: none;
 		gap: var(--space-3);
-		min-height: 2.5rem;
+		min-height: var(--control-height-md);
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-6);
+		border-radius: var(--control-radius);
 		background: var(--color-surface);
 		color: var(--color-text-primary);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		padding-inline: var(--space-3);
+	}
+
+	.navbar__compact {
+		display: none;
+		align-items: center;
+		gap: var(--space-2);
 	}
 
 	.navbar__toggle-icon {
 		display: grid;
-		gap: 0.25rem;
+		gap: var(--space-1);
 		width: 1rem;
 	}
 
@@ -354,7 +543,7 @@ const isActive = (href: string) => {
 
 	.mobile-nav__backdrop {
 		border: 0;
-		background: rgb(0 0 0 / 0.62);
+		background: var(--color-overlay);
 		backdrop-filter: blur(4px);
 	}
 
@@ -373,13 +562,26 @@ const isActive = (href: string) => {
 		justify-content: space-between;
 	}
 
+	.mobile-nav__controls {
+		align-items: flex-start;
+		gap: var(--space-2);
+	}
+
+	.mobile-nav__locale {
+		width: fit-content;
+	}
+
+	.mobile-nav__client-area {
+		width: 100%;
+	}
+
 	.mobile-nav__close {
-		min-height: 2.5rem;
+		min-height: var(--control-height-md);
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-6);
+		border-radius: var(--control-radius);
 		background: var(--color-surface);
 		color: var(--color-text-primary);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		padding-inline: var(--space-3);
 	}
 
@@ -405,8 +607,9 @@ const isActive = (href: string) => {
 			display: none;
 		}
 
+		html[data-menu-ready="true"] .navbar__compact,
 		html[data-menu-ready="true"] .navbar__toggle {
-			display: inline-flex;
+			display: flex;
 		}
 
 		.navbar__desktop {
@@ -417,4 +620,5 @@ const isActive = (href: string) => {
 			display: none;
 		}
 	}
+
 </style>

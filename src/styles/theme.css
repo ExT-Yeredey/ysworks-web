@@ -38,6 +38,7 @@
 	--color-info: var(--ys-primary-300);
 	--color-info-soft: var(--ys-primary-soft);
 	--color-grid: rgb(255 255 255 / 0.035);
+	--color-overlay: rgb(0 0 0 / 0.68);
 
 	--focus-ring-color: var(--ys-primary-focus);
 	--focus-ring-offset: var(--ys-dark-background);
@@ -78,6 +79,7 @@
 	--color-info: var(--ys-primary-700);
 	--color-info-soft: var(--ys-primary-soft);
 	--color-grid: rgb(24 24 27 / 0.05);
+	--color-overlay: rgb(0 0 0 / 0.68);
 
 	--focus-ring-color: var(--ys-primary-focus);
 	--focus-ring-offset: #ffffff;

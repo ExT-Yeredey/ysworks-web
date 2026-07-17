@@ -11,7 +11,8 @@ library entry point.
 
 ## Catalog
 
-- Layout: `Navbar`, `Footer`, `Section`, `Container`, `Grid`.
+- Layout: `Navbar`, `Footer`, `Section`, `Container`, `Grid`, `Stack`, and
+  `Cluster`.
 - Buttons: `Button` with `primary`, `secondary`, `ghost`, and `text` variants.
 - Cards: `ServiceCard`, `ProcessCard`, `TechnologyCard`, `CtaCard`, and the
   composable `Card` primitive.
@@ -36,6 +37,10 @@ Compound components must be composed with their required children:
 
 - Use semantic heading levels in document order; typography components do not
   infer page structure.
+- Use `Stack` for vertical content rhythm and `Cluster` for wrapping groups of
+  related controls. Do not recreate their gap and alignment rules locally.
+- Use the semantic layout, type, surface, control, and motion roles in
+  `src/styles/tokens.css`; component styles must not restate governed values.
 - Give every tab and panel a unique matching `id`, `controls`, and `labelledby`
   relationship.
 - Open a modal with an element whose `data-modal-open` value matches the modal
@@ -58,12 +63,47 @@ heading order, unique identifiers, and testing the composed page at WCAG 2.2 AA.
 
 ## Animation
 
-Anime.js is the only JavaScript animation dependency. Motion is progressive and
-is skipped when `prefers-reduced-motion: reduce` is active. CSS remains
-responsible for layout, focus, hover, and simple state presentation.
+Anime.js is the only third-party JavaScript animation dependency and is reserved
+for coordinated landing-page choreography, SVG drawing, and complex timelines.
+CSS owns simple states; WAAPI owns simple imperative global interactions;
+IntersectionObserver owns visibility; and `requestAnimationFrame` is limited to
+genuine scroll synchronisation. Motion is progressive and responds to dynamic
+changes in `prefers-reduced-motion` without replaying completed entrances.
+
+`ClientRouter` remains the governed route-transition implementation for V1. A
+later bounded migration may replace it with native MPA View Transitions only
+after history, focus, theme, ES/EN navigation, back/forward, script lifecycle,
+and reduced-motion behavior pass compatibility QA.
 
 ## Themes
 
 All components consume semantic tokens from `src/styles/theme.css` and support
-both `[data-theme="dark"]` and `[data-theme="light"]`. `ThemeToggle` persists a
-user choice locally; an application may provide its own approved theme control.
+both `[data-theme="dark"]` and `[data-theme="light"]`. `ThemeToggle` provides an
+accessible Dark/Light menu. A first visit resolves the operating-system
+preference without storing it; an explicit Dark or Light selection is persisted
+across ES/EN routes. Dark is the fallback when no preference can be resolved.
+
+## Governed client-area navigation
+
+`Navbar` exposes an optional `clientArea` entry but renders no placeholder when
+it is absent. It may be supplied only when a real private route exists with
+approved authentication, server-side tenant authorization, session and logout
+handling, client-data isolation, and no exposure of YS AI OS internals. The
+future destination may present authorized project, conversation, task,
+deliverable, document, proposal, invoice, support, service, integration, and
+operational views; none of these responsibilities are implemented by this
+public component library.
+
+The repository may render non-indexed Client Portal interface-foundation routes
+for architecture review. These routes must state that they are inactive, contain
+no client data, implement no authentication, and remain absent from Public
+Website navigation. They are not authority to deploy a public portal or weaken
+the portal subdomain, tenant, or server-authorization contracts.
+
+## Product boundaries
+
+Public Website components may share tokens and presentation primitives with a
+future Client Portal, but not sessions, data access, navigation assumptions, or
+business state. YS AI OS has no public component surface. Motion remains
+product-scoped: the Public Website stack does not automatically become the
+Client Portal or YS AI OS animation architecture.

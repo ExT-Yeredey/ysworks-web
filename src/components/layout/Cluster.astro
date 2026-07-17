@@ -1,0 +1,72 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	as?: "div" | "nav";
+	gap?: "sm" | "md" | "lg";
+	justify?: "start" | "end" | "between";
+	align?: "start" | "center";
+}
+
+const {
+	as = "div",
+	gap = "sm",
+	justify = "start",
+	align = "center",
+	class: className,
+	...attrs
+} = Astro.props;
+const Element = as;
+const classes = [
+	"cluster",
+	`cluster--gap-${gap}`,
+	`cluster--justify-${justify}`,
+	`cluster--align-${align}`,
+	className,
+]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Element class={classes} {...attrs}>
+	<slot />
+</Element>
+
+<style>
+	.cluster {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.cluster--gap-sm {
+		gap: var(--grid-gap-sm);
+	}
+
+	.cluster--gap-md {
+		gap: var(--grid-gap-md);
+	}
+
+	.cluster--gap-lg {
+		gap: var(--grid-gap-lg);
+	}
+
+	.cluster--justify-start {
+		justify-content: flex-start;
+	}
+
+	.cluster--justify-end {
+		justify-content: flex-end;
+	}
+
+	.cluster--justify-between {
+		justify-content: space-between;
+	}
+
+	.cluster--align-start {
+		align-items: flex-start;
+	}
+
+	.cluster--align-center {
+		align-items: center;
+	}
+</style>

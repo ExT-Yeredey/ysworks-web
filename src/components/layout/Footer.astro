@@ -1,5 +1,4 @@
 ---
-import { navigation } from "../../data/site";
 import Container from "./Container.astro";
 
 interface NavItem {
@@ -14,17 +13,21 @@ interface Props {
 	legalItems?: NavItem[];
 	navigationLabel?: string;
 	statement?: string;
+	email?: string;
 	year?: number;
+	localeLink?: NavItem & { language: "es" | "en"; ariaLabel: string };
 }
 
 const {
 	brandLabel = "YSWORKS",
 	description = "Ingeniería tecnológica para sistemas claros, seguros y mantenibles.",
-	items = navigation,
+	items = [],
 	legalItems = [{ label: "Privacidad", href: "/privacy" }],
 	navigationLabel = "Navegación del pie",
-	statement = "Quiet Engineering. Complejidad invisible, simplicidad visible.",
+	statement = "Ingeniería serena. Complejidad invisible, simplicidad visible.",
+	email = "contact@ysworks.dev",
 	year = new Date().getFullYear(),
+	localeLink,
 } = Astro.props;
 ---
 
@@ -34,10 +37,23 @@ const {
 			<div class="footer__identity">
 				<p class="footer__brand">{brandLabel}</p>
 				<p class="footer__descriptor">{description}</p>
+				<a class="footer__email" href={`mailto:${email}`}>{email}</a>
 			</div>
 			<nav class="footer__nav" aria-label={navigationLabel}>
 				{items.map((link) => <a href={link.href}>{link.label}</a>)}
 				{legalItems.map((link) => <a href={link.href}>{link.label}</a>)}
+				{
+					localeLink && (
+						<a
+						href={localeLink.href}
+							lang={localeLink.language}
+							hreflang={localeLink.language}
+							aria-label={localeLink.ariaLabel}
+						>
+							{localeLink.label}
+						</a>
+					)
+				}
 			</nav>
 		</div>
 		<div class="footer__bottom">
@@ -55,8 +71,8 @@ const {
 
 	.footer__top {
 		display: grid;
-		gap: var(--space-8);
-		padding-block: var(--space-12);
+		gap: var(--content-gap-lg);
+		padding-block: var(--layout-footer-space);
 	}
 
 	.footer__identity {
@@ -66,13 +82,20 @@ const {
 
 	.footer__brand {
 		color: var(--color-text-primary);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		font-weight: var(--font-weight-semibold);
 		letter-spacing: 0.04em;
 	}
 
 	.footer__descriptor {
 		max-width: 27rem;
+	}
+
+	.footer__email {
+		width: fit-content;
+		color: var(--color-text-primary);
+		font-family: var(--font-mono);
+		font-size: var(--text-ui);
 	}
 
 	.footer__nav {
@@ -85,7 +108,7 @@ const {
 	.footer__nav a {
 		border-radius: var(--radius-4);
 		color: var(--color-text-muted);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		font-weight: var(--font-weight-medium);
 		transition: color var(--motion-duration-fast) var(--motion-ease-standard);
 	}
@@ -105,13 +128,12 @@ const {
 
 	.footer__bottom p {
 		color: var(--color-text-muted);
-		font-size: var(--font-size-12);
+		font-size: var(--text-eyebrow);
 	}
 
 	@media (min-width: 768px) {
 		.footer__top {
 			grid-template-columns: 1fr auto;
-			padding-block: var(--space-16);
 		}
 	}
 </style>

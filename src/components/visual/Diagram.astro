@@ -26,17 +26,19 @@ const classes = ["diagram", `diagram--${direction}`, className]
 
 	.diagram__canvas {
 		display: flex;
-		align-items: stretch;
-		gap: var(--space-3);
-		overflow-x: auto;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-2);
+		overflow: hidden;
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-12);
+		border-radius: var(--surface-radius);
 		background:
 			linear-gradient(var(--color-grid) 1px, transparent 1px),
 			linear-gradient(90deg, var(--color-grid) 1px, transparent 1px),
 			var(--color-bg-elevated);
 		background-size: 2rem 2rem;
-		padding: var(--space-5);
+		box-shadow: var(--shadow-inset);
+		padding: var(--surface-padding-md);
 	}
 
 	.diagram--column .diagram__canvas {
@@ -50,7 +52,7 @@ const classes = ["diagram", `diagram--${direction}`, className]
 
 	@media (min-width: 768px) {
 		.diagram__canvas {
-			padding: var(--space-8);
+			padding: var(--surface-padding-lg);
 		}
 	}
 </style>

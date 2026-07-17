@@ -15,6 +15,7 @@ const classes = ["tabs", className].filter(Boolean).join(" ");
 
 <script>
 	import { animate } from "animejs";
+	import { motion, prefersReducedMotion } from "../../lib/motion";
 
 	class YsTabs extends HTMLElement {
 		connectedCallback() {
@@ -22,8 +23,6 @@ const classes = ["tabs", className].filter(Boolean).join(" ");
 			const panels = Array.from(this.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
 			if (tabs.length === 0 || panels.length === 0) return;
 			const automatic = this.dataset.activation !== "manual";
-			const reducedMotion = () =>
-				window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 			const activate = (tab: HTMLButtonElement, moveFocus = true) => {
 				const panelId = tab.getAttribute("aria-controls");
@@ -34,12 +33,12 @@ const classes = ["tabs", className].filter(Boolean).join(" ");
 				}
 				for (const panel of panels) panel.hidden = panel.id !== panelId;
 				const panel = panels.find((candidate) => candidate.id === panelId);
-				if (panel && !reducedMotion()) {
+				if (panel && !prefersReducedMotion()) {
 					animate(panel, {
 						opacity: [0, 1],
-						y: [6, 0],
-						duration: 180,
-						ease: "out(3)",
+						y: [motion.interaction.faqAnswerTravel, 0],
+						duration: motion.duration.base,
+						ease: motion.ease.outQuart,
 					});
 				}
 				if (moveFocus) tab.focus();

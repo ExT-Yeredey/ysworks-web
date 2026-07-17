@@ -1,0 +1,60 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+	as?: "div" | "section";
+	gap?: "sm" | "md" | "lg";
+	align?: "start" | "center" | "stretch";
+}
+
+const {
+	as = "div",
+	gap = "md",
+	align = "stretch",
+	class: className,
+	...attrs
+} = Astro.props;
+const Element = as;
+const classes = [
+	"stack",
+	`stack--gap-${gap}`,
+	`stack--align-${align}`,
+	className,
+]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<Element class={classes} {...attrs}>
+	<slot />
+</Element>
+
+<style>
+	.stack {
+		display: grid;
+	}
+
+	.stack--gap-sm {
+		gap: var(--content-gap-sm);
+	}
+
+	.stack--gap-md {
+		gap: var(--content-gap-md);
+	}
+
+	.stack--gap-lg {
+		gap: var(--content-gap-lg);
+	}
+
+	.stack--align-start {
+		justify-items: start;
+	}
+
+	.stack--align-center {
+		justify-items: center;
+	}
+
+	.stack--align-stretch {
+		justify-items: stretch;
+	}
+</style>

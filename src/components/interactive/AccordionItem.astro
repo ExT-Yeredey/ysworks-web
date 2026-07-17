@@ -17,12 +17,17 @@ const classes = ["accordion-item", className].filter(Boolean).join(" ");
 			<path d="M3 8h10M8 3v10" fill="none" stroke="currentColor" stroke-linecap="round"></path>
 		</svg>
 	</summary>
-	<div class="accordion-item__content"><slot /></div>
+	<span class="accordion-item__marker" aria-hidden="true"></span>
+	<div class="accordion-item__region">
+		<div class="accordion-item__content"><slot /></div>
+	</div>
 </details>
 
 <style>
 	.accordion-item {
+		position: relative;
 		border-bottom: 1px solid var(--color-border-subtle);
+		transition: border-color var(--motion-duration-base) var(--motion-ease-in-out-quad);
 	}
 
 	.accordion-item:last-child {
@@ -30,16 +35,21 @@ const classes = ["accordion-item", className].filter(Boolean).join(" ");
 	}
 
 	.accordion-item summary {
-		display: flex;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 2rem;
 		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-6);
+		gap: var(--space-5);
 		min-height: 3.75rem;
 		cursor: pointer;
 		color: var(--color-text-primary);
 		font-size: var(--font-size-16);
 		font-weight: var(--font-weight-medium);
 		list-style: none;
+		padding: var(--space-4) var(--space-3) var(--space-4) var(--space-5);
+	}
+
+	.accordion-item summary > span {
+		min-width: 0;
 	}
 
 	.accordion-item summary::-webkit-details-marker {
@@ -47,17 +57,53 @@ const classes = ["accordion-item", className].filter(Boolean).join(" ");
 	}
 
 	.accordion-item summary svg {
-		flex: none;
+		justify-self: center;
 		color: var(--color-text-muted);
+		transition:
+			color var(--motion-duration-fast) var(--motion-ease-in-out-quad),
+			transform var(--motion-duration-base) var(--motion-ease-out-quart);
 	}
 
-	.accordion-item[open] summary svg path:last-child {
-		display: none;
+	.accordion-item[open]:not([data-closing="true"]),
+	.accordion-item[data-opening="true"] {
+		border-color: var(--color-accent-border);
+	}
+
+	.accordion-item[open]:not([data-closing="true"]) summary svg,
+	.accordion-item[data-opening="true"] summary svg {
+		transform: rotate(45deg);
+		color: var(--color-accent-strong);
+	}
+
+	.accordion-item__marker {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 2px;
+		transform: scaleY(0);
+		transform-origin: top;
+		background: var(--color-accent);
+	}
+
+	.accordion-item__region {
+		overflow: clip;
 	}
 
 	.accordion-item__content {
 		max-width: 46rem;
-		padding: 0 var(--space-8) var(--space-6) 0;
+		padding: 0 calc(2rem + var(--space-8)) var(--space-6) var(--space-5);
 		color: var(--color-text-secondary);
+	}
+
+	@media (min-width: 48rem) {
+		.accordion-item summary {
+			gap: var(--space-8);
+			padding-right: var(--space-5);
+		}
+
+		.accordion-item__content {
+			padding-right: calc(2rem + var(--space-12));
+		}
 	}
 </style>

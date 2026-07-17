@@ -1,133 +1,141 @@
 # Website Information Architecture
 
-## Purpose
+## Status
 
-This document defines the target website structure before implementation.
+- Version: Public Website v2
+- Status: Founder-approved product architecture
+- Scope: anonymous Public Website and bounded Client Portal interface preview
 
-The current website may not include every page yet.
+## Product model
 
-## Primary Navigation
+YSWORKS presents one ecosystem through three separated products:
 
-Recommended navigation:
+1. **Public Website:** anonymous company, service, process, and contact surface
+   at `www.ysworks.dev`.
+2. **Client Portal:** future authenticated and tenant-isolated product at
+   `portal.ysworks.dev`.
+3. **YS AI OS:** private internal operating system with no public routes,
+   interface, or implementation detail.
 
-- Work.
-- Services.
-- Labs.
-- Journal.
-- About.
-- Contact.
+Shared brand and design tokens do not merge their identity, authorization, data,
+deployment, or operational boundaries.
 
-Navigation should point only to existing pages or stable sections. Do not publish
-links to routes that do not exist.
+## Primary navigation
 
-## Sitemap
+The Public Website navigation is:
 
-First public release:
+- Home;
+- Services;
+- Process;
+- About;
+- Contact;
+- language;
+- theme;
+- a reserved Client Area slot.
+
+The navigation contains no marketing CTA. Chrome navigates; page content
+provides conversion paths. The Client Area item remains absent until a real
+login exists with approved authentication and server-side authorization.
+
+## Public sitemap
+
+Spanish is canonical at root routes. English uses the `/en/` prefix.
 
 ```text
 /
 /services
+/process
 /about
 /contact
 /privacy
+/404
+
+/en/
+/en/services/
+/en/process/
+/en/about/
+/en/contact/
+/en/privacy/
 ```
 
-Second phase:
+Every localized public page has an equivalent language route, self-canonical
+URL, reciprocal `hreflang`, accessible language control, and safe fallback.
 
-```text
-/work
-/labs
-/journal
-```
-
-Future sitemap:
-
-```text
-/services/ai-engineering
-/services/intelligent-automation
-/services/web-platforms
-/services/product-engineering
-/services/technical-consulting
-/services/ai-integration
-/services/security-engineering
-/work/[slug]
-/labs/[slug]
-/journal/[slug]
-```
-
-## Page Priorities
+## Page contracts
 
 ### Home
 
-Purpose: explain YSWORKS, establish trust, and route visitors.
-
-Priority content:
-
-- positioning;
-- services overview;
-- trust principles;
-- contact CTA.
-
-Work, Labs, and Journal previews should appear only after real public content
-exists.
+Home is an executive overview. It establishes confidence, preserves the approved
+editorial sequence, summarizes rather than exhausts, and routes visitors to
+dedicated pages. Every major explanatory section ends with one meaningful
+continuation path.
 
 ### Services
 
-Purpose: explain public service categories.
+Services presents Automation, AI Systems, Web Engineering, Infrastructure,
+Cybersecurity, Integrations, and Maintenance as separate blocks. Every block
+defines the problem, approach, typical outputs, related technology, and a
+contact path. It contains no fabricated customers, cases, metrics, testimonials,
+prices, or outcomes.
 
-Do not expose private systems or internal workflows.
+### Process
 
-### Work
-
-Purpose: show real approved work or explain work principles until public case
-studies exist.
-
-No fake clients, fake logos, fake screenshots, or fake outcomes.
-
-Work is a second-phase page. It is not required for the first public release.
-
-### Labs
-
-Purpose: publish safe experiments and public explorations.
-
-Labs should not imply production availability.
-
-Labs is a second-phase page. It should not launch without a real public
-experiment or exploration.
-
-### Journal
-
-Purpose: publish technical writing, product thinking, and public-safe notes.
-
-Writing should be durable, factual, and useful.
-
-Journal is a second-phase page. The first website release must not depend on a
-blog.
+Process explains Discovery, Architecture, Implementation, Validation, Delivery,
+and Continuous Improvement. It makes decision criteria and evidence visible
+without decorative timelines or private workflow disclosure.
 
 ### About
 
-Purpose: explain company values, public positioning, and working style.
-
-Do not describe private operating systems.
+About defines the company, engineering philosophy, human supervision,
+transparency, long-term thinking, and quality principles. It introduces the
+Founder as the accountable company authority without turning the page into
+personal branding.
 
 ### Contact
 
-Purpose: provide a clear inquiry path.
+Contact behaves like the first engineering meeting. It explains collaboration
+paths, useful context, fit, realistic response behavior, confidentiality limits,
+and common questions. The primary public channel remains
+`contact@ysworks.dev`; no form submission is simulated.
 
-Before a form exists, the page may provide a safe contact method and expected
-response context.
+### Privacy and 404
 
-### Privacy
+Privacy states the real collection posture. The 404 route provides recovery,
+language, and theme controls without exposing implementation details.
 
-Purpose: explain data collection and privacy posture.
+## Client Portal route foundation
 
-Required before analytics, forms, newsletter, or downloads.
+The repository prepares non-indexed interface-foundation previews for:
 
-## Navigation Rules
+```text
+/client
+/client/dashboard
+/client/projects
+/client/tasks
+/client/files
+/client/chat
+/client/company
+/client/invoices
+/client/settings
+```
 
-- Keep primary navigation short.
-- Avoid dropdowns until content depth requires them.
-- Do not link to missing pages.
-- Prefer stable URLs.
-- Keep footer quiet but useful.
-- Include legal links when available.
+Equivalent English previews use `/en/client...`. These routes:
+
+- remain absent from Public Website navigation;
+- clearly state that the portal is unavailable;
+- contain no authentication, sessions, client data, mock business data, or
+  private-system connections;
+- do not replace the future `portal.ysworks.dev` product;
+- cannot be activated as a client service until the Client Portal Foundation is
+  implemented and independently reviewed.
+
+## Navigation and content rules
+
+- Link only to real public destinations.
+- Keep the primary navigation stable and shallow.
+- Do not expose YS AI OS, internal dashboards, infrastructure, prompts, agents,
+  workflows, logs, secrets, costs, or private client information.
+- Do not publish unapproved client claims, cases, logos, metrics, testimonials,
+  prices, or outcomes.
+- Preserve keyboard navigation, visible focus, WCAG AA contrast, semantic
+  structure, reduced motion, and progressive enhancement.

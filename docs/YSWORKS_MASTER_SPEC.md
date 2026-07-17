@@ -601,8 +601,13 @@ consistency, and performance rather than effects.
 Typography must create a clear semantic hierarchy and remain readable across
 supported viewports. Spacing must be systematic and content-led. Neither the
 Master Specification nor an unreviewed design proposal fixes a font family,
-type scale, spacing unit, breakpoint, or final mark. The official color contract
-is YSWORKS Design Tokens v1.0: Primary 500 `#6D5EF7` is the brand color and the
+type scale, spacing unit, breakpoint, or final vector geometry. The
+Founder-approved logo direction is an angular geometric YW monogram with a white
+Y and YSWORKS Purple W. It pairs with the YSWORKS wordmark for the primary logo,
+is used alone for compact product marks, and keeps YS AI OS in the same visual
+family without making it public. Generated raster material is a reference only,
+never a production asset. The official color contract is YSWORKS Design Tokens
+v1.0: Primary 500 `#6D5EF7` is the brand color and the
 governed primary scale, interaction states, and dark surfaces apply to every
 YSWORKS product and communication surface.
 
@@ -617,9 +622,12 @@ attention. It must not delay access to content, create decorative spectacle, or
 serve as proof of technical capability.
 
 CSS remains appropriate for layout, hover and focus feedback, basic state
-transitions, and simple presentation. Anime.js is the only permitted JavaScript
-animation library for the Public Website. Motion and any additional JavaScript
-animation library are not permitted and must not be reintroduced.
+transitions, and simple presentation. Native WAAPI handles simple imperative
+interactions, IntersectionObserver handles visibility, and
+requestAnimationFrame is limited to genuine scroll synchronization. Anime.js is
+the only permitted JavaScript animation dependency for the Public Website and
+is reserved for approved coordinated choreography. Motion and any additional
+JavaScript animation library are not permitted and must not be reintroduced.
 
 Anime.js is progressive enhancement only. Public content, navigation, controls,
 and binding actions remain visible, understandable, and usable when JavaScript
@@ -1226,6 +1234,21 @@ their referenced documents. `Accepted` means the direction is official;
 - **Status:** Accepted. On-site physical and hardware delivery is primarily in
   Madrid and Lanzarote; suitable remote work may be delivered more broadly.
 
+### ADR-M019: Unified Geometric YW Identity
+
+- **Decision:** Use the approved angular geometric YW direction across the
+  ecosystem: white Y, YSWORKS Purple W, primary lockup with the YSWORKS
+  wordmark, and monogram-only use for compact product marks. YS AI OS remains in
+  the same visual family without becoming a public product.
+- **Reason:** One scalable identity connects the Public Website, Client Portal,
+  internal products, and future surfaces without fragmenting the company brand.
+- **Alternatives rejected:** The former YS compact mark, unrelated product
+  brands, direct use of a generated raster as a production logo, and improvised
+  vector geometry without review.
+- **Status:** Direction accepted. Governed vector reconstruction, optical
+  testing, lockups, favicon, application icons, and production replacement
+  remain a bounded brand-asset task.
+
 ## 12. Open Decisions
 
 Open Decisions are real governance gates, not placeholders or permission to
@@ -1268,8 +1291,9 @@ of these entries authorizes implementation changes outside its accepted scope.
 
 ### 12.3 Public Website And Brand
 
-- Final reviewed `YS` compact-mark assets and social sharing image; the public
-  wordmark remains `YSWORKS`.
+- Final governed vector masters, compact assets, favicon, application icon,
+  lockups, and social image for the approved YW direction. The raster reference
+  must not ship directly; the public wordmark remains `YSWORKS`.
 - Whether Tailwind CSS remains the long-term Public Website styling standard or
   only the current repository implementation choice.
 - Final reviewed typography, spacing, breakpoint, component, and motion tokens;

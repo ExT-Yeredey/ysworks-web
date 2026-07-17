@@ -5,9 +5,10 @@ Public website for YSWORKS.
 YSWORKS is a technology engineering company focused on useful, secure,
 maintainable digital systems. AI is one applied capability among software,
 automation, systems, hardware, and security; it is not the company's public
-identity. This repository contains only the public website. It does not include
-private systems, internal documentation, prompts, infrastructure, or proprietary
-implementation details.
+identity. This repository contains the Public Website and a non-indexed,
+inactive visual foundation for the future Client Portal. It does not contain
+authentication, client data, backend access, private systems, prompts,
+infrastructure, or proprietary implementation details.
 
 ## Project Overview
 
@@ -59,6 +60,7 @@ src/
   utils/        Small utility functions
 public/         Static public files
 docs/business/ Business, brand, website, and commercial foundation
+design-system/ Production UI standards and implementation contracts
 ```
 
 ## Documentation
@@ -75,6 +77,10 @@ Public-safe platform architecture contracts live in
 [docs/architecture](docs/architecture/README.md). They define future exposure,
 edge-security, webhook, and production-readiness boundaries without documenting
 private infrastructure or deployment configuration.
+
+The production UI contracts live in [design-system](design-system/tokens.md).
+They govern how approved brand, layout, typography, motion, component, and
+accessibility decisions are applied consistently in this repository.
 
 The `.ai/` directory remains the public engineering knowledge base for this
 repository.
@@ -111,6 +117,7 @@ Build the site:
 pnpm build
 ```
 
+
 Preview the production build:
 
 ```sh
@@ -121,13 +128,22 @@ pnpm preview
 
 - `/` — launch homepage.
 - `/services` — public service areas and boundaries.
+- `/process` — complete engineering process and decision criteria.
 - `/about` — company approach and principles.
-- `/contact` — pre-launch contact guidance; no form or data submission.
+- `/contact` — first-contact experience; no form or data submission.
 - `/privacy` — current static-site privacy posture.
 - `/404` — useful not-found experience.
 
-Future portal, status, documentation, labs, and journal surfaces are intentionally
-outside this launch foundation.
+English equivalents use the `/en/` prefix.
+
+`/client` and its prepared subroutes are non-indexed interface-foundation
+previews only. They do not authenticate, load data, or provide portal access and
+remain absent from public navigation. The production Client Portal remains a
+future authenticated product at `portal.ysworks.dev`; its activation requires
+the approved portal security architecture.
+
+Future status, public documentation, labs, and journal surfaces remain outside
+this release.
 
 ## Deployment
 

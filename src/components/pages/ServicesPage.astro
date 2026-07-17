@@ -1,0 +1,360 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import PageIntro from "../content/PageIntro.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import PublicPageShell from "./PublicPageShell.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+
+interface Service {
+	number: string;
+	title: string;
+	solves: string;
+	approach: string;
+	outputs: string[];
+	technologies: string[];
+}
+
+const { locale } = Astro.props;
+const content =
+	locale === "es"
+		? {
+				title: "Servicios tecnológicos",
+				description:
+					"Automatización, sistemas de IA, ingeniería web, infraestructura, ciberseguridad, integraciones y mantenimiento de YSWORKS.",
+				eyebrow: "Servicios",
+				heading: "Capacidades conectadas alrededor de sistemas completos.",
+				intro:
+					"Cada servicio responde a un problema concreto. El alcance combina solo las capacidades necesarias y mantiene visibles los límites, la seguridad y el mantenimiento.",
+				solves: "Qué resuelve",
+				approach: "Cómo lo abordamos",
+				outputs: "Resultados habituales",
+				technologies: "Tecnologías relacionadas",
+				cta: "Hablar sobre este servicio",
+				services: [
+					{
+						number: "01",
+						title: "Automatización",
+						solves:
+							"Trabajo repetitivo, traspasos manuales, errores evitables y procesos que no ofrecen una visión clara de su estado.",
+						approach:
+							"Entendemos primero el proceso, definimos responsables y excepciones, y automatizamos únicamente los pasos que pueden validarse y supervisarse.",
+						outputs: [
+							"Mapa del proceso",
+							"Flujos controlados",
+							"Validaciones y alertas",
+							"Documentación operativa",
+						],
+						technologies: ["n8n", "Webhooks", "APIs", "Sistemas de colas"],
+					},
+					{
+						number: "02",
+						title: "Sistemas de IA",
+						solves:
+							"Tareas intensivas en información donde una asistencia acotada puede acelerar análisis, clasificación, preparación o recuperación de conocimiento.",
+						approach:
+							"Diseñamos límites, fuentes autorizadas, evaluación y supervisión humana antes de seleccionar un modelo o integrar capacidades inteligentes.",
+						outputs: [
+							"Evaluación del caso",
+							"Asistentes acotados",
+							"Flujos con revisión humana",
+							"Criterios de calidad y seguridad",
+						],
+						technologies: [
+							"Modelos de lenguaje",
+							"Recuperación de información",
+							"Evaluación",
+							"APIs de IA",
+						],
+					},
+					{
+						number: "03",
+						title: "Ingeniería web",
+						solves:
+							"Sitios, herramientas y plataformas lentas, difíciles de usar o incapaces de evolucionar con el negocio.",
+						approach:
+							"Unimos arquitectura de información, frontend, rendimiento, accesibilidad y mantenimiento en una base estática o dinámica proporcionada al producto.",
+						outputs: [
+							"Sitios corporativos",
+							"Aplicaciones y portales",
+							"Sistemas de componentes",
+							"SEO y rendimiento técnico",
+						],
+						technologies: [
+							"Astro",
+							"TypeScript",
+							"HTML y CSS",
+							"Cloudflare Pages",
+						],
+					},
+					{
+						number: "04",
+						title: "Infraestructura",
+						solves:
+							"Entornos frágiles, exposición innecesaria, equipos desconectados y falta de criterios claros para operar o recuperar servicios.",
+						approach:
+							"Reducimos superficie, separamos responsabilidades y documentamos operación, observabilidad, copias y recuperación según el riesgo real.",
+						outputs: [
+							"Arquitectura de entorno",
+							"Configuración revisada",
+							"Observabilidad proporcionada",
+							"Plan de continuidad",
+						],
+						technologies: ["Cloudflare", "Linux", "Docker", "Redes y hardware"],
+					},
+					{
+						number: "05",
+						title: "Ciberseguridad",
+						solves:
+							"Superficies públicas, accesos, secretos y dependencias con controles insuficientes o responsabilidades ambiguas.",
+						approach:
+							"Aplicamos revisión defensiva y medidas proporcionadas desde el diseño. No ofrecemos pentesting acreditado, respuesta forense ni operación ofensiva avanzada.",
+						outputs: [
+							"Revisión de exposición",
+							"Modelo de acceso",
+							"Protección de formularios y webhooks",
+							"Plan de mejoras priorizado",
+						],
+						technologies: [
+							"Zero Trust",
+							"WAF",
+							"Gestión de secretos",
+							"Escaneo de dependencias",
+						],
+					},
+					{
+						number: "06",
+						title: "Integraciones",
+						solves:
+							"Herramientas aisladas, información duplicada y operaciones que dependen de copiar datos entre sistemas sin trazabilidad.",
+						approach:
+							"Definimos contratos, autenticación, validación, errores y propiedad de los datos antes de conectar cada sistema.",
+						outputs: [
+							"Contrato de integración",
+							"Adaptadores y webhooks",
+							"Sincronización controlada",
+							"Registro y recuperación de errores",
+						],
+						technologies: ["REST", "Webhooks firmados", "OAuth", "Mensajería"],
+					},
+					{
+						number: "07",
+						title: "Mantenimiento",
+						solves:
+							"Sistemas que necesitan continuidad, correcciones, evolución y una responsabilidad técnica clara después de la entrega.",
+						approach:
+							"Essential Care, Growth Care y Continuous Operations son niveles adaptables. Alcance, disponibilidad y responsabilidades se acuerdan para cada sistema.",
+						outputs: [
+							"Mantenimiento preventivo",
+							"Correcciones priorizadas",
+							"Mejoras planificadas",
+							"Documentación vigente",
+						],
+						technologies: [
+							"GitHub",
+							"Monitorización",
+							"Gestión de incidencias",
+							"Documentación versionada",
+						],
+					},
+				] satisfies Service[],
+			}
+		: {
+				title: "Technology services",
+				description:
+					"Automation, AI systems, web engineering, infrastructure, cybersecurity, integrations and maintenance from YSWORKS.",
+				eyebrow: "Services",
+				heading: "Connected capabilities around complete systems.",
+				intro:
+					"Each service addresses a defined problem. Scope combines only the capabilities required while keeping boundaries, security and maintenance visible.",
+				solves: "What it solves",
+				approach: "How we approach it",
+				outputs: "Typical outputs",
+				technologies: "Related technologies",
+				cta: "Discuss this service",
+				services: [
+					{
+						number: "01",
+						title: "Automation",
+						solves:
+							"Repetitive work, manual hand-offs, avoidable errors and processes that provide no clear view of their state.",
+						approach:
+							"We understand the process first, define owners and exceptions, and automate only the steps that can be validated and supervised.",
+						outputs: [
+							"Process map",
+							"Controlled workflows",
+							"Validation and alerts",
+							"Operating documentation",
+						],
+						technologies: ["n8n", "Webhooks", "APIs", "Queueing systems"],
+					},
+					{
+						number: "02",
+						title: "AI systems",
+						solves:
+							"Information-intensive tasks where bounded assistance can accelerate analysis, classification, preparation or knowledge retrieval.",
+						approach:
+							"We define boundaries, authorised sources, evaluation and human oversight before selecting a model or integrating intelligent capability.",
+						outputs: [
+							"Use-case assessment",
+							"Bounded assistants",
+							"Human-review workflows",
+							"Quality and security criteria",
+						],
+						technologies: [
+							"Language models",
+							"Information retrieval",
+							"Evaluation",
+							"AI APIs",
+						],
+					},
+					{
+						number: "03",
+						title: "Web engineering",
+						solves:
+							"Sites, tools and platforms that are slow, difficult to use or unable to evolve with the business.",
+						approach:
+							"We combine information architecture, frontend engineering, performance, accessibility and maintenance in a static or dynamic foundation proportionate to the product.",
+						outputs: [
+							"Corporate websites",
+							"Applications and portals",
+							"Component systems",
+							"Technical SEO and performance",
+						],
+						technologies: [
+							"Astro",
+							"TypeScript",
+							"HTML and CSS",
+							"Cloudflare Pages",
+						],
+					},
+					{
+						number: "04",
+						title: "Infrastructure",
+						solves:
+							"Fragile environments, unnecessary exposure, disconnected equipment and unclear criteria for operating or recovering services.",
+						approach:
+							"We reduce surface area, separate responsibilities and document operation, observability, backups and recovery according to actual risk.",
+						outputs: [
+							"Environment architecture",
+							"Reviewed configuration",
+							"Proportionate observability",
+							"Continuity plan",
+						],
+						technologies: [
+							"Cloudflare",
+							"Linux",
+							"Docker",
+							"Networks and hardware",
+						],
+					},
+					{
+						number: "05",
+						title: "Cybersecurity",
+						solves:
+							"Public surfaces, access, secrets and dependencies with insufficient controls or ambiguous responsibility.",
+						approach:
+							"We apply defensive review and proportionate controls from the design stage. We do not offer accredited pentesting, forensic response or advanced offensive operations.",
+						outputs: [
+							"Exposure review",
+							"Access model",
+							"Form and webhook protection",
+							"Prioritised improvement plan",
+						],
+						technologies: [
+							"Zero Trust",
+							"WAF",
+							"Secret management",
+							"Dependency scanning",
+						],
+					},
+					{
+						number: "06",
+						title: "Integrations",
+						solves:
+							"Isolated tools, duplicated information and operations that depend on copying data between systems without traceability.",
+						approach:
+							"We define contracts, authentication, validation, failure handling and data ownership before connecting each system.",
+						outputs: [
+							"Integration contract",
+							"Adapters and webhooks",
+							"Controlled synchronisation",
+							"Error recording and recovery",
+						],
+						technologies: ["REST", "Signed webhooks", "OAuth", "Messaging"],
+					},
+					{
+						number: "07",
+						title: "Maintenance",
+						solves:
+							"Systems that need continuity, correction, evolution and clear technical responsibility after delivery.",
+						approach:
+							"Essential Care, Growth Care and Continuous Operations are adaptable levels. Scope, availability and responsibilities are agreed for each system.",
+						outputs: [
+							"Preventive maintenance",
+							"Prioritised corrections",
+							"Planned improvements",
+							"Current documentation",
+						],
+						technologies: [
+							"GitHub",
+							"Monitoring",
+							"Incident management",
+							"Versioned documentation",
+						],
+					},
+				] satisfies Service[],
+			};
+const contactHref = locale === "es" ? "/contact" : "/en/contact/";
+---
+
+<PublicPageShell locale={locale} page="services" title={content.title} description={content.description}>
+	<PageIntro eyebrow={content.eyebrow} title={content.heading} description={content.intro} />
+	<Section spacing="sm" aria-label={content.eyebrow}>
+		<Container size="xl">
+			<div class="services">
+				{content.services.map((service) => (
+					<article class="service-block">
+						<header><span>{service.number}</span><h2>{service.title}</h2></header>
+						<div class="service-block__summary">
+							<div><p class="eyebrow">{content.solves}</p><p>{service.solves}</p></div>
+							<div><p class="eyebrow">{content.approach}</p><p>{service.approach}</p></div>
+						</div>
+						<div class="service-block__details">
+							<div><p class="eyebrow">{content.outputs}</p><ul>{service.outputs.map((item) => <li>{item}</li>)}</ul></div>
+							<div><p class="eyebrow">{content.technologies}</p><div class="technology-tags">{service.technologies.map((item) => <Badge>{item}</Badge>)}</div></div>
+						</div>
+						<footer><Button href={contactHref} variant="text">{content.cta} →</Button></footer>
+					</article>
+				))}
+			</div>
+		</Container>
+	</Section>
+</PublicPageShell>
+
+<style>
+	.services { border-top: 1px solid var(--color-border-subtle); }
+	.service-block { display: grid; gap: var(--space-8); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-12); }
+	.service-block header, .service-block__summary, .service-block__details, .service-block__summary > div, .service-block__details > div { display: grid; align-content: start; gap: var(--space-4); }
+	.service-block header > span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.service-block h2 { max-width: 18ch; font-size: var(--text-title-md); text-wrap: balance; }
+	.service-block__summary { gap: var(--space-6); }
+	.service-block__summary > div { border-left: 1px solid var(--color-border-subtle); padding-left: var(--space-5); }
+	.service-block__details { gap: var(--grid-gap-md); border: 1px solid var(--color-border-subtle); border-radius: var(--surface-radius); background: var(--color-surface); box-shadow: var(--shadow-surface); padding: var(--surface-padding-md); }
+	.service-block ul { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+	.service-block li { position: relative; color: var(--color-text-secondary); padding-left: var(--space-5); }
+	.service-block li::before { position: absolute; top: 0.75em; left: 0; width: 0.35rem; height: 1px; background: var(--color-accent-strong); content: ""; }
+	.technology-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+	.service-block footer { display: flex; justify-content: flex-end; }
+	@media (min-width: 58rem) {
+		.service-block { grid-template-columns: minmax(13rem, 0.65fr) minmax(22rem, 1fr) minmax(20rem, 0.9fr); gap: var(--space-12); padding-block: var(--space-16); }
+		.service-block header { grid-row: 1 / span 2; }
+		.service-block footer { grid-column: 2 / -1; }
+		.service-block__details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	}
+</style>
