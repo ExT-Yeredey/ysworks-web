@@ -4,47 +4,51 @@
 
 This directory contains the public-safe specifications and supporting documents
 that govern YSWORKS company behavior, ecosystem architecture, public platform,
-client portal, and business foundation.
+client workspace, company operations, and business foundation.
 
 It does not contain credentials, production configuration, private topology,
 client information, internal workflows, or restricted operational material.
 
 ## Authority Map
 
-1. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behavior, judgment,
+1. [Company Bible](COMPANY_BIBLE.md) defines company identity, purpose,
+   philosophy, principles, and long-term narrative.
+2. [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) defines product,
+   ecosystem, vocabulary, accepted decisions, and cross-system architecture.
+3. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behavior, judgment,
    delivery discipline, and human–AI collaboration.
-2. [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) defines company,
-   product, ecosystem, vocabulary, and cross-system architecture.
-3. [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
+4. [Company Documentation](company/README.md) applies those authorities to
+   company, commercial, delivery, support, and quality standards.
+5. [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
    governs public exposure and public-platform security.
-4. [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
+6. [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
    client-facing portal architecture and tenant isolation.
-5. [Public Platform Architecture Index](architecture/README.md) defines the
+7. [Public Platform Architecture Index](architecture/README.md) defines the
    publication boundary for architecture contracts.
-6. [Business Foundation](business/README.md) supports public positioning,
+8. [Business Foundation](business/README.md) supports public positioning,
    services, content, and commercial policy.
-7. [Approved Design Authorities](design/README.md), including YSWORKS Design
+9. [Approved Design Authorities](design/README.md), including YSWORKS Design
    Tokens v1.0, govern brand, experience, and interface decisions.
-8. The repository [production design-system contracts](../design-system/tokens.md)
+10. The repository [production design-system contracts](../design-system/README.md)
    govern consistent implementation of those approved design decisions.
-9. The repository [engineering knowledge base](../.ai/README.md) governs the
+11. The repository [engineering knowledge base](../.ai/README.md) governs the
    public website implementation within its scope.
 
-The handbook is the highest-level human operating handbook. It does not override
-domain architecture. The Master Specification is the highest-level architecture
-specification. Accepted ADRs govern their stated decisions, detailed domain
-contracts may add stricter requirements, and explicit Founder decisions resolve
-otherwise unresolved documentation conflicts.
+Explicit Founder decisions remain highest. Accepted ADRs govern their stated
+decisions. The Company Bible is the constitutional narrative, the Master
+Specification is the highest architecture specification, and the Founder
+Handbook is the highest human operating handbook. Detailed domain contracts may
+add stricter requirements.
 
 ## Reading Order
 
 For company or cross-system work:
 
-1. read the Founder Handbook;
-2. read the Master Specification;
+1. read the Company Bible;
+2. read the Master Specification and Founder Handbook;
 3. read the detailed contract for the affected domain;
 4. inspect applicable ADRs and Open Decisions; and
-5. use the more conservative behavior when an unresolved conflict remains.
+5. use the more conservative behaviour when an unresolved conflict remains.
 
 For work limited to the public website repository, also follow the public
 engineering knowledge base before implementation.

@@ -59,28 +59,33 @@ src/
   types/        Shared TypeScript types
   utils/        Small utility functions
 public/         Static public files
-docs/business/ Business, brand, website, and commercial foundation
+branding/       Governed structure for future approved brand assets
+docs/           Company, architecture, business, design, and product authority
 design-system/ Production UI standards and implementation contracts
 ```
 
 ## Documentation
 
-Business and website strategy documentation lives in
-[docs/business](docs/business/README.md).
+Start with the [documentation index](docs/README.md).
 
-Use it as the canonical source for company positioning, public services, website
-information architecture, content strategy, SEO strategy, lead generation,
-portfolio rules, product integration, trust principles, roadmap, acceptance
-criteria, and open commercial decisions.
+The [Company Bible](docs/COMPANY_BIBLE.md) is the highest-level constitutional
+narrative. The [company documentation](docs/company/README.md) applies it to
+profile, capability, brand, onboarding, proposals, quotations, maintenance,
+support, delivery, communication, lifecycle, and quality.
+
+Supporting business and website strategy lives in
+[docs/business](docs/business/README.md).
 
 Public-safe platform architecture contracts live in
 [docs/architecture](docs/architecture/README.md). They define future exposure,
 edge-security, webhook, and production-readiness boundaries without documenting
 private infrastructure or deployment configuration.
 
-The production UI contracts live in [design-system](design-system/tokens.md).
+The production UI contracts live in [design-system](design-system/README.md).
 They govern how approved brand, layout, typography, motion, component, and
 accessibility decisions are applied consistently in this repository.
+
+Future approved identity assets belong in [branding](branding/README.md).
 
 The `.ai/` directory remains the public engineering knowledge base for this
 repository.

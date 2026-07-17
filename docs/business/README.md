@@ -2,28 +2,27 @@
 
 ## Purpose
 
-This directory defines YSWORKS as a public company, brand, commercial platform,
-and website before implementation work continues.
+This directory provides supporting public-business and website strategy. The
+[Company Bible](../COMPANY_BIBLE.md) defines the company narrative and the
+[Company Documentation](../company/README.md) governs current company policies
+and templates.
 
 It is documentation only. It does not define private architecture, internal
 workflows, YS AI OS implementation details, prompts, agents, infrastructure, or
 confidential business logic.
 
-## Canonical Documents
+## Supporting Documents
 
-Read these documents before changing public positioning, website structure,
-services, content, or conversion flows:
+Read these documents with the higher-level authorities before changing public
+positioning, website structure, services, content, or conversion flows:
 
-1. `COMPANY_VISION.md`
-2. `BRAND_POSITIONING.md`
-3. `MASTER_PRD.md`
-4. `SERVICE_CATALOG.md`
-5. `WEBSITE_INFORMATION_ARCHITECTURE.md`
-6. `TRUST_AND_TRANSPARENCY.md`
-7. `OPEN_DECISIONS.md`
-
-Supporting documents:
-
+- `COMPANY_VISION.md`
+- `BRAND_POSITIONING.md`
+- `MASTER_PRD.md`
+- `SERVICE_CATALOG.md`
+- `WEBSITE_INFORMATION_ARCHITECTURE.md`
+- `TRUST_AND_TRANSPARENCY.md`
+- `OPEN_DECISIONS.md`
 - `TARGET_CUSTOMERS.md`
 - `CONTENT_STRATEGY.md`
 - `SEO_STRATEGY.md`

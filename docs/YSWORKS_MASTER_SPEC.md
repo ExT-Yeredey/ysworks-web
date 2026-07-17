@@ -12,6 +12,11 @@ This document is the highest-level specification for the YSWORKS ecosystem. It
 defines official vocabulary, system boundaries, product intent, and decisions
 that affect more than one YSWORKS system.
 
+The [Company Bible](COMPANY_BIBLE.md) is the highest-level constitutional
+narrative for company identity, purpose, philosophy, principles, and long-term
+direction. This specification derives its company narrative from that document
+and remains authoritative for ecosystem architecture.
+
 Detailed contracts remain authoritative within their domains:
 
 - [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
@@ -43,9 +48,11 @@ The authority hierarchy is:
    appropriate specification or decision record before implementation.
 2. An accepted ADR overrides descriptive prose for the decision and scope that
    the ADR governs. It does not override an unrelated domain contract.
-3. This Master Specification is the highest-level product, company, ecosystem,
-   vocabulary, and cross-system specification.
-4. Detailed security, public-platform, portal, business, and repository
+3. The Company Bible governs constitutional company narrative.
+4. This Master Specification is the highest-level product, ecosystem,
+   vocabulary, and cross-system architecture specification.
+5. The Founder Handbook governs company behaviour.
+6. Detailed security, public-platform, portal, company, business, and repository
    documents remain authoritative inside their stated domains and may impose
    stricter constraints.
 
@@ -61,30 +68,25 @@ credentials, vendors beyond approved decisions, or production readiness.
 
 ### 1.1 Mission
 
-YSWORKS designs, builds, secures, and maintains digital systems that help
-organizations operate clearly and reliably. It applies engineering discipline,
-automation, and artificial intelligence where they produce a defined and
-responsible outcome.
+The official mission is defined in
+[Company Bible section 03](COMPANY_BIBLE.md#03-mission). In architecture, it
+requires every system to serve a defined organisational outcome, retain
+accountable ownership, and remain supportable within its approved boundary.
 
 ### 1.2 Vision
 
-YSWORKS aims to become a small, trusted technology engineering company known for
-durable systems, direct communication, careful execution, and long-term client
-relationships. Growth must preserve quality, security, maintainability,
-accessibility, and public honesty.
+The official long-term vision is defined in
+[Company Bible section 04](COMPANY_BIBLE.md#04-vision). Ecosystem growth must
+not weaken quality, security, maintainability, accessibility, public honesty, or
+human accountability.
 
 ### 1.3 Core Principles
 
-1. Truth before claims.
-2. Quality before performative speed.
-3. Maintainability before novelty.
-4. Security and privacy by default.
-5. Accessibility and performance as product requirements.
-6. Documentation as infrastructure.
-7. Public simplicity and private complexity.
-8. Human responsibility for consequential decisions.
-9. Evidence before automation, metrics, or public proof.
-10. Long-term usefulness before short-term presentation.
+The constitutional values and foundational principles are defined in
+[Company Bible sections 09 and 10](COMPANY_BIBLE.md#09-company-values).
+Architecture applies them through explicit ownership, minimum exposure,
+evidence-based decisions, accessible and maintainable systems, documented
+boundaries, and accountable human control.
 
 ### 1.4 Long-Term Direction
 
@@ -1257,26 +1259,20 @@ each decision is approved.
 
 ### 12.1 Cross-Document Conflicts
 
-1. **Case-study pending language:**
-   [Trust And Transparency](business/TRUST_AND_TRANSPARENCY.md) presents “Case
-   study pending approval” as a possible transparency statement, while
-   [Portfolio Strategy](business/PORTFOLIO_STRATEGY.md) rejects “coming soon”
-   cards as proof. ADR-M015 settles the public behavior: do not publish client
-   case placeholders. Supporting documents should be aligned in a separate
-   documentation change.
-2. **Company category:** Existing documents use “engineering studio” and
-   “technology engineering company.” ADR-M001 settles the primary category as
-   “technology engineering company”; “engineering studio” remains a legacy
-   descriptive term, not the official category for new specifications.
-3. **Tailwind CSS authority:** Tailwind CSS is installed and directed by the
+1. **Tailwind CSS authority:** Tailwind CSS is installed and directed by the
    current repository coding standards, but no accepted ADR makes it the
    long-term Public Website or ecosystem standard. It remains a current
    repository constraint while its official scope is open.
+2. **Client-facing product name:** The Company Bible uses “Client Workspace” for
+   the conceptual executive-first experience. The current detailed architecture
+   uses “Client Portal” and `portal.ysworks.dev`. No implementation may assume a
+   public rename until the Founder approves the final product name and the
+   affected contracts are updated.
 
-Founder decisions and accepted ADRs settle items 1 and 2. ADR-M004 settles the
-former animation-library conflict by selecting Anime.js for the Public Website;
-that decision is no longer open. Item 3 remains a genuine Open Decision. None
-of these entries authorizes implementation changes outside its accepted scope.
+ADR-M015 and the supporting Business Foundation now consistently prohibit case
+placeholders. ADR-M001 and the Company Bible consistently define YSWORKS as a
+technology engineering company. ADR-M004 settles the animation-library
+decision. Those matters are no longer documentation conflicts.
 
 ### 12.2 Company And Commercial
 
@@ -1284,8 +1280,10 @@ of these entries authorizes implementation changes outside its accepted scope.
   may become public proof.
 - Final legal company, contracting, jurisdiction, privacy-controller, and
   processor details.
-- Proposal, payment, refund, support, maintenance, and service-level policy
-  templates.
+- Legal and commercial approval of proposal, quotation, payment, refund,
+  support, maintenance, and service-level terms. The company documentation
+  provides governed foundations but is not a substitute for legal review or an
+  engagement-specific agreement.
 - Whether training becomes a separately marketed service or remains attached to
   delivery and maintenance engagements.
 

@@ -34,7 +34,7 @@ the public website should eventually communicate and enable.
 ### First-Time Visitor
 
 1. Lands on the homepage.
-2. Understands YSWORKS as an engineering studio.
+2. Understands YSWORKS as a technology engineering company.
 3. Reviews services.
 4. Checks trust signals.
 5. Requests a conversation.

@@ -11,8 +11,10 @@ This handbook defines how YSWORKS behaves. It organizes existing Founder
 decisions into an operating standard; it does not redefine the company,
 architecture, services, products, or public claims.
 
+The [Company Bible](COMPANY_BIBLE.md) is the highest-level constitutional
+narrative for company identity, purpose, philosophy, and principles.
 The [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) remains the
-highest-level company and ecosystem architecture specification. The
+highest-level ecosystem architecture specification. The
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
 client-facing portal architecture. The
 [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
@@ -50,7 +52,7 @@ advice.
 ## 2. Vision
 
 The official vision is defined in
-[Master Specification section 1.2](YSWORKS_MASTER_SPEC.md#12-vision). This
+[Company Bible section 04](COMPANY_BIBLE.md#04-vision). This
 handbook does not restate it.
 
 Operationally, the vision requires YSWORKS to prefer durable trust over visible
@@ -62,7 +64,7 @@ the vision.
 ## 3. Mission
 
 The official mission is defined in
-[Master Specification section 1.1](YSWORKS_MASTER_SPEC.md#11-mission). This
+[Company Bible section 03](COMPANY_BIBLE.md#03-mission). This
 handbook translates it into conduct:
 
 - understand the real problem before selecting a solution;
@@ -75,7 +77,7 @@ handbook translates it into conduct:
 ## 4. Core Values
 
 The official company principles are defined in
-[Master Specification section 1.3](YSWORKS_MASTER_SPEC.md#13-core-principles).
+[Company Bible sections 09 and 10](COMPANY_BIBLE.md#09-company-values).
 They are applied through the following behaviors:
 
 - **Truth:** distinguish facts, assumptions, forecasts, and unknowns.

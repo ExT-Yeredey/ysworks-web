@@ -55,10 +55,12 @@ Avoid:
 
 Use direct statements:
 
-- “Case study pending approval.”
 - “Labs content is exploratory.”
 - “YS AI OS remains private.”
 - “This page describes public services, not internal implementation.”
+
+Do not publish a case-study placeholder. A client case appears only after
+permission, evidence, safe assets, and approved status satisfy ADR-M015.
 
 ## Commercial Trust
 
