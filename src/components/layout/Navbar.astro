@@ -403,12 +403,12 @@ const isActive = (href: string) => {
 	.navbar__inner {
 		justify-content: space-between;
 		gap: var(--space-4);
-		min-height: 4.25rem;
+		min-height: var(--layout-header-height);
 	}
 
 	.navbar__brand {
 		flex: none;
-		border-radius: var(--radius-6);
+		border-radius: var(--control-radius);
 		font-weight: var(--font-weight-semibold);
 		line-height: var(--line-height-ui);
 	}
@@ -444,7 +444,7 @@ const isActive = (href: string) => {
 		min-height: 2rem;
 		border-radius: var(--radius-6);
 		color: var(--color-text-muted);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		font-weight: var(--font-weight-medium);
 		padding-inline: var(--space-3);
 		transition:
@@ -481,12 +481,12 @@ const isActive = (href: string) => {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 2.5rem;
+		min-height: var(--control-height-md);
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-6);
+		border-radius: var(--control-radius);
 		color: var(--color-text-secondary);
 		font-family: var(--font-mono);
-		font-size: var(--font-size-12);
+		font-size: var(--text-eyebrow);
 		font-weight: var(--font-weight-medium);
 		padding-inline: var(--space-3);
 	}
@@ -502,12 +502,12 @@ const isActive = (href: string) => {
 	.navbar__toggle {
 		display: none;
 		gap: var(--space-3);
-		min-height: 2.5rem;
+		min-height: var(--control-height-md);
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-6);
+		border-radius: var(--control-radius);
 		background: var(--color-surface);
 		color: var(--color-text-primary);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		padding-inline: var(--space-3);
 	}
 
@@ -519,7 +519,7 @@ const isActive = (href: string) => {
 
 	.navbar__toggle-icon {
 		display: grid;
-		gap: 0.25rem;
+		gap: var(--space-1);
 		width: 1rem;
 	}
 
@@ -543,7 +543,7 @@ const isActive = (href: string) => {
 
 	.mobile-nav__backdrop {
 		border: 0;
-		background: rgb(0 0 0 / 0.62);
+		background: var(--color-overlay);
 		backdrop-filter: blur(4px);
 	}
 
@@ -576,12 +576,12 @@ const isActive = (href: string) => {
 	}
 
 	.mobile-nav__close {
-		min-height: 2.5rem;
+		min-height: var(--control-height-md);
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-6);
+		border-radius: var(--control-radius);
 		background: var(--color-surface);
 		color: var(--color-text-primary);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		padding-inline: var(--space-3);
 	}
 

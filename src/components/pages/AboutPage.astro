@@ -118,17 +118,17 @@ const content =
 <style>
 	.approach { display: grid; gap: var(--space-8); }
 	.approach > div:first-child, .approach__copy { display: grid; align-content: start; gap: var(--space-5); }
-	.approach h2 { max-width: 20ch; font-size: clamp(var(--font-size-28), 4vw, var(--font-size-40)); text-wrap: balance; }
-	.approach__copy p, .fit p { font-size: var(--font-size-18); }
+	.approach h2 { max-width: 20ch; font-size: var(--text-title-md); text-wrap: balance; }
+	.approach__copy p, .fit p { font-size: var(--text-lead); }
 	.principles { display: grid; border-top: 1px solid var(--color-border-subtle); }
 	.principles article { display: grid; align-content: start; gap: var(--space-3); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-8); }
 	.principles span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
 	.principles h3 { font-size: var(--font-size-18); }
 	.fit { display: grid; gap: var(--space-5); border-left: 1px solid var(--color-accent-border); padding-left: var(--space-6); }
-	.fit h2 { max-width: 23ch; font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32)); text-wrap: balance; }
+	.fit h2 { max-width: 23ch; font-size: var(--text-title-compact); text-wrap: balance; }
 	.fit p { max-width: 48rem; }
 	.founder { display: grid; gap: var(--space-5); max-width: 52rem; }
-	.founder h2 { max-width: 23ch; font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32)); text-wrap: balance; }
-	.founder p { font-size: var(--font-size-18); }
+	.founder h2 { max-width: 23ch; font-size: var(--text-title-compact); text-wrap: balance; }
+	.founder p { font-size: var(--text-lead); }
 	@media (min-width: 50rem) { .approach { grid-template-columns: minmax(0, 0.9fr) minmax(26rem, 1.1fr); gap: var(--space-16); } .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .principles article { padding: var(--space-8); } .principles article:nth-child(odd) { border-right: 1px solid var(--color-border-subtle); } }
 </style>

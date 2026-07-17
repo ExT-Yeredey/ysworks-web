@@ -342,10 +342,10 @@ const contactHref = locale === "es" ? "/contact" : "/en/contact/";
 	.service-block { display: grid; gap: var(--space-8); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-12); }
 	.service-block header, .service-block__summary, .service-block__details, .service-block__summary > div, .service-block__details > div { display: grid; align-content: start; gap: var(--space-4); }
 	.service-block header > span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
-	.service-block h2 { max-width: 18ch; font-size: clamp(var(--font-size-28), 4vw, var(--font-size-40)); text-wrap: balance; }
+	.service-block h2 { max-width: 18ch; font-size: var(--text-title-md); text-wrap: balance; }
 	.service-block__summary { gap: var(--space-6); }
 	.service-block__summary > div { border-left: 1px solid var(--color-border-subtle); padding-left: var(--space-5); }
-	.service-block__details { gap: var(--space-6); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-12); background: var(--color-surface); padding: var(--space-6); }
+	.service-block__details { gap: var(--grid-gap-md); border: 1px solid var(--color-border-subtle); border-radius: var(--surface-radius); background: var(--color-surface); box-shadow: var(--shadow-surface); padding: var(--surface-padding-md); }
 	.service-block ul { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
 	.service-block li { position: relative; color: var(--color-text-secondary); padding-left: var(--space-5); }
 	.service-block li::before { position: absolute; top: 0.75em; left: 0; width: 0.35rem; height: 1px; background: var(--color-accent-strong); content: ""; }

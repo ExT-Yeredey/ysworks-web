@@ -60,6 +60,7 @@ src/
   utils/        Small utility functions
 public/         Static public files
 docs/business/ Business, brand, website, and commercial foundation
+design-system/ Production UI standards and implementation contracts
 ```
 
 ## Documentation
@@ -76,6 +77,10 @@ Public-safe platform architecture contracts live in
 [docs/architecture](docs/architecture/README.md). They define future exposure,
 edge-security, webhook, and production-readiness boundaries without documenting
 private infrastructure or deployment configuration.
+
+The production UI contracts live in [design-system](design-system/tokens.md).
+They govern how approved brand, layout, typography, motion, component, and
+accessibility decisions are applied consistently in this repository.
 
 The `.ai/` directory remains the public engineering knowledge base for this
 repository.

@@ -71,8 +71,8 @@ const {
 
 	.footer__top {
 		display: grid;
-		gap: var(--space-8);
-		padding-block: var(--space-12);
+		gap: var(--content-gap-lg);
+		padding-block: var(--layout-footer-space);
 	}
 
 	.footer__identity {
@@ -82,7 +82,7 @@ const {
 
 	.footer__brand {
 		color: var(--color-text-primary);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		font-weight: var(--font-weight-semibold);
 		letter-spacing: 0.04em;
 	}
@@ -95,7 +95,7 @@ const {
 		width: fit-content;
 		color: var(--color-text-primary);
 		font-family: var(--font-mono);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 	}
 
 	.footer__nav {
@@ -108,7 +108,7 @@ const {
 	.footer__nav a {
 		border-radius: var(--radius-4);
 		color: var(--color-text-muted);
-		font-size: var(--font-size-14);
+		font-size: var(--text-ui);
 		font-weight: var(--font-weight-medium);
 		transition: color var(--motion-duration-fast) var(--motion-ease-standard);
 	}
@@ -128,13 +128,12 @@ const {
 
 	.footer__bottom p {
 		color: var(--color-text-muted);
-		font-size: var(--font-size-12);
+		font-size: var(--text-eyebrow);
 	}
 
 	@media (min-width: 768px) {
 		.footer__top {
 			grid-template-columns: 1fr auto;
-			padding-block: var(--space-16);
 		}
 	}
 </style>

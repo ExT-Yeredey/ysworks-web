@@ -1,5 +1,6 @@
 ---
 import Card from "../ui/Card.astro";
+import Cluster from "../layout/Cluster.astro";
 import Paragraph from "../typography/Paragraph.astro";
 import SectionTitle from "../typography/SectionTitle.astro";
 
@@ -23,9 +24,9 @@ const {
 		<SectionTitle as={headingLevel} size="md">{title}</SectionTitle>
 		<Paragraph size="lg" measure="default">{description}</Paragraph>
 	</div>
-	<div class="cta-card__actions">
-		<slot name="actions" />
-	</div>
+		<Cluster class="cta-card__actions">
+			<slot name="actions" />
+		</Cluster>
 </Card>
 
 <style>
@@ -45,11 +46,6 @@ const {
 		gap: var(--space-4);
 	}
 
-	.cta-card__actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-3);
-	}
 
 	:global(.card.cta-card--center),
 	.cta-card--center .cta-card__content {

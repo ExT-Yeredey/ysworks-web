@@ -159,11 +159,11 @@ const contactHref = locale === "es" ? "/contact" : "/en/contact/";
 	.process-phase { display: grid; gap: var(--space-6); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-10); }
 	.process-phase > div { display: grid; align-content: start; gap: var(--space-3); }
 	.process-phase__heading span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
-	.process-phase h2 { font-size: clamp(var(--font-size-24), 3vw, var(--font-size-32)); }
+	.process-phase h2 { font-size: var(--text-title-compact); }
 	.engineering-criteria { display: grid; gap: var(--space-8); }
 	.engineering-criteria > div { display: grid; align-content: start; gap: var(--space-5); }
-	.engineering-criteria h2 { max-width: 22ch; font-size: clamp(var(--font-size-28), 4vw, var(--font-size-40)); text-wrap: balance; }
-	.engineering-criteria p { font-size: var(--font-size-18); }
+	.engineering-criteria h2 { max-width: var(--measure-heading); font-size: var(--text-title-md); text-wrap: balance; }
+	.engineering-criteria p { font-size: var(--text-lead); }
 	@media (min-width: 54rem) {
 		.process-phase { grid-template-columns: minmax(14rem, 0.8fr) repeat(2, minmax(0, 1fr)); gap: var(--space-12); }
 		.engineering-criteria { grid-template-columns: minmax(0, 0.9fr) minmax(24rem, 1.1fr); gap: var(--space-16); }

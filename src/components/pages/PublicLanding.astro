@@ -205,7 +205,7 @@ const structuredData = [
 			<div class="technology-map">
 				{
 					content.technology.items.map((item, index) => (
-						<article class="technology-map__node" tabindex="0">
+						<article class="technology-map__node">
 							<span class="technology-map__divider" data-technology-divider aria-hidden="true"></span>
 							<div data-technology-label><Icon name={item.icon} size={20} /><span>{String(index + 1).padStart(2, "0")}</span></div>
 							<div class="technology-map__body" data-technology-body>
@@ -302,7 +302,7 @@ const structuredData = [
 		position: relative;
 		isolation: isolate;
 		border-bottom: 1px solid var(--color-border-subtle);
-		padding-block: var(--space-16) var(--space-24);
+		padding-block: var(--section-space-md) var(--section-space-lg);
 		background:
 			linear-gradient(var(--color-grid) 1px, transparent 1px),
 			linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
@@ -324,13 +324,13 @@ const structuredData = [
 		display: grid;
 		align-items: center;
 		gap: var(--space-12);
-		min-height: min(43rem, calc(100svh - 4.25rem));
+		min-height: min(43rem, calc(100svh - var(--layout-header-height)));
 	}
 
 	.landing-hero__content,
 	.landing-heading {
 		display: grid;
-		gap: var(--space-5);
+		gap: var(--content-gap-md);
 	}
 
 	.services-overview {
@@ -338,7 +338,7 @@ const structuredData = [
 		gap: 1px;
 		overflow: hidden;
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-12);
+		border-radius: var(--surface-radius);
 		background: var(--color-border-subtle);
 	}
 
@@ -365,7 +365,7 @@ const structuredData = [
 		border: 0;
 		border-radius: 0;
 		box-shadow: none;
-		padding: var(--space-8);
+		padding: var(--surface-padding-lg);
 	}
 
 	.services-overview__footer {
@@ -400,14 +400,12 @@ const structuredData = [
 		min-width: 0;
 		margin: 0;
 		border: 1px solid var(--color-border-strong);
-		border-radius: var(--radius-16);
+		border-radius: var(--feature-radius);
 		background:
 			linear-gradient(155deg, var(--color-accent-soft), transparent 38%),
 			var(--color-bg-translucent);
-		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 0.035),
-			0 1.5rem 4.5rem rgb(0 0 0 / 0.16);
-		padding: var(--space-6);
+		box-shadow: var(--shadow-raised);
+		padding: var(--surface-padding-md);
 	}
 
 	.signature::after {
@@ -425,13 +423,13 @@ const structuredData = [
 		display: inline-grid;
 		place-items: center;
 		width: 9rem;
-		height: 3rem;
+		height: var(--control-height-lg);
 		border: 1px solid var(--color-accent-border);
-		border-radius: var(--radius-8);
+		border-radius: var(--compact-radius);
 		background: var(--color-accent-soft);
 		color: var(--color-text-primary);
 		font-family: var(--font-mono);
-		font-size: var(--font-size-12);
+		font-size: var(--text-eyebrow);
 		font-weight: var(--font-weight-semibold);
 		letter-spacing: 0.12em;
 	}
@@ -499,7 +497,7 @@ const structuredData = [
 		min-width: 0;
 		min-height: 4.5rem;
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-8);
+		border-radius: var(--compact-radius);
 		background: var(--color-surface);
 		color: inherit;
 		cursor: default;
@@ -537,7 +535,7 @@ const structuredData = [
 	.signature__node small,
 	.signature figcaption {
 		color: var(--color-text-muted);
-		font-size: var(--font-size-12);
+		font-size: var(--text-eyebrow);
 	}
 
 	.signature__node--accent {
@@ -572,16 +570,16 @@ const structuredData = [
 
 	.landing-section {
 		scroll-margin-top: 5rem;
-		padding-block: var(--space-24);
+		padding-block: var(--section-space-lg);
 	}
 
 	.technology-map {
 		display: grid;
 		grid-auto-rows: minmax(0, 1fr);
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-12);
+		border-radius: var(--surface-radius);
 		background: var(--color-bg-elevated);
-		box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.025);
+		box-shadow: var(--shadow-inset);
 	}
 
 	.technology-map__node {
@@ -591,7 +589,7 @@ const structuredData = [
 		gap: var(--space-3);
 		min-width: 0;
 		min-height: 13rem;
-		padding: var(--space-6);
+		padding: var(--surface-padding-md);
 	}
 
 	.technology-map__divider {
@@ -634,12 +632,12 @@ const structuredData = [
 	.technology-map__node > [data-technology-label] span {
 		color: var(--color-text-muted);
 		font-family: var(--font-mono);
-		font-size: var(--font-size-12);
+		font-size: var(--text-eyebrow);
 		text-transform: uppercase;
 	}
 
 	.technology-map__node h3 {
-		font-size: var(--font-size-18);
+		font-size: var(--text-lead);
 		text-wrap: balance;
 	}
 
@@ -691,7 +689,7 @@ const structuredData = [
 	.trust-section__layout li span {
 		color: var(--color-accent-strong);
 		font-family: var(--font-mono);
-		font-size: var(--font-size-12);
+		font-size: var(--text-eyebrow);
 	}
 
 	#services,
@@ -787,7 +785,7 @@ const structuredData = [
 		}
 
 		.technology-map__node {
-			padding: var(--space-8) var(--space-6);
+			padding: var(--surface-padding-lg) var(--surface-padding-md);
 		}
 
 		.trust-section__layout {
@@ -826,15 +824,9 @@ const structuredData = [
 		}
 	}
 
-	@media (min-width: 48rem) {
-		.landing-section {
-			padding-block: calc(var(--space-24) + var(--space-4));
-		}
-	}
-
 	@media (max-width: 36rem) {
 		.landing-hero {
-			padding-block: var(--space-12) var(--space-16);
+			padding-block: var(--section-space-sm) var(--section-space-md);
 		}
 
 		.landing-hero__actions :global(.button) {

@@ -21,11 +21,13 @@ export { default as Tabs } from "./interactive/Tabs.astro";
 export { default as TabsList } from "./interactive/TabsList.astro";
 export { default as ThemeToggle } from "./interactive/ThemeToggle.astro";
 
+export { default as Cluster } from "./layout/Cluster.astro";
 export { default as Container } from "./layout/Container.astro";
 export { default as Footer } from "./layout/Footer.astro";
 export { default as Grid } from "./layout/Grid.astro";
 export { default as Navbar } from "./layout/Navbar.astro";
 export { default as Section } from "./layout/Section.astro";
+export { default as Stack } from "./layout/Stack.astro";
 
 export { default as HeroTitle } from "./typography/HeroTitle.astro";
 export { default as MonoEyebrow } from "./typography/MonoEyebrow.astro";

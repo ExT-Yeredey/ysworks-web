@@ -162,21 +162,19 @@ const content =
 
 <style>
 	.contact-grid { display: grid; gap: var(--space-6); }
-	.contact-channel, .contact-brief { display: grid; align-content: start; gap: var(--space-5); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-16); background: var(--color-surface); padding: var(--space-8); }
-	.contact-channel h2, .contact-brief h2, .future-form h2 { font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32)); text-wrap: balance; }
+	.contact-channel, .contact-brief { display: grid; align-content: start; gap: var(--content-gap-md); border: 1px solid var(--color-border-subtle); border-radius: var(--feature-radius); background: var(--color-surface); box-shadow: var(--shadow-surface); padding: var(--surface-padding-lg); }
+	.contact-channel h2, .contact-brief h2 { font-size: var(--text-title-compact); text-wrap: balance; }
 	.contact-email { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: clamp(var(--font-size-16), 3vw, var(--font-size-24)); overflow-wrap: anywhere; }
 	.contact-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 	.contact-brief ol { display: grid; margin: 0; padding: 0; list-style: none; }
 	.contact-brief li { display: grid; grid-template-columns: 2rem 1fr; gap: var(--space-3); border-top: 1px solid var(--color-border-subtle); padding-block: var(--space-4); }
 	.contact-brief li > span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
-	.section-heading { display: grid; gap: var(--space-4); margin-bottom: var(--space-8); }
-	.section-heading h2 { max-width: 22ch; font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32)); text-wrap: balance; }
 	.collaboration { display: grid; border-top: 1px solid var(--color-border-subtle); }
 	.collaboration article { display: grid; gap: var(--space-3); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-8); }
 	.collaboration h3 { font-size: var(--font-size-20); }
 	.expectations { display: grid; gap: var(--space-8); }
 	.expectations article { display: grid; align-content: start; gap: var(--space-4); border-left: 1px solid var(--color-accent-border); padding-left: var(--space-5); }
-	.expectations article p:last-child { font-size: var(--font-size-18); }
+	.expectations article p:last-child { font-size: var(--text-lead); }
 	@media (min-width: 53rem) {
 		.contact-grid, .expectations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 		.collaboration { grid-template-columns: repeat(3, minmax(0, 1fr)); }

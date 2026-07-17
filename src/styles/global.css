@@ -26,7 +26,7 @@ html {
 	background: var(--color-bg);
 	color: var(--color-text-primary);
 	font-family: var(--font-sans);
-	font-size: 16px;
+	font-size: var(--text-body);
 	line-height: var(--line-height-body);
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -198,24 +198,25 @@ p {
 .section-heading {
 	display: grid;
 	gap: var(--space-4);
-	max-width: 46rem;
+	max-width: var(--measure-lead);
 	margin-bottom: var(--space-10);
 }
 
 .section-heading h2 {
-	font-size: clamp(var(--font-size-28), 4vw, var(--font-size-40));
+	max-width: var(--measure-heading);
+	font-size: var(--text-title-md);
 	text-wrap: balance;
 }
 
 .section-heading p {
-	font-size: var(--font-size-18);
+	font-size: var(--text-lead);
 	text-wrap: pretty;
 }
 
 .eyebrow {
 	color: var(--color-text-muted);
 	font-family: var(--font-mono);
-	font-size: var(--font-size-12);
+	font-size: var(--text-eyebrow);
 	font-weight: var(--font-weight-medium);
 	letter-spacing: 0.08em;
 	line-height: var(--line-height-ui);

@@ -14,7 +14,7 @@ const { step, title, description, headingLevel = "h3" } = Astro.props;
 const Heading = headingLevel;
 ---
 
-<Card class="process-card" tone="transparent">
+<Card class="process-card" tone="transparent" fill>
 	<MonoEyebrow tone="accent">{step}</MonoEyebrow>
 	<div class="process-card__content">
 		<Heading>{title}</Heading>
@@ -27,7 +27,6 @@ const Heading = headingLevel;
 		display: grid;
 		align-content: start;
 		gap: var(--space-8);
-		height: 100%;
 		border-top-color: var(--color-accent-border);
 	}
 
@@ -37,6 +36,6 @@ const Heading = headingLevel;
 	}
 
 	.process-card :is(h2, h3, h4) {
-		font-size: var(--font-size-24);
+		font-size: var(--text-title-sm);
 	}
 </style>

@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import Container from "./Container.astro";
 
 interface Props extends HTMLAttributes<"section"> {
 	spacing?: "sm" | "md" | "lg";
@@ -29,9 +30,9 @@ const classes = [
 <section class={classes} {...attrs}>
 	{
 		contained ? (
-			<div class={`section__container section__container--${containerSize}`}>
+			<Container size={containerSize}>
 				<slot />
-			</div>
+			</Container>
 		) : (
 			<slot />
 		)
@@ -40,19 +41,19 @@ const classes = [
 
 <style>
 	.section {
-		padding-block: var(--space-16);
+		padding-block: var(--section-space-md);
 	}
 
 	.section--sm {
-		padding-block: var(--space-12);
+		padding-block: var(--section-space-sm);
 	}
 
 	.section--md {
-		padding-block: var(--space-16);
+		padding-block: var(--section-space-md);
 	}
 
 	.section--lg {
-		padding-block: var(--space-24);
+		padding-block: var(--section-space-lg);
 	}
 
 	.section--muted {
@@ -63,42 +64,4 @@ const classes = [
 		background: var(--color-accent-soft);
 	}
 
-	.section__container {
-		width: min(100% - (var(--space-5) * 2), var(--container-xl));
-		margin-inline: auto;
-	}
-
-	.section__container--sm {
-		max-width: var(--container-sm);
-	}
-
-	.section__container--md {
-		max-width: var(--container-md);
-	}
-
-	.section__container--lg {
-		max-width: var(--container-lg);
-	}
-
-	.section__container--xl {
-		max-width: var(--container-xl);
-	}
-
-	@media (min-width: 768px) {
-		.section {
-			padding-block: var(--space-24);
-		}
-
-		.section--sm {
-			padding-block: var(--space-16);
-		}
-
-		.section--lg {
-			padding-block: calc(var(--space-24) + var(--space-4));
-		}
-
-		.section__container {
-			width: min(100% - (var(--space-8) * 2), var(--container-xl));
-		}
-	}
 </style>

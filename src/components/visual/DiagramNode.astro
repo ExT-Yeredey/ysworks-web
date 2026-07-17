@@ -36,14 +36,12 @@ const classes = ["diagram-node", `diagram-node--${tone}`, className]
 		min-width: 0;
 		min-height: 4.75rem;
 		border: 1px solid var(--color-border-strong);
-		border-radius: var(--radius-8);
+		border-radius: var(--compact-radius);
 		background:
 			linear-gradient(180deg, color-mix(in srgb, var(--color-surface-elevated), transparent 68%), transparent),
 			var(--color-surface);
-		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 0.025),
-			var(--shadow-subtle);
-		padding: var(--space-5);
+		box-shadow: var(--shadow-surface);
+		padding: var(--surface-padding-md);
 	}
 
 	.diagram-node--accent {

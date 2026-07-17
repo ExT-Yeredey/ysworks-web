@@ -11,7 +11,8 @@ library entry point.
 
 ## Catalog
 
-- Layout: `Navbar`, `Footer`, `Section`, `Container`, `Grid`.
+- Layout: `Navbar`, `Footer`, `Section`, `Container`, `Grid`, `Stack`, and
+  `Cluster`.
 - Buttons: `Button` with `primary`, `secondary`, `ghost`, and `text` variants.
 - Cards: `ServiceCard`, `ProcessCard`, `TechnologyCard`, `CtaCard`, and the
   composable `Card` primitive.
@@ -36,6 +37,10 @@ Compound components must be composed with their required children:
 
 - Use semantic heading levels in document order; typography components do not
   infer page structure.
+- Use `Stack` for vertical content rhythm and `Cluster` for wrapping groups of
+  related controls. Do not recreate their gap and alignment rules locally.
+- Use the semantic layout, type, surface, control, and motion roles in
+  `src/styles/tokens.css`; component styles must not restate governed values.
 - Give every tab and panel a unique matching `id`, `controls`, and `labelledby`
   relationship.
 - Open a modal with an element whose `data-modal-open` value matches the modal

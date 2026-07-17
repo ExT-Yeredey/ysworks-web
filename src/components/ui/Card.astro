@@ -6,6 +6,7 @@ interface Props extends HTMLAttributes<"article"> {
 	tone?: "default" | "elevated" | "transparent";
 	padding?: "sm" | "md" | "lg";
 	interactive?: boolean;
+	fill?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
 	tone = "default",
 	padding = "md",
 	interactive = false,
+	fill = false,
 	class: className,
 	...attrs
 } = Astro.props;
@@ -22,6 +24,7 @@ const classes = [
 	`card--${tone}`,
 	`card--padding-${padding}`,
 	interactive && "card--interactive",
+	fill && "card--fill",
 	className,
 ]
 	.filter(Boolean)
@@ -35,18 +38,16 @@ const classes = [
 <style>
 	.card {
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius-12);
+		border-radius: var(--surface-radius);
 		background:
 			linear-gradient(180deg, color-mix(in srgb, var(--color-surface-elevated), transparent 66%), transparent 42%),
 			var(--color-surface);
-		box-shadow:
-			inset 0 1px 0 rgb(255 255 255 / 0.025),
-			var(--shadow-subtle);
+		box-shadow: var(--shadow-surface);
 	}
 
 	.card--elevated {
 		background: var(--color-surface-elevated);
-		box-shadow: var(--shadow-overlay);
+		box-shadow: var(--shadow-raised);
 	}
 
 	.card--transparent {
@@ -55,15 +56,19 @@ const classes = [
 	}
 
 	.card--padding-sm {
-		padding: var(--space-4);
+		padding: var(--surface-padding-sm);
 	}
 
 	.card--padding-md {
-		padding: var(--space-6);
+		padding: var(--surface-padding-md);
 	}
 
 	.card--padding-lg {
-		padding: var(--space-8);
+		padding: var(--surface-padding-lg);
+	}
+
+	.card--fill {
+		height: 100%;
 	}
 
 	.card--interactive {
@@ -77,6 +82,6 @@ const classes = [
 	.card--interactive:focus-within {
 		border-color: var(--color-border-strong);
 		background: var(--color-surface-elevated);
-		transform: translateY(-2px);
+		transform: translateY(var(--motion-lift-surface));
 	}
 </style>
