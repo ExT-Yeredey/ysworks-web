@@ -29,3 +29,6 @@ pnpm-debug.log*
 
 # editor files
 .idea/
+
+# local cross-agent manuscript handoff
+.local-handoff/
