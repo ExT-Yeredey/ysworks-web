@@ -34,7 +34,6 @@ interface LandingContent {
 	};
 	navigation: {
 		items: Array<{ label: string; href: string }>;
-		cta: string;
 		localeShort: string;
 	};
 	hero: {
@@ -127,12 +126,12 @@ const es: LandingContent = {
 	},
 	navigation: {
 		items: [
+			{ label: "Inicio", href: "/" },
 			{ label: "Servicios", href: "/services" },
-			{ label: "Proceso", href: "/#process" },
+			{ label: "Proceso", href: "/process" },
 			{ label: "Nosotros", href: "/about" },
 			{ label: "Contacto", href: "/contact" },
 		],
-		cta: "Cuéntanos tu proyecto",
 		localeShort: "EN",
 	},
 	hero: {
@@ -371,12 +370,12 @@ const en: LandingContent = {
 	},
 	navigation: {
 		items: [
+			{ label: "Home", href: "/en/" },
 			{ label: "Services", href: "/en/services/" },
-			{ label: "Process", href: "/en/#process" },
+			{ label: "Process", href: "/en/process/" },
 			{ label: "About", href: "/en/about/" },
 			{ label: "Contact", href: "/en/contact/" },
 		],
-		cta: "Tell us about your project",
 		localeShort: "ES",
 	},
 	hero: {

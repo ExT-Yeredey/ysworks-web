@@ -1,4 +1,3 @@
-export { default as Monogram } from "./brand/Monogram.astro";
 export { default as CtaCard } from "./cards/CtaCard.astro";
 export { default as ProcessCard } from "./cards/ProcessCard.astro";
 export { default as ServiceCard } from "./cards/ServiceCard.astro";

@@ -1,0 +1,171 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import PageIntro from "../content/PageIntro.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import PublicPageShell from "./PublicPageShell.astro";
+
+interface Props {
+	locale: LandingLocale;
+}
+
+const { locale } = Astro.props;
+const content =
+	locale === "es"
+		? {
+				title: "Proceso de ingeniería",
+				description:
+					"Cómo YSWORKS convierte una necesidad de negocio en un sistema verificable, documentado y preparado para evolucionar.",
+				eyebrow: "Proceso",
+				heading: "Decisiones visibles antes, durante y después de construir.",
+				intro:
+					"El proceso adapta su profundidad al riesgo y al alcance, pero mantiene una regla constante: cada fase debe producir evidencia suficiente para decidir el siguiente paso.",
+				phasesLabel: "Fases de trabajo",
+				solves: "Decisión principal",
+				outputs: "Evidencia de salida",
+				phases: [
+					[
+						"01",
+						"Descubrimiento",
+						"Aclarar el problema, el contexto operativo, las personas afectadas y el resultado útil.",
+						"Contexto compartido, restricciones, riesgos iniciales y criterios de encaje.",
+					],
+					[
+						"02",
+						"Arquitectura",
+						"Definir límites, responsabilidades, información, integraciones y una ruta de entrega proporcionada.",
+						"Alcance, decisiones registradas, criterios de aceptación y plan verificable.",
+					],
+					[
+						"03",
+						"Implementación",
+						"Construir en incrementos pequeños que puedan revisarse sin ocultar deuda o incertidumbre.",
+						"Incrementos funcionales, cambios trazables y documentación actualizada.",
+					],
+					[
+						"04",
+						"Validación",
+						"Comprobar comportamiento, seguridad, accesibilidad, rendimiento y ajuste al objetivo acordado.",
+						"Resultados de validación, incidencias resueltas y riesgos residuales explícitos.",
+					],
+					[
+						"05",
+						"Entrega",
+						"Transferir un sistema utilizable con responsabilidades, operación y límites comprensibles.",
+						"Entrega aprobada, documentación, criterios de soporte y siguiente acción.",
+					],
+					[
+						"06",
+						"Mejora continua",
+						"Evolucionar con evidencia de uso, nuevas necesidades y prioridades acordadas.",
+						"Mejoras priorizadas, historial de decisiones y continuidad proporcionada.",
+					],
+				],
+				criteriaLabel: "Criterio de ingeniería",
+				criteriaTitle:
+					"La tecnología se elige después de comprender el sistema.",
+				criteria:
+					"Evaluamos valor, riesgo, mantenimiento, seguridad, accesibilidad, coste operativo y capacidad real de soporte. Una opción más nueva o compleja solo se adopta cuando mejora el resultado de forma demostrable.",
+				cta: "Explicar el proyecto",
+			}
+		: {
+				title: "Engineering process",
+				description:
+					"How YSWORKS turns a business need into a verifiable, documented system that is ready to evolve.",
+				eyebrow: "Process",
+				heading: "Visible decisions before, during and after implementation.",
+				intro:
+					"The depth of the process adapts to risk and scope, but one rule remains constant: every phase must produce enough evidence to decide the next step.",
+				phasesLabel: "Working phases",
+				solves: "Primary decision",
+				outputs: "Exit evidence",
+				phases: [
+					[
+						"01",
+						"Discovery",
+						"Clarify the problem, operating context, affected people and useful outcome.",
+						"Shared context, constraints, initial risks and fit criteria.",
+					],
+					[
+						"02",
+						"Architecture",
+						"Define boundaries, responsibilities, information, integrations and a proportionate delivery path.",
+						"Scope, recorded decisions, acceptance criteria and a verifiable plan.",
+					],
+					[
+						"03",
+						"Implementation",
+						"Build in small increments that can be reviewed without hiding debt or uncertainty.",
+						"Working increments, traceable changes and current documentation.",
+					],
+					[
+						"04",
+						"Validation",
+						"Check behaviour, security, accessibility, performance and alignment with the agreed outcome.",
+						"Validation results, resolved findings and explicit residual risks.",
+					],
+					[
+						"05",
+						"Delivery",
+						"Transfer a usable system with understandable responsibilities, operation and boundaries.",
+						"Approved delivery, documentation, support criteria and next action.",
+					],
+					[
+						"06",
+						"Continuous improvement",
+						"Evolve using usage evidence, new needs and agreed priorities.",
+						"Prioritised improvements, decision history and proportionate continuity.",
+					],
+				],
+				criteriaLabel: "Engineering judgment",
+				criteriaTitle: "Technology is selected after the system is understood.",
+				criteria:
+					"We evaluate value, risk, maintainability, security, accessibility, operating cost and realistic support capacity. A newer or more complex option is adopted only when it demonstrably improves the outcome.",
+				cta: "Explain the project",
+			};
+const contactHref = locale === "es" ? "/contact" : "/en/contact/";
+---
+
+<PublicPageShell locale={locale} page="process" title={content.title} description={content.description}>
+	<PageIntro eyebrow={content.eyebrow} title={content.heading} description={content.intro} />
+	<Section spacing="sm" aria-labelledby="process-phases-title">
+		<Container size="xl">
+			<h2 id="process-phases-title" class="visually-hidden">{content.phasesLabel}</h2>
+			<div class="process-phases">
+				{content.phases.map(([number, title, decision, evidence]) => (
+					<article class="process-phase">
+						<div class="process-phase__heading"><span>{number}</span><h2>{title}</h2></div>
+						<div><p class="eyebrow">{content.solves}</p><p>{decision}</p></div>
+						<div><p class="eyebrow">{content.outputs}</p><p>{evidence}</p></div>
+					</article>
+				))}
+			</div>
+		</Container>
+	</Section>
+	<Section spacing="md" tone="muted" aria-labelledby="engineering-criteria-title">
+		<Container size="lg">
+			<div class="engineering-criteria">
+				<div><Badge>{content.criteriaLabel}</Badge><h2 id="engineering-criteria-title">{content.criteriaTitle}</h2></div>
+				<div><p>{content.criteria}</p><Button href={contactHref} variant="secondary">{content.cta}</Button></div>
+			</div>
+		</Container>
+	</Section>
+</PublicPageShell>
+
+<style>
+	.process-phases { border-top: 1px solid var(--color-border-subtle); }
+	.process-phase { display: grid; gap: var(--space-6); border-bottom: 1px solid var(--color-border-subtle); padding-block: var(--space-10); }
+	.process-phase > div { display: grid; align-content: start; gap: var(--space-3); }
+	.process-phase__heading span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.process-phase h2 { font-size: clamp(var(--font-size-24), 3vw, var(--font-size-32)); }
+	.engineering-criteria { display: grid; gap: var(--space-8); }
+	.engineering-criteria > div { display: grid; align-content: start; gap: var(--space-5); }
+	.engineering-criteria h2 { max-width: 22ch; font-size: clamp(var(--font-size-28), 4vw, var(--font-size-40)); text-wrap: balance; }
+	.engineering-criteria p { font-size: var(--font-size-18); }
+	@media (min-width: 54rem) {
+		.process-phase { grid-template-columns: minmax(14rem, 0.8fr) repeat(2, minmax(0, 1fr)); gap: var(--space-12); }
+		.engineering-criteria { grid-template-columns: minmax(0, 0.9fr) minmax(24rem, 1.1fr); gap: var(--space-16); }
+	}
+</style>

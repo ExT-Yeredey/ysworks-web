@@ -53,6 +53,11 @@ const content =
 				],
 				fitTitle: "Una colaboración honesta empieza por el encaje.",
 				fit: "Somos una buena opción cuando el problema necesita criterio técnico, límites claros y una solución que deberá mantenerse. Si una necesidad exige una capacidad especializada fuera del alcance acordado, lo diremos antes de avanzar.",
+				founderLabel: "Dirección",
+				founderTitle:
+					"Una empresa dirigida por su Founder y apoyada por sistemas.",
+				founder:
+					"Yeredey Suárez fundó YSWORKS y conserva la responsabilidad final sobre dirección, compromisos y cambios de producción. La empresa utiliza software, automatización e inteligencia artificial para ampliar capacidad sin sustituir la rendición de cuentas humana.",
 			}
 		: {
 				title: "About YSWORKS",
@@ -94,6 +99,10 @@ const content =
 				],
 				fitTitle: "An honest collaboration begins with fit.",
 				fit: "We are a good fit when a problem needs technical judgment, clear boundaries and a solution that must remain maintainable. If a need requires specialist capability outside the agreed scope, we will say so before proceeding.",
+				founderLabel: "Direction",
+				founderTitle: "A Founder-led company supported by systems.",
+				founder:
+					"Yeredey Suárez founded YSWORKS and retains final responsibility for direction, commitments and production changes. The company uses software, automation and artificial intelligence to extend capacity without replacing human accountability.",
 			};
 ---
 
@@ -102,6 +111,7 @@ const content =
 	<Section spacing="sm" aria-labelledby="approach-title"><Container size="lg"><div class="approach"><div><Badge>{content.approachLabel}</Badge><h2 id="approach-title">{content.approachTitle}</h2></div><div class="approach__copy">{content.approach.map((paragraph) => <p>{paragraph}</p>)}</div></div></Container></Section>
 	<Section spacing="md" aria-labelledby="principles-title"><Container size="xl"><div class="section-heading"><Badge>{content.principlesLabel}</Badge><h2 id="principles-title">{content.principlesTitle}</h2></div><div class="principles">{content.principles.map(([number, title, description]) => <article><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></Container></Section>
 	<Section spacing="sm" aria-labelledby="fit-title"><Container size="lg"><div class="fit"><h2 id="fit-title">{content.fitTitle}</h2><p>{content.fit}</p></div></Container></Section>
+	<Section spacing="md" tone="muted" aria-labelledby="founder-title"><Container size="lg"><div class="founder"><Badge>{content.founderLabel}</Badge><h2 id="founder-title">{content.founderTitle}</h2><p>{content.founder}</p></div></Container></Section>
 	<EditorialContact locale={locale} />
 </PublicPageShell>
 
@@ -117,5 +127,8 @@ const content =
 	.fit { display: grid; gap: var(--space-5); border-left: 1px solid var(--color-accent-border); padding-left: var(--space-6); }
 	.fit h2 { max-width: 23ch; font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32)); text-wrap: balance; }
 	.fit p { max-width: 48rem; }
+	.founder { display: grid; gap: var(--space-5); max-width: 52rem; }
+	.founder h2 { max-width: 23ch; font-size: clamp(var(--font-size-24), 4vw, var(--font-size-32)); text-wrap: balance; }
+	.founder p { font-size: var(--font-size-18); }
 	@media (min-width: 50rem) { .approach { grid-template-columns: minmax(0, 0.9fr) minmax(26rem, 1.1fr); gap: var(--space-16); } .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .principles article { padding: var(--space-8); } .principles article:nth-child(odd) { border-right: 1px solid var(--color-border-subtle); } }
 </style>

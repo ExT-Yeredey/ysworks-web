@@ -88,3 +88,17 @@ future destination may present authorized project, conversation, task,
 deliverable, document, proposal, invoice, support, service, integration, and
 operational views; none of these responsibilities are implemented by this
 public component library.
+
+The repository may render non-indexed Client Portal interface-foundation routes
+for architecture review. These routes must state that they are inactive, contain
+no client data, implement no authentication, and remain absent from Public
+Website navigation. They are not authority to deploy a public portal or weaken
+the portal subdomain, tenant, or server-authorization contracts.
+
+## Product boundaries
+
+Public Website components may share tokens and presentation primitives with a
+future Client Portal, but not sessions, data access, navigation assumptions, or
+business state. YS AI OS has no public component surface. Motion remains
+product-scoped: the Public Website stack does not automatically become the
+Client Portal or YS AI OS animation architecture.

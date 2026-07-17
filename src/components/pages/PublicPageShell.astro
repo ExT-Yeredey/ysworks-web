@@ -4,7 +4,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Footer from "../layout/Footer.astro";
 import Navbar from "../layout/Navbar.astro";
 
-export type PublicPage = "home" | "services" | "about" | "contact" | "privacy";
+export type PublicPage =
+	| "home"
+	| "services"
+	| "process"
+	| "about"
+	| "contact"
+	| "privacy";
 
 interface Props {
 	locale: LandingLocale;
@@ -21,6 +27,7 @@ const paths: Record<LandingLocale, Record<PublicPage, string>> = {
 	es: {
 		home: "/",
 		services: "/services",
+		process: "/process",
 		about: "/about",
 		contact: "/contact",
 		privacy: "/privacy",
@@ -28,6 +35,7 @@ const paths: Record<LandingLocale, Record<PublicPage, string>> = {
 	en: {
 		home: "/en/",
 		services: "/en/services/",
+		process: "/en/process/",
 		about: "/en/about/",
 		contact: "/en/contact/",
 		privacy: "/en/privacy/",
@@ -56,8 +64,6 @@ const localeLink = {
 		items={content.navigation.items}
 		brandHref={paths[locale].home}
 		currentPath={canonicalPath}
-		ctaLabel={content.navigation.cta}
-		ctaHref={paths[locale].contact}
 		navigationLabel={content.accessibility.navigation}
 		menuLabel={content.accessibility.menu}
 		closeLabel={content.accessibility.close}

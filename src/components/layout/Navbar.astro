@@ -1,6 +1,5 @@
 ---
 import ThemeToggle from "../interactive/ThemeToggle.astro";
-import Button from "../ui/Button.astro";
 import Container from "./Container.astro";
 
 export interface NavItem {
@@ -13,8 +12,6 @@ interface Props {
 	brandLabel?: string;
 	brandHref?: string;
 	currentPath?: string;
-	ctaLabel?: string;
-	ctaHref?: string;
 	navigationLabel?: string;
 	menuLabel?: string;
 	closeLabel?: string;
@@ -34,8 +31,6 @@ const {
 	brandLabel = "YSWORKS",
 	brandHref = "/",
 	currentPath = Astro.url.pathname,
-	ctaLabel = "Hablemos de tu proyecto",
-	ctaHref = "/contact",
 	navigationLabel = "Navegación principal",
 	menuLabel = "Menú",
 	closeLabel = "Cerrar",
@@ -53,7 +48,9 @@ const {
 const isActive = (href: string) => {
 	if (href.includes("#")) return false;
 	const path = href.split("#")[0] || "/";
-	return path === "/" ? currentPath === "/" : currentPath.startsWith(path);
+	return path === "/" || path === "/en/"
+		? currentPath === path
+		: currentPath.startsWith(path);
 };
 ---
 
@@ -106,16 +103,10 @@ const isActive = (href: string) => {
 						darkOptionLabel={darkThemeOption}
 					/>
 					{clientArea && <a class="navbar__client-area" href={clientArea.href}>{clientArea.label}</a>}
-					<slot name="actions">
-						<Button href={ctaHref} variant="primary" size="sm">{ctaLabel}</Button>
-					</slot>
 				</div>
 			</div>
 
 			<div class="navbar__compact">
-				<span class="navbar__tablet-cta">
-					<Button href={ctaHref} variant="primary" size="sm">{ctaLabel}</Button>
-				</span>
 				<button
 					class="navbar__toggle"
 					type="button"
@@ -181,7 +172,6 @@ const isActive = (href: string) => {
 				)
 			}
 			{clientArea && <a class="mobile-nav__client-area" href={clientArea.href}>{clientArea.label}</a>}
-			<Button href={ctaHref} variant="primary">{ctaLabel}</Button>
 		</div>
 	</div>
 </ys-navbar>
@@ -631,9 +621,4 @@ const isActive = (href: string) => {
 		}
 	}
 
-	@media (max-width: 639px) {
-		.navbar__tablet-cta {
-			display: none;
-		}
-	}
 </style>

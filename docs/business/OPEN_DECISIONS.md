@@ -16,7 +16,7 @@ Do not repeat decisions already made in `.ai/` or `docs/business/`.
 | Contact method | Whether first public contact uses email, scheduling link, lightweight form, or another safe path |
 | Privacy policy | Final public policy before collecting contact data or adding analytics |
 | Service priority | Which service pages ship first |
-| Logo asset | Final `YS` compact mark and social image assets; the public wordmark remains `YSWORKS` |
+| Logo asset | Vector reconstruction, small-size review, lockups, favicon, app icon and social assets for the approved geometric `YW` direction; generated raster material must not ship directly and the public wordmark remains `YSWORKS` |
 
 ### Open But Not Blocking A Minimal First Release
 

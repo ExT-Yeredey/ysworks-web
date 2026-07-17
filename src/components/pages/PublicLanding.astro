@@ -1,7 +1,6 @@
 ---
 import CtaCard from "../cards/CtaCard.astro";
 import ServiceCard from "../cards/ServiceCard.astro";
-import Monogram from "../brand/Monogram.astro";
 import Faq from "../content/Faq.astro";
 import Process from "../content/Process.astro";
 import Icon from "../icons/Icon.astro";
@@ -29,6 +28,22 @@ const content = landingContent[locale];
 const alternateLanguage = locale === "es" ? "en" : "es";
 const contactHref = locale === "es" ? "/contact" : "/en/contact/";
 const servicesHref = locale === "es" ? "/services" : "/en/services/";
+const processHref = locale === "es" ? "/process" : "/en/process/";
+const aboutHref = locale === "es" ? "/about" : "/en/about/";
+const continuation =
+	locale === "es"
+		? {
+				process: "Conocer el proceso completo",
+				technology: "Ver capacidades y servicios",
+				about: "Conocer cómo trabaja YSWORKS",
+				contact: "Preparar una conversación",
+			}
+		: {
+				process: "Explore the complete process",
+				technology: "View capabilities and services",
+				about: "Learn how YSWORKS works",
+				contact: "Prepare a conversation",
+			};
 const localeLink = {
 	label: content.navigation.localeShort,
 	href: content.alternatePath,
@@ -73,8 +88,6 @@ const structuredData = [
 		items={content.navigation.items}
 		brandHref={content.canonicalPath}
 		currentPath={content.canonicalPath}
-		ctaLabel={content.navigation.cta}
-		ctaHref={contactHref}
 		navigationLabel={content.accessibility.navigation}
 		menuLabel={content.accessibility.menu}
 		closeLabel={content.accessibility.close}
@@ -106,7 +119,10 @@ const structuredData = [
 				</div>
 
 				<figure class="signature" aria-labelledby="signature-caption" data-signature>
-					<Monogram />
+					<span class="signature__wordmark" aria-label="YSWORKS">
+						<span>YSWORKS</span>
+						<svg viewBox="0 0 144 48" aria-hidden="true" data-signature-mark><rect x="1" y="1" width="142" height="46" rx="8"></rect></svg>
+					</span>
 					<div class="signature__flow">
 						<svg class="signature__rail" viewBox="0 0 2 300" preserveAspectRatio="none" aria-hidden="true">
 							<path class="signature__rail-base" d="M1 0V300"></path>
@@ -138,7 +154,7 @@ const structuredData = [
 			</header>
 			<div class="services-overview" data-services-grid>
 				{
-					content.services.items.map((service, index) => (
+					content.services.items.slice(0, 3).map((service, index) => (
 						<div
 							class="services-overview__item"
 							data-service-item
@@ -173,6 +189,9 @@ const structuredData = [
 					steps={content.process.steps}
 				/>
 			</div>
+			<div class="section-continuation">
+				<Button href={processHref} variant="text">{continuation.process} →</Button>
+			</div>
 		</Container>
 	</div>
 
@@ -198,6 +217,9 @@ const structuredData = [
 					))
 				}
 			</div>
+			<div class="section-continuation">
+				<Button href={servicesHref} variant="text">{continuation.technology} →</Button>
+			</div>
 		</Container>
 	</Section>
 
@@ -212,6 +234,9 @@ const structuredData = [
 				<ul>
 					{content.trust.points.map((point, index) => <li data-human-row><span>{String(index + 1).padStart(2, "0")}</span>{point}</li>)}
 				</ul>
+				<div class="section-continuation">
+					<Button href={aboutHref} variant="text">{continuation.about} →</Button>
+				</div>
 			</div>
 		</Container>
 	</div>
@@ -224,8 +249,11 @@ const structuredData = [
 					eyebrow={content.faq.eyebrow}
 					title={content.faq.title}
 					description={content.faq.description}
-					items={content.faq.items}
+					items={content.faq.items.slice(0, 4)}
 				/>
+				<div class="section-continuation">
+					<Button href={contactHref} variant="text">{continuation.contact} →</Button>
+				</div>
 			</div>
 		</Container>
 	</div>
@@ -346,6 +374,12 @@ const structuredData = [
 		padding-top: var(--space-5);
 	}
 
+	.section-continuation {
+		display: flex;
+		justify-content: flex-end;
+		padding-top: var(--space-5);
+	}
+
 	.landing-hero__content {
 		max-width: 52rem;
 		padding-block: var(--space-4);
@@ -384,6 +418,38 @@ const structuredData = [
 		height: 1px;
 		background: linear-gradient(90deg, transparent, var(--color-accent-border), transparent);
 		content: "";
+	}
+
+	.signature__wordmark {
+		position: relative;
+		display: inline-grid;
+		place-items: center;
+		width: 9rem;
+		height: 3rem;
+		border: 1px solid var(--color-accent-border);
+		border-radius: var(--radius-8);
+		background: var(--color-accent-soft);
+		color: var(--color-text-primary);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-12);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: 0.12em;
+	}
+
+	.signature__wordmark svg {
+		position: absolute;
+		inset: -1px;
+		width: calc(100% + 2px);
+		height: calc(100% + 2px);
+		color: var(--color-accent);
+		pointer-events: none;
+	}
+
+	.signature__wordmark rect {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.5;
+		vector-effect: non-scaling-stroke;
 	}
 
 	.signature__flow {

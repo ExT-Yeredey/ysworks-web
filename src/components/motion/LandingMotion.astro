@@ -169,7 +169,7 @@
 			const nodes = Array.from(signature.querySelectorAll<HTMLElement>("[data-signature-node]"));
 			const progress = signature.querySelector<SVGPathElement>("[data-signature-progress]");
 			const pulse = signature.querySelector<SVGPathElement>("[data-signature-pulse]");
-			const trace = signature.querySelector<SVGRectElement>(".monogram__trace rect");
+			const trace = signature.querySelector<SVGRectElement>("[data-signature-mark] rect");
 			if (progress && pulse && trace && nodes.length === 3) {
 				const pathLength = progress.getTotalLength();
 				progress.style.strokeDasharray = `${pathLength}`;

@@ -1,0 +1,166 @@
+---
+import type { LandingLocale } from "../../data/landing";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ThemeToggle from "../interactive/ThemeToggle.astro";
+import Container from "../layout/Container.astro";
+import Section from "../layout/Section.astro";
+import Badge from "../ui/Badge.astro";
+
+export type ClientRoute =
+	| "client"
+	| "dashboard"
+	| "projects"
+	| "tasks"
+	| "files"
+	| "chat"
+	| "company"
+	| "invoices"
+	| "settings";
+
+interface Props {
+	locale: LandingLocale;
+	page: ClientRoute;
+}
+
+const { locale, page } = Astro.props;
+const routeNames: Record<LandingLocale, Record<ClientRoute, string>> = {
+	es: {
+		client: "Área de clientes",
+		dashboard: "Resumen",
+		projects: "Proyectos",
+		tasks: "Tareas",
+		files: "Archivos",
+		chat: "Conversaciones",
+		company: "Empresa",
+		invoices: "Facturas",
+		settings: "Configuración",
+	},
+	en: {
+		client: "Client Area",
+		dashboard: "Overview",
+		projects: "Projects",
+		tasks: "Tasks",
+		files: "Files",
+		chat: "Conversations",
+		company: "Company",
+		invoices: "Invoices",
+		settings: "Settings",
+	},
+};
+const copy =
+	locale === "es"
+		? {
+				description:
+					"Arquitectura visual futura del Client Portal de YSWORKS. Sin autenticación, datos ni funciones activas.",
+				skip: "Saltar al contenido",
+				back: "Volver a YSWORKS",
+				language: "View this page in English",
+				theme: "Tema",
+				light: "Claro",
+				dark: "Oscuro",
+				status: "Fundación de interfaz",
+				heading: "El Client Portal todavía no está disponible.",
+				body: "Esta ruta prepara la jerarquía visual y la navegación del producto futuro. No autentica usuarios, no carga información de clientes y no conecta con sistemas privados.",
+				boundary:
+					"La activación requerirá autenticación aprobada, autorización tenant en servidor, aislamiento por cliente y una revisión de seguridad independiente.",
+				navigation: "Arquitectura futura del portal",
+			}
+		: {
+				description:
+					"Future visual architecture for the YSWORKS Client Portal. No authentication, data or active functions.",
+				skip: "Skip to content",
+				back: "Return to YSWORKS",
+				language: "Ver esta página en español",
+				theme: "Theme",
+				light: "Light",
+				dark: "Dark",
+				status: "Interface foundation",
+				heading: "The Client Portal is not available yet.",
+				body: "This route prepares the visual hierarchy and navigation for the future product. It does not authenticate users, load client information or connect to private systems.",
+				boundary:
+					"Activation requires approved authentication, server-side tenant authorisation, client isolation and an independent security review.",
+				navigation: "Future portal architecture",
+			};
+const entries = Object.entries(routeNames[locale]) as Array<
+	[ClientRoute, string]
+>;
+const prefix = locale === "es" ? "/client" : "/en/client";
+const routeFor = (key: ClientRoute) =>
+	key === "client" ? prefix : `${prefix}/${key}`;
+const canonicalPath = routeFor(page);
+const alternatePath =
+	locale === "es"
+		? canonicalPath.replace(/^\/client/, "/en/client")
+		: canonicalPath.replace(/^\/en\/client/, "/client");
+---
+
+<BaseLayout
+	title={routeNames[locale][page]}
+	description={copy.description}
+	canonicalPath={canonicalPath}
+	language={locale}
+	alternatePaths={{
+		es: locale === "es" ? canonicalPath : alternatePath,
+		en: locale === "en" ? canonicalPath : alternatePath,
+		"x-default": locale === "es" ? canonicalPath : alternatePath,
+	}}
+	skipLinkLabel={copy.skip}
+	noindex
+>
+	<header class="client-header">
+		<Container size="xl">
+			<div class="client-header__inner">
+				<a class="client-brand" href={locale === "es" ? "/" : "/en/"}><strong>YSWORKS</strong><span>Client Portal</span></a>
+				<div class="client-header__controls">
+					<a href={alternatePath} lang={locale === "es" ? "en" : "es"} aria-label={copy.language}>{locale === "es" ? "EN" : "ES"}</a>
+					<ThemeToggle menuId="client-theme-menu" menuLabel={copy.theme} lightOptionLabel={copy.light} darkOptionLabel={copy.dark} />
+				</div>
+			</div>
+		</Container>
+	</header>
+	<Section spacing="sm">
+		<Container size="xl">
+			<div class="client-layout">
+				<aside>
+					<p class="eyebrow">{copy.navigation}</p>
+					<nav aria-label={copy.navigation}>
+						{entries.map(([key, label]) => <a href={routeFor(key)} aria-current={key === page ? "page" : undefined}>{label}</a>)}
+					</nav>
+				</aside>
+				<section class="client-placeholder" aria-labelledby="client-placeholder-title">
+					<Badge tone="accent">{copy.status}</Badge>
+					<p class="eyebrow">{routeNames[locale][page]}</p>
+					<h1 id="client-placeholder-title">{copy.heading}</h1>
+					<p>{copy.body}</p>
+					<div class="client-placeholder__boundary"><p>{copy.boundary}</p></div>
+					<a class="client-back" href={locale === "es" ? "/" : "/en/"}>← {copy.back}</a>
+				</section>
+			</div>
+		</Container>
+	</Section>
+</BaseLayout>
+
+<style>
+	.client-header { border-bottom: 1px solid var(--color-border-subtle); }
+	.client-header__inner, .client-header__controls, .client-brand { display: flex; align-items: center; }
+	.client-header__inner { justify-content: space-between; gap: var(--space-4); min-height: 4.25rem; }
+	.client-brand { gap: var(--space-3); color: var(--color-text-primary); }
+	.client-brand strong { letter-spacing: 0.08em; }
+	.client-brand span { border-left: 1px solid var(--color-border-subtle); color: var(--color-text-muted); font-size: var(--font-size-12); padding-left: var(--space-3); }
+	.client-header__controls { gap: var(--space-2); }
+	.client-header__controls > a { display: grid; place-items: center; min-width: 2.5rem; min-height: 2.5rem; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-6); font-family: var(--font-mono); font-size: var(--font-size-12); }
+	.client-layout { display: grid; gap: var(--space-8); }
+	.client-layout aside { display: grid; align-content: start; gap: var(--space-4); }
+	.client-layout nav { display: flex; gap: var(--space-2); overflow-x: auto; padding-bottom: var(--space-2); }
+	.client-layout nav a { flex: none; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-6); color: var(--color-text-muted); font-size: var(--font-size-14); padding: var(--space-3); }
+	.client-layout nav a[aria-current="page"] { border-color: var(--color-accent-border); background: var(--color-accent-soft); color: var(--color-text-primary); }
+	.client-placeholder { display: grid; align-content: start; gap: var(--space-5); min-height: 30rem; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-16); background: var(--color-surface); padding: clamp(var(--space-6), 6vw, var(--space-12)); }
+	.client-placeholder h1 { max-width: 20ch; font-size: clamp(var(--font-size-32), 6vw, var(--font-size-48)); text-wrap: balance; }
+	.client-placeholder > p { max-width: 46rem; font-size: var(--font-size-18); }
+	.client-placeholder__boundary { max-width: 46rem; border-left: 1px solid var(--color-accent-border); padding-left: var(--space-5); }
+	.client-back { width: fit-content; color: var(--color-accent-strong); font-weight: var(--font-weight-medium); }
+	@media (min-width: 56rem) {
+		.client-layout { grid-template-columns: 14rem minmax(0, 1fr); gap: var(--space-12); }
+		.client-layout nav { display: grid; overflow: visible; }
+	}
+</style>

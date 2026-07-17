@@ -18,8 +18,20 @@ YSWORKS should communicate that complex engineering work can result in clear, st
 
 ## Logo Direction
 
-The primary public signature is the `YSWORKS` wordmark. A compact mark, when a
-surface requires one, uses the `YS` initials and never `Y + W`.
+The Founder-approved logo direction is a geometric `YW` monogram:
+
+- a white `Y`;
+- a YSWORKS Purple `#6D5EF7` `W`;
+- angular, minimal, and scalable construction;
+- the monogram paired with the `YSWORKS` wordmark for the primary logo;
+- monogram-only use for the favicon, application icon, and Client Portal;
+- the same visual family for YS AI OS without creating a separate unrelated
+  brand.
+
+This decision supersedes the former `YS` initial direction. The generated
+raster reference is a direction source only and must not be used directly as a
+production logo. A bounded brand task must reconstruct, review, and approve
+governed vector masters before replacing production marks or favicons.
 
 The mark should be:
 
@@ -126,4 +138,7 @@ The mark should be tested in:
 - Small square containers.
 - Wide horizontal lockups.
 
-Do not create final logo assets until the mark has been reviewed against these use cases.
+Do not create or infer final vector geometry from this written description
+alone. Production SVG, favicon, application icon, and lockup assets require the
+approved reference, geometric reconstruction, small-size testing, and Founder
+review.

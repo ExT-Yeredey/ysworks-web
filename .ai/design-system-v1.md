@@ -18,6 +18,27 @@ The system should favor:
 
 The public website should never feel flashy. It should feel composed, stable, and technically mature.
 
+### Product boundaries
+
+The Design System supports three related but separated products:
+
+- the anonymous Public Website;
+- the future authenticated Client Portal;
+- the private YS AI OS.
+
+They share tokens, typography, accessibility principles, and the same brand
+family. They do not automatically share navigation, information density,
+interaction patterns, motion choreography, authentication, data, or runtime
+architecture. YS AI OS is never represented as a public dashboard.
+
+### Logo direction
+
+The governed identity direction is the angular geometric YW monogram: white Y,
+YSWORKS Purple `#6D5EF7` W, paired with the YSWORKS wordmark for the primary
+logo and used alone for compact product marks. Final vector geometry is not
+defined by this interface specification and must not be improvised from a raster
+reference.
+
 ## 2. Typography
 
 ### Primary Font
@@ -271,6 +292,14 @@ Use:
 Loading animation must not distract from the task.
 
 Respect reduced-motion preferences.
+
+### Motion implementation boundary
+
+The Public Website uses CSS for simple states, WAAPI for simple imperative
+interactions, IntersectionObserver for visibility, requestAnimationFrame only
+for genuine scroll synchronization, and Anime.js v4 for approved coordinated
+choreography. No additional animation engine is permitted. This dependency
+decision does not automatically apply to the future Client Portal or YS AI OS.
 
 ## 8. Iconography
 
