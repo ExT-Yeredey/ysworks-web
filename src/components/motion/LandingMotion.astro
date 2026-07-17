@@ -5,6 +5,7 @@
 	import {
 		isMobileMotion,
 		motion,
+		onReducedMotionChange,
 		observeOnce,
 		observeVisibility,
 		prefersReducedMotion,
@@ -24,6 +25,16 @@
 	const { signal } = this.controller;
 	const landing = this.closest<HTMLElement>("[data-landing]");
 	if (landing) {
+		type MotionControl = { cancel: () => unknown };
+		const activeAnimations = new Set<MotionControl>();
+		const track = <Control extends MotionControl>(control: Control) => {
+			activeAnimations.add(control);
+			return control;
+		};
+		const cancelAnimations = () => {
+			for (const animation of activeAnimations) animation.cancel();
+			activeAnimations.clear();
+		};
 		const sessionKey = (name: string) => `ysworks:motion:${name}:v1`;
 		const observe = (element: Element, callback: (entry: IntersectionObserverEntry) => void) => {
 			const stop = observeOnce(element, callback);
@@ -31,13 +42,13 @@
 		};
 		const settle = (targets: Element[] | NodeListOf<Element>, options: { delay?: number; travel?: number; duration?: number } = {}) => {
 			if (prefersReducedMotion()) return;
-			animate(targets, {
+			track(animate(targets, {
 				opacity: [0.72, 1],
 				y: [options.travel ?? motion.travel.md, 0],
 				delay: stagger(options.delay ?? motion.stagger.normal),
 				duration: options.duration ?? motion.duration.slow,
 				ease: motion.ease.outExpo,
-			});
+			}));
 		};
 
 		const heroItems = landing.querySelectorAll<Element>("[data-hero-sequence] > *");
@@ -68,7 +79,7 @@
 					if (!length || prefersReducedMotion()) continue;
 					iconAnimations.get(path)?.cancel();
 					path.style.strokeDasharray = `${length}`;
-					const animation = animate(path, {
+					const animation = track(animate(path, {
 						strokeDashoffset: [length, 0],
 						duration: motion.duration.base,
 						ease: motion.ease.outQuart,
@@ -76,7 +87,7 @@
 							path.style.strokeDasharray = "";
 							path.style.strokeDashoffset = "";
 						},
-					});
+					}));
 					iconAnimations.set(path, animation);
 				}
 			};
@@ -96,26 +107,30 @@
 					const bodies = technology.querySelectorAll<Element>("[data-technology-body]");
 					const labels = technology.querySelectorAll<Element>("[data-technology-label]");
 					if (!prefersReducedMotion()) {
-						animate(dividers, {
-							scaleY: isMobileMotion() ? 1 : [0, 1],
-							scaleX: isMobileMotion() ? [0, 1] : 1,
-							delay: stagger(motion.stagger.emphasis),
-							duration: motion.choreography.technologyDivider,
-							ease: motion.ease.outQuart,
-						});
+						for (const [index, divider] of Array.from(dividers).entries()) {
+							const rect = divider.getBoundingClientRect();
+							const horizontal = rect.width >= rect.height;
+							track(animate(divider, {
+								scaleY: horizontal ? 1 : [0, 1],
+								scaleX: horizontal ? [0, 1] : 1,
+								delay: motion.stagger.emphasis * index,
+								duration: motion.choreography.technologyDivider,
+								ease: motion.ease.outQuart,
+							}));
+						}
 						settle(bodies, {
 							delay: motion.stagger.emphasis,
 							travel: motion.travel.xs,
 							duration: motion.choreography.technologyDivider,
 						});
-						animate(labels, {
+						track(animate(labels, {
 							opacity: [0.55, 1],
 							delay: stagger(motion.stagger.emphasis, {
 								start: motion.choreography.technologyDivider,
 							}),
 							duration: motion.duration.base,
 							ease: motion.ease.outQuart,
-						});
+						}));
 					}
 				});
 			});
@@ -130,20 +145,20 @@
 					const rows = trust.querySelectorAll<Element>("[data-human-row]");
 					settle(heading, { delay: motion.stagger.emphasis, travel: motion.travel.xs, duration: motion.duration.slow });
 					settle(rows, { delay: motion.stagger.emphasis, travel: motion.travel.xs, duration: motion.duration.slow });
-					animate(rows, {
+					track(animate(rows, {
 						"--human-line": [0, 1],
 						delay: stagger(motion.stagger.emphasis),
 						duration: motion.duration.slow,
 						ease: motion.ease.outQuart,
-					});
+					}));
 					for (const row of rows) {
 						const index = row.querySelector<HTMLElement>("span");
 						if (!index) continue;
-						animate(index, {
+						track(animate(index, {
 							color: ["var(--color-accent-strong)", "var(--color-text-muted)"],
 							duration: motion.duration.slow,
 							ease: motion.ease.inOutQuad,
-						});
+						}));
 					}
 				});
 			});
@@ -175,30 +190,30 @@
 								? motion.choreography.signatureMobileOverture
 								: motion.duration.overture;
 							trace.style.strokeDasharray = `${traceLength}`;
-							animate(trace, {
+							track(animate(trace, {
 								strokeDashoffset: [traceLength, 0],
 								duration: motion.duration.base,
 								ease: motion.ease.outQuart,
-							});
-							animate(progress, {
+							}));
+							track(animate(progress, {
 								strokeDashoffset: [pathLength, 0],
 								opacity: [0, 0.8],
 								duration: overtureDuration,
 								ease: motion.ease.inOutQuad,
 								onComplete: () => {
-									animate(progress, {
+									track(animate(progress, {
 										opacity: 0,
 										duration: motion.duration.base,
 										ease: motion.ease.inOutQuad,
-									});
+									}));
 								},
-							});
+							}));
 							settle(nodes, {
 								delay: isMobileMotion() ? motion.stagger.mobile : motion.stagger.emphasis,
 								travel: motion.travel.xs,
 								duration: motion.duration.base,
 							});
-							const activation = createTimeline();
+							const activation = track(createTimeline());
 							for (const [index] of nodes.entries()) {
 								activation.call(
 									() => setActive(index),
@@ -210,7 +225,7 @@
 				}
 
 				if (!prefersReducedMotion()) {
-					const scrub = createTimeline({ autoplay: false, duration: motion.duration.overture });
+					const scrub = track(createTimeline({ autoplay: false, duration: motion.duration.overture }));
 					scrub.add(progress, { strokeDashoffset: [pathLength, 0], ease: motion.ease.inOutQuad });
 					const updateScrub = () => {
 						if (isMobileMotion() || prefersReducedMotion()) {
@@ -285,12 +300,12 @@
 					const period = isMobileMotion() ? motion.ambient.mobilePeriod : motion.ambient.desktopPeriod;
 					pulseTimer = window.setTimeout(() => {
 						pulseAnimation?.cancel();
-						pulseAnimation = animate(pulse, {
+						pulseAnimation = track(animate(pulse, {
 							strokeDashoffset: [0, -pathLength],
 							duration: motion.ambient.pulseDuration,
 							ease: "linear",
 							onComplete: schedulePulse,
-						});
+						}));
 					}, period);
 				};
 				signature.addEventListener("pointerenter", () => {
@@ -317,9 +332,46 @@
 					window.clearTimeout(pulseTimer);
 					pulseAnimation?.cancel();
 				});
+				const stopReducedMotion = onReducedMotionChange((reduced) => {
+					window.clearTimeout(pulseTimer);
+					pulseAnimation?.cancel();
+					if (reduced) {
+						progress.style.strokeDashoffset = "0";
+						progress.style.opacity = "0";
+						pulse.style.strokeDashoffset = "0";
+						setActive(1);
+					} else {
+						schedulePulse();
+					}
+				});
+				this.cleanups.push(stopReducedMotion);
 				schedulePulse();
 			}
 			}
+
+			const stopReducedMotion = onReducedMotionChange((reduced) => {
+			if (!reduced) return;
+			cancelAnimations();
+			for (const element of landing.querySelectorAll<HTMLElement>(
+				"[data-hero-sequence] > *, [data-service-item], [data-technology-body], [data-technology-label], [data-human-heading] > *, [data-human-row]",
+			)) {
+				element.style.removeProperty("opacity");
+				element.style.removeProperty("transform");
+				element.style.removeProperty("translate");
+			}
+			for (const divider of landing.querySelectorAll<HTMLElement>("[data-technology-divider]")) {
+				divider.style.removeProperty("transform");
+				divider.style.removeProperty("scale");
+			}
+			for (const row of landing.querySelectorAll<HTMLElement>("[data-human-row]")) {
+				row.style.setProperty("--human-line", "1");
+			}
+			for (const path of landing.querySelectorAll<SVGPathElement>(".service-card__icon path")) {
+				path.style.strokeDasharray = "";
+				path.style.strokeDashoffset = "";
+			}
+		});
+		this.cleanups.push(stopReducedMotion, cancelAnimations);
 		}
 	}
 

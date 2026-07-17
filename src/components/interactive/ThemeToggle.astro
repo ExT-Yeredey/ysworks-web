@@ -4,10 +4,8 @@ import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"button"> {
 	lightLabel?: string;
 	darkLabel?: string;
-	systemLabel?: string;
 	lightOptionLabel?: string;
 	darkOptionLabel?: string;
-	systemOptionLabel?: string;
 	menuLabel?: string;
 	menuId?: string;
 	mobile?: boolean;
@@ -16,10 +14,8 @@ interface Props extends HTMLAttributes<"button"> {
 const {
 	lightLabel = "Use light theme",
 	darkLabel = "Use dark theme",
-	systemLabel = "Use system theme",
 	lightOptionLabel = "Light",
 	darkOptionLabel = "Dark",
-	systemOptionLabel = "System",
 	menuLabel = "Theme",
 	menuId = "theme-menu",
 	mobile = false,
@@ -35,7 +31,6 @@ const classes = ["theme-selector__invoker", className]
 	class:list={["theme-selector", { "theme-selector--mobile": mobile }]}
 	data-light-label={lightLabel}
 	data-dark-label={darkLabel}
-	data-system-label={systemLabel}
 >
 	<button
 		class={classes}
@@ -55,17 +50,10 @@ const classes = ["theme-selector__invoker", className]
 			<svg class="theme-selector__moon" viewBox="0 0 16 16" width="16" height="16">
 				<path d="M13.5 10.3A5.8 5.8 0 0 1 5.7 2.5 5.8 5.8 0 1 0 13.5 10.3Z" fill="none" stroke="currentColor" stroke-linejoin="round"></path>
 			</svg>
-			<svg class="theme-selector__system" viewBox="0 0 16 16" width="16" height="16">
-				<rect x="1.5" y="2.5" width="13" height="9" rx="1.5" fill="none" stroke="currentColor"></rect>
-				<path d="M5.5 14h5M8 11.5V14" fill="none" stroke="currentColor" stroke-linecap="round"></path>
-			</svg>
 		</span>
 		<span class="theme-selector__mobile-label">{menuLabel}</span>
 	</button>
 	<div class="theme-selector__menu" id={menuId} role="menu" aria-label={menuLabel} hidden data-theme-menu>
-		<button type="button" role="menuitemradio" data-theme-option="system">
-			<span>{systemOptionLabel}</span><span class="theme-selector__check" aria-hidden="true">✓</span>
-		</button>
 		<button type="button" role="menuitemradio" data-theme-option="dark">
 			<span>{darkOptionLabel}</span><span class="theme-selector__check" aria-hidden="true">✓</span>
 		</button>
@@ -76,7 +64,6 @@ const classes = ["theme-selector__invoker", className]
 </ys-theme-selector>
 
 <script>
-	import { animate } from "animejs";
 	import {
 		motion,
 		prefersReducedMotion,
@@ -85,8 +72,6 @@ const classes = ["theme-selector__invoker", className]
 	} from "../../lib/motion";
 
 	type Theme = "dark" | "light";
-	type ThemePreference = Theme | "system";
-
 	class YsThemeSelector extends HTMLElement {
 		private controller?: AbortController;
 		private menu?: HTMLElement;
@@ -103,40 +88,30 @@ const classes = ["theme-selector__invoker", className]
 			this.menu = menu;
 
 			const media = window.matchMedia("(prefers-color-scheme: light)");
-			let menuAnimation: ReturnType<typeof animate> | undefined;
-			const currentPreference = (): ThemePreference => {
-				const value = document.documentElement.dataset.themePreference;
-				return value === "light" || value === "dark" ? value : "system";
-			};
-			const resolvedTheme = (preference: ThemePreference): Theme =>
-				preference === "system" ? (media.matches ? "light" : "dark") : preference;
+			let menuAnimation: Animation | undefined;
+			const currentTheme = (): Theme =>
+				document.documentElement.dataset.theme === "light" ? "light" : "dark";
 
 			const sync = () => {
-				const preference = currentPreference();
-				const resolved = resolvedTheme(preference);
-				invoker.dataset.themePreference = preference;
+				const resolved = currentTheme();
 				invoker.dataset.resolvedTheme = resolved;
-				const activeLabel =
-					preference === "light"
-						? this.dataset.lightLabel
-						: preference === "dark"
-							? this.dataset.darkLabel
-							: this.dataset.systemLabel;
+				const activeLabel = resolved === "light" ? this.dataset.lightLabel : this.dataset.darkLabel;
 				invoker.setAttribute("aria-label", activeLabel ?? "Theme");
 				for (const option of options) {
-					const selected = option.dataset.themeOption === preference;
+					const selected = option.dataset.themeOption === resolved;
 					option.setAttribute("aria-checked", selected ? "true" : "false");
 					option.tabIndex = selected ? 0 : -1;
 				}
 			};
 
-			const apply = (preference: ThemePreference) => {
+			const apply = (theme: Theme) => {
 				const root = document.documentElement;
 				root.dataset.themeTransition = prefersReducedMotion() ? "false" : "true";
-				root.dataset.themePreference = preference;
-				root.dataset.theme = resolvedTheme(preference);
+				root.dataset.themePreference = theme;
+				root.dataset.themeSource = "saved";
+				root.dataset.theme = theme;
 				try {
-					localStorage.setItem("ysworks-theme", preference);
+					localStorage.setItem("ysworks-theme", theme);
 				} catch {
 					// The selected theme remains valid for this document when storage is blocked.
 				}
@@ -160,13 +135,17 @@ const classes = ["theme-selector__invoker", className]
 					finishClose(returnFocus);
 					return;
 				}
-				menuAnimation = animate(menu, {
-					opacity: 0,
-					scale: 0.98,
-					duration: motion.interaction.themeClose,
-					ease: motion.ease.inQuad,
-					onComplete: () => finishClose(returnFocus),
-				});
+				menuAnimation = menu.animate(
+					[
+						{ opacity: 1, transform: "scale(1)" },
+						{ opacity: 0, transform: "scale(0.98)" },
+					],
+					{
+						duration: motion.interaction.themeClose,
+						easing: motion.waapiEase.inQuad,
+					},
+				);
+				menuAnimation.addEventListener("finish", () => finishClose(returnFocus), { once: true });
 			};
 
 			const open = (focusMenu = false) => {
@@ -176,12 +155,16 @@ const classes = ["theme-selector__invoker", className]
 				registerOpenLayer(menu, () => close(true));
 				menuAnimation?.cancel();
 				if (!prefersReducedMotion()) {
-					menuAnimation = animate(menu, {
-						opacity: [0, 1],
-						scale: [0.96, 1],
-						duration: motion.interaction.themeOpen,
-						ease: motion.ease.outQuart,
-					});
+					menuAnimation = menu.animate(
+						[
+							{ opacity: 0, transform: "scale(0.96)" },
+							{ opacity: 1, transform: "scale(1)" },
+						],
+						{
+							duration: motion.interaction.themeOpen,
+							easing: motion.waapiEase.outQuart,
+						},
+					);
 				}
 				if (focusMenu) {
 					(options.find((option) => option.getAttribute("aria-checked") === "true") ?? options[0])?.focus();
@@ -210,8 +193,7 @@ const classes = ["theme-selector__invoker", className]
 
 			for (const option of options) {
 				option.addEventListener("click", () => {
-					const preference = option.dataset.themeOption as ThemePreference;
-					apply(preference);
+					apply(option.dataset.themeOption as Theme);
 					close(true);
 				}, { signal });
 			}
@@ -222,7 +204,9 @@ const classes = ["theme-selector__invoker", className]
 			}, { signal });
 			document.addEventListener("ysworks-theme-change", sync, { signal });
 			media.addEventListener("change", () => {
-				if (currentPreference() === "system") apply("system");
+				if (document.documentElement.dataset.themeSource !== "system") return;
+				document.documentElement.dataset.theme = media.matches ? "light" : "dark";
+				document.dispatchEvent(new CustomEvent("ysworks-theme-change"));
 			}, { signal });
 			sync();
 		}
@@ -283,9 +267,8 @@ const classes = ["theme-selector__invoker", className]
 			transform var(--motion-duration-fast) var(--motion-ease-out-quart);
 	}
 
-	.theme-selector__invoker[data-theme-preference="system"] .theme-selector__system,
-	.theme-selector__invoker[data-theme-preference="light"] .theme-selector__sun,
-	.theme-selector__invoker[data-theme-preference="dark"] .theme-selector__moon {
+	.theme-selector__invoker[data-resolved-theme="light"] .theme-selector__sun,
+	.theme-selector__invoker[data-resolved-theme="dark"] .theme-selector__moon {
 		opacity: 1;
 		transform: scale(1);
 	}

@@ -8,7 +8,6 @@ import Icon from "../icons/Icon.astro";
 import CopyButton from "../interactive/CopyButton.astro";
 import Container from "../layout/Container.astro";
 import Footer from "../layout/Footer.astro";
-import Grid from "../layout/Grid.astro";
 import Navbar from "../layout/Navbar.astro";
 import LandingMotion from "../motion/LandingMotion.astro";
 import Section from "../layout/Section.astro";
@@ -83,11 +82,9 @@ const structuredData = [
 		localeLink={localeLink}
 		lightThemeLabel={content.accessibility.lightTheme}
 		darkThemeLabel={content.accessibility.darkTheme}
-		systemThemeLabel={content.accessibility.systemTheme}
 		themeMenuLabel={content.accessibility.themeMenu}
 		lightThemeOption={content.accessibility.lightOption}
 		darkThemeOption={content.accessibility.darkOption}
-		systemThemeOption={content.accessibility.systemOption}
 	/>
 
 	<div data-landing>
@@ -139,10 +136,15 @@ const structuredData = [
 				<SectionTitle id="services-title" size="lg">{content.services.title}</SectionTitle>
 				<Paragraph size="lg">{content.services.description}</Paragraph>
 			</header>
-			<div data-services-grid><Grid columns={3} gap="md">
+			<div class="services-overview" data-services-grid>
 				{
-					content.services.items.map((service) => (
-						<div data-service-item>
+					content.services.items.map((service, index) => (
+						<div
+							class="services-overview__item"
+							data-service-item
+							data-service-number={service.number}
+							style={`--service-detail: ${28 + index * 9}%`}
+						>
 							<ServiceCard
 								title={service.title}
 								description={service.description}
@@ -153,7 +155,10 @@ const structuredData = [
 						</div>
 					))
 				}
-			</Grid></div>
+			</div>
+			<div class="services-overview__footer">
+				<Button href={servicesHref} variant="text">{content.services.exploreLabel} →</Button>
+			</div>
 		</Container>
 	</Section>
 
@@ -248,7 +253,6 @@ const structuredData = [
 					/>
 				</div>
 			</CtaCard>
-			<a class="contact-email" href="mailto:contact@ysworks.dev">contact@ysworks.dev</a>
 		</Container>
 	</Section>
 	<LandingMotion />
@@ -299,6 +303,47 @@ const structuredData = [
 	.landing-heading {
 		display: grid;
 		gap: var(--space-5);
+	}
+
+	.services-overview {
+		display: grid;
+		gap: 1px;
+		overflow: hidden;
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-12);
+		background: var(--color-border-subtle);
+	}
+
+	.services-overview__item {
+		position: relative;
+		min-width: 0;
+		background: var(--color-bg);
+	}
+
+	.services-overview__item::after {
+		position: absolute;
+		right: var(--space-6);
+		bottom: 0;
+		width: var(--service-detail);
+		height: 1px;
+		background: linear-gradient(90deg, transparent, var(--color-accent));
+		content: "";
+		opacity: 0.38;
+		pointer-events: none;
+	}
+
+	.services-overview__item :global(.card.service-card) {
+		min-height: 100%;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		padding: var(--space-8);
+	}
+
+	.services-overview__footer {
+		display: flex;
+		justify-content: flex-end;
+		padding-top: var(--space-5);
 	}
 
 	.landing-hero__content {
@@ -466,6 +511,7 @@ const structuredData = [
 
 	.technology-map {
 		display: grid;
+		grid-auto-rows: minmax(0, 1fr);
 		border: 1px solid var(--color-border-subtle);
 		border-radius: var(--radius-12);
 		background: var(--color-bg-elevated);
@@ -478,6 +524,7 @@ const structuredData = [
 		align-content: start;
 		gap: var(--space-3);
 		min-width: 0;
+		min-height: 13rem;
 		padding: var(--space-6);
 	}
 
@@ -497,6 +544,7 @@ const structuredData = [
 
 	.technology-map__body {
 		display: grid;
+		align-content: start;
 		gap: var(--space-3);
 	}
 
@@ -504,20 +552,20 @@ const structuredData = [
 		border-top: 1px solid var(--color-border-subtle);
 	}
 
-	.technology-map__node > div {
+	.technology-map__node > [data-technology-label] {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		color: var(--color-accent-strong);
 	}
 
-	.technology-map__node:hover > div > span,
-	.technology-map__node:focus-visible > div > span {
+	.technology-map__node:hover > [data-technology-label] > span,
+	.technology-map__node:focus-visible > [data-technology-label] > span {
 		color: var(--color-accent-strong);
 	}
 
 	.technology-map__node small,
-	.technology-map__node > div span {
+	.technology-map__node > [data-technology-label] span {
 		color: var(--color-text-muted);
 		font-family: var(--font-mono);
 		font-size: var(--font-size-12);
@@ -526,6 +574,11 @@ const structuredData = [
 
 	.technology-map__node h3 {
 		font-size: var(--font-size-18);
+		text-wrap: balance;
+	}
+
+	.technology-map__node p {
+		max-width: 32rem;
 	}
 
 	.trust-section {
@@ -591,30 +644,11 @@ const structuredData = [
 		gap: var(--space-3);
 	}
 
-	.contact-email {
-		--contact-underline: 1;
-		position: relative;
-		display: block;
-		width: fit-content;
-		margin-top: var(--space-5);
-		color: var(--color-accent-strong);
-		font-family: var(--font-mono);
-		font-size: clamp(var(--font-size-16), 3vw, var(--font-size-24));
-	}
-
-	.contact-email::after {
-		position: absolute;
-		right: 0;
-		bottom: -0.2rem;
-		left: 0;
-		height: 1px;
-		transform: scaleX(var(--contact-underline));
-		transform-origin: left;
-		background: var(--color-accent);
-		content: "";
-	}
-
 	@media (min-width: 48rem) {
+		.services-overview {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
 		.technology-map {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
@@ -661,6 +695,48 @@ const structuredData = [
 			align-self: end;
 		}
 
+		.services-overview {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+		}
+
+		.services-overview__item:nth-child(1) {
+			grid-column: span 7;
+		}
+
+		.services-overview__item:nth-child(2) {
+			grid-column: span 5;
+		}
+
+		.services-overview__item:nth-child(n + 3):nth-child(-n + 5) {
+			grid-column: span 4;
+		}
+
+		.services-overview__item:nth-child(6) {
+			grid-column: span 12;
+		}
+
+		.services-overview__item:nth-child(6) :global(.card.service-card) {
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: start;
+		}
+
+		.technology-map__node {
+			padding: var(--space-8) var(--space-6);
+		}
+
+		.trust-section__layout {
+			grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
+			gap: var(--space-16);
+			align-items: start;
+		}
+	}
+
+	@media (min-width: 80rem) {
+		.landing-hero__layout {
+			grid-template-columns: minmax(0, 1.08fr) minmax(27rem, 0.92fr);
+			gap: var(--space-16);
+		}
+
 		.technology-map {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
@@ -681,23 +757,6 @@ const structuredData = [
 
 		.technology-map__node:first-child .technology-map__divider {
 			display: none;
-		}
-
-		.technology-map__node {
-			padding: var(--space-8) var(--space-6);
-		}
-
-		.trust-section__layout {
-			grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
-			gap: var(--space-16);
-			align-items: start;
-		}
-	}
-
-	@media (min-width: 80rem) {
-		.landing-hero__layout {
-			grid-template-columns: minmax(0, 1.08fr) minmax(27rem, 0.92fr);
-			gap: var(--space-16);
 		}
 	}
 

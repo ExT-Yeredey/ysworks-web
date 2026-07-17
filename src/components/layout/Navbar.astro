@@ -23,11 +23,10 @@ interface Props {
 	localeLink?: NavItem & { language: "es" | "en"; ariaLabel: string };
 	lightThemeLabel?: string;
 	darkThemeLabel?: string;
-	systemThemeLabel?: string;
 	themeMenuLabel?: string;
 	lightThemeOption?: string;
 	darkThemeOption?: string;
-	systemThemeOption?: string;
+	clientArea?: NavItem;
 }
 
 const {
@@ -45,11 +44,10 @@ const {
 	localeLink,
 	lightThemeLabel = "Usar tema claro",
 	darkThemeLabel = "Usar tema oscuro",
-	systemThemeLabel = "Usar tema del sistema",
 	themeMenuLabel = "Tema",
 	lightThemeOption = "Claro",
 	darkThemeOption = "Oscuro",
-	systemThemeOption = "Sistema",
+	clientArea,
 } = Astro.props;
 
 const isActive = (href: string) => {
@@ -104,11 +102,10 @@ const isActive = (href: string) => {
 						menuLabel={themeMenuLabel}
 						lightLabel={lightThemeLabel}
 						darkLabel={darkThemeLabel}
-						systemLabel={systemThemeLabel}
 						lightOptionLabel={lightThemeOption}
 						darkOptionLabel={darkThemeOption}
-						systemOptionLabel={systemThemeOption}
 					/>
+					{clientArea && <a class="navbar__client-area" href={clientArea.href}>{clientArea.label}</a>}
 					<slot name="actions">
 						<Button href={ctaHref} variant="primary" size="sm">{ctaLabel}</Button>
 					</slot>
@@ -150,10 +147,8 @@ const isActive = (href: string) => {
 						mobile
 						lightLabel={lightThemeLabel}
 						darkLabel={darkThemeLabel}
-						systemLabel={systemThemeLabel}
 						lightOptionLabel={lightThemeOption}
 						darkOptionLabel={darkThemeOption}
-						systemOptionLabel={systemThemeOption}
 					/>
 					<button class="mobile-nav__close" type="button" data-menu-close>
 						{closeLabel}
@@ -185,13 +180,13 @@ const isActive = (href: string) => {
 					</a>
 				)
 			}
+			{clientArea && <a class="mobile-nav__client-area" href={clientArea.href}>{clientArea.label}</a>}
 			<Button href={ctaHref} variant="primary">{ctaLabel}</Button>
 		</div>
 	</div>
 </ys-navbar>
 
 <script>
-	import { animate, stagger } from "animejs";
 	import {
 		motion,
 		prefersReducedMotion,
@@ -218,7 +213,12 @@ const isActive = (href: string) => {
 			document.documentElement.dataset.menuReady = "true";
 			let previousFocus: HTMLElement | null = null;
 			let closing = false;
+			let menuAnimations: Animation[] = [];
 			const reducedMotion = prefersReducedMotion;
+			const cancelMenuAnimations = () => {
+				for (const animation of menuAnimations) animation.cancel();
+				menuAnimations = [];
+			};
 			const focusable = () =>
 				Array.from(
 					panel.querySelectorAll<HTMLElement>(
@@ -227,6 +227,7 @@ const isActive = (href: string) => {
 				);
 
 			const finishClose = (restoreFocus = true) => {
+				cancelMenuAnimations();
 				menu.hidden = true;
 				closing = false;
 				panel.removeAttribute("style");
@@ -250,14 +251,20 @@ const isActive = (href: string) => {
 					finishClose(!immediate);
 					return;
 				}
-				animate(backdrop, { opacity: 0, duration: motion.duration.fast, ease: motion.ease.inQuad });
-				animate(panel, {
-					x: "100%",
-					opacity: 0.98,
-					duration: motion.duration.base,
-					ease: motion.ease.inQuad,
-					onComplete: () => finishClose(),
+				cancelMenuAnimations();
+				const backdropAnimation = backdrop.animate([{ opacity: 1 }, { opacity: 0 }], {
+					duration: motion.duration.fast,
+					easing: motion.waapiEase.inQuad,
 				});
+				const panelAnimation = panel.animate(
+					[
+						{ transform: "translateX(0)", opacity: 1 },
+						{ transform: "translateX(100%)", opacity: 0.98 },
+					],
+					{ duration: motion.duration.base, easing: motion.waapiEase.inQuad },
+				);
+				menuAnimations = [backdropAnimation, panelAnimation];
+				panelAnimation.addEventListener("finish", () => finishClose(), { once: true });
 			};
 
 			const openMenu = () => {
@@ -268,15 +275,30 @@ const isActive = (href: string) => {
 				registerOpenLayer(menu, () => closeMenu());
 				const items = menu.querySelectorAll<HTMLElement>(".mobile-nav__links li");
 				if (!reducedMotion()) {
-					animate(backdrop, { opacity: [0, 1], duration: motion.duration.base, ease: motion.ease.outQuart });
-					animate(panel, { x: ["100%", 0], duration: motion.duration.base, ease: motion.ease.outQuart });
-					animate(items, {
-						opacity: [0, 1],
-						x: [motion.travel.sm, 0],
-						delay: stagger(motion.stagger.mobile, { start: motion.stagger.mobile }),
-						duration: motion.duration.base,
-						ease: motion.ease.outQuart,
-					});
+					cancelMenuAnimations();
+					menuAnimations = [
+						backdrop.animate([{ opacity: 0 }, { opacity: 1 }], {
+							duration: motion.duration.base,
+							easing: motion.waapiEase.outQuart,
+						}),
+						panel.animate(
+							[{ transform: "translateX(100%)" }, { transform: "translateX(0)" }],
+							{ duration: motion.duration.base, easing: motion.waapiEase.outQuart },
+						),
+						...Array.from(items).map((item, index) =>
+							item.animate(
+								[
+									{ opacity: 0, transform: `translateX(${motion.travel.sm}px)` },
+									{ opacity: 1, transform: "translateX(0)" },
+								],
+								{
+									delay: motion.stagger.mobile * (index + 1),
+									duration: motion.duration.base,
+									easing: motion.waapiEase.outQuart,
+								},
+							),
+						),
+					];
 				}
 				window.requestAnimationFrame(() => focusable()[0]?.focus());
 			};
@@ -315,10 +337,8 @@ const isActive = (href: string) => {
 
 			if (indicator) {
 				const indicatorTrack = indicator.parentElement;
-				let indicatorAnimation: ReturnType<typeof animate> | undefined;
 				const active = () => desktopLinks.find((link) => link.getAttribute("aria-current") === "page");
 				const moveIndicator = (link?: HTMLAnchorElement, draw = false) => {
-					indicatorAnimation?.cancel();
 					if (!link) {
 						indicator.style.opacity = "0";
 						return;
@@ -327,13 +347,14 @@ const isActive = (href: string) => {
 					const linkRect = link.getBoundingClientRect();
 					const trackRect = indicatorTrack.getBoundingClientRect();
 					indicator.style.opacity = "1";
-					indicatorAnimation = animate(indicator, {
-						x: linkRect.left - trackRect.left,
-						width: linkRect.width,
-						scaleX: draw ? [0, 1] : 1,
-						duration: motion.duration.base,
-						ease: motion.ease.outQuart,
-					});
+					indicator.style.setProperty("--indicator-x", `${linkRect.left - trackRect.left}px`);
+					indicator.style.setProperty("--indicator-width", `${linkRect.width}px`);
+					if (draw && !reducedMotion()) {
+						indicator.animate([{ scale: "0 1" }, { scale: "1 1" }], {
+							duration: motion.duration.base,
+							easing: motion.waapiEase.outQuart,
+						});
+					}
 				};
 				for (const link of desktopLinks) {
 					link.addEventListener("pointerenter", () => moveIndicator(link), { signal });
@@ -445,11 +466,16 @@ const isActive = (href: string) => {
 		position: absolute;
 		bottom: -1px;
 		left: 0;
+		width: var(--indicator-width, 0);
 		height: 1px;
+		transform: translateX(var(--indicator-x, 0));
 		transform-origin: left;
 		background: var(--color-accent);
 		opacity: 0;
 		pointer-events: none;
+		transition:
+			width var(--motion-duration-base) var(--motion-ease-out-quart),
+			transform var(--motion-duration-base) var(--motion-ease-out-quart);
 	}
 
 	.navbar__link:hover,
@@ -459,7 +485,9 @@ const isActive = (href: string) => {
 	}
 
 	.navbar__locale,
-	.mobile-nav__locale {
+	.mobile-nav__locale,
+	.navbar__client-area,
+	.mobile-nav__client-area {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -474,7 +502,9 @@ const isActive = (href: string) => {
 	}
 
 	.navbar__locale:hover,
-	.mobile-nav__locale:hover {
+	.mobile-nav__locale:hover,
+	.navbar__client-area:hover,
+	.mobile-nav__client-area:hover {
 		border-color: var(--color-border-strong);
 		color: var(--color-text-primary);
 	}
@@ -549,6 +579,10 @@ const isActive = (href: string) => {
 
 	.mobile-nav__locale {
 		width: fit-content;
+	}
+
+	.mobile-nav__client-area {
+		width: 100%;
 	}
 
 	.mobile-nav__close {

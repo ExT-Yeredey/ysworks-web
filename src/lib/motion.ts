@@ -13,6 +13,12 @@ export const motion = {
 		inQuad: "inQuad",
 		inOutQuad: "inOutQuad",
 	},
+	waapiEase: {
+		outExpo: "cubic-bezier(0.16, 1, 0.3, 1)",
+		outQuart: "cubic-bezier(0.25, 1, 0.5, 1)",
+		inQuad: "cubic-bezier(0.11, 0, 0.5, 0)",
+		inOutQuad: "cubic-bezier(0.45, 0, 0.55, 1)",
+	},
 	stagger: {
 		mobile: 40,
 		normal: 60,
@@ -57,14 +63,21 @@ export const motion = {
 		mobileMax: 767,
 		desktopMin: 1024,
 		navigationDesktop: 860,
+		processVerticalMax: 1024,
 	},
 } as const;
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const mobileQuery = `(max-width: ${motion.breakpoint.mobileMax}px)`;
+const reducedMotionMedia = window.matchMedia(reducedMotionQuery);
 
-export const prefersReducedMotion = () =>
-	window.matchMedia(reducedMotionQuery).matches;
+export const prefersReducedMotion = () => reducedMotionMedia.matches;
+
+export const onReducedMotionChange = (callback: (reduced: boolean) => void) => {
+	const handleChange = (event: MediaQueryListEvent) => callback(event.matches);
+	reducedMotionMedia.addEventListener("change", handleChange);
+	return () => reducedMotionMedia.removeEventListener("change", handleChange);
+};
 
 export const isMobileMotion = () => window.matchMedia(mobileQuery).matches;
 

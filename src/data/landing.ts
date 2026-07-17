@@ -26,11 +26,9 @@ interface LandingContent {
 		home: string;
 		lightTheme: string;
 		darkTheme: string;
-		systemTheme: string;
 		themeMenu: string;
 		lightOption: string;
 		darkOption: string;
-		systemOption: string;
 		localeLabel: string;
 		footerNavigation: string;
 	};
@@ -52,6 +50,7 @@ interface LandingContent {
 		eyebrow: string;
 		title: string;
 		description: string;
+		exploreLabel: string;
 		items: Array<{
 			number: string;
 			title: string;
@@ -118,13 +117,11 @@ const es: LandingContent = {
 		menu: "Menú",
 		close: "Cerrar",
 		home: "YSWORKS, inicio",
-		lightTheme: "Usar tema claro",
-		darkTheme: "Usar tema oscuro",
-		systemTheme: "Usar tema del sistema",
+		lightTheme: "Tema actual: claro",
+		darkTheme: "Tema actual: oscuro",
 		themeMenu: "Tema",
 		lightOption: "Claro",
 		darkOption: "Oscuro",
-		systemOption: "Sistema",
 		localeLabel: "View this page in English",
 		footerNavigation: "Navegación del pie",
 	},
@@ -166,6 +163,7 @@ const es: LandingContent = {
 		title: "Sistemas útiles para problemas concretos.",
 		description:
 			"Definimos la intervención adecuada para cada contexto y construimos una base comprensible, segura y mantenible.",
+		exploreLabel: "Explorar todos los servicios",
 		items: [
 			{
 				number: "01",
@@ -363,13 +361,11 @@ const en: LandingContent = {
 		menu: "Menu",
 		close: "Close",
 		home: "YSWORKS, home",
-		lightTheme: "Use light theme",
-		darkTheme: "Use dark theme",
-		systemTheme: "Use system theme",
+		lightTheme: "Current theme: light",
+		darkTheme: "Current theme: dark",
 		themeMenu: "Theme",
 		lightOption: "Light",
 		darkOption: "Dark",
-		systemOption: "System",
 		localeLabel: "Ver esta página en español",
 		footerNavigation: "Footer navigation",
 	},
@@ -411,6 +407,7 @@ const en: LandingContent = {
 		title: "Useful systems for specific problems.",
 		description:
 			"We define the right intervention for each context and build a foundation that remains understandable, secure and maintainable.",
+		exploreLabel: "Explore all services",
 		items: [
 			{
 				number: "01",

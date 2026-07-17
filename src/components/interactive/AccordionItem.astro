@@ -35,16 +35,21 @@ const classes = ["accordion-item", className].filter(Boolean).join(" ");
 	}
 
 	.accordion-item summary {
-		display: flex;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 2rem;
 		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-6);
+		gap: var(--space-5);
 		min-height: 3.75rem;
 		cursor: pointer;
 		color: var(--color-text-primary);
 		font-size: var(--font-size-16);
 		font-weight: var(--font-weight-medium);
 		list-style: none;
+		padding: var(--space-4) var(--space-3) var(--space-4) var(--space-5);
+	}
+
+	.accordion-item summary > span {
+		min-width: 0;
 	}
 
 	.accordion-item summary::-webkit-details-marker {
@@ -52,7 +57,7 @@ const classes = ["accordion-item", className].filter(Boolean).join(" ");
 	}
 
 	.accordion-item summary svg {
-		flex: none;
+		justify-self: center;
 		color: var(--color-text-muted);
 		transition:
 			color var(--motion-duration-fast) var(--motion-ease-in-out-quad),
@@ -87,7 +92,18 @@ const classes = ["accordion-item", className].filter(Boolean).join(" ");
 
 	.accordion-item__content {
 		max-width: 46rem;
-		padding: 0 var(--space-8) var(--space-6) 0;
+		padding: 0 calc(2rem + var(--space-8)) var(--space-6) var(--space-5);
 		color: var(--color-text-secondary);
+	}
+
+	@media (min-width: 48rem) {
+		.accordion-item summary {
+			gap: var(--space-8);
+			padding-right: var(--space-5);
+		}
+
+		.accordion-item__content {
+			padding-right: calc(2rem + var(--space-12));
+		}
 	}
 </style>

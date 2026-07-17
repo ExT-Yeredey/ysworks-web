@@ -55,6 +55,7 @@ const headingId = `${id}-title`;
 	import {
 		isMobileMotion,
 		motion,
+		onReducedMotionChange,
 		observeOnce,
 		prefersReducedMotion,
 		runOncePerSession,
@@ -62,38 +63,56 @@ const headingId = `${id}-title`;
 
 	class YsProcessMotion extends HTMLElement {
 		private stopObserving?: () => void;
+		private stopReducedMotion?: () => void;
+		private animations: Array<{ cancel: () => unknown }> = [];
 
 		connectedCallback() {
 		const process = this.querySelector<HTMLElement>(".process");
 		const connector = this.querySelector<HTMLElement>("[data-process-connector]");
 		const steps = this.querySelectorAll<HTMLElement>("[data-process-step]");
 		if (!process || !connector || steps.length === 0) return;
+		const finalIndexes = new Map<HTMLElement, string>();
+		const finishReadable = () => {
+			for (const animation of this.animations) animation.cancel();
+			this.animations = [];
+			connector.removeAttribute("style");
+			for (const step of steps) {
+				step.removeAttribute("style");
+				const index = step.querySelector<HTMLElement>(".mono-eyebrow");
+				const finalValue = index && finalIndexes.get(index);
+				if (index && finalValue) index.textContent = finalValue;
+			}
+		};
 		this.stopObserving = observeOnce(process, () => {
 			runOncePerSession("ysworks:motion:process:v1", () => {
 				if (prefersReducedMotion()) return;
+				const vertical = window.matchMedia(
+					`(max-width: ${motion.breakpoint.processVerticalMax}px)`,
+				).matches;
 				const stepDelay = isMobileMotion()
 					? motion.choreography.processStepDelayMobile
 					: motion.choreography.processStepDelayDesktop;
-				animate(connector, {
-					scaleY: isMobileMotion() ? [0, 1] : 1,
-					scaleX: isMobileMotion() ? 1 : [0, 1],
-					duration: isMobileMotion() ? motion.duration.overtureMax : motion.duration.overtureMin,
+				this.animations.push(animate(connector, {
+					scaleY: vertical ? [0, 1] : 1,
+					scaleX: vertical ? 1 : [0, 1],
+					duration: vertical ? motion.duration.overtureMax : motion.duration.overtureMin,
 					ease: motion.ease.inOutQuad,
-				});
-				animate(steps, {
+				}));
+				this.animations.push(animate(steps, {
 					opacity: [0.72, 1],
 					y: [motion.travel.sm, 0],
 					delay: stagger(stepDelay, { start: motion.choreography.processStepStart }),
 					duration: motion.duration.base,
 					ease: motion.ease.outExpo,
-				});
+				}));
 				for (const [stepIndex, step] of Array.from(steps).entries()) {
 					const index = step.querySelector<HTMLElement>(".mono-eyebrow");
 					const finalValue = index?.textContent?.trim();
 					if (!index || !finalValue) continue;
+					finalIndexes.set(index, finalValue);
 					const counter = { value: 0 };
 					index.textContent = "00";
-					animate(counter, {
+					this.animations.push(animate(counter, {
 						value: Number(finalValue),
 						round: 1,
 						delay: motion.choreography.processStepStart + stepDelay * stepIndex,
@@ -101,14 +120,19 @@ const headingId = `${id}-title`;
 						ease: motion.ease.outQuart,
 						onUpdate: () => { index.textContent = String(counter.value).padStart(2, "0"); },
 						onComplete: () => { index.textContent = finalValue; },
-					});
+					}));
 				}
 			});
+		});
+		this.stopReducedMotion = onReducedMotionChange((reduced) => {
+			if (reduced) finishReadable();
 		});
 		}
 
 		disconnectedCallback() {
 			this.stopObserving?.();
+			this.stopReducedMotion?.();
+			for (const animation of this.animations) animation.cancel();
 		}
 	}
 

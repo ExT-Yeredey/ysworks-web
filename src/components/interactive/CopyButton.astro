@@ -45,17 +45,9 @@ const classes = ["copy-button", className].filter(Boolean).join(" ");
 </ys-copy-button>
 
 <script>
-	import { animate } from "animejs";
-	import {
-		motion,
-		observeOnce,
-		prefersReducedMotion,
-		runOncePerSession,
-	} from "../../lib/motion";
+	import { motion, prefersReducedMotion } from "../../lib/motion";
 
 	class YsCopyButton extends HTMLElement {
-		private stopObserving?: () => void;
-
 		connectedCallback() {
 			const button = this.querySelector<HTMLButtonElement>("button");
 			const status = this.querySelector<HTMLElement>("[data-copy-status]");
@@ -68,18 +60,6 @@ const classes = ["copy-button", className].filter(Boolean).join(" ");
 			const value = this.dataset.value ?? "";
 			const scope = this.closest<HTMLElement>("section") ?? this.parentElement;
 			const email = scope?.querySelector<HTMLElement>(".contact-email, .editorial-contact__email");
-			if (scope && email) {
-				this.stopObserving = observeOnce(scope, () => {
-					runOncePerSession(`ysworks:motion:contact:${window.location.pathname}:v1`, () => {
-						if (prefersReducedMotion()) return;
-						animate(email, {
-							"--contact-underline": [0, 1],
-							duration: motion.duration.slow,
-							ease: motion.ease.outQuart,
-						});
-					});
-				});
-			}
 
 			button.addEventListener("click", async () => {
 				window.clearTimeout(resetTimer);
@@ -89,13 +69,21 @@ const classes = ["copy-button", className].filter(Boolean).join(" ");
 					button.setAttribute("aria-label", copiedLabel);
 					status.textContent = copiedLabel;
 					if (!prefersReducedMotion()) {
-						animate(icon, { scale: [0.8, 1], rotate: ["-8deg", "0deg"], duration: motion.duration.base, ease: motion.ease.outQuart });
+						icon.animate(
+							[
+								{ transform: "scale(0.8) rotate(-8deg)" },
+								{ transform: "scale(1) rotate(0deg)" },
+							],
+							{ duration: motion.duration.base, easing: motion.waapiEase.outQuart },
+						);
 						if (email) {
-							animate(email, {
-								color: ["var(--color-text-primary)", "var(--color-accent-strong)"],
-								duration: motion.duration.base,
-								ease: motion.ease.inOutQuad,
-							});
+							email.animate(
+								[
+									{ color: "var(--color-text-primary)" },
+									{ color: "var(--color-accent-strong)" },
+								],
+								{ duration: motion.duration.base, easing: motion.waapiEase.inOutQuad },
+							);
 						}
 					}
 					this.dispatchEvent(new CustomEvent("copy", { bubbles: true }));
@@ -111,10 +99,6 @@ const classes = ["copy-button", className].filter(Boolean).join(" ");
 					status.textContent = "";
 				}, motion.interaction.copyReset);
 			});
-		}
-
-		disconnectedCallback() {
-			this.stopObserving?.();
 		}
 	}
 

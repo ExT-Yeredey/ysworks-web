@@ -39,7 +39,7 @@ const alternateEntries = Object.entries(alternatePaths ?? {});
 ---
 
 <!doctype html>
-<html lang={language} data-theme="dark" data-theme-preference="system">
+<html lang={language} data-theme="dark" data-theme-preference="dark" data-theme-source="system">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -79,19 +79,31 @@ const alternateEntries = Object.entries(alternatePaths ?? {});
 		)}
 		<script is:inline>
 			(() => {
-				let preference = "system";
+				let preference = null;
 				try {
 					const saved = localStorage.getItem("ysworks-theme");
-					if (saved === "light" || saved === "dark" || saved === "system") preference = saved;
-					else localStorage.setItem("ysworks-theme", "system");
+					if (saved === "light" || saved === "dark") preference = saved;
+					else if (saved !== null) localStorage.removeItem("ysworks-theme");
 				} catch {
-					// System preference and the dark fallback remain available when storage is blocked.
+					// The operating-system preference and dark fallback remain available.
 				}
-				const systemTheme = window.matchMedia("(prefers-color-scheme: light)").matches
+				const systemTheme = window.matchMedia?.("(prefers-color-scheme: light)").matches
 					? "light"
 					: "dark";
-				document.documentElement.dataset.themePreference = preference;
-				document.documentElement.dataset.theme = preference === "system" ? systemTheme : preference;
+				const resolvedTheme = preference ?? systemTheme;
+				document.documentElement.dataset.themePreference = resolvedTheme;
+				document.documentElement.dataset.themeSource = preference ? "saved" : "system";
+				document.documentElement.dataset.theme = resolvedTheme;
+				if (!window.__ysworksThemeRouterReady) {
+					window.__ysworksThemeRouterReady = true;
+					document.addEventListener("astro:before-swap", (event) => {
+						const current = document.documentElement.dataset;
+						const incoming = event.newDocument.documentElement.dataset;
+						incoming.theme = current.theme ?? "dark";
+						incoming.themePreference = current.themePreference ?? incoming.theme;
+						incoming.themeSource = current.themeSource ?? "system";
+					});
+				}
 			})();
 		</script>
 		<ClientRouter />

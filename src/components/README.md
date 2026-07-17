@@ -58,13 +58,33 @@ heading order, unique identifiers, and testing the composed page at WCAG 2.2 AA.
 
 ## Animation
 
-Anime.js is the only JavaScript animation dependency. Motion is progressive and
-is skipped when `prefers-reduced-motion: reduce` is active. CSS remains
-responsible for layout, focus, hover, and simple state presentation.
+Anime.js is the only third-party JavaScript animation dependency and is reserved
+for coordinated landing-page choreography, SVG drawing, and complex timelines.
+CSS owns simple states; WAAPI owns simple imperative global interactions;
+IntersectionObserver owns visibility; and `requestAnimationFrame` is limited to
+genuine scroll synchronisation. Motion is progressive and responds to dynamic
+changes in `prefers-reduced-motion` without replaying completed entrances.
+
+`ClientRouter` remains the governed route-transition implementation for V1. A
+later bounded migration may replace it with native MPA View Transitions only
+after history, focus, theme, ES/EN navigation, back/forward, script lifecycle,
+and reduced-motion behavior pass compatibility QA.
 
 ## Themes
 
 All components consume semantic tokens from `src/styles/theme.css` and support
 both `[data-theme="dark"]` and `[data-theme="light"]`. `ThemeToggle` provides an
-accessible System/Dark/Light menu, stores the explicit preference locally, and
-resolves System against the operating-system preference with a dark fallback.
+accessible Dark/Light menu. A first visit resolves the operating-system
+preference without storing it; an explicit Dark or Light selection is persisted
+across ES/EN routes. Dark is the fallback when no preference can be resolved.
+
+## Governed client-area navigation
+
+`Navbar` exposes an optional `clientArea` entry but renders no placeholder when
+it is absent. It may be supplied only when a real private route exists with
+approved authentication, server-side tenant authorization, session and logout
+handling, client-data isolation, and no exposure of YS AI OS internals. The
+future destination may present authorized project, conversation, task,
+deliverable, document, proposal, invoice, support, service, integration, and
+operational views; none of these responsibilities are implemented by this
+public component library.

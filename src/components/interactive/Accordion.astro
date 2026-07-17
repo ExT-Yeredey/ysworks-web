@@ -17,10 +17,21 @@ const classes = ["accordion", className].filter(Boolean).join(" ");
 
 <script>
 	import { animate } from "animejs";
-	import { motion, prefersReducedMotion } from "../../lib/motion";
+	import {
+		motion,
+		onReducedMotionChange,
+		prefersReducedMotion,
+	} from "../../lib/motion";
 
 	class YsAccordion extends HTMLElement {
+		private controller?: AbortController;
+		private stopReducedMotion?: () => void;
+
 		connectedCallback() {
+			this.controller?.abort();
+			this.stopReducedMotion?.();
+			this.controller = new AbortController();
+			const { signal } = this.controller;
 			const items = Array.from(this.querySelectorAll<HTMLDetailsElement>("details"));
 			const initiallyOpen = items.filter((item) => item.open);
 			if (this.dataset.single === "true") {
@@ -133,7 +144,7 @@ const classes = ["accordion", className].filter(Boolean).join(" ");
 				const summary = item.querySelector<HTMLElement>("summary");
 				if (!summary) continue;
 				summary.setAttribute("aria-expanded", String(item.open));
-				summary.addEventListener("click", (event) => {
+					summary.addEventListener("click", (event) => {
 					event.preventDefault();
 					const willOpen =
 						item.dataset.pending !== "open" &&
@@ -152,7 +163,7 @@ const classes = ["accordion", className].filter(Boolean).join(" ");
 						willOpen,
 						willOpen && coordinated ? motion.interaction.faqCoordination : 0,
 					);
-				});
+				}, { signal });
 				summary.addEventListener("keydown", (event) => {
 					if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
 					event.preventDefault();
@@ -161,8 +172,24 @@ const classes = ["accordion", className].filter(Boolean).join(" ");
 					items[(index + direction + items.length) % items.length]
 						?.querySelector<HTMLElement>("summary")
 						?.focus();
-				});
+				}, { signal });
 			}
+
+			this.stopReducedMotion = onReducedMotionChange((reduced) => {
+				if (!reduced) return;
+				for (const item of items) {
+					const expanded = item.querySelector("summary")?.getAttribute("aria-expanded") === "true";
+					cancelItem(item);
+					finish(item, expanded);
+					const marker = item.querySelector<HTMLElement>(".accordion-item__marker");
+					if (marker) marker.style.transform = expanded ? "scaleY(1)" : "scaleY(0)";
+				}
+			});
+		}
+
+		disconnectedCallback() {
+			this.controller?.abort();
+			this.stopReducedMotion?.();
 		}
 	}
 
