@@ -12,7 +12,9 @@ decisions into an operating standard; it does not redefine the company,
 architecture, services, products, or public claims.
 
 The [Company Bible](COMPANY_BIBLE.md) is the highest-level constitutional
-narrative for company identity, purpose, philosophy, and principles.
+narrative for company character, purpose, philosophy, and principles. The
+subordinate [Brand Bible](BRAND_BIBLE.md) governs identity within its
+constitutional scope.
 The [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) remains the
 highest-level ecosystem architecture specification. The
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
@@ -23,10 +25,11 @@ and its referenced security contracts remain authoritative for security.
 The authority hierarchy is governed by the Company Bible (*I.XII.1*): explicit
 Founder decisions are the highest internal authority; applicable law and
 binding contracts prevail where relevant; and an accepted ADR prevails only
-within its explicit technical scope. A detailed domain contract may impose
-stricter requirements within its scope. Conflicts must be reported rather than
-silently resolved. Until resolution, use the more conservative, less-exposing
-behaviour.
+within its explicit technical scope. Volume II remains subordinate to Volume I
+and outranks operational identity documents within identity matters. A detailed
+domain contract may impose stricter requirements within its scope. Conflicts
+must be reported rather than silently resolved. Until resolution, use the more
+conservative, less-exposing behaviour.
 
 This handbook is public-safe. It does not disclose internal workflows, private
 platform design, credentials, client information, commercial internals, or

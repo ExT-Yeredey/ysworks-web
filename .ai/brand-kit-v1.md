@@ -8,6 +8,10 @@ It defines the approved brand direction. Production assets and components remain
 separate deliverables; official color values are governed by the repository
 Design Tokens v1.0 contract.
 
+The [Brand Bible](../docs/BRAND_BIBLE.md) is the constitutional identity
+authority. This kit is an operational and historical source and may not
+contradict Volume II.
+
 ## Brand Concept
 
 Quiet Engineering.
@@ -18,20 +22,21 @@ YSWORKS should communicate that complex engineering work can result in clear, st
 
 ## Logo Direction
 
-The Founder-approved logo direction is a geometric `YW` monogram:
+The constitutional logo direction is a geometric `YS` monogram
+(*II.VIII.1*):
 
-- a white `Y`;
-- a YSWORKS Purple `#6D5EF7` `W`;
 - angular, minimal, and scalable construction;
 - the monogram paired with the `YSWORKS` wordmark for the primary logo;
-- monogram-only use for the favicon, application icon, and Client Portal;
+- monogram-only use for the favicon, application icon, and Client Workspace;
 - the same visual family for YS AI OS without creating a separate unrelated
   brand.
 
-This decision supersedes the former `YS` initial direction. The generated
-raster reference is a direction source only and must not be used directly as a
-production logo. A bounded brand task must reconstruct, review, and approve
-governed vector masters before replacing production marks or favicons.
+Earlier `YW` references in draft materials are obsolete and retained only as
+historical evidence. They do not authorise vector construction or production
+use. The generated raster reference is a direction source only and must not be
+used directly as a production logo. A bounded brand task must construct, review,
+and approve governed YS vector masters before replacing production marks or
+favicons.
 
 The mark should be:
 

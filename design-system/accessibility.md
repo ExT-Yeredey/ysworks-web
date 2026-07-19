@@ -2,6 +2,8 @@
 
 - Status: production contract
 - Target: WCAG 2.2 AA
+- Constitutional basis: [Brand Bible](../docs/BRAND_BIBLE.md)
+  (*II.I.1–2; II.III; II.XI*)
 
 ## Baseline
 

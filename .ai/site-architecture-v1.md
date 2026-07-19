@@ -3,7 +3,9 @@
 ## Status and scope
 
 This governed source defines the experience foundation for YSWORKS Public
-Website v2 and the bounded visual preparation of the future Client Portal. It
+Website v2 and the bounded visual preparation of the future Client Workspace.
+Its constitutional identity and interface basis is the
+[Brand Bible](../docs/BRAND_BIBLE.md) (*II.III; II.XI*). It
 does not authorize production deployment, authentication, backend access,
 Cloudflare or DNS changes.
 
@@ -12,14 +14,15 @@ The complete route and content contract is maintained in
 
 ## Product separation
 
-The ecosystem contains three distinct products:
+The ecosystem contains three distinct systems:
 
 1. the anonymous Public Website;
-2. the future authenticated Client Portal;
+2. the future authenticated Client Workspace;
 3. the private YS AI OS.
 
 Users must never be led to believe that a public preview is an authenticated
-portal or that YS AI OS is a customer product. Shared visual language does not
+workspace or that YS AI OS is a customer product. “Client Portal” remains the
+technical architecture and security term. Shared visual language does not
 merge information, identity, authorization, or trust boundaries.
 
 ## Public navigation
@@ -66,7 +69,7 @@ collaborate, project fit, useful initial context, confidentiality limits, and
 realistic next steps. Email remains the only active submission channel until a
 protected form boundary exists.
 
-## Client Portal preview rules
+## Client Workspace preview rules
 
 Non-indexed visual route previews may demonstrate hierarchy and responsive
 composition. They must:
@@ -109,8 +112,8 @@ Motion follows the approved hierarchy:
 
 No additional animation library is permitted. Motion is progressive, restrained,
 interruptible, and dynamically responds to `prefers-reduced-motion`. This
-Public Website stack is not automatically the Client Portal or YS AI OS motion
-architecture.
+Public Website stack is not automatically the Client Workspace or YS AI OS
+motion architecture.
 
 ## Public-safety rules
 

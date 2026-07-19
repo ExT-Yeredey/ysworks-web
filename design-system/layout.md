@@ -2,6 +2,8 @@
 
 - Status: production contract
 - Strategy: responsive first, content-led, static-first
+- Constitutional basis: [Brand Bible](../docs/BRAND_BIBLE.md)
+  (*II.IV.1–4; II.XI*)
 
 ## Page Frame
 

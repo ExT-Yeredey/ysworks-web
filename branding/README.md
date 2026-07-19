@@ -10,6 +10,8 @@ This directory is the future controlled home for approved YSWORKS brand assets.
 It contains no production logo master at present.
 
 Brand meaning and governance live in the
+[Brand Bible](../docs/BRAND_BIBLE.md), subordinate to the
+[Company Bible](../docs/COMPANY_BIBLE.md). Operational mapping lives in the
 [Company Brand Book](../docs/company/brand-book.md). Construction and usage
 requirements live in
 [Visual Identity](../docs/company/visual-identity.md). Colour and interface
@@ -27,6 +29,8 @@ and [Production Design System](../design-system/README.md).
 ## Asset Rules
 
 - Do not add generated raster material as an official asset.
+- Use **YS** as the constitutional monogram; treat `YW` only as an obsolete
+  historical draft reference.
 - Do not fabricate vector geometry from written direction alone.
 - Preserve editable masters separately from generated exports.
 - Record asset version, owner, approval, source, intended use, and checksum.

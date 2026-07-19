@@ -8,6 +8,10 @@ Its purpose is to maintain a clear, fast, accessible, secure, and professional p
 
 This `.ai/` directory is the public engineering knowledge base for the website. It exists to guide future human developers and AI coding agents as they evolve the repository.
 
+The [Company Bible](../docs/COMPANY_BIBLE.md) and subordinate
+[Brand Bible](../docs/BRAND_BIBLE.md) govern company character and identity.
+This implementation constitution may not contradict either volume.
+
 ## Repository Scope
 
 This repository may contain:

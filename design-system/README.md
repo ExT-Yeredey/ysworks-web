@@ -7,10 +7,12 @@
 
 The [Company Bible](../docs/COMPANY_BIBLE.md) defines company personality and
 the governing design, motion, and user-experience philosophy
-(*I.VIII; I.XIV–XV*). The
+(*I.VIII; I.XIV–XV*). The subordinate
+[Brand Bible](../docs/BRAND_BIBLE.md) is the constitutional identity authority
+for visual language, motion, and interfaces. The
 [Approved Design Authorities](../docs/design/README.md) map the Founder-approved
-Brand Book, UX Foundation, Design System, and Design Tokens to their canonical
-sources.
+operational Brand Book, UX Foundation, Design System, and Design Tokens to their
+canonical sources.
 
 Files in this directory standardise implementation. They do not create colours,
 company identity, product architecture, or cross-product runtime decisions.

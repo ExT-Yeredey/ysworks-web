@@ -5,6 +5,8 @@
 This document summarizes the public design direction for YSWORKS Web.
 
 For detailed guidance, use `.ai/design-system-v1.md`.
+The [Brand Bible](../docs/BRAND_BIBLE.md) supplies the constitutional identity
+doctrine; this document records only operational direction.
 
 ## Direction
 

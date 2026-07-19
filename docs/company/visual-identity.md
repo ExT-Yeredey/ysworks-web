@@ -11,17 +11,21 @@ YSWORKS identity. It references, and does not duplicate, the
 [Brand Book](brand-book.md), [Design Tokens](../design/YSWORKS_DESIGN_TOKENS_V1.md),
 and [Production Design System](../../design-system/README.md).
 Its constitutional basis is the
-[Company Bible](../COMPANY_BIBLE.md) (*I.VII.2; I.VIII.2; I.XV.2*).
+[Company Bible](../COMPANY_BIBLE.md) (*I.VII.2; I.VIII.2; I.XV.2*) and the
+subordinate [Brand Bible](../BRAND_BIBLE.md) (*II.I; II.V; II.VIII; II.XV*).
 
 ## Official Direction
 
-The primary identity combines the approved geometric YW monogram with the
-YSWORKS wordmark. The monogram uses a white Y and a YSWORKS Purple W in an
-angular, minimal, scalable construction.
+The primary identity combines the constitutional geometric **YS** monogram with
+the YSWORKS wordmark. The monogram is angular, minimal, scalable, and
+constructed rather than drawn.
 
 Monogram-only use is reserved for favicon, application icon, compact product
 marks, and the future Client Workspace where the context already identifies
 YSWORKS.
+
+Earlier `YW` references were obsolete draft material. They do not authorise a
+logo, vector reconstruction, colour allocation, or production asset.
 
 ## Construction Requirement
 

@@ -71,7 +71,9 @@ design-system/ Production UI standards and implementation contracts
 Start with the [documentation index](docs/README.md).
 
 The [Company Bible](docs/COMPANY_BIBLE.md) is the company-wide narrative and
-behavioural constitution. The
+behavioural constitution. The subordinate
+[Brand Bible](docs/BRAND_BIBLE.md) governs identity within that constitutional
+character. The
 [company documentation](docs/company/README.md) applies it to profile,
 capability, brand, onboarding, proposals, quotations, maintenance, support,
 delivery, communication, lifecycle, and quality.
@@ -146,9 +148,10 @@ English equivalents use the `/en/` prefix.
 
 `/client` and its prepared subroutes are non-indexed interface-foundation
 previews only. They do not authenticate, load data, or provide portal access and
-remain absent from public navigation. The production Client Portal remains a
-future authenticated product at `portal.ysworks.dev`; its activation requires
-the approved portal security architecture.
+remain absent from public navigation. The production Client Portal remains the
+future technical architecture for the authenticated Client Workspace at
+`portal.ysworks.dev`; its activation requires the approved portal security
+architecture.
 
 Future status, public documentation, labs, and journal surfaces remain outside
 this release.

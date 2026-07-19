@@ -51,17 +51,19 @@ The authority hierarchy, derived from the Company Bible (*I.XII.1*), is:
    technical decision and scope that the ADR governs. It does not override an
    unrelated domain contract or company-wide constitutional authority.
 4. The Company Bible governs company-wide narrative and behaviour.
-5. This Master Specification is the highest-level product, ecosystem,
+5. The Brand Bible governs identity within its constitutional scope and remains
+   subordinate to the Company Bible.
+6. This Master Specification is the highest-level product, ecosystem,
    vocabulary, and cross-system architecture specification.
-6. The Founder Handbook governs company behaviour.
-7. The Operating Manual governs company operations when an approved version is
+7. The Founder Handbook governs company behaviour.
+8. The Operating Manual governs company operations when an approved version is
    present.
-8. Detailed security, public-platform, portal, company, business, and repository
+9. Detailed security, public-platform, portal, company, business, and repository
    documents remain authoritative inside their stated domains and may impose
    stricter constraints.
-9. Brand, user-experience, design-system, and motion documents govern their
-   stated subordinate scopes.
-10. Implementation documentation governs only its stated implementation scope.
+10. Operational Brand Book, user-experience, design-system, and motion documents
+    implement the Brand Bible within their stated scopes.
+11. Implementation documentation governs only its stated implementation scope.
 
 No lower-level document, implementation choice, dependency, or design proposal
 silently creates an ecosystem decision. Genuine conflicts remain Open Decisions
@@ -595,10 +597,12 @@ accurate status and without implying a client relationship.
 This specification establishes design intent, not a component library. Final
 token domains remain governed by their approved contracts. The
 [Approved Design Authorities](design/README.md) registry maps the
-Founder-approved YSWORKS Brand Book v1.0, User Experience Foundation v1.1, and
-YSWORKS Design System v1.1 to their canonical repository sources. Those sources,
+Founder-approved Brand Bible v1.1, operational Brand Book v1.0, User Experience
+Foundation v1.1, and YSWORKS Design System v1.1 to their canonical repository
+sources. The [Brand Bible](BRAND_BIBLE.md) governs identity within its scope and
+remains subordinate to the Company Bible. The operational sources,
 [Brand Positioning](business/BRAND_POSITIONING.md), and the applicable product
-contract govern detailed brand and interface direction within their scopes.
+contract govern measurable brand and interface direction within their scopes.
 Other design proposals are inputs, not authority. The Founder-approved
 [YSWORKS Design Tokens v1.0](design/YSWORKS_DESIGN_TOKENS_V1.md) establish the
 cross-ecosystem color foundation. Fonts, spacing, breakpoints, assets, and
@@ -616,12 +620,13 @@ Typography must create a clear semantic hierarchy and remain readable across
 supported viewports. Spacing must be systematic and content-led. Neither the
 Master Specification nor an unreviewed design proposal fixes a font family,
 type scale, spacing unit, breakpoint, or final vector geometry. The
-Founder-approved logo direction is an angular geometric YW monogram with a white
-Y and YSWORKS Purple W. It pairs with the YSWORKS wordmark for the primary logo,
-is used alone for compact product marks, and keeps YS AI OS in the same visual
-family without making it public. Generated raster material is a reference only,
-never a production asset. The official color contract is YSWORKS Design Tokens
-v1.0: Primary 500 `#6D5EF7` is the brand color and the
+constitutional monogram is geometric **YS**, paired operationally with the
+uppercase `YSWORKS` wordmark and used alone for compact product marks. Earlier
+`YW` references are superseded draft state and have no implementation authority.
+YS AI OS remains in the same visual family without becoming public or receiving
+a separate public logo. Generated raster material is a reference only, never a
+production asset. The official colour contract is YSWORKS Design Tokens v1.0:
+Primary 500 `#6D5EF7` is the brand colour and the
 governed primary scale, interaction states, and dark surfaces apply to every
 YSWORKS product and communication surface.
 
@@ -1248,21 +1253,22 @@ their referenced documents. `Accepted` means the direction is official;
 - **Status:** Accepted. On-site physical and hardware delivery is primarily in
   Madrid and Lanzarote; suitable remote work may be delivered more broadly.
 
-### ADR-M019: Unified Geometric YW Identity
+### ADR-M019: Unified Geometric YS Identity
 
-- **Decision:** Use the approved angular geometric YW direction across the
-  ecosystem: white Y, YSWORKS Purple W, primary lockup with the YSWORKS
-  wordmark, and monogram-only use for compact product marks. YS AI OS remains in
-  the same visual family without becoming a public product.
+- **Decision:** Use `YS` as the constitutional geometric monogram and `YSWORKS`
+  uppercase as the official wordmark. Use the wordmark with the monogram for the
+  primary identity and the monogram alone for approved compact applications.
+  Client Workspace shares the YSWORKS identity. YS AI OS remains in the same
+  visual family without a separate public logo or public identity.
 - **Reason:** One scalable identity connects the Public Website, Client
   Workspace, private internal systems, and future surfaces without fragmenting
   the company brand.
-- **Alternatives rejected:** The former YS compact mark, unrelated product
+- **Alternatives rejected:** The obsolete `YW` draft state, unrelated product
   brands, direct use of a generated raster as a production logo, and improvised
   vector geometry without review.
-- **Status:** Direction accepted. Governed vector reconstruction, optical
-  testing, lockups, favicon, application icons, and production replacement
-  remain a bounded brand-asset task.
+- **Status:** Accepted and aligned with Brand Bible v1.1 (*II.VIII.1*).
+  Governed vector construction, optical testing, lockups, favicon, application
+  icons, trademark review, and production migration remain bounded open tasks.
 
 ## 12. Open Decisions
 
@@ -1300,8 +1306,12 @@ no longer documentation conflicts.
 ### 12.3 Public Website And Brand
 
 - Final governed vector masters, compact assets, favicon, application icon,
-  lockups, and social image for the approved YW direction. The raster reference
-  must not ship directly; the public wordmark remains `YSWORKS`.
+  lockups, and social image for the constitutional `YS` monogram. The raster
+  reference must not ship directly; the public wordmark remains uppercase
+  `YSWORKS`.
+- Whether professional trademark review or registration is required.
+- Governance for a future authentic photography archive, operational audio
+  assets, and AI-media disclosure implementation.
 - Whether Tailwind CSS remains the long-term Public Website styling standard or
   only the current repository implementation choice.
 - Final reviewed typography, spacing, breakpoint, component, and motion tokens;
