@@ -77,6 +77,10 @@ character. The subordinate
 [Client Experience Constitution](docs/CLIENT_EXPERIENCE_CONSTITUTION.md)
 governs the complete client relationship, journey, support, delivery,
 reputation, and Client Workspace experience. The
+[YSWORKS Enterprise Architecture](docs/YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+operationalises those constitutional volumes and governs enterprise structure,
+system relationships, authority, information, knowledge, automation, security
+principles, and scalability. The
 [company documentation](docs/company/README.md) applies it to profile,
 capability, brand, onboarding, proposals, quotations, maintenance, support,
 delivery, communication, lifecycle, and quality.

@@ -23,13 +23,17 @@ client information, internal workflows, or restricted operational material.
    Volume III of the constitutional library. It remains subordinate to Volumes
    I and II and governs client experience, journey, relationship, delivery,
    support, reputation, and the Client Workspace experience.
-7. [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) defines product,
+7. [YSWORKS Enterprise Architecture](YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+   operationalises Volumes I–III and governs enterprise structure, layers,
+   domains, authority flow, system relationships, information flow, knowledge,
+   automation, security principles, scalability, and enterprise tests.
+8. [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) defines product,
    ecosystem, vocabulary, accepted decisions, and cross-system architecture.
-8. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behaviour, judgement,
+9. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behaviour, judgement,
    delivery discipline, and human–AI collaboration.
-9. The Operating Manual governs company operations when an approved version is
+10. The Operating Manual governs company operations when an approved version is
    present.
-10. Detailed domain foundations and policies remain authoritative within their
+11. Detailed domain foundations and policies remain authoritative within their
    stated scope. In particular:
    - [Company Documentation](company/README.md) applies company authority to
      commercial, delivery, support, and quality standards.
@@ -42,8 +46,8 @@ client information, internal workflows, or restricted operational material.
      publication boundary for architecture contracts.
    - [Business Foundation](business/README.md) supports public positioning,
      services, content, and commercial policy.
-11. Operational documentation implements the constitutional library and domain
-    foundations within its measurable scope. In particular:
+12. System designs, workflow definitions, and implementation documentation
+    implement the authorities above within their stated scope. In particular:
     - [Approved Design Authorities](design/README.md), including YSWORKS Design
       Tokens v1.0, govern brand, experience, and interface decisions.
     - The repository
@@ -53,7 +57,9 @@ client information, internal workflows, or restricted operational material.
       scope. The repository [engineering knowledge base](../.ai/README.md)
       governs the Public Website implementation within that boundary.
 
-## Constitutional Library
+## Foundation Library
+
+### Constitution Library
 
 - [Volume I — Company Bible](COMPANY_BIBLE.md) defines company-wide character,
   behaviour, purpose, and constitutional standing.
@@ -67,6 +73,13 @@ The constitutional hierarchy is governed by the
 [Company Bible, Volume I, Book XII, Article 1](COMPANY_BIBLE.md). No document
 silently resolves a conflict; genuine conflicts must be reported and governed.
 
+### Enterprise Foundation
+
+- [YSWORKS Enterprise Architecture v1.0](YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+  operationalises the constitutional volumes and governs enterprise structure
+  within its domain. It defines architectural requirements, not implemented
+  controls or deployment state.
+
 ## Reading Order
 
 For company or cross-system work:
@@ -76,10 +89,13 @@ For company or cross-system work:
    experience work;
 3. read the Client Experience Constitution for any client journey,
    relationship, delivery, support, reputation, or Workspace work;
-4. read the Master Specification and Founder Handbook;
-5. read the detailed contract for the affected domain;
-6. inspect applicable ADRs and Open Decisions; and
-7. use the more conservative behaviour when an unresolved conflict remains.
+4. read the Enterprise Architecture for company structure, domain ownership,
+   system relationships, information, knowledge, automation, security
+   principles, or scalability work;
+5. read the Master Specification and Founder Handbook;
+6. read the detailed contract for the affected domain;
+7. inspect applicable ADRs and Open Decisions; and
+8. use the more conservative behaviour when an unresolved conflict remains.
 
 For work limited to the public website repository, also follow the public
 engineering knowledge base before implementation.

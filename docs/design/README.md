@@ -52,6 +52,10 @@ values across the ecosystem.
 When these sources conflict, the authority hierarchy in the
 [YSWORKS Master Specification](../YSWORKS_MASTER_SPEC.md) applies. In particular,
 accepted ADR-M004 governs the Public Website animation-library decision.
+Design and experience implementations also conform to the layer, system, and
+public/private boundaries in
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+(*EA 3.1; EA 6.1–2; EA 10.6*).
 
 ## Product separation
 

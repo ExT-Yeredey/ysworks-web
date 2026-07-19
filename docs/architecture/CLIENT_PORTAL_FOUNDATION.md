@@ -16,6 +16,12 @@ information. The client experience is governed by the
 without selecting or implementing a runtime, authorization engine, database,
 authentication flow, or source integration.
 
+The
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+governs the Workspace's mediated relationship to private systems, client
+isolation, authority, information flow, and approval gates (*EA 5.1–3; EA
+6.1–2; EA 7.1–3; EA 9.3; EA 10.5–6*).
+
 This document does not authorize:
 
 - creating the hostname or a DNS record;
@@ -45,6 +51,10 @@ YSWORKS operations.
    private.
 9. Mobile access is a first-class workflow, not a compressed desktop dashboard.
 10. Every future feature must preserve tenant isolation before convenience.
+11. Corrections supersede rather than overwrite prior records; forward-only
+    information flow is the default (*EA 7.2*).
+12. Approval gates are architectural stops and never direct execution commands
+    (*EA 9.3*).
 
 ## 3. Functional Boundary
 
@@ -520,8 +530,9 @@ derive active tenant membership, and authorize every request independently.
 
 ### 10.2 Initial Recommendation
 
-For a small invitation-only pilot, use Cloudflare Access as the authentication
-perimeter if the current Free plan and account limits support the expected users:
+The authentication provider remains an Open Decision. Cloudflare Access is the
+leading candidate for a small invitation-only pilot if the current Free plan and
+account limits support the expected users:
 
 - allow exact invited identities, never `Everyone` or an unrestricted email
   domain;
@@ -871,6 +882,7 @@ confirmation, or workflow detail.
 ## 16. Authoritative References
 
 - [Volume III — Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+- [YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
 - [Cloudflare Access policies](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/)
 - [Cloudflare Access one-time PIN](https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/)
 - [Cloudflare Access MFA requirements](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/mfa-requirements/)

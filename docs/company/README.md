@@ -16,6 +16,10 @@ through Volume II citations in the form *II.Book.Article*. The subordinate
 the client relationship, journey, delivery, support, reputation, and Client
 Workspace experience through Volume III citations in the form
 *III.Book.Article*. The
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+governs enterprise layers, domains, authority, system relationships,
+information flow, knowledge, automation, security principles, and scalability
+through citations in the form *EA chapter.section*. The
 [Master Specification](../YSWORKS_MASTER_SPEC.md) governs ecosystem architecture
 and accepted cross-system decisions. The
 [Founder Handbook](../FOUNDER_HANDBOOK.md) governs behaviour.
@@ -24,6 +28,10 @@ Documents in this folder apply those authorities to repeatable company work.
 They do not override explicit Founder decisions, applicable law, binding
 contracts, accepted ADRs within their technical scope, or stricter detailed
 domain contracts. Conflicts are reported rather than silently resolved.
+
+Company documents do not prove that an enterprise control or system is
+implemented. Where they define responsibility, handover, approval, record, or
+automation behaviour, they must conform to *EA 4–9*.
 
 ## Index
 

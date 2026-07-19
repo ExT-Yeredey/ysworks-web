@@ -8,9 +8,10 @@
 
 ## Authority And Scope
 
-This document is the highest-level specification for the YSWORKS ecosystem. It
-defines official vocabulary, system boundaries, product intent, and decisions
-that affect more than one YSWORKS system.
+This document is the highest-level product, ecosystem, vocabulary, and
+cross-system specification for YSWORKS. It defines official vocabulary, system
+boundaries, product intent, and decisions that affect more than one YSWORKS
+system.
 
 The [Company Bible](COMPANY_BIBLE.md) is the highest-level constitutional
 narrative for company identity, purpose, philosophy, principles, and long-term
@@ -22,6 +23,13 @@ The [Brand Bible](BRAND_BIBLE.md) governs constitutional identity. The
 client relationship, journey, delivery, support, reputation, and Client
 Workspace experience. Both remain subordinate to the preceding constitutional
 volume.
+
+The
+[YSWORKS Enterprise Architecture](YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+operationalises Volumes I–III and governs enterprise structure, system
+landscape, authority and information flow, domain ownership, automation,
+knowledge, security principles, scalability, and enterprise tests. It defines
+requirements rather than implemented state.
 
 Detailed contracts remain authoritative within their domains:
 
@@ -62,17 +70,20 @@ The authority hierarchy, derived from the Company Bible (*I.XII.1*), is:
 6. The Client Experience Constitution governs client experience within its
    constitutional scope and remains subordinate to the Company Bible and Brand
    Bible.
-7. This Master Specification is the highest-level product, ecosystem,
+7. The YSWORKS Enterprise Architecture governs enterprise structure within its
+   domain and remains subordinate to Volumes I–III.
+8. This Master Specification is the highest-level product, ecosystem,
    vocabulary, and cross-system architecture specification.
-8. The Founder Handbook governs company behaviour.
-9. The Operating Manual governs company operations when an approved version is
+9. The Founder Handbook governs company behaviour.
+10. The Operating Manual governs company operations when an approved version is
    present.
-10. Detailed security, public-platform, portal, company, business, and
+11. Detailed security, public-platform, portal, company, business, and
     repository documents remain authoritative inside their stated domains and
     may impose stricter constraints.
-11. Operational documentation, including the operational Brand Book,
-    user-experience, design-system, motion, and implementation documents,
-    implements the constitutional library within its stated scope.
+12. System designs, workflow definitions, and implementation documentation,
+    including operational Brand Book, user-experience, design-system, and
+    motion documents, implement the authorities above within their stated
+    scope.
 
 No lower-level document, implementation choice, dependency, or design proposal
 silently creates an ecosystem decision. Genuine conflicts remain Open Decisions
@@ -172,6 +183,12 @@ system, but neither defines the company.
 
 ### 2.1 Ecosystem Rules
 
+The canonical eight-layer enterprise stack, thirteen business domains, and
+eight-system landscape are defined by
+[EA 3.1, EA 4.2, and EA 6.1](YSWORKS_ENTERPRISE_ARCHITECTURE.md).
+The categories below describe product and ecosystem boundaries; they do not
+replace that enterprise structure or prove that a system is implemented.
+
 Every official system has one declared purpose, audience, data boundary, owner,
 and exposure class before implementation. Systems exchange only the minimum
 approved data through explicit contracts. A shared brand, identity provider, or
@@ -189,8 +206,9 @@ The Public Website is the canonical anonymous public presence at
 public products when approved, and the path to a qualified conversation.
 
 It is static-first, content-led, accessible, fast, and free of private business
-logic. It does not expose internal systems, client data, administration,
-authentication, workflows, or infrastructure. The apex `ysworks.dev` redirects
+logic or business truth of its own. It does not expose internal systems, client
+data, administration, authentication, workflows, or infrastructure. The apex
+`ysworks.dev` redirects
 permanently to the canonical `www` host under the approved public-platform
 contract.
 
@@ -216,7 +234,9 @@ reader first, and reveals technical detail progressively.
 
 The Client Workspace is not an administration panel, source-system browser,
 workflow editor, file-system browser, or real-time view into private
-operations. It remains nonexistent until the gates in the
+operations. It renders only mediated, authorised, client-specific truth and is
+never a direct door into private systems (*EA 6.1; EA 10.5*). It remains
+nonexistent until the gates in the
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) are met.
 
 ### 2.4 YS AI OS
@@ -231,7 +251,8 @@ tools, models, workflows, topology, telemetry, internal records, state, security
 design, business logic, and roadmap remain private. It has no public logo or
 independent public brand. Public communication may describe approved outcomes
 or general AI-assisted engineering practices without naming internal
-mechanisms.
+mechanisms. Its canonical responsibility and private boundary are governed by
+*EA 6.1* and *EA 10.6*.
 
 ### 2.5 Automation Platform
 
@@ -246,12 +267,20 @@ The gateway authenticates, validates, rate-limits, and normalizes events before
 any asynchronous private processing. Public browsers and providers never connect
 directly to n8n or private execution endpoints.
 
+n8n executes defined process steps under recorded mandates. It does not decide
+or hold business authority (*EA 5.1; EA 6.1; EA 9.2–4*).
+
 ### 2.6 Infrastructure
 
 Infrastructure is the operational foundation that hosts, connects, protects,
 observes, backs up, and recovers approved systems. It includes the public edge,
 static hosting, private compute, networking, container runtime, storage, and
 operational controls as categories, not as a disclosed inventory.
+
+Infrastructure remains private, replaceable, and non-public (*EA 6.1; EA
+10.6*). Observability is the source of operational and audit truth across the
+enterprise stack (*EA 3.1*). These requirements do not confirm topology,
+production hosting, an observability implementation, or recovery controls.
 
 Infrastructure has separate public, private, and internal trust zones. Docker is
 an internal runtime and packaging technology, never a public control surface.
@@ -262,22 +291,24 @@ overlay and requires identity, MFA, least privilege, revocation, and audit.
 
 ### 2.7 Knowledge Base
 
-The Knowledge Base is the governed collection of reusable company, product,
-service, architecture, design, and engineering knowledge. Every item has an
-audience and classification. Public knowledge must be safe to publish;
-client-scoped knowledge must be tenant-isolated; internal knowledge remains
-private.
+The Knowledge Base is the governed **Knowledge** system: the collection of
+reusable company, product, service, architecture, design, and engineering
+knowledge. Every item has an audience and classification. Public knowledge must
+be safe to publish; client-scoped knowledge must be tenant-isolated; internal
+knowledge remains private.
 
-This master specification is the root of the Knowledge Base hierarchy. Domain
-specifications, ADRs, service definitions, standards, and approved operating
-guidance derive vocabulary and boundaries from it.
+Its five knowledge classes, ownership, standards, and evolution rules are
+defined by *EA 8.1–3*. This Master Specification governs product and ecosystem
+vocabulary within that hierarchy; it is not the root authority for
+constitutional or enterprise-structure knowledge.
 
 ### 2.8 Internal Documentation
 
-Internal Documentation contains private operational material needed to run
-YSWORKS. It may include private procedures, implementation records, incident
-material, source inventories, contracts, internal commercial information, and
-restricted technical details.
+Internal Documentation is a classified body of operational knowledge rather
+than a separate system in the canonical landscape. It contains private
+operational material needed to run YSWORKS. It may include private procedures,
+implementation records, incident material, source inventories, contracts,
+internal commercial information, and restricted technical details.
 
 Internal Documentation is not stored in the public website repository and is
 not exposed through the Public Website, Client Workspace, public documentation,
@@ -286,6 +317,11 @@ for its audience; internal material is never published by simple redaction or
 pass-through.
 
 ### 2.9 System Relationships
+
+Canonical relationship rules are governed by *EA 6.2*: truth flows up, mandates
+flow down; versioned artefacts pass through GitHub; public-to-private paths are
+mediated; and every system remains replaceable. The following product-level
+constraints apply within those rules:
 
 - The Public Website may publish approved descriptions of services, public
   products, and company principles. It has no direct connection to private
@@ -755,10 +791,12 @@ permit router port forwarding. It is not needed for the static Public Website.
 
 ### 6.8 Cloudflare Access
 
-Cloudflare Access is the approved initial authentication perimeter for a small,
-invitation-only Client Portal pilot, subject to current plan validation. Access
-authenticates identity; it never authorizes tenant, object, field, approval, or
-document access. The portal must enforce those decisions server-side.
+Cloudflare Access is the recommended initial authentication-perimeter candidate
+for a small, invitation-only Client Workspace pilot, subject to an explicit
+provider decision and current plan validation. The authentication provider
+remains open. Access authenticates identity; it never authorizes tenant, object,
+field, approval, or document access. The portal must enforce those decisions
+server-side.
 
 Access may protect approved private applications. It does not justify publishing
 Docker, n8n, Portainer, databases, home-control systems, reverse-proxy
@@ -783,6 +821,12 @@ editor, management API, workflow definitions, execution endpoints, and logs
 remain internal. Public webhooks terminate at the Secure Webhook Gateway and
 reach n8n only through an approved normalized asynchronous boundary.
 
+n8n is an executor, not a decision-maker or holder of business authority.
+Every workflow requires a defined mandate, approval gates where applicable,
+audit evidence, and fail-closed mutation behaviour with a documented degraded
+or manual path (*EA 5.1; EA 9.2–4*). These are architectural requirements, not
+claims about current workflow implementation.
+
 ### 6.11 GitHub
 
 GitHub is the official source-control, review, and CI integration platform for
@@ -802,6 +846,10 @@ The complete public security architecture is defined by the
 This section states ecosystem invariants and does not replace route, webhook,
 Cloudflare, caching, header, or production-readiness requirements in that
 contract.
+
+Enterprise security principles are governed by *EA 10.1–6*. System designs must
+implement and verify those principles; their presence in Enterprise
+Architecture does not prove a control exists.
 
 ### 7.2 Security Principles
 
@@ -1011,6 +1059,10 @@ This roadmap defines sequence, not dates, commitments, or implementation
 authorization. Each stage requires a separate scope, owner, risk review, and
 exit gate.
 
+Enterprise growth follows the fixed order in *EA 11.1*: systems,
+documentation, architecture, automation, delegation, then people. Roadmap
+sequence never overrides that constraint.
+
 ### 10.1 Public Website
 
 Establish the canonical bilingual public presence, service clarity, honest
@@ -1196,18 +1248,19 @@ their referenced documents. `Accepted` means the direction is official;
 - **Status:** Accepted as a product and security contract; implementation remains
   gated.
 
-### ADR-M012: Cloudflare Access For Initial Portal Authentication
+### ADR-M012: Cloudflare Access Candidate For Initial Portal Authentication
 
-- **Decision:** Use Cloudflare Access as the initial authentication perimeter for
-  a small invitation-only portal pilot, while the portal separately authorizes
-  every tenant and object.
+- **Decision:** Retain Cloudflare Access as the recommended candidate for a
+  small invitation-only Client Workspace pilot, while the portal separately
+  authorizes every tenant and object. Final provider selection remains open.
 - **Reason:** It provides a low-operational-cost identity perimeter suitable for
   few invited users.
 - **Alternatives rejected:** Building magic links initially, treating Access as
   tenant authorization, and starting with a complex identity platform before
   scale requires it.
-- **Status:** Conditional on plan, identity, MFA, lifecycle, and token-validation
-  review.
+- **Status:** Proposed candidate. Reopened by the Enterprise Architecture v1.0
+  integration pending an explicit authentication-provider decision and plan,
+  identity, MFA, lifecycle, and token-validation review.
 
 ### ADR-M013: Evidence-Based Progress And Immutable Approvals
 
@@ -1296,6 +1349,27 @@ their referenced documents. `Accepted` means the direction is official;
   Governed vector construction, optical testing, lockups, favicon, application
   icons, trademark review, and production migration remain bounded open tasks.
 
+### ADR-M020: Enterprise Architecture v1.0
+
+- **Decision:** Adopt
+  [YSWORKS Enterprise Architecture v1.0](YSWORKS_ENTERPRISE_ARCHITECTURE.md) as
+  the enterprise-structure authority subordinate to Volumes I–III. Its
+  eight-layer stack, thirteen domains, authority vocabulary, always-human
+  decisions, canonical system landscape, forward-only information flow,
+  knowledge classes, mandate-based automation, approval gates, security
+  principles, scalability order, named Founder-absence risk, and Enterprise
+  Tests are architectural requirements.
+- **Reason:** Future systems, workflows, and implementations require one
+  governed structure for responsibility, truth, knowledge, authority, and
+  replaceability.
+- **Alternatives rejected:** Tool-led structure, implicit authority, autonomous
+  decision-making by automation, backward mutation of records, public access to
+  private systems, and treating current implementations as permanent
+  architecture.
+- **Status:** Accepted. This decision does not claim that any control, system,
+  store, workflow, topology, backup, recovery objective, or continuity
+  mechanism is implemented.
+
 ## 12. Open Decisions
 
 Open Decisions are real governance gates, not placeholders or permission to
@@ -1308,13 +1382,25 @@ each decision is approved.
    current repository coding standards, but no accepted ADR makes it the
    long-term Public Website or ecosystem standard. It remains a current
    repository constraint while its official scope is open.
+2. **Client Workspace authentication:** Earlier prose described Cloudflare
+   Access as the approved initial perimeter. Enterprise Architecture integration
+   keeps the authentication provider open. ADR-M012 now records Access only as
+   a proposed candidate until an explicit provider decision is accepted.
 
 ADR-M015 and the supporting Business Foundation now consistently prohibit case
 placeholders. ADR-M001 and the Company Bible consistently define YSWORKS as a
 technology engineering company. ADR-M004 settles the animation-library
 decision. “Client Workspace” is the client-facing product name, while “Client
-Portal” remains the technical architecture and security term. Those matters are
-no longer documentation conflicts.
+Portal” remains the technical architecture and security term. ADR-M020 settles
+the enterprise layers, domains, authority model, system responsibilities,
+knowledge classes, automation mandates, enterprise security principles,
+scalability order, and Enterprise Tests. Those matters are no longer
+documentation conflicts.
+
+Volume I, Book XII, Article 1 predates the Enterprise Architecture and therefore
+does not name it in the document-order enumeration. The current recorded Founder
+decision inserts Enterprise Architecture after Volume III and before this
+Master Specification without rewriting the canonical Volume I manuscript.
 
 ### 12.2 Company And Commercial
 
@@ -1375,17 +1461,40 @@ readiness.
 No portal hostname, account, source connection, client data, or production
 capability exists until its applicable decisions and gates are approved.
 
+### 12.6 Enterprise Implementation
+
+The Enterprise Architecture is settled; its implementations are not. The
+following remain open until governed system designs or decisions resolve them:
+
+- exact Client Workspace technical stack and authentication provider;
+- database, event-bus or queue, audit-store, and knowledge-store technologies;
+- private-system deployment topology and production hosting beyond the already
+  approved static Public Website target;
+- backup technology, retention, and exact RPO/RTO;
+- Founder continuity mechanism and delegated emergency authority;
+- operational observability stack and notification providers;
+- billing provider and accounting integration;
+- detailed API contracts; and
+- implementation sequence.
+
 ## 13. Glossary
 
 ### Approval
 
-An attributable decision on an exact object and immutable version. Approval is
-not a privileged execution command and does not carry across changed versions.
+The specific, informed, recorded decision that permits an intended action
+(*EA 5.1*). Approval is not a privileged execution command, is consumed only by
+its authorised action, and does not carry across changed context or versions.
+
+### Authority
+
+The traceable chain from an act to the human seat entitled to have caused it
+(*EA 5.1–2*). Tool access, role labels, recommendations, automation, and
+execution are not authority by themselves.
 
 ### Automation
 
-Software behavior that reduces or coordinates repeatable manual work under
-defined ownership, validation, failure, audit, and security boundaries.
+Execution by machine within a recorded mandate (*EA 5.1; EA 9.2*). Automation
+does not decide and does not receive accountability.
 
 ### Automation Platform
 
@@ -1415,6 +1524,16 @@ An organization or authorized person evaluating, purchasing, or receiving a
 YSWORKS service or product. “Customer” is the broad commercial term; “Client” is
 used for a governed engagement and portal context.
 
+### Decision
+
+A selection among alternatives that creates an obligation (*EA 5.1*).
+Reversibility determines the required decision process.
+
+### Delegation
+
+The explicit transfer of decision rights within named bounds. Delegation
+transfers the right, never accountability (*EA 5.1*).
+
 ### Deployment
 
 A controlled release of an approved system version into a named environment.
@@ -1425,6 +1544,16 @@ rollback or disable path.
 
 A defined, reviewable output of an engagement or Milestone. Portal deliverables
 are versioned and exposed only through an authorized sanitized projection.
+
+### Domain
+
+A named area of business responsibility with one accountable owner, defined
+duties, and explicit interactions (*EA 4.1–3*).
+
+### Execution
+
+Performance of already-decided work. An executor that encounters an undecided
+question stops and escalates (*EA 5.1*).
 
 ### Founder
 
@@ -1446,7 +1575,12 @@ through public repositories or client-facing systems.
 ### Knowledge Base
 
 The governed collection of classified specifications, decisions, standards, and
-reusable knowledge for YSWORKS.
+reusable knowledge for YSWORKS, organised into the five classes in *EA 8.1*.
+
+### Mandate
+
+The recorded scope, readable inputs, permitted effects, and stop conditions
+under which an automation may execute (*EA 9.2*).
 
 ### Maintenance
 
@@ -1463,6 +1597,11 @@ and an approved baseline weight when progress is calculated.
 A YSWORKS delivery role authorized only for assigned Clients and Projects. An
 Operator cannot impersonate a client approver or use internal status as a global
 bypass.
+
+### Recommendation
+
+An evidence-bearing proposal for a decision with no authority of its own
+(*EA 5.1*).
 
 ### Portal
 

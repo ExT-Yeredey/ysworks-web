@@ -9,6 +9,11 @@ represented publicly without exposing private implementation.
 
 YS AI OS remains private.
 
+Its public-safe system responsibility and boundary are governed by
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+(*EA 6.1; EA 10.6*). This document does not extend that description or claim an
+implementation.
+
 Public website treatment:
 
 - describe it only as internal leverage when necessary;

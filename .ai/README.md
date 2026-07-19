@@ -19,6 +19,8 @@ For design and content work, also read:
 - `../docs/BRAND_BIBLE.md` for constitutional identity doctrine
 - `../docs/CLIENT_EXPERIENCE_CONSTITUTION.md` for constitutional client
   experience doctrine
+- `../docs/YSWORKS_ENTERPRISE_ARCHITECTURE.md` for public-safe enterprise
+  structure and system-boundary requirements
 - `../docs/design/README.md` for the Founder-approved authority and version map
 - `design-system.md`
 - `design-system-v1.md`
@@ -35,6 +37,12 @@ matters.
 Volume III — Client Experience Constitution remains subordinate to Volumes I
 and II and outranks operational client journey, relationship, delivery,
 support, reputation, and Client Workspace documentation.
+
+YSWORKS Enterprise Architecture remains subordinate to Volumes I–III and
+outranks system designs, workflow definitions, and implementations within
+enterprise-structure matters. Its references to private systems define
+public-safe boundaries only; this knowledge base must not add their private
+design or topology.
 
 For long-term decisions, read:
 

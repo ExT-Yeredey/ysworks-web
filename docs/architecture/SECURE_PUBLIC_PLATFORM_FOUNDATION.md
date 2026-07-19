@@ -11,6 +11,12 @@ This document defines the target public architecture and mandatory security
 contracts for a future YSWORKS production platform. It is intentionally not an
 implementation guide.
 
+It implements the enterprise public/private boundary in
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+(*EA 6.2; EA 10.1–6*). In particular, public interfaces must remain few,
+minimal, mediated, and capable of being mapped on one page. This is a target
+architecture, not evidence that controls are configured.
+
 It does not authorize or contain:
 
 - production changes;

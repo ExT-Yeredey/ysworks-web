@@ -19,6 +19,7 @@ repeat decisions settled by the Founder or accepted ADRs.
 | Service levels | Whether any response, resolution, availability, recovery, or support commitment is offered and under which agreement |
 | Logo asset set | Founder-approved vector construction, optical testing, lock-ups, clear space, favicon, application icon, social assets, exports, and source-master governance |
 | Contact form | Runtime, privacy, Turnstile, server validation, abuse controls, retention, and safe routing before any real form exists |
+| Enterprise implementation | Client Workspace stack, authentication provider, database, queue or event bus, audit and knowledge stores, private-system deployment topology and hosting, backup and retention, RPO/RTO, Founder continuity, emergency delegation, observability, notifications, billing provider, API contracts, and implementation sequence |
 
 ## Open But Not Blocking The Current Public Website
 
@@ -62,6 +63,12 @@ The following are no longer open:
   questions, executive-first experience, progressive disclosure, reputation as
   a system, Client Experience Test, Clean Exit doctrine, and support taxonomy
   are constitutionally settled by Volume III.
+- YSWORKS Enterprise Architecture v1.0 is the accepted enterprise-structure
+  authority subordinate to Volumes I–III. Its eight layers, thirteen domains,
+  authority model, canonical system responsibilities, forward-only information
+  flow, knowledge classes, mandate model, approval gates, security principles,
+  scaling order, Founder-absence risk, and Enterprise Tests are settled
+  architectural requirements, not claims of implementation.
 - Authentication provider, database selection, notification channels, billing
   provider, service levels, legal contracts, and the production privacy notice
   remain open until their applicable implementation or legal gate.

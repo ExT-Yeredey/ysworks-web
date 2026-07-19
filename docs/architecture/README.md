@@ -18,6 +18,11 @@ governed by
 The Client Portal Foundation remains the authoritative technical and security
 contract.
 
+Both architecture contracts implement the enterprise boundaries in
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md),
+especially *EA 6.1–2* and *EA 10.1–6*. They may impose stricter domain controls
+but may not claim that an architectural requirement is already deployed.
+
 ## Publication Rule
 
 Every document in this directory must be safe to publish. Product names used in

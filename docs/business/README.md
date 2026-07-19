@@ -7,6 +7,9 @@ This directory provides supporting public-business and website strategy. The
 [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md) governs
 client journeys, relationships, delivery, support, reputation, and the Client
 Workspace experience. The
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+governs enterprise structure, domain ownership, system relationships,
+information, knowledge, automation, security principles, and scalability. The
 [Company Documentation](../company/README.md) governs current company policies
 and templates.
 

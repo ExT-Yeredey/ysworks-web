@@ -19,6 +19,11 @@ The subordinate
 [Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md) governs the
 client relationship, journey, delivery, support, reputation, and Client
 Workspace experience.
+The
+[YSWORKS Enterprise Architecture](YSWORKS_ENTERPRISE_ARCHITECTURE.md) governs
+enterprise structure, domains, authority flow, system relationships,
+information, knowledge, automation, security principles, scalability, and
+enterprise tests.
 The [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) remains the
 highest-level ecosystem architecture specification. The
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
@@ -31,9 +36,11 @@ Founder decisions are the highest internal authority; applicable law and
 binding contracts prevail where relevant; and an accepted ADR prevails only
 within its explicit technical scope. Volume II remains subordinate to Volume I
 and Volume III remains subordinate to Volumes I and II. Each constitutional
-volume outranks operational documents within its subject. A detailed domain
-contract may impose stricter requirements within its scope. Conflicts must be
-reported rather than silently resolved. Until resolution, use the more
+volume outranks operational documents within its subject. Enterprise
+Architecture remains subordinate to all three volumes and outranks system
+designs and implementations within enterprise-structure matters. A detailed
+domain contract may impose stricter requirements within its scope. Conflicts
+must be reported rather than silently resolved. Until resolution, use the more
 conservative, less-exposing behaviour.
 
 This handbook is public-safe. It does not disclose internal workflows, private
@@ -217,10 +224,20 @@ AI must not independently:
 - make consequential decisions about people; or
 - bypass security, privacy, review, or audit controls.
 
+The always-human decision category and mandate-based automation boundary are
+governed by *EA 5.3* and *EA 9.2–4*. A machine may prepare, analyse, recommend,
+execute an authorised mandate, and record evidence; it may not convert
+recommendation or execution into decision authority.
+
 Public descriptions of AI work follow the Master Specification. YS AI OS and
 other private internal mechanisms remain private.
 
 ## 9. Engineering Lifecycle
+
+Structural change follows the document-first sequence in *EA 13*:
+constitutional check, architectural amendment, system design, then
+implementation. The lifecycle below does not imply that any named control or
+system already exists.
 
 Engineering work follows a controlled lifecycle:
 
