@@ -69,6 +69,8 @@ design-system/ Production UI standards and implementation contracts
 ## Documentation
 
 Start with the [documentation index](docs/README.md).
+Use the [documentation navigation hub](docs/navigation/README.md) for the
+document, architecture, authority, dependency, glossary, and acronym maps.
 
 The [Company Bible](docs/COMPANY_BIBLE.md) is the company-wide narrative and
 behavioural constitution. The subordinate

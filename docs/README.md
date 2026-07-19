@@ -9,7 +9,20 @@ client workspace, company operations, and business foundation.
 It does not contain credentials, production configuration, private topology,
 client information, internal workflows, or restricted operational material.
 
-## Authority Map
+## Navigation
+
+- [Documentation Navigation Hub](navigation/README.md)
+- [Document Map](navigation/DOCUMENT_MAP.md)
+- [Architecture Map](navigation/ARCHITECTURE_MAP.md)
+- [Authority Map](navigation/AUTHORITY_MAP.md)
+- [Dependency Map](navigation/DEPENDENCY_MAP.md)
+- [Glossary](navigation/GLOSSARY.md)
+- [Acronym Index](navigation/ACRONYM_INDEX.md)
+
+## Authority Summary
+
+The maintained cross-document view is the
+[Documentation Authority Map](navigation/AUTHORITY_MAP.md).
 
 1. Explicit Founder decisions are the highest internal authority.
 2. Applicable law and binding contracts prevail where relevant.
@@ -48,8 +61,8 @@ client information, internal workflows, or restricted operational material.
    - [YSWORKS Canonical Domain Model](architecture/CANONICAL_DOMAIN_MODEL.md)
      governs shared entity meanings, domain ownership, tenant scope,
      lifecycles, projections, classification, and authority boundaries.
-   - [Public Platform Architecture Index](architecture/README.md) defines the
-     publication boundary for architecture contracts.
+   - [Architecture Documentation Index](architecture/README.md) defines the
+     publication and navigation boundary for architecture contracts.
    - [Business Foundation](business/README.md) supports public positioning,
      services, content, and commercial policy.
 12. System designs, workflow definitions, and implementation documentation
@@ -105,6 +118,9 @@ For company or cross-system work:
 
 For work limited to the public website repository, also follow the public
 engineering knowledge base before implementation.
+
+Task-specific reading paths are maintained in the
+[Document Map](navigation/DOCUMENT_MAP.md#reading-paths).
 
 ## Maintenance Rules
 

@@ -4,6 +4,10 @@
 - Scope: Public Website brand, user experience, and interface design
 - Applies to: Human and AI design, content, and frontend work
 
+Repository-wide authority and dependency relationships are indexed in the
+[Authority Map](../navigation/AUTHORITY_MAP.md) and
+[Dependency Map](../navigation/DEPENDENCY_MAP.md).
+
 ## Purpose
 
 This registry maps the approved authority names and versions to their canonical

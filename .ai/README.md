@@ -8,27 +8,36 @@ It guides future human developers and AI coding agents. It does not document pri
 
 Read these documents before substantial work:
 
-1. `project-constitution.md`
-2. `product.md`
-3. `architecture.md`
-4. `coding-standards.md`
-5. `security.md`
+1. [Project Constitution](project-constitution.md)
+2. [Product](product.md)
+3. [Architecture](architecture.md)
+4. [Coding Standards](coding-standards.md)
+5. [Security](security.md)
 
 For design and content work, also read:
 
-- `../docs/BRAND_BIBLE.md` for constitutional identity doctrine
-- `../docs/CLIENT_EXPERIENCE_CONSTITUTION.md` for constitutional client
+- [Brand Bible](../docs/BRAND_BIBLE.md) for constitutional identity doctrine
+- [Client Experience Constitution](../docs/CLIENT_EXPERIENCE_CONSTITUTION.md)
+  for constitutional client
   experience doctrine
-- `../docs/YSWORKS_ENTERPRISE_ARCHITECTURE.md` for public-safe enterprise
+- [YSWORKS Enterprise Architecture](../docs/YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+  for public-safe enterprise
   structure and system-boundary requirements
-- `../docs/design/README.md` for the Founder-approved authority and version map
-- `design-system.md`
-- `design-system-v1.md`
-- `brand-kit-v1.md`
-- `branding.md`
-- `site-architecture-v1.md`
-- `writing-style.md`
-- `glossary.md`
+- [Approved Design Authorities](../docs/design/README.md) for the
+  Founder-approved authority and version map
+- [Design System Principles](design-system.md)
+- [Design System V1](design-system-v1.md)
+- [Brand Kit V1](brand-kit-v1.md)
+- [Branding Guidance](branding.md)
+- [Site Architecture V1](site-architecture-v1.md)
+- [Writing Style](writing-style.md)
+- [Engineering Glossary](glossary.md)
+
+For repository-wide terminology and navigation, use the
+[Documentation Navigation Hub](../docs/navigation/README.md). The engineering
+glossary above remains implementation-focused; the repository
+[Glossary](../docs/navigation/GLOSSARY.md) routes canonical company and
+architecture terms.
 
 Volume II — Brand Bible remains subordinate to Volume I — Company Bible and
 outranks operational brand, design, UX, and motion documents within identity
@@ -46,17 +55,17 @@ design or topology.
 
 For long-term decisions, read:
 
-- `decisions/ADR-001.md`
-- `decisions/ADR-002.md`
-- `decisions/ADR-003.md`
-- `decisions/ADR-004.md`
+- [ADR-001](decisions/ADR-001.md)
+- [ADR-002](decisions/ADR-002.md)
+- [ADR-003](decisions/ADR-003.md)
+- [ADR-004](decisions/ADR-004.md)
 
 For business, commercial, website architecture, service, content, SEO, lead
 generation, portfolio, and public product strategy, read:
 
-- `../docs/business/README.md`
-- `../docs/business/MASTER_PRD.md`
-- `../docs/business/OPEN_DECISIONS.md`
+- [Business Foundation](../docs/business/README.md)
+- [Master PRD](../docs/business/MASTER_PRD.md)
+- [Business Open Decisions](../docs/business/OPEN_DECISIONS.md)
 
 ## Operating Rule
 

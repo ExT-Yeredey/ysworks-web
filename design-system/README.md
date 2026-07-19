@@ -3,6 +3,9 @@
 - Status: governed implementation contracts
 - Scope: current Public Website and explicitly approved shared foundations
 
+Its place in the repository hierarchy is indexed in the
+[Document Map](../docs/navigation/DOCUMENT_MAP.md).
+
 ## Authority
 
 The [Company Bible](../docs/COMPANY_BIBLE.md) defines company personality and

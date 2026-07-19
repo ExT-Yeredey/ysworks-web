@@ -1,16 +1,22 @@
-# YSWORKS Public Platform Architecture
+# YSWORKS Architecture Documentation
 
 ## Purpose
 
-This directory contains public-safe architecture contracts for the YSWORKS
-public platform. It does not contain deployment configuration, private topology,
+This directory contains public-safe architecture foundations and system
+designs. It does not contain deployment configuration, private topology,
 credentials, host addresses, ports, workflow definitions, or proof that any
 named internal service is deployed.
 
-## Canonical Document
+For cross-document relationships, use the
+[Architecture Map](../navigation/ARCHITECTURE_MAP.md).
+
+## Public Platform Foundations
 
 - [Secure Public Platform Foundation](SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
 - [Client Portal Foundation](CLIENT_PORTAL_FOUNDATION.md)
+
+## Enterprise System Designs
+
 - [Authority, Mandate, Approval And Audit System Design](AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md)
   defines the public-safe logical contract for future authority, mandates,
   policy, approvals, execution authorisation, and audit. It contains no runtime

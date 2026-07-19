@@ -4,6 +4,9 @@
 - Owner: Founder
 - Production assets: not yet approved
 
+Its authority and repository relationship are indexed in the
+[Document Map](../docs/navigation/DOCUMENT_MAP.md).
+
 ## Purpose
 
 This directory is the future controlled home for approved YSWORKS brand assets.

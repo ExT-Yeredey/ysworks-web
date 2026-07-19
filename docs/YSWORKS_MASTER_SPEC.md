@@ -47,8 +47,8 @@ Detailed contracts remain authoritative within their domains:
 - [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
   portal roles, tenant isolation, progress, approvals, data projection,
   authentication, audit, privacy, documents, and responsive behavior.
-- [Public Platform Architecture](architecture/README.md) defines the publication
-  boundary for architecture documents.
+- [Architecture Documentation Index](architecture/README.md) defines the
+  publication and navigation boundary for architecture documents.
 - [Business Foundation](business/README.md) contains supporting commercial and
   public-communication policy.
 - [Approved Design Authorities](design/README.md) maps the Founder-approved

@@ -5,6 +5,9 @@
   standards
 - Language: British English
 
+Repository-wide relationships are indexed in the
+[Document Map](../navigation/DOCUMENT_MAP.md).
+
 ## Authority
 
 The [Company Bible](../COMPANY_BIBLE.md) is the company-wide narrative and

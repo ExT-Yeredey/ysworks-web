@@ -22,29 +22,29 @@ confidential business logic.
 Read these documents with the higher-level authorities before changing public
 positioning, website structure, services, content, or conversion flows:
 
-- `COMPANY_VISION.md`
-- `BRAND_POSITIONING.md`
-- `MASTER_PRD.md`
-- `SERVICE_CATALOG.md`
-- `WEBSITE_INFORMATION_ARCHITECTURE.md`
-- `TRUST_AND_TRANSPARENCY.md`
-- `OPEN_DECISIONS.md`
-- `TARGET_CUSTOMERS.md`
-- `CONTENT_STRATEGY.md`
-- `SEO_STRATEGY.md`
-- `LEAD_GENERATION.md`
-- `SALES_FUNNEL.md`
-- `PORTFOLIO_STRATEGY.md`
-- `PRODUCT_INTEGRATION.md`
-- `BUSINESS_ROADMAP.md`
-- `ACCEPTANCE_CRITERIA.md`
+- [Company Vision](COMPANY_VISION.md)
+- [Brand Positioning](BRAND_POSITIONING.md)
+- [Master PRD](MASTER_PRD.md)
+- [Service Catalog](SERVICE_CATALOG.md)
+- [Website Information Architecture](WEBSITE_INFORMATION_ARCHITECTURE.md)
+- [Trust And Transparency](TRUST_AND_TRANSPARENCY.md)
+- [Open Decisions](OPEN_DECISIONS.md)
+- [Target Customers](TARGET_CUSTOMERS.md)
+- [Content Strategy](CONTENT_STRATEGY.md)
+- [SEO Strategy](SEO_STRATEGY.md)
+- [Lead Generation](LEAD_GENERATION.md)
+- [Client Journey Operational Map](SALES_FUNNEL.md)
+- [Portfolio Strategy](PORTFOLIO_STRATEGY.md)
+- [Product Integration](PRODUCT_INTEGRATION.md)
+- [Business Roadmap](BUSINESS_ROADMAP.md)
+- [Acceptance Criteria](ACCEPTANCE_CRITERIA.md)
 
 ## Maintenance Rules
 
 - Keep the documents factual, public-safe, and current.
 - Do not invent clients, metrics, products, partnerships, or capabilities.
 - Do not present future plans as implemented.
-- Move unresolved questions into `OPEN_DECISIONS.md`.
+- Move unresolved questions into [Open Decisions](OPEN_DECISIONS.md).
 - Update acceptance criteria when the website scope changes.
 - Keep private systems private.
 
@@ -57,11 +57,11 @@ all pages or features to exist immediately.
 
 Implementation must remain consistent with:
 
-- `.ai/project-constitution.md`
-- `.ai/product.md`
-- `.ai/site-architecture-v1.md`
-- `.ai/writing-style.md`
-- `.ai/security.md`
+- [Project Constitution](../../.ai/project-constitution.md)
+- [Product](../../.ai/product.md)
+- [Site Architecture V1](../../.ai/site-architecture-v1.md)
+- [Writing Style](../../.ai/writing-style.md)
+- [Security](../../.ai/security.md)
 
 If business documentation and implemented UI conflict, pause implementation and
 resolve the documentation first.
