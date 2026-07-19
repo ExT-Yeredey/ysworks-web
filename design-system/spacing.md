@@ -2,6 +2,8 @@
 
 - Status: production contract
 - Base unit: `0.25rem`
+- Constitutional basis: [Brand Bible](../docs/BRAND_BIBLE.md)
+  (*II.IV.1–3*)
 
 ## Scale
 

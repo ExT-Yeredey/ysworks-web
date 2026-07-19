@@ -2,6 +2,8 @@
 
 - Status: production contract
 - Implementation: `src/components`
+- Constitutional basis: [Brand Bible](../docs/BRAND_BIBLE.md)
+  (*II.I.1–2; II.X–XI*)
 
 ## Composition Layers
 

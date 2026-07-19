@@ -1,5 +1,9 @@
 # Writing Style
 
+The [Brand Bible](../docs/BRAND_BIBLE.md) governs identity, feeling, and the
+reader relationship (*II.I–III; II.XI*). This operational guide applies that
+doctrine without replacing it.
+
 ## Purpose
 
 This document defines how YSWORKS should write in the public website repository.

@@ -5,6 +5,9 @@
 This document defines the public brand direction for YSWORKS Web.
 
 It is not a marketing script. It is a guide for consistent public presentation.
+The [Brand Bible](../docs/BRAND_BIBLE.md) is the constitutional identity
+authority. This document applies it to the Public Website and does not create
+independent brand doctrine.
 
 ## Brand Personality
 

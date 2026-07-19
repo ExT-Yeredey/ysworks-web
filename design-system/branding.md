@@ -1,7 +1,9 @@
 # Branding
 
 - Status: production contract
-- Authority: Founder-approved Brand Book and Design Tokens v1.0
+- Constitutional authority: [Brand Bible](../docs/BRAND_BIBLE.md)
+  (*II.I–VIII; II.XV*)
+- Operational authority: Brand Book and Design Tokens v1.0
 
 ## Identity
 
@@ -10,14 +12,16 @@ and direct communication. The official brand color is YSWORKS Purple, Primary
 500 `#6D5EF7`. No component or page may introduce a competing accent or restore
 the retired electric-blue identity.
 
-The approved logo direction is the geometric YW monogram:
+The constitutional monogram is **YS** (*II.VIII.1*):
 
-- a white Y;
-- a YSWORKS Purple W;
 - angular, minimal, and scalable geometry;
 - the monogram with the YSWORKS wordmark as the primary logo;
-- monogram-only use for favicon, application icon, and the future Client Portal;
+- monogram-only use for favicon, application icon, and the future Client
+  Workspace;
 - the same visual family for YS AI OS without creating an unrelated brand.
+
+Earlier `YW` references are obsolete historical drafts and have no operational
+authority.
 
 Generated raster images are not production logo assets. Final logo geometry
 must be delivered as governed vector assets through a bounded brand task and
@@ -25,9 +29,9 @@ reviewed at small, large, dark, and light applications.
 
 ## Product Family
 
-The Public Website, future Client Portal, and private YS AI OS belong to one
-visual family while remaining separate products. Shared identity does not imply
-shared navigation, data, authentication, authorization, or public exposure.
+The Public Website, future Client Workspace, and private YS AI OS belong to one
+visual family while remaining separate systems. Shared identity does not imply
+shared navigation, data, authentication, authorisation, or public exposure.
 YS AI OS internals are never expressed as public brand content.
 
 ## Application
@@ -42,7 +46,8 @@ YS AI OS internals are never expressed as public brand content.
 
 ## Authority
 
-The canonical authority registry is
+The constitutional identity authority is the
+[Brand Bible](../docs/BRAND_BIBLE.md). The canonical operational registry is
 [YSWORKS Approved Design Authorities](../docs/design/README.md). The
 [Founder Handbook](../docs/FOUNDER_HANDBOOK.md) governs company behavior, the
 [Master Specification](../docs/YSWORKS_MASTER_SPEC.md) governs product and

@@ -1,5 +1,10 @@
 # Brand Positioning
 
+This operational positioning applies the
+[Company Bible](../COMPANY_BIBLE.md) and subordinate
+[Brand Bible](../BRAND_BIBLE.md) (*II.I–III; II.IX; II.XV*). It does not create
+an independent identity constitution.
+
 ## Core Idea
 
 Quiet Engineering.

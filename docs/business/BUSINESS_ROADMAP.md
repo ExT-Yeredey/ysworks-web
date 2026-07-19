@@ -5,6 +5,12 @@
 This roadmap defines commercial evolution for YSWORKS. It is not a private
 technical roadmap.
 
+Growth remains constrained by
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+(*EA 11.1–3*): systems, documentation, architecture, automation, delegation,
+then people. The phases below do not claim that any enterprise system or
+control is implemented.
+
 ## Phase 1: Presence
 
 Goal: make YSWORKS understandable and credible.

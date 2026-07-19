@@ -1,16 +1,47 @@
-# YSWORKS Public Platform Architecture
+# YSWORKS Architecture Documentation
 
 ## Purpose
 
-This directory contains public-safe architecture contracts for the YSWORKS
-public platform. It does not contain deployment configuration, private topology,
+This directory contains public-safe architecture foundations and system
+designs. It does not contain deployment configuration, private topology,
 credentials, host addresses, ports, workflow definitions, or proof that any
 named internal service is deployed.
 
-## Canonical Document
+For cross-document relationships, use the
+[Architecture Map](../navigation/ARCHITECTURE_MAP.md).
+For repository-wide search and onboarding, use the
+[Master Documentation Index](../MASTER_INDEX.md).
+
+## Public Platform Foundations
 
 - [Secure Public Platform Foundation](SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
 - [Client Portal Foundation](CLIENT_PORTAL_FOUNDATION.md)
+
+## Enterprise System Designs
+
+- [Authority, Mandate, Approval And Audit System Design](AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md)
+  defines the public-safe logical contract for future authority, mandates,
+  policy, approvals, execution authorisation, and audit. It contains no runtime
+  or private topology.
+- [YSWORKS Canonical Domain Model](CANONICAL_DOMAIN_MODEL.md) defines the shared
+  business meanings, ownership, tenancy, lifecycles, visibility, and authority
+  boundaries for future systems without selecting a physical implementation.
+
+The client-facing experience of the Client Workspace is constitutionally
+governed by
+[Volume III — Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md).
+The Client Portal Foundation remains the authoritative technical and security
+contract.
+
+These architecture contracts implement the enterprise boundaries in
+[YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md),
+especially *EA 6.1–2* and *EA 10.1–6*. They may impose stricter domain controls
+but may not claim that an architectural requirement is already deployed.
+
+The [YSWORKS Operating Manual](../OPERATING_MANUAL.md) operationalises the
+constitutional library and Enterprise Architecture for day-to-day work. It is
+not an architecture authority and does not prove that any architecture control
+or system is implemented.
 
 ## Publication Rule
 

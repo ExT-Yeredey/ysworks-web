@@ -11,18 +11,41 @@ This handbook defines how YSWORKS behaves. It organizes existing Founder
 decisions into an operating standard; it does not redefine the company,
 architecture, services, products, or public claims.
 
+The [Company Bible](COMPANY_BIBLE.md) is the highest-level constitutional
+narrative for company character, purpose, philosophy, and principles. The
+subordinate [Brand Bible](BRAND_BIBLE.md) governs identity within its
+constitutional scope.
+The subordinate
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md) governs the
+client relationship, journey, delivery, support, reputation, and Client
+Workspace experience.
+The
+[YSWORKS Enterprise Architecture](YSWORKS_ENTERPRISE_ARCHITECTURE.md) governs
+enterprise structure, domains, authority flow, system relationships,
+information, knowledge, automation, security principles, scalability, and
+enterprise tests.
 The [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) remains the
-highest-level company and ecosystem architecture specification. The
+highest-level ecosystem architecture specification. The
+[YSWORKS Operating Manual](OPERATING_MANUAL.md) is subordinate to this handbook
+and translates the constitutional library and Enterprise Architecture into
+day-to-day procedures. It cannot override higher authority or prove that a
+supporting system is implemented. The
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
 client-facing portal architecture. The
 [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
 and its referenced security contracts remain authoritative for security.
 
-An accepted ADR governs the decision in its stated scope. A detailed domain
-contract may impose stricter requirements than this handbook. An explicit
-Founder decision resolves an otherwise unresolved documentation conflict and
-must be recorded before implementation. Until a conflict is resolved, use the
-more conservative, less-exposing behavior.
+The authority hierarchy is governed by the Company Bible (*I.XII.1*): explicit
+Founder decisions are the highest internal authority; applicable law and
+binding contracts prevail where relevant; and an accepted ADR prevails only
+within its explicit technical scope. Volume II remains subordinate to Volume I
+and Volume III remains subordinate to Volumes I and II. Each constitutional
+volume outranks operational documents within its subject. Enterprise
+Architecture remains subordinate to all three volumes and outranks system
+designs and implementations within enterprise-structure matters. A detailed
+domain contract may impose stricter requirements within its scope. Conflicts
+must be reported rather than silently resolved. Until resolution, use the more
+conservative, less-exposing behaviour.
 
 This handbook is public-safe. It does not disclose internal workflows, private
 platform design, credentials, client information, commercial internals, or
@@ -49,8 +72,8 @@ advice.
 
 ## 2. Vision
 
-The official vision is defined in
-[Master Specification section 1.2](YSWORKS_MASTER_SPEC.md#12-vision). This
+The official vision is defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.II.2–3*). This
 handbook does not restate it.
 
 Operationally, the vision requires YSWORKS to prefer durable trust over visible
@@ -61,8 +84,8 @@ the vision.
 
 ## 3. Mission
 
-The official mission is defined in
-[Master Specification section 1.1](YSWORKS_MASTER_SPEC.md#11-mission). This
+The official mission is defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.I.2; I.II.1*). This
 handbook translates it into conduct:
 
 - understand the real problem before selecting a solution;
@@ -74,8 +97,8 @@ handbook translates it into conduct:
 
 ## 4. Core Values
 
-The official company principles are defined in
-[Master Specification section 1.3](YSWORKS_MASTER_SPEC.md#13-core-principles).
+The official company principles are defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.III*).
 They are applied through the following behaviors:
 
 - **Truth:** distinguish facts, assumptions, forecasts, and unknowns.
@@ -152,10 +175,13 @@ done. Domain contracts may add stricter completion criteria.
 
 ## 7. Client Relationship
 
-The client journey and client-facing system boundaries are defined in the
+The client relationship and full journey are constitutionally governed by the
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.I–XVIII*). The
 [Master Specification](YSWORKS_MASTER_SPEC.md#4-client-experience) and
-[Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md). Company
-behavior must preserve the following relationship standard:
+[Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) define the
+corresponding ecosystem and technical boundaries. Company behavior must
+preserve the following operational relationship standard:
 
 - listen before prescribing;
 - qualify fit honestly and decline work that cannot be delivered responsibly;
@@ -202,10 +228,20 @@ AI must not independently:
 - make consequential decisions about people; or
 - bypass security, privacy, review, or audit controls.
 
+The always-human decision category and mandate-based automation boundary are
+governed by *EA 5.3* and *EA 9.2–4*. A machine may prepare, analyse, recommend,
+execute an authorised mandate, and record evidence; it may not convert
+recommendation or execution into decision authority.
+
 Public descriptions of AI work follow the Master Specification. YS AI OS and
 other private internal mechanisms remain private.
 
 ## 9. Engineering Lifecycle
+
+Structural change follows the document-first sequence in *EA 13*:
+constitutional check, architectural amendment, system design, then
+implementation. The lifecycle below does not imply that any named control or
+system already exists.
 
 Engineering work follows a controlled lifecycle:
 

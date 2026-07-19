@@ -27,7 +27,7 @@ It should not depend on Journal, Labs, Work, or multiple case studies.
 
 Use careful, realistic themes:
 
-- AI engineering studio.
+- AI systems engineering.
 - AI integration.
 - intelligent automation.
 - web platform engineering.

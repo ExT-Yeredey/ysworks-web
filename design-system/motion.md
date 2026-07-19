@@ -2,6 +2,11 @@
 
 - Status: production contract
 - JavaScript animation dependency: Anime.js v4 only
+- Constitutional basis: [Brand Bible](../docs/BRAND_BIBLE.md)
+  (*II.VII.1–3*)
+
+This contract implements the constitutional motion registers and stillness
+default. It does not restate or replace their reasoning.
 
 ## Responsibility
 

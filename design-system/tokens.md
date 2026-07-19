@@ -3,6 +3,8 @@
 - Status: production contract
 - Scope: YSWORKS Public Website
 - Source of truth: `src/styles/tokens.css` and `src/styles/theme.css`
+- Constitutional basis: [Brand Bible](../docs/BRAND_BIBLE.md)
+  (*II.IV–VI*)
 
 ## Purpose
 

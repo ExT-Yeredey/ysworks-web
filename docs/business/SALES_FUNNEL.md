@@ -1,94 +1,86 @@
-# Sales Funnel
+# Client Journey Operational Map
 
 ## Purpose
 
-This document defines a simple public sales path from visitor to client.
+This document applies the journey governed by the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.II.1–4*) to the current public-business foundation.
 
-It does not define private CRM workflows or internal automation.
+The filename is retained for existing references; YSWORKS does not govern the
+relationship as a sales funnel. This document does not define private CRM
+workflows, internal automation, service levels, prices, or legal terms.
 
-## Stages
-
-### Visitor
-
-The visitor lands on the website through search, direct referral, GitHub, or
-later through Journal and Labs when those sections exist.
-
-Goal: understand what YSWORKS does.
-
-### Lead
-
-The visitor expresses interest through contact, email, or a future form.
-
-Goal: capture a short problem description and enough context to assess fit.
+## Constitutional Stations
 
 ### Discovery
 
-YSWORKS clarifies:
+Discovery may begin before direct contact through the Public Website, referral,
+or another approved public surface. It establishes whether there is a possible
+problem worth understanding.
 
-- problem;
-- constraints;
-- timeline;
-- budget range when appropriate;
-- existing systems;
-- risk;
-- public/private boundaries.
+### Understanding
 
-Goal: decide whether the work is appropriate.
+YSWORKS clarifies the problem, constraints, timing, existing systems, risks,
+public and private boundaries, and budget suitability when appropriate. The
+result is a written understanding the prospective client can correct.
 
-Discovery can be lightweight for the first release. It does not require a CRM,
-newsletter, downloadable resource, or complex automation.
+### Qualification
 
-### Meeting
-
-A meeting may be used to align scope and expectations.
-
-Goal: confirm the problem and evaluate trust.
+Qualification is mutual. YSWORKS assesses capability and responsible fit while
+the prospective client assesses whether YSWORKS is the right counterpart. The
+outcome may be progression, further discovery, referral, or a clear decline.
 
 ### Proposal
 
-Proposal should include:
+A proposal argues for a specific course of action and makes scope, outcomes,
+assumptions, exclusions, phases, validation, responsibilities, timing, support,
+maintenance, and engagement-specific commercial terms explicit.
 
-- scope;
-- outcomes;
-- assumptions;
-- exclusions;
-- phases;
-- validation;
-- responsibilities;
-- pricing when approved.
+### Agreement
 
-Goal: make the decision clear.
+Agreement establishes the commitments, decision owners, conditions to start,
+and applicable contract. Approval is informed and is not production
+authorisation.
 
-### Pilot
+### Onboarding
 
-A pilot may be used when risk or uncertainty is high.
+Onboarding creates the controlled engagement record, communication paths,
+information boundaries, access plan, owners, and immediate next actions.
 
-Goal: validate the smallest useful slice.
+### Delivery
 
-### Client
+Delivery proceeds through reviewable, evidenced increments against the
+agreement. A pilot may be an agreed delivery form when it is the smallest useful
+way to reduce material uncertainty.
 
-Delivery starts with documented scope and clear communication.
+### Documentation
 
-Goal: build the agreed system responsibly.
+Documentation is delivered and maintained as part of the client’s capability,
+not as an optional administrative output.
 
 ### Maintenance
 
-Maintenance should be explicit.
+Maintenance is explicit, bounded, preventive, and reviewable. It does not imply
+availability or service levels beyond the agreement.
 
-Goal: keep the system secure, current, and useful.
+### Evolution
 
-### Case Study
+Further work follows from observed value, changed needs, and a new or amended
+agreement. It is not produced through lock-in.
 
-A case study may be published only with permission and real evidence.
+### Exit
 
-Goal: show public proof without exposing private material.
+Closure is a deliverable. Agreed work, data, documentation, credentials, access
+changes, outstanding responsibilities, and final state are transferred or
+recorded cleanly.
 
-## Sales Principles
+## Operational Principles
 
-- No pressure tactics.
-- No fake scarcity.
-- No fake metrics.
-- No unsupported guarantees.
+- No pressure tactics, fake scarcity, fake metrics, or unsupported guarantees.
+- Meetings exist only when interaction has a defined purpose.
+- Each station has a visible owner, next action, information boundary, and exit
+  condition.
+- A convenient channel does not become an approval or contract by repetition.
 - No private-system disclosure.
-- Clear exclusions.
-- Clear next steps.
+- Public proof follows separately and is never a station in the client journey.
+  A case may be published only with explicit permission and real evidence.

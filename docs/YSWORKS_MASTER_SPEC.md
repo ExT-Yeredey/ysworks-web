@@ -8,20 +8,47 @@
 
 ## Authority And Scope
 
-This document is the highest-level specification for the YSWORKS ecosystem. It
-defines official vocabulary, system boundaries, product intent, and decisions
-that affect more than one YSWORKS system.
+This document is the highest-level product, ecosystem, vocabulary, and
+cross-system specification for YSWORKS. It defines official vocabulary, system
+boundaries, product intent, and decisions that affect more than one YSWORKS
+system.
+
+The [Company Bible](COMPANY_BIBLE.md) is the highest-level constitutional
+narrative for company identity, purpose, philosophy, principles, and long-term
+direction. This specification derives its company narrative from that document
+and remains authoritative for ecosystem architecture.
+
+The [Brand Bible](BRAND_BIBLE.md) governs constitutional identity. The
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md) governs the
+client relationship, journey, delivery, support, reputation, and Client
+Workspace experience. Both remain subordinate to the preceding constitutional
+volume.
+
+The
+[YSWORKS Enterprise Architecture](YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+operationalises Volumes I–III and governs enterprise structure, system
+landscape, authority and information flow, domain ownership, automation,
+knowledge, security principles, scalability, and enterprise tests. It defines
+requirements rather than implemented state.
 
 Detailed contracts remain authoritative within their domains:
 
+- [Authority, Mandate, Approval And Audit System Design](architecture/AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md)
+  governs the future logical contracts for actors, authority, mandates,
+  decisions, approvals, execution authorisation, policy evaluation, risk, and
+  audit. It does not select or claim a runtime implementation.
+- [YSWORKS Canonical Domain Model](architecture/CANONICAL_DOMAIN_MODEL.md)
+  governs the shared meanings, owners, tenant boundaries, lifecycles,
+  visibility, retention categories, and relationships of future business
+  records. It does not prescribe a physical schema or runtime.
 - [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
   governs public exposure, domain architecture, edge security, webhooks, and
   production security.
 - [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
   portal roles, tenant isolation, progress, approvals, data projection,
   authentication, audit, privacy, documents, and responsive behavior.
-- [Public Platform Architecture](architecture/README.md) defines the publication
-  boundary for architecture documents.
+- [Architecture Documentation Index](architecture/README.md) defines the
+  publication and navigation boundary for architecture documents.
 - [Business Foundation](business/README.md) contains supporting commercial and
   public-communication policy.
 - [Approved Design Authorities](design/README.md) maps the Founder-approved
@@ -36,22 +63,41 @@ this specification. If two approved documents conflict and this specification
 does not explicitly settle the conflict, the matter remains an Open Decision.
 Implementation must use the less-exposing state until the conflict is resolved.
 
-The authority hierarchy is:
+The authority hierarchy, derived from the Company Bible (*I.XII.1*), is:
 
 1. An explicit Founder decision governs company direction and resolves an
    otherwise unresolved documentation conflict. It must be recorded in the
    appropriate specification or decision record before implementation.
-2. An accepted ADR overrides descriptive prose for the decision and scope that
-   the ADR governs. It does not override an unrelated domain contract.
-3. This Master Specification is the highest-level product, company, ecosystem,
-   vocabulary, and cross-system specification.
-4. Detailed security, public-platform, portal, business, and repository
-   documents remain authoritative inside their stated domains and may impose
-   stricter constraints.
+2. Applicable law and binding contracts prevail where relevant.
+3. An accepted ADR prevails over descriptive prose only for the explicit
+   technical decision and scope that the ADR governs. It does not override an
+   unrelated domain contract or company-wide constitutional authority.
+4. The Company Bible governs company-wide narrative and behaviour.
+5. The Brand Bible governs identity within its constitutional scope and remains
+   subordinate to the Company Bible.
+6. The Client Experience Constitution governs client experience within its
+   constitutional scope and remains subordinate to the Company Bible and Brand
+   Bible.
+7. The YSWORKS Enterprise Architecture governs enterprise structure within its
+   domain and remains subordinate to Volumes I–III.
+8. This Master Specification is the highest-level product, ecosystem,
+   vocabulary, and cross-system architecture specification.
+9. The Founder Handbook governs company behaviour.
+10. The [YSWORKS Operating Manual v1.0](OPERATING_MANUAL.md) governs day-to-day
+    company operations as an Operational-class document owned by Operations,
+    with amendments approved by Governance.
+11. Detailed security, public-platform, portal, company, business, and
+    repository documents remain authoritative inside their stated domains and
+    may impose stricter constraints.
+12. System designs, workflow definitions, and implementation documentation,
+    including operational Brand Book, user-experience, design-system, and
+    motion documents, implement the authorities above within their stated
+    scope.
 
 No lower-level document, implementation choice, dependency, or design proposal
 silently creates an ecosystem decision. Genuine conflicts remain Open Decisions
-unless the Founder or an accepted ADR resolves them.
+unless the Founder resolves them or an accepted ADR resolves the matter inside
+its explicit technical scope.
 
 System names in this document define product categories and policy boundaries.
 They are not confirmation of deployment, topology, inventory, addresses, ports,
@@ -61,30 +107,25 @@ credentials, vendors beyond approved decisions, or production readiness.
 
 ### 1.1 Mission
 
-YSWORKS designs, builds, secures, and maintains digital systems that help
-organizations operate clearly and reliably. It applies engineering discipline,
-automation, and artificial intelligence where they produce a defined and
-responsible outcome.
+The official mission is defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.I.2; I.II.1*). In architecture, it
+requires every system to serve a defined organisational outcome, retain
+accountable ownership, and remain supportable within its approved boundary.
 
 ### 1.2 Vision
 
-YSWORKS aims to become a small, trusted technology engineering company known for
-durable systems, direct communication, careful execution, and long-term client
-relationships. Growth must preserve quality, security, maintainability,
-accessibility, and public honesty.
+The official long-term vision is defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.II.2–3*). Ecosystem growth must
+not weaken quality, security, maintainability, accessibility, public honesty, or
+human accountability.
 
 ### 1.3 Core Principles
 
-1. Truth before claims.
-2. Quality before performative speed.
-3. Maintainability before novelty.
-4. Security and privacy by default.
-5. Accessibility and performance as product requirements.
-6. Documentation as infrastructure.
-7. Public simplicity and private complexity.
-8. Human responsibility for consequential decisions.
-9. Evidence before automation, metrics, or public proof.
-10. Long-term usefulness before short-term presentation.
+The constitutional values and foundational principles are defined in the
+[Company Bible](COMPANY_BIBLE.md) (*I.III*).
+Architecture applies them through explicit ownership, minimum exposure,
+evidence-based decisions, accessible and maintainable systems, documented
+boundaries, and accountable human control.
 
 ### 1.4 Long-Term Direction
 
@@ -151,6 +192,12 @@ system, but neither defines the company.
 
 ### 2.1 Ecosystem Rules
 
+The canonical eight-layer enterprise stack, thirteen business domains, and
+eight-system landscape are defined by
+[EA 3.1, EA 4.2, and EA 6.1](YSWORKS_ENTERPRISE_ARCHITECTURE.md).
+The categories below describe product and ecosystem boundaries; they do not
+replace that enterprise structure or prove that a system is implemented.
+
 Every official system has one declared purpose, audience, data boundary, owner,
 and exposure class before implementation. Systems exchange only the minimum
 approved data through explicit contracts. A shared brand, identity provider, or
@@ -168,8 +215,9 @@ The Public Website is the canonical anonymous public presence at
 public products when approved, and the path to a qualified conversation.
 
 It is static-first, content-led, accessible, fast, and free of private business
-logic. It does not expose internal systems, client data, administration,
-authentication, workflows, or infrastructure. The apex `ysworks.dev` redirects
+logic or business truth of its own. It does not expose internal systems, client
+data, administration, authentication, workflows, or infrastructure. The apex
+`ysworks.dev` redirects
 permanently to the canonical `www` host under the approved public-platform
 contract.
 
@@ -178,16 +226,26 @@ may be added only with Cloudflare Turnstile, a honeypot, server-side validation,
 rate limiting, minimal collection, privacy notice, generic responses, and no
 private routing disclosure.
 
-### 2.3 Client Portal
+### 2.3 Client Workspace
 
-The Client Portal is a future authenticated product at `portal.ysworks.dev` with
-target exposure class `PRIVATE`. It gives each client an authorized, sanitized
-view of its projects, progress, deliverables, approvals, documents, meetings,
-support, and future billing information.
+The Client Workspace is the future authenticated client-facing product at
+`portal.ysworks.dev`, with target exposure class `PRIVATE`. “Client Portal” is
+the technical architecture and security term for its authenticated delivery
+boundary. The Workspace gives each client an authorised, sanitised view of its
+projects, progress, deliverables, approvals, documents, meetings, support, and
+future billing information.
 
-The portal is not an administration panel, source-system browser, workflow
-editor, file-system browser, or real-time view into private operations. It
-remains nonexistent until the gates in the
+Its client-facing doctrine is governed by the
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VII.1–3; III.XI.1–5*): the first screen answers the five constitutional
+questions in order, presents state before navigation, serves the executive
+reader first, and reveals technical detail progressively.
+
+The Client Workspace is not an administration panel, source-system browser,
+workflow editor, file-system browser, or real-time view into private
+operations. It renders only mediated, authorised, client-specific truth and is
+never a direct door into private systems (*EA 6.1; EA 10.5*). It remains
+nonexistent until the gates in the
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) are met.
 
 ### 2.4 YS AI OS
@@ -196,11 +254,14 @@ YS AI OS is the private internal operating and intelligence platform of
 YSWORKS. Its purpose is to support internal quality, reasoning, documentation,
 coordination, and delivery.
 
-YS AI OS is never a public website feature, portfolio item, client portal
+YS AI OS is never a public website feature, portfolio item, Client Workspace
 surface, or implied client entitlement. Its architecture, prompts, agents,
-tools, models, workflows, state, security design, business logic, and roadmap
-remain private. Public communication may describe approved outcomes or general
-AI-assisted engineering practices without naming internal mechanisms.
+tools, models, workflows, topology, telemetry, internal records, state, security
+design, business logic, and roadmap remain private. It has no public logo or
+independent public brand. Public communication may describe approved outcomes
+or general AI-assisted engineering practices without naming internal
+mechanisms. Its canonical responsibility and private boundary are governed by
+*EA 6.1* and *EA 10.6*.
 
 ### 2.5 Automation Platform
 
@@ -215,12 +276,20 @@ The gateway authenticates, validates, rate-limits, and normalizes events before
 any asynchronous private processing. Public browsers and providers never connect
 directly to n8n or private execution endpoints.
 
+n8n executes defined process steps under recorded mandates. It does not decide
+or hold business authority (*EA 5.1; EA 6.1; EA 9.2–4*).
+
 ### 2.6 Infrastructure
 
 Infrastructure is the operational foundation that hosts, connects, protects,
 observes, backs up, and recovers approved systems. It includes the public edge,
 static hosting, private compute, networking, container runtime, storage, and
 operational controls as categories, not as a disclosed inventory.
+
+Infrastructure remains private, replaceable, and non-public (*EA 6.1; EA
+10.6*). Observability is the source of operational and audit truth across the
+enterprise stack (*EA 3.1*). These requirements do not confirm topology,
+production hosting, an observability implementation, or recovery controls.
 
 Infrastructure has separate public, private, and internal trust zones. Docker is
 an internal runtime and packaging technology, never a public control surface.
@@ -231,37 +300,44 @@ overlay and requires identity, MFA, least privilege, revocation, and audit.
 
 ### 2.7 Knowledge Base
 
-The Knowledge Base is the governed collection of reusable company, product,
-service, architecture, design, and engineering knowledge. Every item has an
-audience and classification. Public knowledge must be safe to publish;
-client-scoped knowledge must be tenant-isolated; internal knowledge remains
-private.
+The Knowledge Base is the governed **Knowledge** system: the collection of
+reusable company, product, service, architecture, design, and engineering
+knowledge. Every item has an audience and classification. Public knowledge must
+be safe to publish; client-scoped knowledge must be tenant-isolated; internal
+knowledge remains private.
 
-This master specification is the root of the Knowledge Base hierarchy. Domain
-specifications, ADRs, service definitions, standards, and approved operating
-guidance derive vocabulary and boundaries from it.
+Its five knowledge classes, ownership, standards, and evolution rules are
+defined by *EA 8.1–3*. This Master Specification governs product and ecosystem
+vocabulary within that hierarchy; it is not the root authority for
+constitutional or enterprise-structure knowledge.
 
 ### 2.8 Internal Documentation
 
-Internal Documentation contains private operational material needed to run
-YSWORKS. It may include private procedures, implementation records, incident
-material, source inventories, contracts, internal commercial information, and
-restricted technical details.
+Internal Documentation is a classified body of operational knowledge rather
+than a separate system in the canonical landscape. It contains private
+operational material needed to run YSWORKS. It may include private procedures,
+implementation records, incident material, source inventories, contracts,
+internal commercial information, and restricted technical details.
 
 Internal Documentation is not stored in the public website repository and is
-not exposed through the Public Website, Client Portal, public documentation,
+not exposed through the Public Website, Client Workspace, public documentation,
 status surfaces, or public search. An approved public summary must be rewritten
 for its audience; internal material is never published by simple redaction or
 pass-through.
 
 ### 2.9 System Relationships
 
+Canonical relationship rules are governed by *EA 6.2*: truth flows up, mandates
+flow down; versioned artefacts pass through GitHub; public-to-private paths are
+mediated; and every system remains replaceable. The following product-level
+constraints apply within those rules:
+
 - The Public Website may publish approved descriptions of services, public
   products, and company principles. It has no direct connection to private
   platforms.
-- The Client Portal consumes purpose-built server-side projections from approved
-  private sources. It never exposes or queries those sources directly from the
-  browser.
+- The Client Workspace consumes purpose-built server-side projections through
+  the Client Portal technical boundary. It never exposes or queries approved
+  private sources directly from the browser.
 - YS AI OS may support internal work but does not control portal authorization,
   act as public proof, or appear in client-facing interfaces.
 - The Automation Platform may process normalized events and produce approved
@@ -487,6 +563,11 @@ decided.
 
 ### 4.1 Experience Principles
 
+The complete relationship and journey are governed by the
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.I–XVIII*). This section records ecosystem boundaries and implementation-
+relevant constraints without replacing that constitutional doctrine.
+
 The client experience is direct, informed, low-pressure, and traceable. Each
 stage has a clear owner, next action, information boundary, and exit condition.
 No stage uses fake urgency, hidden data collection, unsupported guarantees, or
@@ -581,10 +662,12 @@ accurate status and without implying a client relationship.
 This specification establishes design intent, not a component library. Final
 token domains remain governed by their approved contracts. The
 [Approved Design Authorities](design/README.md) registry maps the
-Founder-approved YSWORKS Brand Book v1.0, User Experience Foundation v1.1, and
-YSWORKS Design System v1.1 to their canonical repository sources. Those sources,
+Founder-approved Brand Bible v1.1, operational Brand Book v1.0, User Experience
+Foundation v1.1, and YSWORKS Design System v1.1 to their canonical repository
+sources. The [Brand Bible](BRAND_BIBLE.md) governs identity within its scope and
+remains subordinate to the Company Bible. The operational sources,
 [Brand Positioning](business/BRAND_POSITIONING.md), and the applicable product
-contract govern detailed brand and interface direction within their scopes.
+contract govern measurable brand and interface direction within their scopes.
 Other design proposals are inputs, not authority. The Founder-approved
 [YSWORKS Design Tokens v1.0](design/YSWORKS_DESIGN_TOKENS_V1.md) establish the
 cross-ecosystem color foundation. Fonts, spacing, breakpoints, assets, and
@@ -602,12 +685,13 @@ Typography must create a clear semantic hierarchy and remain readable across
 supported viewports. Spacing must be systematic and content-led. Neither the
 Master Specification nor an unreviewed design proposal fixes a font family,
 type scale, spacing unit, breakpoint, or final vector geometry. The
-Founder-approved logo direction is an angular geometric YW monogram with a white
-Y and YSWORKS Purple W. It pairs with the YSWORKS wordmark for the primary logo,
-is used alone for compact product marks, and keeps YS AI OS in the same visual
-family without making it public. Generated raster material is a reference only,
-never a production asset. The official color contract is YSWORKS Design Tokens
-v1.0: Primary 500 `#6D5EF7` is the brand color and the
+constitutional monogram is geometric **YS**, paired operationally with the
+uppercase `YSWORKS` wordmark and used alone for compact product marks. Earlier
+`YW` references are superseded draft state and have no implementation authority.
+YS AI OS remains in the same visual family without becoming public or receiving
+a separate public logo. Generated raster material is a reference only, never a
+production asset. The official colour contract is YSWORKS Design Tokens v1.0:
+Primary 500 `#6D5EF7` is the brand colour and the
 governed primary scale, interaction states, and dark surfaces apply to every
 YSWORKS product and communication surface.
 
@@ -716,10 +800,12 @@ permit router port forwarding. It is not needed for the static Public Website.
 
 ### 6.8 Cloudflare Access
 
-Cloudflare Access is the approved initial authentication perimeter for a small,
-invitation-only Client Portal pilot, subject to current plan validation. Access
-authenticates identity; it never authorizes tenant, object, field, approval, or
-document access. The portal must enforce those decisions server-side.
+Cloudflare Access is the recommended initial authentication-perimeter candidate
+for a small, invitation-only Client Workspace pilot, subject to an explicit
+provider decision and current plan validation. The authentication provider
+remains open. Access authenticates identity; it never authorizes tenant, object,
+field, approval, or document access. The portal must enforce those decisions
+server-side.
 
 Access may protect approved private applications. It does not justify publishing
 Docker, n8n, Portainer, databases, home-control systems, reverse-proxy
@@ -744,6 +830,12 @@ editor, management API, workflow definitions, execution endpoints, and logs
 remain internal. Public webhooks terminate at the Secure Webhook Gateway and
 reach n8n only through an approved normalized asynchronous boundary.
 
+n8n is an executor, not a decision-maker or holder of business authority.
+Every workflow requires a defined mandate, approval gates where applicable,
+audit evidence, and fail-closed mutation behaviour with a documented degraded
+or manual path (*EA 5.1; EA 9.2–4*). These are architectural requirements, not
+claims about current workflow implementation.
+
 ### 6.11 GitHub
 
 GitHub is the official source-control, review, and CI integration platform for
@@ -763,6 +855,10 @@ The complete public security architecture is defined by the
 This section states ecosystem invariants and does not replace route, webhook,
 Cloudflare, caching, header, or production-readiness requirements in that
 contract.
+
+Enterprise security principles are governed by *EA 10.1–6*. System designs must
+implement and verify those principles; their presence in Enterprise
+Architecture does not prove a control exists.
 
 ### 7.2 Security Principles
 
@@ -824,8 +920,14 @@ implication.
 ### 8.1 Governing Contract
 
 The [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) is the
-authoritative detailed specification. The portal remains a future product and
-must not be implemented from this summary alone.
+authoritative detailed specification. The Client Workspace remains a future
+product and must not be implemented from this summary alone.
+
+The client-facing product is the **Client Workspace**. “Client Portal” names
+the technical architecture and security boundary. The
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VII; III.XI*) governs its client experience; this section summarises only
+the technical contract.
 
 ### 8.2 Roles
 
@@ -966,6 +1068,10 @@ This roadmap defines sequence, not dates, commitments, or implementation
 authorization. Each stage requires a separate scope, owner, risk review, and
 exit gate.
 
+Enterprise growth follows the fixed order in *EA 11.1*: systems,
+documentation, architecture, automation, delegation, then people. Roadmap
+sequence never overrides that constraint.
+
 ### 10.1 Public Website
 
 Establish the canonical bilingual public presence, service clarity, honest
@@ -973,7 +1079,7 @@ contact path, privacy foundation, accessibility, performance, SEO, and approved
 public proof. Add forms, analytics, journal, labs, portfolio, or public products
 only after their separate readiness conditions are met.
 
-### 10.2 Client Portal
+### 10.2 Client Workspace
 
 Progress through foundation, synthetic static prototype, authentication,
 read-only projection, approvals, documents, future billing, and production
@@ -1151,18 +1257,19 @@ their referenced documents. `Accepted` means the direction is official;
 - **Status:** Accepted as a product and security contract; implementation remains
   gated.
 
-### ADR-M012: Cloudflare Access For Initial Portal Authentication
+### ADR-M012: Cloudflare Access Candidate For Initial Portal Authentication
 
-- **Decision:** Use Cloudflare Access as the initial authentication perimeter for
-  a small invitation-only portal pilot, while the portal separately authorizes
-  every tenant and object.
+- **Decision:** Retain Cloudflare Access as the recommended candidate for a
+  small invitation-only Client Workspace pilot, while the portal separately
+  authorizes every tenant and object. Final provider selection remains open.
 - **Reason:** It provides a low-operational-cost identity perimeter suitable for
   few invited users.
 - **Alternatives rejected:** Building magic links initially, treating Access as
   tenant authorization, and starting with a complex identity platform before
   scale requires it.
-- **Status:** Conditional on plan, identity, MFA, lifecycle, and token-validation
-  review.
+- **Status:** Proposed candidate. Reopened by the Enterprise Architecture v1.0
+  integration pending an explicit authentication-provider decision and plan,
+  identity, MFA, lifecycle, and token-validation review.
 
 ### ADR-M013: Evidence-Based Progress And Immutable Approvals
 
@@ -1234,20 +1341,43 @@ their referenced documents. `Accepted` means the direction is official;
 - **Status:** Accepted. On-site physical and hardware delivery is primarily in
   Madrid and Lanzarote; suitable remote work may be delivered more broadly.
 
-### ADR-M019: Unified Geometric YW Identity
+### ADR-M019: Unified Geometric YS Identity
 
-- **Decision:** Use the approved angular geometric YW direction across the
-  ecosystem: white Y, YSWORKS Purple W, primary lockup with the YSWORKS
-  wordmark, and monogram-only use for compact product marks. YS AI OS remains in
-  the same visual family without becoming a public product.
-- **Reason:** One scalable identity connects the Public Website, Client Portal,
-  internal products, and future surfaces without fragmenting the company brand.
-- **Alternatives rejected:** The former YS compact mark, unrelated product
+- **Decision:** Use `YS` as the constitutional geometric monogram and `YSWORKS`
+  uppercase as the official wordmark. Use the wordmark with the monogram for the
+  primary identity and the monogram alone for approved compact applications.
+  Client Workspace shares the YSWORKS identity. YS AI OS remains in the same
+  visual family without a separate public logo or public identity.
+- **Reason:** One scalable identity connects the Public Website, Client
+  Workspace, private internal systems, and future surfaces without fragmenting
+  the company brand.
+- **Alternatives rejected:** The obsolete `YW` draft state, unrelated product
   brands, direct use of a generated raster as a production logo, and improvised
   vector geometry without review.
-- **Status:** Direction accepted. Governed vector reconstruction, optical
-  testing, lockups, favicon, application icons, and production replacement
-  remain a bounded brand-asset task.
+- **Status:** Accepted and aligned with Brand Bible v1.1 (*II.VIII.1*).
+  Governed vector construction, optical testing, lockups, favicon, application
+  icons, trademark review, and production migration remain bounded open tasks.
+
+### ADR-M020: Enterprise Architecture v1.0
+
+- **Decision:** Adopt
+  [YSWORKS Enterprise Architecture v1.0](YSWORKS_ENTERPRISE_ARCHITECTURE.md) as
+  the enterprise-structure authority subordinate to Volumes I–III. Its
+  eight-layer stack, thirteen domains, authority vocabulary, always-human
+  decisions, canonical system landscape, forward-only information flow,
+  knowledge classes, mandate-based automation, approval gates, security
+  principles, scalability order, named Founder-absence risk, and Enterprise
+  Tests are architectural requirements.
+- **Reason:** Future systems, workflows, and implementations require one
+  governed structure for responsibility, truth, knowledge, authority, and
+  replaceability.
+- **Alternatives rejected:** Tool-led structure, implicit authority, autonomous
+  decision-making by automation, backward mutation of records, public access to
+  private systems, and treating current implementations as permanent
+  architecture.
+- **Status:** Accepted. This decision does not claim that any control, system,
+  store, workflow, topology, backup, recovery objective, or continuity
+  mechanism is implemented.
 
 ## 12. Open Decisions
 
@@ -1257,26 +1387,29 @@ each decision is approved.
 
 ### 12.1 Cross-Document Conflicts
 
-1. **Case-study pending language:**
-   [Trust And Transparency](business/TRUST_AND_TRANSPARENCY.md) presents “Case
-   study pending approval” as a possible transparency statement, while
-   [Portfolio Strategy](business/PORTFOLIO_STRATEGY.md) rejects “coming soon”
-   cards as proof. ADR-M015 settles the public behavior: do not publish client
-   case placeholders. Supporting documents should be aligned in a separate
-   documentation change.
-2. **Company category:** Existing documents use “engineering studio” and
-   “technology engineering company.” ADR-M001 settles the primary category as
-   “technology engineering company”; “engineering studio” remains a legacy
-   descriptive term, not the official category for new specifications.
-3. **Tailwind CSS authority:** Tailwind CSS is installed and directed by the
+1. **Tailwind CSS authority:** Tailwind CSS is installed and directed by the
    current repository coding standards, but no accepted ADR makes it the
    long-term Public Website or ecosystem standard. It remains a current
    repository constraint while its official scope is open.
+2. **Client Workspace authentication:** Earlier prose described Cloudflare
+   Access as the approved initial perimeter. Enterprise Architecture integration
+   keeps the authentication provider open. ADR-M012 now records Access only as
+   a proposed candidate until an explicit provider decision is accepted.
 
-Founder decisions and accepted ADRs settle items 1 and 2. ADR-M004 settles the
-former animation-library conflict by selecting Anime.js for the Public Website;
-that decision is no longer open. Item 3 remains a genuine Open Decision. None
-of these entries authorizes implementation changes outside its accepted scope.
+ADR-M015 and the supporting Business Foundation now consistently prohibit case
+placeholders. ADR-M001 and the Company Bible consistently define YSWORKS as a
+technology engineering company. ADR-M004 settles the animation-library
+decision. “Client Workspace” is the client-facing product name, while “Client
+Portal” remains the technical architecture and security term. ADR-M020 settles
+the enterprise layers, domains, authority model, system responsibilities,
+knowledge classes, automation mandates, enterprise security principles,
+scalability order, and Enterprise Tests. Those matters are no longer
+documentation conflicts.
+
+Volume I, Book XII, Article 1 predates the Enterprise Architecture and therefore
+does not name it in the document-order enumeration. The current recorded Founder
+decision inserts Enterprise Architecture after Volume III and before this
+Master Specification without rewriting the canonical Volume I manuscript.
 
 ### 12.2 Company And Commercial
 
@@ -1284,16 +1417,22 @@ of these entries authorizes implementation changes outside its accepted scope.
   may become public proof.
 - Final legal company, contracting, jurisdiction, privacy-controller, and
   processor details.
-- Proposal, payment, refund, support, maintenance, and service-level policy
-  templates.
+- Legal and commercial approval of proposal, quotation, payment, refund,
+  support, maintenance, and service-level terms. The company documentation
+  provides governed foundations but is not a substitute for legal review or an
+  engagement-specific agreement.
 - Whether training becomes a separately marketed service or remains attached to
   delivery and maintenance engagements.
 
 ### 12.3 Public Website And Brand
 
 - Final governed vector masters, compact assets, favicon, application icon,
-  lockups, and social image for the approved YW direction. The raster reference
-  must not ship directly; the public wordmark remains `YSWORKS`.
+  lockups, and social image for the constitutional `YS` monogram. The raster
+  reference must not ship directly; the public wordmark remains uppercase
+  `YSWORKS`.
+- Whether professional trademark review or registration is required.
+- Governance for a future authentic photography archive, operational audio
+  assets, and AI-media disclosure implementation.
 - Whether Tailwind CSS remains the long-term Public Website styling standard or
   only the current repository implementation choice.
 - Final reviewed typography, spacing, breakpoint, component, and motion tokens;
@@ -1331,17 +1470,40 @@ readiness.
 No portal hostname, account, source connection, client data, or production
 capability exists until its applicable decisions and gates are approved.
 
+### 12.6 Enterprise Implementation
+
+The Enterprise Architecture is settled; its implementations are not. The
+following remain open until governed system designs or decisions resolve them:
+
+- exact Client Workspace technical stack and authentication provider;
+- database, event-bus or queue, audit-store, and knowledge-store technologies;
+- private-system deployment topology and production hosting beyond the already
+  approved static Public Website target;
+- backup technology, retention, and exact RPO/RTO;
+- Founder continuity mechanism and delegated emergency authority;
+- operational observability stack and notification providers;
+- billing provider and accounting integration;
+- detailed API contracts; and
+- implementation sequence.
+
 ## 13. Glossary
 
 ### Approval
 
-An attributable decision on an exact object and immutable version. Approval is
-not a privileged execution command and does not carry across changed versions.
+The specific, informed, recorded decision that permits an intended action
+(*EA 5.1*). Approval is not a privileged execution command, is consumed only by
+its authorised action, and does not carry across changed context or versions.
+
+### Authority
+
+The traceable chain from an act to the human seat entitled to have caused it
+(*EA 5.1–2*). Tool access, role labels, recommendations, automation, and
+execution are not authority by themselves.
 
 ### Automation
 
-Software behavior that reduces or coordinates repeatable manual work under
-defined ownership, validation, failure, audit, and security boundaries.
+Execution by machine within a recorded mandate (*EA 5.1; EA 9.2*). Automation
+does not decide and does not receive accountability.
 
 ### Automation Platform
 
@@ -1371,6 +1533,16 @@ An organization or authorized person evaluating, purchasing, or receiving a
 YSWORKS service or product. “Customer” is the broad commercial term; “Client” is
 used for a governed engagement and portal context.
 
+### Decision
+
+A selection among alternatives that creates an obligation (*EA 5.1*).
+Reversibility determines the required decision process.
+
+### Delegation
+
+The explicit transfer of decision rights within named bounds. Delegation
+transfers the right, never accountability (*EA 5.1*).
+
 ### Deployment
 
 A controlled release of an approved system version into a named environment.
@@ -1381,6 +1553,16 @@ rollback or disable path.
 
 A defined, reviewable output of an engagement or Milestone. Portal deliverables
 are versioned and exposed only through an authorized sanitized projection.
+
+### Domain
+
+A named area of business responsibility with one accountable owner, defined
+duties, and explicit interactions (*EA 4.1–3*).
+
+### Execution
+
+Performance of already-decided work. An executor that encounters an undecided
+question stops and escalates (*EA 5.1*).
 
 ### Founder
 
@@ -1402,7 +1584,12 @@ through public repositories or client-facing systems.
 ### Knowledge Base
 
 The governed collection of classified specifications, decisions, standards, and
-reusable knowledge for YSWORKS.
+reusable knowledge for YSWORKS, organised into the five classes in *EA 8.1*.
+
+### Mandate
+
+The recorded scope, readable inputs, permitted effects, and stop conditions
+under which an automation may execute (*EA 9.2*).
 
 ### Maintenance
 
@@ -1420,10 +1607,16 @@ A YSWORKS delivery role authorized only for assigned Clients and Projects. An
 Operator cannot impersonate a client approver or use internal status as a global
 bypass.
 
+### Recommendation
+
+An evidence-bearing proposal for a decision with no authority of its own
+(*EA 5.1*).
+
 ### Portal
 
-The future authenticated Client Portal that presents tenant-isolated, sanitized
-project information. It is not an infrastructure or workflow administration
+The technical architecture and security term for the authenticated delivery
+boundary of the Client Workspace. It presents tenant-isolated, sanitised
+project information and is not an infrastructure or workflow administration
 interface.
 
 ### Product
@@ -1474,9 +1667,10 @@ definitions remain internal.
 
 ### Workspace
 
-A named collaboration or knowledge context for an approved audience. A
-Workspace may organize people and material, but it is never an authorization
-control by itself and must not be confused with a portal Tenant.
+The client-facing product name for the future authenticated YSWORKS experience.
+Within that product, a Workspace may organise people and material, but it is
+never an authorisation control by itself and must not be confused with a portal
+Tenant.
 
 ### YS AI OS
 

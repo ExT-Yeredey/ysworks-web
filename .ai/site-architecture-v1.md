@@ -3,7 +3,12 @@
 ## Status and scope
 
 This governed source defines the experience foundation for YSWORKS Public
-Website v2 and the bounded visual preparation of the future Client Portal. It
+Website v2 and the bounded visual preparation of the future Client Workspace.
+Its constitutional identity and interface basis is the
+[Brand Bible](../docs/BRAND_BIBLE.md) (*II.III; II.XI*). The future Client
+Workspace experience is governed by the
+[Client Experience Constitution](../docs/CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VII; III.XI*). It
 does not authorize production deployment, authentication, backend access,
 Cloudflare or DNS changes.
 
@@ -12,14 +17,15 @@ The complete route and content contract is maintained in
 
 ## Product separation
 
-The ecosystem contains three distinct products:
+The ecosystem contains three distinct systems:
 
 1. the anonymous Public Website;
-2. the future authenticated Client Portal;
+2. the future authenticated Client Workspace;
 3. the private YS AI OS.
 
 Users must never be led to believe that a public preview is an authenticated
-portal or that YS AI OS is a customer product. Shared visual language does not
+workspace or that YS AI OS is a customer product. “Client Portal” remains the
+technical architecture and security term. Shared visual language does not
 merge information, identity, authorization, or trust boundaries.
 
 ## Public navigation
@@ -66,12 +72,17 @@ collaborate, project fit, useful initial context, confidentiality limits, and
 realistic next steps. Email remains the only active submission channel until a
 protected form boundary exists.
 
-## Client Portal preview rules
+## Client Workspace preview rules
+
+The eventual first screen must answer the five constitutional questions in
+order, place state before navigation, serve the executive reader first, and
+reveal technical depth progressively. The current non-indexed preview does not
+claim that experience is implemented.
 
 Non-indexed visual route previews may demonstrate hierarchy and responsive
 composition. They must:
 
-- state that the portal is unavailable;
+- state that the Client Workspace is unavailable;
 - contain no sign-in simulation, session, client record, metric, invoice,
   message, document, or business placeholder;
 - remain absent from Public Website navigation;
@@ -109,8 +120,8 @@ Motion follows the approved hierarchy:
 
 No additional animation library is permitted. Motion is progressive, restrained,
 interruptible, and dynamically responds to `prefers-reduced-motion`. This
-Public Website stack is not automatically the Client Portal or YS AI OS motion
-architecture.
+Public Website stack is not automatically the Client Workspace or YS AI OS
+motion architecture.
 
 ## Public-safety rules
 

@@ -3,6 +3,8 @@
 - Status: production contract
 - Primary family: Inter
 - Technical family: Geist Mono
+- Constitutional basis: [Brand Bible](../docs/BRAND_BIBLE.md)
+  (*II.VI.1–3*)
 
 ## Roles
 

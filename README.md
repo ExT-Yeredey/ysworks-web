@@ -6,9 +6,11 @@ YSWORKS is a technology engineering company focused on useful, secure,
 maintainable digital systems. AI is one applied capability among software,
 automation, systems, hardware, and security; it is not the company's public
 identity. This repository contains the Public Website and a non-indexed,
-inactive visual foundation for the future Client Portal. It does not contain
-authentication, client data, backend access, private systems, prompts,
-infrastructure, or proprietary implementation details.
+inactive visual foundation for the future Client Workspace. “Client Portal” is
+reserved for that product's technical architecture and security boundary. This
+repository does not contain authentication, client data, backend access,
+private systems, prompts, infrastructure, or proprietary implementation
+details.
 
 ## Project Overview
 
@@ -59,28 +61,50 @@ src/
   types/        Shared TypeScript types
   utils/        Small utility functions
 public/         Static public files
-docs/business/ Business, brand, website, and commercial foundation
+branding/       Governed structure for future approved brand assets
+docs/           Company, architecture, business, design, and product authority
 design-system/ Production UI standards and implementation contracts
 ```
 
 ## Documentation
 
-Business and website strategy documentation lives in
-[docs/business](docs/business/README.md).
+Start with the [documentation index](docs/README.md).
+The [Master Documentation Index](docs/MASTER_INDEX.md) provides the complete
+searchable inventory and ten-minute engineer onboarding route.
+Use the [documentation navigation hub](docs/navigation/README.md) for the
+document, architecture, authority, dependency, glossary, and acronym maps.
 
-Use it as the canonical source for company positioning, public services, website
-information architecture, content strategy, SEO strategy, lead generation,
-portfolio rules, product integration, trust principles, roadmap, acceptance
-criteria, and open commercial decisions.
+The [Company Bible](docs/COMPANY_BIBLE.md) is the company-wide narrative and
+behavioural constitution. The subordinate
+[Brand Bible](docs/BRAND_BIBLE.md) governs identity within that constitutional
+character. The subordinate
+[Client Experience Constitution](docs/CLIENT_EXPERIENCE_CONSTITUTION.md)
+governs the complete client relationship, journey, support, delivery,
+reputation, and Client Workspace experience. The
+[YSWORKS Enterprise Architecture](docs/YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+operationalises those constitutional volumes and governs enterprise structure,
+system relationships, authority, information, knowledge, automation, security
+principles, and scalability. The
+[YSWORKS Operating Manual](docs/OPERATING_MANUAL.md) applies those authorities
+to day-to-day company work without claiming that supporting systems are
+implemented. The
+[company documentation](docs/company/README.md) applies it to profile,
+capability, brand, onboarding, proposals, quotations, maintenance, support,
+delivery, communication, lifecycle, and quality.
+
+Supporting business and website strategy lives in
+[docs/business](docs/business/README.md).
 
 Public-safe platform architecture contracts live in
 [docs/architecture](docs/architecture/README.md). They define future exposure,
 edge-security, webhook, and production-readiness boundaries without documenting
 private infrastructure or deployment configuration.
 
-The production UI contracts live in [design-system](design-system/tokens.md).
+The production UI contracts live in [design-system](design-system/README.md).
 They govern how approved brand, layout, typography, motion, component, and
 accessibility decisions are applied consistently in this repository.
+
+Future approved identity assets belong in [branding](branding/README.md).
 
 The `.ai/` directory remains the public engineering knowledge base for this
 repository.
@@ -138,9 +162,10 @@ English equivalents use the `/en/` prefix.
 
 `/client` and its prepared subroutes are non-indexed interface-foundation
 previews only. They do not authenticate, load data, or provide portal access and
-remain absent from public navigation. The production Client Portal remains a
-future authenticated product at `portal.ysworks.dev`; its activation requires
-the approved portal security architecture.
+remain absent from public navigation. The production Client Portal remains the
+future technical architecture for the authenticated Client Workspace at
+`portal.ysworks.dev`; its activation requires the approved portal security
+architecture.
 
 Future status, public documentation, labs, and journal surfaces remain outside
 this release.

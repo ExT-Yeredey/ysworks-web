@@ -4,7 +4,7 @@
 
 - Version: Public Website v2
 - Status: Founder-approved product architecture
-- Scope: anonymous Public Website and bounded Client Portal interface preview
+- Scope: anonymous Public Website and bounded Client Workspace interface preview
 
 ## Product model
 
@@ -12,8 +12,9 @@ YSWORKS presents one ecosystem through three separated products:
 
 1. **Public Website:** anonymous company, service, process, and contact surface
    at `www.ysworks.dev`.
-2. **Client Portal:** future authenticated and tenant-isolated product at
-   `portal.ysworks.dev`.
+2. **Client Workspace:** future authenticated and tenant-isolated client-facing
+   product at `portal.ysworks.dev`. “Client Portal” is its technical
+   architecture and security term.
 3. **YS AI OS:** private internal operating system with no public routes,
    interface, or implementation detail.
 
@@ -103,7 +104,7 @@ and common questions. The primary public channel remains
 Privacy states the real collection posture. The 404 route provides recovery,
 language, and theme controls without exposing implementation details.
 
-## Client Portal route foundation
+## Client Workspace route foundation
 
 The repository prepares non-indexed interface-foundation previews for:
 
@@ -122,12 +123,18 @@ The repository prepares non-indexed interface-foundation previews for:
 Equivalent English previews use `/en/client...`. These routes:
 
 - remain absent from Public Website navigation;
-- clearly state that the portal is unavailable;
+- clearly state that the Client Workspace is unavailable;
 - contain no authentication, sessions, client data, mock business data, or
   private-system connections;
 - do not replace the future `portal.ysworks.dev` product;
 - cannot be activated as a client service until the Client Portal Foundation is
   implemented and independently reviewed.
+
+The Workspace experience follows the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VII.1–3; III.XI.1–5*): state before navigation, the five first-screen
+questions in constitutional order, an executive-first view, and progressive
+disclosure of technical depth.
 
 ## Navigation and content rules
 

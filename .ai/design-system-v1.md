@@ -2,6 +2,10 @@
 
 ## 1. Design Philosophy
 
+The [Brand Bible](../docs/BRAND_BIBLE.md) is the constitutional identity
+authority. This operational system implements Volume II and preserves its
+measurable rules without restating its doctrine.
+
 YSWORKS should feel modern, elegant, calm, technical, and trustworthy.
 
 The visual language should be inspired by the restraint and precision of Vercel, Linear, Cloudflare, Apple, and Anthropic. The result should communicate engineering quality without becoming decorative, loud, or trend-driven.
@@ -20,10 +24,10 @@ The public website should never feel flashy. It should feel composed, stable, an
 
 ### Product boundaries
 
-The Design System supports three related but separated products:
+The Design System supports three related but separated systems:
 
 - the anonymous Public Website;
-- the future authenticated Client Portal;
+- the future authenticated Client Workspace;
 - the private YS AI OS.
 
 They share tokens, typography, accessibility principles, and the same brand
@@ -33,11 +37,11 @@ architecture. YS AI OS is never represented as a public dashboard.
 
 ### Logo direction
 
-The governed identity direction is the angular geometric YW monogram: white Y,
-YSWORKS Purple `#6D5EF7` W, paired with the YSWORKS wordmark for the primary
-logo and used alone for compact product marks. Final vector geometry is not
-defined by this interface specification and must not be improvised from a raster
-reference.
+The governed identity direction is the angular geometric **YS** monogram
+(*II.VIII.1*), paired with the uppercase YSWORKS wordmark for the primary logo
+and used alone for compact product marks. Earlier `YW` references are obsolete
+draft state. Final vector geometry is not defined by this interface
+specification and must not be improvised from a raster reference.
 
 ## 2. Typography
 
@@ -299,7 +303,8 @@ The Public Website uses CSS for simple states, WAAPI for simple imperative
 interactions, IntersectionObserver for visibility, requestAnimationFrame only
 for genuine scroll synchronization, and Anime.js v4 for approved coordinated
 choreography. No additional animation engine is permitted. This dependency
-decision does not automatically apply to the future Client Portal or YS AI OS.
+decision does not automatically apply to the future Client Workspace or YS AI
+OS.
 
 ## 8. Iconography
 

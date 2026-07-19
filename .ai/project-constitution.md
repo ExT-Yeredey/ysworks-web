@@ -8,6 +8,14 @@ Its purpose is to maintain a clear, fast, accessible, secure, and professional p
 
 This `.ai/` directory is the public engineering knowledge base for the website. It exists to guide future human developers and AI coding agents as they evolve the repository.
 
+The [Company Bible](../docs/COMPANY_BIBLE.md) and subordinate
+[Brand Bible](../docs/BRAND_BIBLE.md) govern company character and identity.
+The [Client Experience Constitution](../docs/CLIENT_EXPERIENCE_CONSTITUTION.md)
+governs client experience, and the
+[YSWORKS Enterprise Architecture](../docs/YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+governs enterprise structure and system boundaries. This implementation
+constitution may not contradict any of them.
+
 ## Repository Scope
 
 This repository may contain:
@@ -22,6 +30,10 @@ This repository may contain:
 - Public architecture decisions for this website.
 
 This repository must remain focused on the public web surface.
+
+The Public Website is an anonymous Experience-layer surface. It holds no client
+data, private-system access, or business truth of its own and renders only
+substantiated public information (*EA 3.1; EA 6.1*).
 
 ## Explicit Non-Scope
 

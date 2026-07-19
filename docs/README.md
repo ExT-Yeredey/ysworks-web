@@ -4,50 +4,135 @@
 
 This directory contains the public-safe specifications and supporting documents
 that govern YSWORKS company behavior, ecosystem architecture, public platform,
-client portal, and business foundation.
+client workspace, company operations, and business foundation.
 
 It does not contain credentials, production configuration, private topology,
 client information, internal workflows, or restricted operational material.
 
-## Authority Map
+## Navigation
 
-1. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behavior, judgment,
+- [Master Documentation Index](MASTER_INDEX.md)
+- [Documentation Navigation Hub](navigation/README.md)
+- [Document Map](navigation/DOCUMENT_MAP.md)
+- [Document Graph](navigation/DOCUMENT_GRAPH.md)
+- [Architecture Map](navigation/ARCHITECTURE_MAP.md)
+- [Authority Map](navigation/AUTHORITY_MAP.md)
+- [Dependency Map](navigation/DEPENDENCY_MAP.md)
+- [Glossary](navigation/GLOSSARY.md)
+- [Acronym Index](navigation/ACRONYM_INDEX.md)
+
+New engineers should follow the
+[ten-minute onboarding route](MASTER_INDEX.md#ten-minute-engineer-onboarding)
+before selecting a task-specific reading path.
+
+## Authority Summary
+
+The maintained cross-document view is the
+[Documentation Authority Map](navigation/AUTHORITY_MAP.md).
+
+1. Explicit Founder decisions are the highest internal authority.
+2. Applicable law and binding contracts prevail where relevant.
+3. Accepted ADRs prevail only within their explicit technical scope.
+4. [Company Bible](COMPANY_BIBLE.md) is the highest company-wide narrative and
+   behavioural constitution.
+5. [Brand Bible](BRAND_BIBLE.md) is Volume II of the constitutional library. It
+   remains subordinate to Volume I and governs identity above operational
+   brand, design, motion, and experience documents.
+6. [Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md) is
+   Volume III of the constitutional library. It remains subordinate to Volumes
+   I and II and governs client experience, journey, relationship, delivery,
+   support, reputation, and the Client Workspace experience.
+7. [YSWORKS Enterprise Architecture](YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+   operationalises Volumes I–III and governs enterprise structure, layers,
+   domains, authority flow, system relationships, information flow, knowledge,
+   automation, security principles, scalability, and enterprise tests.
+8. [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) defines product,
+   ecosystem, vocabulary, accepted decisions, and cross-system architecture.
+9. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behaviour, judgement,
    delivery discipline, and human–AI collaboration.
-2. [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) defines company,
-   product, ecosystem, vocabulary, and cross-system architecture.
-3. [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
+10. [YSWORKS Operating Manual v1.0](OPERATING_MANUAL.md) is the canonical
+    Operational-class manual owned by Operations, with amendments approved by
+    Governance. It operationalises the constitutional library and Enterprise
+    Architecture without overriding them.
+11. Detailed domain foundations and policies remain authoritative within their
+   stated scope. In particular:
+   - [Company Documentation](company/README.md) applies company authority to
+     commercial, delivery, support, and quality standards.
+   - [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
    governs public exposure and public-platform security.
-4. [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
-   client-facing portal architecture and tenant isolation.
-5. [Public Platform Architecture Index](architecture/README.md) defines the
-   publication boundary for architecture contracts.
-6. [Business Foundation](business/README.md) supports public positioning,
-   services, content, and commercial policy.
-7. [Approved Design Authorities](design/README.md), including YSWORKS Design
-   Tokens v1.0, govern brand, experience, and interface decisions.
-8. The repository [production design-system contracts](../design-system/tokens.md)
-   govern consistent implementation of those approved design decisions.
-9. The repository [engineering knowledge base](../.ai/README.md) governs the
-   public website implementation within its scope.
+   - [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md)
+     governs the technical architecture and tenant isolation of the
+     client-facing Client Workspace.
+   - [Authority, Mandate, Approval And Audit System Design](architecture/AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md)
+     governs the logical contract for future machine-checkable authority and
+     consequential execution without claiming a runtime implementation.
+   - [YSWORKS Canonical Domain Model](architecture/CANONICAL_DOMAIN_MODEL.md)
+     governs shared entity meanings, domain ownership, tenant scope,
+     lifecycles, projections, classification, and authority boundaries.
+   - [Architecture Documentation Index](architecture/README.md) defines the
+     publication and navigation boundary for architecture contracts.
+   - [Business Foundation](business/README.md) supports public positioning,
+     services, content, and commercial policy.
+12. System designs, workflow definitions, and implementation documentation
+    implement the authorities above within their stated scope. In particular:
+    - [Approved Design Authorities](design/README.md), including YSWORKS Design
+      Tokens v1.0, govern brand, experience, and interface decisions.
+    - The repository
+      [production design-system contracts](../design-system/README.md) govern
+      consistent implementation of those approved design decisions.
+    - Implementation documentation governs only its stated implementation
+      scope. The repository [engineering knowledge base](../.ai/README.md)
+      governs the Public Website implementation within that boundary.
 
-The handbook is the highest-level human operating handbook. It does not override
-domain architecture. The Master Specification is the highest-level architecture
-specification. Accepted ADRs govern their stated decisions, detailed domain
-contracts may add stricter requirements, and explicit Founder decisions resolve
-otherwise unresolved documentation conflicts.
+## Foundation Library
+
+### Constitution Library
+
+- [Volume I — Company Bible](COMPANY_BIBLE.md) defines company-wide character,
+  behaviour, purpose, and constitutional standing.
+- [Volume II — Brand Bible](BRAND_BIBLE.md) defines identity as the visible
+  consequence of that character and is subordinate to Volume I.
+- [Volume III — Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+  defines the relationship between YSWORKS and its clients across the full
+  lifecycle and is subordinate to Volumes I and II.
+
+The constitutional hierarchy is governed by the
+[Company Bible, Volume I, Book XII, Article 1](COMPANY_BIBLE.md). No document
+silently resolves a conflict; genuine conflicts must be reported and governed.
+
+### Enterprise Foundation
+
+- [YSWORKS Enterprise Architecture v1.0](YSWORKS_ENTERPRISE_ARCHITECTURE.md)
+  operationalises the constitutional volumes and governs enterprise structure
+  within its domain. It defines architectural requirements, not implemented
+  controls or deployment state.
+- [YSWORKS Operating Manual v1.0](OPERATING_MANUAL.md) defines day-to-day
+  company procedures. It is an Operational-class document under *EA 8.1*,
+  owned by Operations and amended with Governance approval.
 
 ## Reading Order
 
 For company or cross-system work:
 
-1. read the Founder Handbook;
-2. read the Master Specification;
-3. read the detailed contract for the affected domain;
-4. inspect applicable ADRs and Open Decisions; and
-5. use the more conservative behavior when an unresolved conflict remains.
+1. read the Company Bible;
+2. read the Brand Bible for identity, communication, design, motion, or
+   experience work;
+3. read the Client Experience Constitution for any client journey,
+   relationship, delivery, support, reputation, or Workspace work;
+4. read the Enterprise Architecture for company structure, domain ownership,
+   system relationships, information, knowledge, automation, security
+   principles, or scalability work;
+5. read the Master Specification and Founder Handbook;
+6. read the Operating Manual for day-to-day company work;
+7. read the detailed contract for the affected domain;
+8. inspect applicable ADRs and Open Decisions; and
+9. use the more conservative behaviour when an unresolved conflict remains.
 
 For work limited to the public website repository, also follow the public
 engineering knowledge base before implementation.
+
+Task-specific reading paths are maintained in the
+[Document Map](navigation/DOCUMENT_MAP.md#reading-paths).
 
 ## Maintenance Rules
 

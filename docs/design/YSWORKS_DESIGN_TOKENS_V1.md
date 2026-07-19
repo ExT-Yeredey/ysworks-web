@@ -7,10 +7,15 @@
 ## 1. Purpose
 
 This contract is the permanent color-token foundation for the Public Website,
-Client Portal, YS AI OS, internal dashboards, mobile applications, future SaaS
-products, documentation, PDFs, and presentations. Products consume these
+Client Workspace, YS AI OS, internal dashboards, mobile applications, future
+SaaS products, documentation, PDFs, and presentations. Products consume these
 primitives through semantic aliases appropriate to their medium; they do not
 create competing brand palettes.
+
+Its constitutional basis is the [Brand Bible](../BRAND_BIBLE.md), especially
+the neutral field, guidance role, and permanent single-accent rule
+(*II.V.1–3*). This contract supplies operational values without duplicating
+that reasoning.
 
 ## 2. Primary Scale
 
