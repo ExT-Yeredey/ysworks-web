@@ -11,6 +11,10 @@ named internal service is deployed.
 
 - [Secure Public Platform Foundation](SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
 - [Client Portal Foundation](CLIENT_PORTAL_FOUNDATION.md)
+- [Authority, Mandate, Approval And Audit System Design](AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md)
+  defines the public-safe logical contract for future authority, mandates,
+  policy, approvals, execution authorisation, and audit. It contains no runtime
+  or private topology.
 
 The client-facing experience of the Client Workspace is constitutionally
 governed by

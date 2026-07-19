@@ -33,6 +33,10 @@ requirements rather than implemented state.
 
 Detailed contracts remain authoritative within their domains:
 
+- [Authority, Mandate, Approval And Audit System Design](architecture/AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md)
+  governs the future logical contracts for actors, authority, mandates,
+  decisions, approvals, execution authorisation, policy evaluation, risk, and
+  audit. It does not select or claim a runtime implementation.
 - [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
   governs public exposure, domain architecture, edge security, webhooks, and
   production security.

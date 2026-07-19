@@ -42,6 +42,9 @@ client information, internal workflows, or restricted operational material.
    - [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md)
      governs the technical architecture and tenant isolation of the
      client-facing Client Workspace.
+   - [Authority, Mandate, Approval And Audit System Design](architecture/AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md)
+     governs the logical contract for future machine-checkable authority and
+     consequential execution without claiming a runtime implementation.
    - [Public Platform Architecture Index](architecture/README.md) defines the
      publication boundary for architecture contracts.
    - [Business Foundation](business/README.md) supports public positioning,
