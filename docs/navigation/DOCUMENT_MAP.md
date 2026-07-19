@@ -4,6 +4,8 @@
 
 This map shows where governed and supporting knowledge lives. Authority is
 defined in the [Authority Map](AUTHORITY_MAP.md), not by position in this list.
+For the complete per-file inventory and search aliases, use the
+[Master Documentation Index](../MASTER_INDEX.md).
 
 ## Repository Map
 

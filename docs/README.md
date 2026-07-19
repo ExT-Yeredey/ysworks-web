@@ -11,13 +11,19 @@ client information, internal workflows, or restricted operational material.
 
 ## Navigation
 
+- [Master Documentation Index](MASTER_INDEX.md)
 - [Documentation Navigation Hub](navigation/README.md)
 - [Document Map](navigation/DOCUMENT_MAP.md)
+- [Document Graph](navigation/DOCUMENT_GRAPH.md)
 - [Architecture Map](navigation/ARCHITECTURE_MAP.md)
 - [Authority Map](navigation/AUTHORITY_MAP.md)
 - [Dependency Map](navigation/DEPENDENCY_MAP.md)
 - [Glossary](navigation/GLOSSARY.md)
 - [Acronym Index](navigation/ACRONYM_INDEX.md)
+
+New engineers should follow the
+[ten-minute onboarding route](MASTER_INDEX.md#ten-minute-engineer-onboarding)
+before selecting a task-specific reading path.
 
 ## Authority Summary
 

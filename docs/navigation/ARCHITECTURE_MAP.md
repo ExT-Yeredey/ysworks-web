@@ -4,6 +4,8 @@
 
 This index connects public-safe architectural authorities. It does not expose
 private YS AI OS topology or assert that a future component is implemented.
+The complete per-file inventory is maintained in the
+[Master Documentation Index](../MASTER_INDEX.md).
 
 ## Architectural Chain
 

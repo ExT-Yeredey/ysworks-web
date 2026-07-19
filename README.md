@@ -69,6 +69,8 @@ design-system/ Production UI standards and implementation contracts
 ## Documentation
 
 Start with the [documentation index](docs/README.md).
+The [Master Documentation Index](docs/MASTER_INDEX.md) provides the complete
+searchable inventory and ten-minute engineer onboarding route.
 Use the [documentation navigation hub](docs/navigation/README.md) for the
 document, architecture, authority, dependency, glossary, and acronym maps.
 

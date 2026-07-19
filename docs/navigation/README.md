@@ -13,7 +13,9 @@ architectural, product, security, or implementation authority.
 
 | Need | Navigation document |
 | --- | --- |
+| Onboard or search the complete inventory | [Master Documentation Index](../MASTER_INDEX.md) |
 | Find a document or repository area | [Document Map](DOCUMENT_MAP.md) |
+| Understand document-to-document relationships | [Document Graph](DOCUMENT_GRAPH.md) |
 | Understand systems and architectural contracts | [Architecture Map](ARCHITECTURE_MAP.md) |
 | Resolve governing precedence | [Authority Map](AUTHORITY_MAP.md) |
 | Understand document and implementation dependencies | [Dependency Map](DEPENDENCY_MAP.md) |
@@ -27,6 +29,7 @@ The primary documentation entry point remains the
 
 - Add a document to the applicable map when it is created, renamed, moved, or
   retired.
+- Keep the [Master Index](../MASTER_INDEX.md) complete and searchable.
 - Link to the canonical source rather than copying its rules.
 - Mark historical filenames and absent planned documents explicitly.
 - Keep private topology, secrets, client data, workflows, and internal records

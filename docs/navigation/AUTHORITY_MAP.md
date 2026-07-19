@@ -22,6 +22,41 @@ reinterpret any constitutional document.
 | 11 | Domain foundations and policies | Detailed domain rules within stated scope |
 | 12 | System designs, workflow definitions, and implementation documentation | Conforming implementation detail |
 
+## Authority Graph
+
+```mermaid
+flowchart TD
+    F[Direct Founder decisions]
+    LAW[Applicable law and binding obligations]
+    ADR[Accepted ADR: explicit technical scope only]
+    V1[Volume I]
+    V2[Volume II]
+    V3[Volume III]
+    EA[Enterprise Architecture]
+    MS[Master Specification]
+    FH[Founder Handbook]
+    OM[Approved Operating Manual when present]
+    DF[Domain foundations and policies]
+    SD[System designs and implementation]
+
+    F --> V1
+    V1 --> V2
+    V2 --> V3
+    V3 --> EA
+    EA --> MS
+    MS --> FH
+    FH --> OM
+    OM --> DF
+    DF --> SD
+    LAW -->|constrains where applicable| F
+    LAW -->|constrains where applicable| SD
+    ADR -->|governs explicit technical scope| SD
+```
+
+The graph is a navigation summary. Applicable law and binding obligations are
+not subordinate nodes. An ADR does not enter the constitutional chain and
+cannot govern outside its accepted technical scope.
+
 ## Scope Resolution
 
 Authority is not determined by filename, document length, recency, or proximity

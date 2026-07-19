@@ -9,6 +9,8 @@ named internal service is deployed.
 
 For cross-document relationships, use the
 [Architecture Map](../navigation/ARCHITECTURE_MAP.md).
+For repository-wide search and onboarding, use the
+[Master Documentation Index](../MASTER_INDEX.md).
 
 ## Public Platform Foundations
 
