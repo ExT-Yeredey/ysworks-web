@@ -15,6 +15,7 @@ flowchart TD
     EA[Enterprise Architecture]
     MS[Master Specification]
     FH[Founder Handbook]
+    OM[Operating Manual]
     PUB[Secure Public Platform]
     CP[Client Portal Foundation]
     AMAA[Authority System Design]
@@ -33,6 +34,7 @@ flowchart TD
     V3 --> EA
     EA --> MS
     MS --> FH
+    FH --> OM
     EA --> PUB
     EA --> CP
     EA --> AMAA
@@ -41,6 +43,7 @@ flowchart TD
     CDM --> CP
     MS --> BUSINESS
     V3 --> COMPANY
+    OM --> COMPANY
     V2 --> DESIGN
     DESIGN --> DS
     MS --> AI
@@ -57,7 +60,9 @@ Arrows mean “must conform to or review”, not “overrides”.
 | Brand Bible | Design authority registry, operational Brand Book, Production Design System, engineering brand guidance |
 | Client Experience Constitution | Client Portal Foundation, company client policies, business journey documents, Workspace projections |
 | Enterprise Architecture | Master Specification, architecture contracts, company/business indexes, private conformance requirements |
-| Master Specification | Business foundation, public architecture, design registry, engineering knowledge |
+| Master Specification | Founder Handbook, Operating Manual, business foundation, public architecture, design registry, engineering knowledge |
+| Founder Handbook | Operating Manual and company operating policies |
+| Operating Manual | Company policies, procedures, templates, operational records, and future operational tooling |
 | Authority System Design | Canonical Domain Model, Client Portal approvals, future workflow and agent designs |
 | Canonical Domain Model | Client Portal data contracts, future schemas/APIs, company lifecycle and support mappings |
 | Accepted ADR | Only documents and implementation inside the ADR's explicit scope |

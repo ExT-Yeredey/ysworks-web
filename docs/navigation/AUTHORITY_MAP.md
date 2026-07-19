@@ -18,7 +18,7 @@ reinterpret any constitutional document.
 | 7 | [YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md) | Enterprise structure within its domain |
 | 8 | [YSWORKS Master Specification](../YSWORKS_MASTER_SPEC.md) | Product, ecosystem, vocabulary, and cross-system decisions |
 | 9 | [Founder Handbook](../FOUNDER_HANDBOOK.md) | Human behaviour and operating discipline |
-| 10 | Operating Manual | Applies when an approved canonical document exists; absent in this branch |
+| 10 | [YSWORKS Operating Manual](../OPERATING_MANUAL.md) | Operational-class day-to-day company procedures; owner Operations; amendments approved by Governance |
 | 11 | Domain foundations and policies | Detailed domain rules within stated scope |
 | 12 | System designs, workflow definitions, and implementation documentation | Conforming implementation detail |
 
@@ -35,7 +35,7 @@ flowchart TD
     EA[Enterprise Architecture]
     MS[Master Specification]
     FH[Founder Handbook]
-    OM[Approved Operating Manual when present]
+    OM[Operating Manual v1.0]
     DF[Domain foundations and policies]
     SD[System designs and implementation]
 

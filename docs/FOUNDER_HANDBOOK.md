@@ -26,6 +26,10 @@ information, knowledge, automation, security principles, scalability, and
 enterprise tests.
 The [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) remains the
 highest-level ecosystem architecture specification. The
+[YSWORKS Operating Manual](OPERATING_MANUAL.md) is subordinate to this handbook
+and translates the constitutional library and Enterprise Architecture into
+day-to-day procedures. It cannot override higher authority or prove that a
+supporting system is implemented. The
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
 client-facing portal architecture. The
 [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)

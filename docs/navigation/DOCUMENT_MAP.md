@@ -32,7 +32,7 @@ For the complete per-file inventory and search aliases, use the
 | [YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md) | Enterprise structure and system-boundary foundation | Foundational |
 | [YSWORKS Master Specification](../YSWORKS_MASTER_SPEC.md) | Product, ecosystem, vocabulary, and accepted decisions | Authoritative specification |
 | [Founder Handbook](../FOUNDER_HANDBOOK.md) | Human behaviour, judgement, and operating discipline | Authoritative handbook |
-| Operating Manual | Operational constitution requested but not present in this branch | Open; no canonical file |
+| [YSWORKS Operating Manual](../OPERATING_MANUAL.md) | Operational-class day-to-day company manual | Canonical v1.0 |
 
 ## Architecture Documents
 
@@ -63,8 +63,10 @@ For the complete per-file inventory and search aliases, use the
 2. applicable constitutional volume
 3. [Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md)
 4. [Master Specification](../YSWORKS_MASTER_SPEC.md)
-5. applicable company or business document
-6. open decisions and accepted ADRs
+5. [Founder Handbook](../FOUNDER_HANDBOOK.md)
+6. [Operating Manual](../OPERATING_MANUAL.md)
+7. applicable company or business document
+8. open decisions and accepted ADRs
 
 ### Architecture Or System Design
 

@@ -13,6 +13,9 @@ and the [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
 (*III.II.3–4; III.III.4*). It does not replace a contract, privacy notice,
 security procedure, or project plan.
 
+The [Operating Manual](../OPERATING_MANUAL.md#15-agreement-and-onboarding)
+governs the shared day-to-day onboarding procedure.
+
 ## Entry Conditions
 
 Onboarding begins only when:

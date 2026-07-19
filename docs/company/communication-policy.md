@@ -13,6 +13,9 @@ Client communication also applies the
 [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
 (*III.VI.1–5; III.XIII.1–7; III.XIV.1–4*).
 
+The [Operating Manual](../OPERATING_MANUAL.md#3-communication-standards)
+governs the shared day-to-day communication procedure.
+
 ## Principles
 
 - Communicate facts, assumptions, estimates, decisions, and unknowns distinctly.

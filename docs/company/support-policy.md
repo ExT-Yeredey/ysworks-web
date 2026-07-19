@@ -14,6 +14,9 @@ The constitutional basis is the
 [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
 (*III.X.1–3; III.XIV.1–4*).
 
+The [Operating Manual](../OPERATING_MANUAL.md#13-incident-handling) governs the
+query, request, incident, and critical-incident operating procedure.
+
 ## Support Boundary
 
 Every support arrangement defines:

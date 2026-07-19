@@ -28,6 +28,7 @@ exists, that contract remains authoritative.
 | Membership | Time-bounded association of a User with exactly one Tenant | [Canonical Domain Model](../architecture/CANONICAL_DOMAIN_MODEL.md) |
 | Milestone | Verifiable outcome checkpoint with evidence and acceptance criteria | [Canonical Domain Model](../architecture/CANONICAL_DOMAIN_MODEL.md) |
 | Organisation | Real-world legal, commercial, or operating counterpart | [Canonical Domain Model](../architecture/CANONICAL_DOMAIN_MODEL.md) |
+| Operating Manual | Canonical Operational-class source for day-to-day company procedures; subordinate to constitutional and architectural authority | [Operating Manual](../OPERATING_MANUAL.md) |
 | Policy evaluation | Immutable result from published policy and current exact context | [Authority System Design](../architecture/AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md) |
 | Production | Live environment or effect affecting real users, clients, data, systems, or public state | [Founder Handbook](../FOUNDER_HANDBOOK.md) |
 | Project | Bounded delivery endeavour inside an Engagement and one Tenant | [Canonical Domain Model](../architecture/CANONICAL_DOMAIN_MODEL.md) |

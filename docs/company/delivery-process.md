@@ -14,6 +14,9 @@ the [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
 [Founder Handbook engineering lifecycle](../FOUNDER_HANDBOOK.md#9-engineering-lifecycle)
 governing company behaviour.
 
+The [Operating Manual](../OPERATING_MANUAL.md#2-project-lifecycle) governs the
+shared Understand–Design–Build–Operate procedure and its quality gates.
+
 ## 1. Confirm Understanding
 
 Validate the problem, users, current state, constraints, risks, ownership,

@@ -19,6 +19,10 @@ It applies the [Company Bible](../COMPANY_BIBLE.md)
 (*III.V.4; III.XII.1–3*) without creating public prices or commercial
 authority.
 
+The [Operating Manual proposal procedure](../OPERATING_MANUAL.md#14-proposal)
+governs the shared financial-shape requirement without settling prices,
+payment terms, or legal terms.
+
 ## 1. Document Control
 
 | Field | Engagement-specific value |

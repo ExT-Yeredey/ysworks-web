@@ -14,6 +14,10 @@ It applies the [Company Bible](../COMPANY_BIBLE.md)
 [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
 (*III.II.1–4; III.XVII.1–3*).
 
+The [Operating Manual](../OPERATING_MANUAL.md#2-project-lifecycle) governs the
+four operational phases and
+[project closure](../OPERATING_MANUAL.md#16-project-closure).
+
 ## Lifecycle States
 
 ### 1. Candidate

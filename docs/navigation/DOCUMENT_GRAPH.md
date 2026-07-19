@@ -32,6 +32,7 @@ flowchart TD
     EA[Enterprise Architecture]
     MS[Master Specification]
     FH[Founder Handbook]
+    OM[Operating Manual]
     ARCH[Architecture Foundations]
     AMAA[Authority System Design]
     CDM[Canonical Domain Model]
@@ -50,10 +51,13 @@ flowchart TD
     V2 -->|GOVERNS| EA
     V3 -->|GOVERNS| EA
     EA -->|OPERATIONALISES| MS
+    MS -->|GOVERNS| FH
+    FH -->|GOVERNS| OM
     EA -->|GOVERNS| ARCH
     EA -->|GOVERNS| AMAA
     AMAA -->|GOVERNS| CDM
     V3 -->|GOVERNS| COMPANY
+    OM -->|OPERATIONALISES| COMPANY
     MS -->|GOVERNS| BUSINESS
     V2 -->|GOVERNS| DESIGN
     DESIGN -->|MAPS| DS
@@ -61,6 +65,7 @@ flowchart TD
     DS -->|GOVERNS| CODE
     KB -->|GOVERNS| CODE
     NAV -->|INDEXES| V1
+    NAV -->|INDEXES| OM
     NAV -->|INDEXES| ARCH
     NAV -->|INDEXES| COMPANY
     NAV -->|INDEXES| BUSINESS

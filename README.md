@@ -85,6 +85,9 @@ reputation, and Client Workspace experience. The
 operationalises those constitutional volumes and governs enterprise structure,
 system relationships, authority, information, knowledge, automation, security
 principles, and scalability. The
+[YSWORKS Operating Manual](docs/OPERATING_MANUAL.md) applies those authorities
+to day-to-day company work without claiming that supporting systems are
+implemented. The
 [company documentation](docs/company/README.md) applies it to profile,
 capability, brand, onboarding, proposals, quotations, maintenance, support,
 delivery, communication, lifecycle, and quality.

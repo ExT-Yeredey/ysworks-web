@@ -12,6 +12,10 @@ reported defects.
 The constitutional basis is the
 [Company Bible](../COMPANY_BIBLE.md) (*I.III.1; I.IX.1–3; I.XIV.3–4*).
 
+The [Operating Manual quality gates](../OPERATING_MANUAL.md#10-quality-gates)
+govern the common delivery gate procedure; this policy retains its narrower
+quality-planning and non-conformance detail.
+
 ## Quality Principles
 
 - Define quality before implementation.

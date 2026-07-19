@@ -69,6 +69,16 @@ The following are no longer open:
   flow, knowledge classes, mandate model, approval gates, security principles,
   scaling order, Founder-absence risk, and Enterprise Tests are settled
   architectural requirements, not claims of implementation.
+- [YSWORKS Operating Manual v1.0](../OPERATING_MANUAL.md) is the canonical
+  Operational-class manual, owned by Operations and amended with Governance
+  approval. It settles the Understand–Design–Build–Operate lifecycle; the
+  Works, Evidenced, Documented, Maintainable, and Usable gates; named human
+  accountability for AI output; reviewed Git changes; document-first change;
+  query, request, incident, and critical-incident support taxonomy;
+  learning-time knowledge capture; closure with handover, access revocation,
+  and immutable history; and treatment of practice/manual divergence as a
+  Knowledge-domain incident. These decisions do not claim technical
+  enforcement or implemented supporting systems.
 - Authentication provider, database selection, notification channels, billing
   provider, service levels, legal contracts, and the production privacy notice
   remain open until their applicable implementation or legal gate.

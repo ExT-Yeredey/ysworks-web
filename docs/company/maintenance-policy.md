@@ -15,6 +15,9 @@ It also applies the
 [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
 (*III.X.1–3; III.XVI.1–3; III.XVII.1–3*).
 
+The [Operating Manual](../OPERATING_MANUAL.md#14-maintenance) governs the shared
+maintenance posture without creating service levels or commercial terms.
+
 ## Principles
 
 - Maintenance is agreed, scoped, owned, and reviewable.

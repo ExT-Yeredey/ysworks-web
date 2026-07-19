@@ -83,8 +83,9 @@ The authority hierarchy, derived from the Company Bible (*I.XII.1*), is:
 8. This Master Specification is the highest-level product, ecosystem,
    vocabulary, and cross-system architecture specification.
 9. The Founder Handbook governs company behaviour.
-10. The Operating Manual governs company operations when an approved version is
-   present.
+10. The [YSWORKS Operating Manual v1.0](OPERATING_MANUAL.md) governs day-to-day
+    company operations as an Operational-class document owned by Operations,
+    with amendments approved by Governance.
 11. Detailed security, public-platform, portal, company, business, and
     repository documents remain authoritative inside their stated domains and
     may impose stricter constraints.

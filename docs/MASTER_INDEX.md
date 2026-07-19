@@ -41,6 +41,7 @@ rg -n "Client Workspace|Client Portal|Tenant|Approval" docs
 | Identity and brand | `Brand Bible`, `Volume II`, `II.`, `Design Authorities` |
 | Client experience | `Client Experience Constitution`, `Volume III`, `III.` |
 | Enterprise structure | `Enterprise Architecture`, `EA` |
+| Company operations | `Operating Manual`, `YSW-OPS-MAN`, `quality gates` |
 | Client product | `Client Workspace`, `Client Portal`, `tenant`, `projection` |
 | Authority and automation | `HumanSeat`, `mandate`, `ApprovalRequest`, `ExecutionAuthorisation` |
 | Domain data | `Canonical Domain Model`, `WorkItem`, `AuditEvent`, `ActivityEvent` |
@@ -61,6 +62,7 @@ rg -n "Client Workspace|Client Portal|Tenant|Approval" docs
 | [Enterprise Architecture](YSWORKS_ENTERPRISE_ARCHITECTURE.md) | Enterprise foundation | layers, domains, systems, information, security |
 | [Master Specification](YSWORKS_MASTER_SPEC.md) | Product and ecosystem specification | services, technology, decisions, vocabulary |
 | [Founder Handbook](FOUNDER_HANDBOOK.md) | Human operating handbook | judgement, quality, security, human–AI collaboration |
+| [Operating Manual](OPERATING_MANUAL.md) | Operational manual | daily work, lifecycle, quality gates, incidents, knowledge, closure |
 | [Master Index](MASTER_INDEX.md) | Search and inventory layer | discovery, aliases, complete document list |
 
 ## Architecture

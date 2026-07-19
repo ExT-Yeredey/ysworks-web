@@ -19,6 +19,7 @@ architectural, product, security, or implementation authority.
 | Understand systems and architectural contracts | [Architecture Map](ARCHITECTURE_MAP.md) |
 | Resolve governing precedence | [Authority Map](AUTHORITY_MAP.md) |
 | Understand document and implementation dependencies | [Dependency Map](DEPENDENCY_MAP.md) |
+| Follow day-to-day company procedures | [Operating Manual](../OPERATING_MANUAL.md) |
 | Check an official term | [Glossary](GLOSSARY.md) |
 | Expand an acronym or abbreviation | [Acronym Index](ACRONYM_INDEX.md) |
 

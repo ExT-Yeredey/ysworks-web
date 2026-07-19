@@ -15,6 +15,9 @@ This template applies the [Company Bible](../COMPANY_BIBLE.md)
 [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
 (*III.IV.3–4; III.V.1–4; III.XII.1–3*).
 
+The [Operating Manual](../OPERATING_MANUAL.md#14-proposal) governs the shared
+proposal procedure; this file remains the engagement-specific template.
+
 ## 1. Document Control
 
 | Field | Engagement-specific value |

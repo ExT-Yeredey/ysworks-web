@@ -50,8 +50,10 @@ The maintained cross-document view is the
    ecosystem, vocabulary, accepted decisions, and cross-system architecture.
 9. [Founder Handbook](FOUNDER_HANDBOOK.md) defines company behaviour, judgement,
    delivery discipline, and human–AI collaboration.
-10. The Operating Manual governs company operations when an approved version is
-   present.
+10. [YSWORKS Operating Manual v1.0](OPERATING_MANUAL.md) is the canonical
+    Operational-class manual owned by Operations, with amendments approved by
+    Governance. It operationalises the constitutional library and Enterprise
+    Architecture without overriding them.
 11. Detailed domain foundations and policies remain authoritative within their
    stated scope. In particular:
    - [Company Documentation](company/README.md) applies company authority to
@@ -104,6 +106,9 @@ silently resolves a conflict; genuine conflicts must be reported and governed.
   operationalises the constitutional volumes and governs enterprise structure
   within its domain. It defines architectural requirements, not implemented
   controls or deployment state.
+- [YSWORKS Operating Manual v1.0](OPERATING_MANUAL.md) defines day-to-day
+  company procedures. It is an Operational-class document under *EA 8.1*,
+  owned by Operations and amended with Governance approval.
 
 ## Reading Order
 
@@ -118,9 +123,10 @@ For company or cross-system work:
    system relationships, information, knowledge, automation, security
    principles, or scalability work;
 5. read the Master Specification and Founder Handbook;
-6. read the detailed contract for the affected domain;
-7. inspect applicable ADRs and Open Decisions; and
-8. use the more conservative behaviour when an unresolved conflict remains.
+6. read the Operating Manual for day-to-day company work;
+7. read the detailed contract for the affected domain;
+8. inspect applicable ADRs and Open Decisions; and
+9. use the more conservative behaviour when an unresolved conflict remains.
 
 For work limited to the public website repository, also follow the public
 engineering knowledge base before implementation.

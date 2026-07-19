@@ -26,6 +26,10 @@ through citations in the form *EA chapter.section*. The
 [Master Specification](../YSWORKS_MASTER_SPEC.md) governs ecosystem architecture
 and accepted cross-system decisions. The
 [Founder Handbook](../FOUNDER_HANDBOOK.md) governs behaviour.
+The [YSWORKS Operating Manual](../OPERATING_MANUAL.md) is the canonical
+Operational-class source for day-to-day company procedures. It is owned by
+Operations, amended with Governance approval, and operationalises the
+constitutional library and Enterprise Architecture.
 
 Documents in this folder apply those authorities to repeatable company work.
 They do not override explicit Founder decisions, applicable law, binding
@@ -37,6 +41,10 @@ implemented. Where they define responsibility, handover, approval, record, or
 automation behaviour, they must conform to *EA 4–9*.
 
 ## Index
+
+The Operating Manual governs the shared operational procedure. The documents
+below retain their narrower policy, template, and evidence detail, conform to
+the manual, and do not create competing company-wide procedure.
 
 ### Company And Capability
 

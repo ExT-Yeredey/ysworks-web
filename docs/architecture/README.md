@@ -38,6 +38,11 @@ These architecture contracts implement the enterprise boundaries in
 especially *EA 6.1–2* and *EA 10.1–6*. They may impose stricter domain controls
 but may not claim that an architectural requirement is already deployed.
 
+The [YSWORKS Operating Manual](../OPERATING_MANUAL.md) operationalises the
+constitutional library and Enterprise Architecture for day-to-day work. It is
+not an architecture authority and does not prove that any architecture control
+or system is implemented.
+
 ## Publication Rule
 
 Every document in this directory must be safe to publish. Product names used in
