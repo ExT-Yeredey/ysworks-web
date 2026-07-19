@@ -10,7 +10,9 @@ Support provides a clear, safe route for questions, incidents, defects, and
 service requests. It does not create hidden availability, unrestricted access,
 or responsibility outside the agreement.
 The constitutional basis is the
-[Company Bible](../COMPANY_BIBLE.md) (*I.VI.2; I.VIII.1–3; I.XV.1–3*).
+[Company Bible](../COMPANY_BIBLE.md) (*I.VI.2; I.VIII.1–3; I.XV.1–3*) and the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.X.1–3; III.XIV.1–4*).
 
 ## Support Boundary
 
@@ -45,17 +47,19 @@ Request the minimum useful information:
 Clients must not send passwords, secrets, full private logs, regulated data, or
 unnecessary personal information through ordinary support channels.
 
-## Priority Model
+## Matter Taxonomy
 
-| Priority | Meaning | Required handling |
+| Matter | Meaning | Required handling |
 | --- | --- | --- |
-| Critical | Severe active impact to an agreed critical function, security, or data boundary | Acknowledge through the agreed urgent path, contain risk, establish authority, and communicate the next review point |
-| High | Material degradation or blocked important work without an adequate workaround | Triage promptly within the agreed service window and identify impact, owner, and next action |
-| Normal | Defect, request, or question with limited impact or an acceptable workaround | Review through the ordinary queue and plan the appropriate response |
-| Planned | Improvement, maintenance, or non-urgent change | Assess through roadmap or change control rather than incident handling |
+| Query | A question or request for understanding | Clarify the question, provide an evidenced answer, and record reusable knowledge where appropriate |
+| Request | A desired change or service action where the agreed system is not broken | Confirm scope and authority, then assess through ordinary delivery or change control |
+| Incident | System behaviour that conflicts with the agreed or documented state | Verify impact, assign ownership, contain harm where necessary, and communicate facts and the next review point |
+| Critical incident | The business is materially stopped or data and security are in question | Use the agreed urgent path, contain risk, establish authority, preserve evidence, and maintain a clear communication cadence |
 
-Priority is based on verified impact and urgency, not requester seniority or
-message volume. Engagement-specific language may be stricter.
+Priority within an incident is based on verified impact and urgency, not
+requester seniority or message volume. Response, resolution, availability, and
+service-level commitments exist only when explicitly agreed; the Constitution
+does not define them.
 
 ## Support Process
 

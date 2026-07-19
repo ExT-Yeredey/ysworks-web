@@ -17,6 +17,12 @@ narrative for company identity, purpose, philosophy, principles, and long-term
 direction. This specification derives its company narrative from that document
 and remains authoritative for ecosystem architecture.
 
+The [Brand Bible](BRAND_BIBLE.md) governs constitutional identity. The
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md) governs the
+client relationship, journey, delivery, support, reputation, and Client
+Workspace experience. Both remain subordinate to the preceding constitutional
+volume.
+
 Detailed contracts remain authoritative within their domains:
 
 - [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
@@ -53,17 +59,20 @@ The authority hierarchy, derived from the Company Bible (*I.XII.1*), is:
 4. The Company Bible governs company-wide narrative and behaviour.
 5. The Brand Bible governs identity within its constitutional scope and remains
    subordinate to the Company Bible.
-6. This Master Specification is the highest-level product, ecosystem,
+6. The Client Experience Constitution governs client experience within its
+   constitutional scope and remains subordinate to the Company Bible and Brand
+   Bible.
+7. This Master Specification is the highest-level product, ecosystem,
    vocabulary, and cross-system architecture specification.
-7. The Founder Handbook governs company behaviour.
-8. The Operating Manual governs company operations when an approved version is
+8. The Founder Handbook governs company behaviour.
+9. The Operating Manual governs company operations when an approved version is
    present.
-9. Detailed security, public-platform, portal, company, business, and repository
-   documents remain authoritative inside their stated domains and may impose
-   stricter constraints.
-10. Operational Brand Book, user-experience, design-system, and motion documents
-    implement the Brand Bible within their stated scopes.
-11. Implementation documentation governs only its stated implementation scope.
+10. Detailed security, public-platform, portal, company, business, and
+    repository documents remain authoritative inside their stated domains and
+    may impose stricter constraints.
+11. Operational documentation, including the operational Brand Book,
+    user-experience, design-system, motion, and implementation documents,
+    implements the constitutional library within its stated scope.
 
 No lower-level document, implementation choice, dependency, or design proposal
 silently creates an ecosystem decision. Genuine conflicts remain Open Decisions
@@ -198,6 +207,12 @@ the technical architecture and security term for its authenticated delivery
 boundary. The Workspace gives each client an authorised, sanitised view of its
 projects, progress, deliverables, approvals, documents, meetings, support, and
 future billing information.
+
+Its client-facing doctrine is governed by the
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VII.1–3; III.XI.1–5*): the first screen answers the five constitutional
+questions in order, presents state before navigation, serves the executive
+reader first, and reveals technical detail progressively.
 
 The Client Workspace is not an administration panel, source-system browser,
 workflow editor, file-system browser, or real-time view into private
@@ -502,6 +517,11 @@ decided.
 ## 4. Client Experience
 
 ### 4.1 Experience Principles
+
+The complete relationship and journey are governed by the
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.I–XVIII*). This section records ecosystem boundaries and implementation-
+relevant constraints without replacing that constitutional doctrine.
 
 The client experience is direct, informed, low-pressure, and traceable. Each
 stage has a clear owner, next action, information boundary, and exit condition.
@@ -843,8 +863,14 @@ implication.
 ### 8.1 Governing Contract
 
 The [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) is the
-authoritative detailed specification. The portal remains a future product and
-must not be implemented from this summary alone.
+authoritative detailed specification. The Client Workspace remains a future
+product and must not be implemented from this summary alone.
+
+The client-facing product is the **Client Workspace**. “Client Portal” names
+the technical architecture and security boundary. The
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VII; III.XI*) governs its client experience; this section summarises only
+the technical contract.
 
 ### 8.2 Roles
 

@@ -14,7 +14,10 @@ This template is not accounting, tax, or legal advice. Final quotation terms
 require review for the contracting entity, jurisdiction, currency, taxes, and
 client.
 It applies the [Company Bible](../COMPANY_BIBLE.md)
-(*I.VIII.2; I.XV.2–3*) without creating public prices or commercial authority.
+(*I.VIII.2; I.XV.2–3*) and the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.V.4; III.XII.1–3*) without creating public prices or commercial
+authority.
 
 ## 1. Document Control
 

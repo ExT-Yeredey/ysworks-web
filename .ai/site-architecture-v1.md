@@ -5,7 +5,10 @@
 This governed source defines the experience foundation for YSWORKS Public
 Website v2 and the bounded visual preparation of the future Client Workspace.
 Its constitutional identity and interface basis is the
-[Brand Bible](../docs/BRAND_BIBLE.md) (*II.III; II.XI*). It
+[Brand Bible](../docs/BRAND_BIBLE.md) (*II.III; II.XI*). The future Client
+Workspace experience is governed by the
+[Client Experience Constitution](../docs/CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VII; III.XI*). It
 does not authorize production deployment, authentication, backend access,
 Cloudflare or DNS changes.
 
@@ -71,10 +74,15 @@ protected form boundary exists.
 
 ## Client Workspace preview rules
 
+The eventual first screen must answer the five constitutional questions in
+order, place state before navigation, serve the executive reader first, and
+reveal technical depth progressively. The current non-indexed preview does not
+claim that experience is implemented.
+
 Non-indexed visual route previews may demonstrate hierarchy and responsive
 composition. They must:
 
-- state that the portal is unavailable;
+- state that the Client Workspace is unavailable;
 - contain no sign-in simulation, session, client record, metric, invoice,
   message, document, or business placeholder;
 - remain absent from Public Website navigation;

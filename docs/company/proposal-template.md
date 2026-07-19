@@ -11,7 +11,9 @@ inapplicable guidance before issue. Do not invent proof, capability, timing, or
 commercial terms. A proposal is not an authorisation to start work until the
 required agreement, approval, and payment conditions are satisfied.
 This template applies the [Company Bible](../COMPANY_BIBLE.md)
-(*I.III.2; I.IV.1–2,6; I.VIII.2; I.IX.2*).
+(*I.III.2; I.IV.1–2,6; I.VIII.2; I.IX.2*) and the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.IV.3–4; III.V.1–4; III.XII.1–3*).
 
 ## 1. Document Control
 

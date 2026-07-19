@@ -17,6 +17,8 @@ Read these documents before substantial work:
 For design and content work, also read:
 
 - `../docs/BRAND_BIBLE.md` for constitutional identity doctrine
+- `../docs/CLIENT_EXPERIENCE_CONSTITUTION.md` for constitutional client
+  experience doctrine
 - `../docs/design/README.md` for the Founder-approved authority and version map
 - `design-system.md`
 - `design-system-v1.md`
@@ -29,6 +31,10 @@ For design and content work, also read:
 Volume II — Brand Bible remains subordinate to Volume I — Company Bible and
 outranks operational brand, design, UX, and motion documents within identity
 matters.
+
+Volume III — Client Experience Constitution remains subordinate to Volumes I
+and II and outranks operational client journey, relationship, delivery,
+support, reputation, and Client Workspace documentation.
 
 For long-term decisions, read:
 

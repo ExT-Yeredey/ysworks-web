@@ -15,6 +15,10 @@ The [Company Bible](COMPANY_BIBLE.md) is the highest-level constitutional
 narrative for company character, purpose, philosophy, and principles. The
 subordinate [Brand Bible](BRAND_BIBLE.md) governs identity within its
 constitutional scope.
+The subordinate
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md) governs the
+client relationship, journey, delivery, support, reputation, and Client
+Workspace experience.
 The [YSWORKS Master Specification](YSWORKS_MASTER_SPEC.md) remains the
 highest-level ecosystem architecture specification. The
 [Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) governs
@@ -26,9 +30,10 @@ The authority hierarchy is governed by the Company Bible (*I.XII.1*): explicit
 Founder decisions are the highest internal authority; applicable law and
 binding contracts prevail where relevant; and an accepted ADR prevails only
 within its explicit technical scope. Volume II remains subordinate to Volume I
-and outranks operational identity documents within identity matters. A detailed
-domain contract may impose stricter requirements within its scope. Conflicts
-must be reported rather than silently resolved. Until resolution, use the more
+and Volume III remains subordinate to Volumes I and II. Each constitutional
+volume outranks operational documents within its subject. A detailed domain
+contract may impose stricter requirements within its scope. Conflicts must be
+reported rather than silently resolved. Until resolution, use the more
 conservative, less-exposing behaviour.
 
 This handbook is public-safe. It does not disclose internal workflows, private
@@ -159,10 +164,13 @@ done. Domain contracts may add stricter completion criteria.
 
 ## 7. Client Relationship
 
-The client journey and client-facing system boundaries are defined in the
+The client relationship and full journey are constitutionally governed by the
+[Client Experience Constitution](CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.I–XVIII*). The
 [Master Specification](YSWORKS_MASTER_SPEC.md#4-client-experience) and
-[Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md). Company
-behavior must preserve the following relationship standard:
+[Client Portal Foundation](architecture/CLIENT_PORTAL_FOUNDATION.md) define the
+corresponding ecosystem and technical boundaries. Company behavior must
+preserve the following operational relationship standard:
 
 - listen before prescribing;
 - qualify fit honestly and decline work that cannot be delivered responsibly;

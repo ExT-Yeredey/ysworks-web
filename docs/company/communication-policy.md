@@ -9,6 +9,9 @@
 Communication must improve understanding, preserve trust, and leave an
 appropriate record. This policy applies the voice and writing principles in the
 [Company Bible](../COMPANY_BIBLE.md) (*I.VIII.1–3; I.XV.2–3*) to company work.
+Client communication also applies the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VI.1–5; III.XIII.1–7; III.XIV.1–4*).
 
 ## Principles
 

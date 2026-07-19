@@ -10,7 +10,9 @@ The lifecycle makes state, ownership, evidence, and transition conditions
 explicit. It does not prescribe a single project-management tool or delivery
 method.
 It applies the [Company Bible](../COMPANY_BIBLE.md)
-(*I.III.6; I.IX.2; I.XVI*).
+(*I.III.6; I.IX.2; I.XVI*) and the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.II.1–4; III.XVII.1–3*).
 
 ## Lifecycle States
 
@@ -80,6 +82,11 @@ commercial closure, remaining risks, and lessons are recorded.
 Closure does not end confidentiality, retention, security, or legal
 responsibilities that survive the engagement.
 
+A clean exit includes complete transfer of agreed work and data, current
+documentation, credential and access handover or revocation, a written final
+state, and confirmation that both parties understand the remaining
+responsibilities.
+
 ## Project Record
 
 Every project records:
@@ -113,8 +120,8 @@ work. Record the reason, impact, owner, re-entry condition, access treatment,
 and communication.
 
 Cancellation follows the agreement and produces an orderly handover or
-containment. It does not justify concealing unfinished work or retaining
-unnecessary access.
+containment consistent with the Clean Exit doctrine. It does not justify
+concealing unfinished work or retaining unnecessary access.
 
 ## References
 

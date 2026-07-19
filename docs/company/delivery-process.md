@@ -9,7 +9,10 @@
 This process turns an agreed outcome into verified, documented, and
 maintainable delivery. It applies the
 [Company Bible](../COMPANY_BIBLE.md) (*I.IV.1–6; I.IX.2; I.XIII.3*) and
-the [Founder Handbook engineering lifecycle](../FOUNDER_HANDBOOK.md#9-engineering-lifecycle).
+the [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VIII.1–3; III.IX.1–3; III.XVII.1–3*), with the
+[Founder Handbook engineering lifecycle](../FOUNDER_HANDBOOK.md#9-engineering-lifecycle)
+governing company behaviour.
 
 ## 1. Confirm Understanding
 

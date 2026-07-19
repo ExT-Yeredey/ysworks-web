@@ -73,7 +73,10 @@ Start with the [documentation index](docs/README.md).
 The [Company Bible](docs/COMPANY_BIBLE.md) is the company-wide narrative and
 behavioural constitution. The subordinate
 [Brand Bible](docs/BRAND_BIBLE.md) governs identity within that constitutional
-character. The
+character. The subordinate
+[Client Experience Constitution](docs/CLIENT_EXPERIENCE_CONSTITUTION.md)
+governs the complete client relationship, journey, support, delivery,
+reputation, and Client Workspace experience. The
 [company documentation](docs/company/README.md) applies it to profile,
 capability, brand, onboarding, proposals, quotations, maintenance, support,
 delivery, communication, lifecycle, and quality.

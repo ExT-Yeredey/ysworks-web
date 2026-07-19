@@ -9,8 +9,9 @@
 Onboarding turns an approved commercial decision into a safe, understandable,
 and operable engagement. It applies the
 [Company Bible](../COMPANY_BIBLE.md) (*I.III.2,6; I.V.2; I.VI.2–3; I.XV.3*)
-and does not replace a contract, privacy notice, security procedure, or project
-plan.
+and the [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.II.3–4; III.III.4*). It does not replace a contract, privacy notice,
+security procedure, or project plan.
 
 ## Entry Conditions
 

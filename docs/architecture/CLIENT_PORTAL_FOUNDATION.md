@@ -7,10 +7,14 @@
 
 ## 1. Purpose And Non-Goals
 
-This document defines the future client portal as an authenticated, tenant-
-isolated view of approved YSWORKS project information. It defines product
-behavior and security contracts without selecting or implementing a runtime,
-authorization engine, database, authentication flow, or source integration.
+This document defines the **Client Portal**, the technical architecture and
+security boundary for the future **Client Workspace** client-facing product. It
+provides an authenticated, tenant-isolated view of approved YSWORKS project
+information. The client experience is governed by the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.VII; III.XI*). This foundation defines functional and security contracts
+without selecting or implementing a runtime, authorization engine, database,
+authentication flow, or source integration.
 
 This document does not authorize:
 
@@ -245,14 +249,21 @@ contracts exist. An empty placeholder is not published.
 
 ### 6.3 Overview Priority
 
-The Overview uses this order:
+The Overview answers the five constitutional first-screen questions in this
+order:
 
-1. actions requiring the current user's attention;
-2. current phase and evidence-based progress;
-3. blockers and client dependencies;
-4. next action, responsible visible party, and estimated date;
-5. upcoming meeting;
-6. recent meaningful activity.
+1. Is everything all right?
+2. What is happening?
+3. What requires my attention?
+4. What is YSWORKS doing?
+5. What happens next?
+
+State appears before navigation. The first screen serves the executive reader
+first; technical detail remains available through progressive disclosure.
+Project health, evidence-based progress, blockers, client dependencies, pending
+approvals, the responsible visible party, estimated dates, meetings, and recent
+meaningful activity are mapped beneath those questions without changing their
+order.
 
 The page must not use vanity charts, invented velocity, raw internal metrics, or
 false green health states.
@@ -859,6 +870,7 @@ confirmation, or workflow detail.
 
 ## 16. Authoritative References
 
+- [Volume III — Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
 - [Cloudflare Access policies](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/)
 - [Cloudflare Access one-time PIN](https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/)
 - [Cloudflare Access MFA requirements](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/mfa-requirements/)

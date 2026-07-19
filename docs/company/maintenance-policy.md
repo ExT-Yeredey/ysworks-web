@@ -11,6 +11,9 @@ or improving within explicit boundaries. It is not an implied warranty,
 unlimited support, or a substitute for client ownership.
 The constitutional basis is the
 [Company Bible](../COMPANY_BIBLE.md) (*I.III.5–6; I.IV.5; I.XVI.1–3*).
+It also applies the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md)
+(*III.X.1–3; III.XVI.1–3; III.XVII.1–3*).
 
 ## Principles
 
@@ -62,7 +65,7 @@ Each engagement records:
 | Responsibility | Client, YSWORKS, and third-party ownership |
 | Activities | Preventive, corrective, review, and change boundaries |
 | Cadence | Planned review and maintenance windows |
-| Support | Approved channel, priority model, and availability |
+| Support | Approved channel, matter taxonomy, priority within incidents, and availability |
 | Security | Updates, access review, vulnerabilities, and incident boundary |
 | Continuity | Backup, restore, rollback, and recovery responsibilities |
 | Observability | Signals reviewed and information safe for the client |

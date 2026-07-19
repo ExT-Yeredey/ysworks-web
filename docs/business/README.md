@@ -4,6 +4,9 @@
 
 This directory provides supporting public-business and website strategy. The
 [Company Bible](../COMPANY_BIBLE.md) defines the company narrative and the
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md) governs
+client journeys, relationships, delivery, support, reputation, and the Client
+Workspace experience. The
 [Company Documentation](../company/README.md) governs current company policies
 and templates.
 

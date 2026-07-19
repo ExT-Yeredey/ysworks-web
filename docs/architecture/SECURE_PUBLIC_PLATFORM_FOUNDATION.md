@@ -54,7 +54,7 @@ administrative UI on the same hostname. Do not create wildcard DNS records.
 | `ysworks.dev` | `PUBLIC` | Stable apex and brand entry point | Redirect permanently to the canonical `www` URL, preserving safe paths and query strings |
 | `www.ysworks.dev` | `PUBLIC` | Static-first website | Canonical web origin; no administrative or integration routes |
 | `hooks.ysworks.dev` | `PUBLIC` | Secure webhook and form ingress gateway | Only explicitly registered provider routes; no root handler, catch-all, proxy, editor, or direct route to automation tools |
-| `portal.ysworks.dev` | `FUTURE`, target `PRIVATE` | Future authenticated client portal | Do not create until the product exists and strict per-client identity, authorization, data, cache, log, and operational isolation is validated |
+| `portal.ysworks.dev` | `FUTURE`, target `PRIVATE` | Future authenticated Client Workspace through the Client Portal technical boundary | Do not create until the product exists and strict per-client identity, authorization, data, cache, log, and operational isolation is validated |
 | `status.ysworks.dev` | `FUTURE` | Minimal public availability page | Promote to `PUBLIC` only when monitoring is independent and output cannot reveal architecture, IP addresses, origins, internal names, or private services |
 | `docs.ysworks.dev` | `FUTURE` | Public product or API documentation | Create only when durable public documentation exists; not for internal runbooks |
 
@@ -93,7 +93,7 @@ The product names below are policy examples, not an infrastructure inventory.
 | --- | --- | --- | --- |
 | Public website | `PUBLIC` | Allowed | Cloudflare edge and static hosting |
 | Secure webhook gateway | `PUBLIC` | Allowed only as a narrow ingress API | WAF, authentication, validation, replay defense, rate limits, asynchronous handoff |
-| Future client portal | `FUTURE` then `PRIVATE` | Never anonymous and never shared across clients without enforced tenant boundaries | Identity-aware access, per-client authorization and data isolation, no shared caches, redacted tenant-aware logs |
+| Future Client Workspace through the Client Portal boundary | `FUTURE` then `PRIVATE` | Never anonymous and never shared across clients without enforced tenant boundaries | Identity-aware access, per-client authorization and data isolation, no shared caches, redacted tenant-aware logs |
 | Public status page | `FUTURE` then `PUBLIC` | Allowed only when it reveals no private topology and is operationally independent | Cloudflare edge; read-only, minimal data |
 | GitHub public repository and profile | `PUBLIC` external SaaS | Allowed intentionally; never proxy GitHub through YSWORKS | GitHub authentication, branch protection, secret scanning, least privilege |
 | GitHub administration | `PRIVATE` external SaaS | Never anonymous | Strong GitHub authentication, MFA or passkey, least privilege |
@@ -491,7 +491,7 @@ dependency-failure tests before promotion. Provider-specific adapters terminate
 at the normalized event boundary; private consumers must not depend on raw
 vendor payloads.
 
-### 7.11 Future Client Portal Contract
+### 7.11 Future Client Workspace And Client Portal Contract
 
 `portal.ysworks.dev` remains nonexistent until an approved client product is
 ready. Its target exposure class is `PRIVATE`, not anonymous `PUBLIC`.

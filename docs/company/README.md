@@ -11,7 +11,11 @@ The [Company Bible](../COMPANY_BIBLE.md) is the company-wide narrative and
 behavioural constitution. These documents cite it using constitutional
 references in the form *I.Book.Article*. Its authority hierarchy is defined at
 *I.XII.1*. The subordinate [Brand Bible](../BRAND_BIBLE.md) governs identity
-through Volume II citations in the form *II.Book.Article*. The
+through Volume II citations in the form *II.Book.Article*. The subordinate
+[Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md) governs
+the client relationship, journey, delivery, support, reputation, and Client
+Workspace experience through Volume III citations in the form
+*III.Book.Article*. The
 [Master Specification](../YSWORKS_MASTER_SPEC.md) governs ecosystem architecture
 and accepted cross-system decisions. The
 [Founder Handbook](../FOUNDER_HANDBOOK.md) governs behaviour.

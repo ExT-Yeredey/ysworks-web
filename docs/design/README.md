@@ -14,6 +14,7 @@ repository sources. It does not reproduce or reinterpret those sources.
 | Approved authority | Version | Canonical repository source | Supporting source |
 | --- | --- | --- | --- |
 | YSWORKS Brand Bible | 1.1 | [Brand Bible](../BRAND_BIBLE.md) | Volume II of the constitutional library, subordinate to the [Company Bible](../COMPANY_BIBLE.md) |
+| Client Experience Constitution | 1.0 | [Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md) | Volume III of the constitutional library, subordinate to Volumes I and II |
 | Operational Brand Book | 1.0 | [Company Brand Book](../company/brand-book.md) | [Brand Kit V1](../../.ai/brand-kit-v1.md), retained as an operational and historical source, plus [Brand Positioning](../business/BRAND_POSITIONING.md) |
 | User Experience Foundation | 1.1 | [Site Architecture V1](../../.ai/site-architecture-v1.md) | UX, accessibility, responsive, and performance rules in [Design System V1](../../.ai/design-system-v1.md) and the applicable product specification |
 | YSWORKS Design System | 1.1 | [Design System V1](../../.ai/design-system-v1.md) | [Design System principles](../../.ai/design-system.md) |
@@ -38,9 +39,10 @@ brand-asset task; generated raster material is never a production asset.
 
 The User Experience Foundation governs public journeys, information hierarchy,
 responsive behavior, accessibility, interaction cost, and progressive
-enhancement. Launch scope and route decisions remain governed by the Master
-Specification and the approved business foundation when older architecture
-material describes future pages.
+enhancement. Client Workspace experience is also governed by the Client
+Experience Constitution. Launch scope and route decisions remain governed by
+the Master Specification and the approved business foundation when older
+architecture material describes future pages.
 
 The Design System governs visual roles, typography, spacing, component behavior,
 motion principles, accessibility, responsive behavior, and performance. The

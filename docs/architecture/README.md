@@ -12,6 +12,12 @@ named internal service is deployed.
 - [Secure Public Platform Foundation](SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
 - [Client Portal Foundation](CLIENT_PORTAL_FOUNDATION.md)
 
+The client-facing experience of the Client Workspace is constitutionally
+governed by
+[Volume III — Client Experience Constitution](../CLIENT_EXPERIENCE_CONSTITUTION.md).
+The Client Portal Foundation remains the authoritative technical and security
+contract.
+
 ## Publication Rule
 
 Every document in this directory must be safe to publish. Product names used in
