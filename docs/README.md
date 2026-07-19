@@ -45,6 +45,9 @@ client information, internal workflows, or restricted operational material.
    - [Authority, Mandate, Approval And Audit System Design](architecture/AUTHORITY_MANDATE_APPROVAL_AUDIT_SYSTEM.md)
      governs the logical contract for future machine-checkable authority and
      consequential execution without claiming a runtime implementation.
+   - [YSWORKS Canonical Domain Model](architecture/CANONICAL_DOMAIN_MODEL.md)
+     governs shared entity meanings, domain ownership, tenant scope,
+     lifecycles, projections, classification, and authority boundaries.
    - [Public Platform Architecture Index](architecture/README.md) defines the
      publication boundary for architecture contracts.
    - [Business Foundation](business/README.md) supports public positioning,

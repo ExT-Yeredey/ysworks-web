@@ -37,6 +37,10 @@ Detailed contracts remain authoritative within their domains:
   governs the future logical contracts for actors, authority, mandates,
   decisions, approvals, execution authorisation, policy evaluation, risk, and
   audit. It does not select or claim a runtime implementation.
+- [YSWORKS Canonical Domain Model](architecture/CANONICAL_DOMAIN_MODEL.md)
+  governs the shared meanings, owners, tenant boundaries, lifecycles,
+  visibility, retention categories, and relationships of future business
+  records. It does not prescribe a physical schema or runtime.
 - [Secure Public Platform Foundation](architecture/SECURE_PUBLIC_PLATFORM_FOUNDATION.md)
   governs public exposure, domain architecture, edge security, webhooks, and
   production security.

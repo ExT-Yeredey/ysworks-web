@@ -15,6 +15,9 @@ named internal service is deployed.
   defines the public-safe logical contract for future authority, mandates,
   policy, approvals, execution authorisation, and audit. It contains no runtime
   or private topology.
+- [YSWORKS Canonical Domain Model](CANONICAL_DOMAIN_MODEL.md) defines the shared
+  business meanings, ownership, tenancy, lifecycles, visibility, and authority
+  boundaries for future systems without selecting a physical implementation.
 
 The client-facing experience of the Client Workspace is constitutionally
 governed by
@@ -22,7 +25,7 @@ governed by
 The Client Portal Foundation remains the authoritative technical and security
 contract.
 
-Both architecture contracts implement the enterprise boundaries in
+These architecture contracts implement the enterprise boundaries in
 [YSWORKS Enterprise Architecture](../YSWORKS_ENTERPRISE_ARCHITECTURE.md),
 especially *EA 6.1–2* and *EA 10.1–6*. They may impose stricter domain controls
 but may not claim that an architectural requirement is already deployed.
